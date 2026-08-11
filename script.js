@@ -29,13 +29,38 @@ const playoff = [
 ["Justin","Championship Appearance: ’23; Championship record: 0-1","First Round Bye: None","Playoff Appearances: ’23","Playoff Record: 2-1"]
 ];
 
+const currentRules = [
+"Two flexes and no kicker.",
+"Playoffs are 6 teams, the top team in each division gets an automatic bye and the other 4 spots are filled by the teams with the best record regardless of division.",
+"Playoffs start at Week 15.",
+"Trade Deadline is Week 11.",
+"Not doing punishment results in loss of first-round pick (have to pick defense).",
+"Trades are still voted on and any first-round pick can be traded.",
+"Auto Drafters get a lost pick the next year.",
+"Draft slot is determined by March Madness brackets.",
+"Expand Payout to 5th ($60) and 6th ($50) to get some money back; winner of losers bracket gets $40 back and loser of bracket gets S.H.I.T. and punishment.",
+"Divisions will get randomized every year.",
+"Bench spot dropped from 7 to 6.",
+"Wheel of Punishments will include: Stand in shower clothed; I suck at fantasy football sticker on car; Bedroom poster of league’s choosing; Polar Plunge; Hot Wing Podcast (YouTube); Comedy Set for League; Beer Mile; Apologize to each member of league with personal letter (Almost Unanimous).",
+"If a trade is made with a player that plays on that same day, the trade gets pushed through the same day.",
+"The punishment is decided by a wheel.",
+"You lose waiver wire privileges for no ice until it's paid.",
+"The schedule is set manually by me; you play each team once (11 games) and for the last three you play one game against your draft class (or closest) and the other two are rivalry games set up by your rankings. Nobody will play three times if set up manually.",
+"Draft is done by March Madness, unless someone gets a celebrity or coach to pick.",
+"Playoff Bracket Reseeding: 5th place game is decided in Week 16, loser plays the winner of the loser's bracket in Week 17 for $40.",
+"Changed FAAB rule to where you can bet $0 on a FA (recent lowest is $1). If multiple GMs bet $0 then it will be based on waiver order.",
+"Games can end in a tie.",
+"No bonus wins and losses."
+];
+
 const rules = {
-2021:["Second Flex added and kicker position removed.","First round picks no longer allowed to be traded (Grayson rule).","Playoffs expanded to 6 teams with the top two from each division getting a bye.","First round picks can be traded (with stipulations).","Top four split cash with #4 getting money back."],
-2022:["Waiver Claims are now FAAB.","Trade Deadline moved up from week 13 to week 11.","Bench Spots went from 8 to 7.","Playoffs start week 15 instead of week 14.","The punishment is now sexy calendar.","Not doing punishment results in lost of first round pick (Have to pick defense).","Trades are still voted on and any first round pick can be traded.","Auto Drafters get lost pick the next year.","Draft slot is determined by March Madness brackets.","Expand Payout to 5th (60) and 6th (50) get some money back and winner of losers bracket gets back (40) and loser of bracket gets S.H.I.T. and punishment."],
-2023:["Week 11 stays as trade deadline.","Ice punishment for player scoring 0 or below.","Divisions will get randomized every year.","Bench spot dropped from 7 to 6.","Wheel of Punishments will include: Fully clothed shower; I suck at fantasy football sticker on car; Bedroom poster of leagues choosing; Polar Plunge; Hot Wing Podcast (Youtube); Comedy Set for League; Beer Mile; Apologize to each member of league with personal letter (Almost Unanimous).","Winner of consolation bracket gets $40."],
+2025:["Playoff Bracket Reseeding: 5th place game is decided in week 16, loser plays the winner of the loser's bracket in week 17 for $40.","Changed FAAB rule to where you can bet $0 ON A FA (recent lowest is $1). If multiple GMS bet $0 then it will be based on waiver order.","Games can end in a tie.","No bonus wins and losses."],
 2024:["If a trade is made with a player that plays on that same day, the trade gets pushed through the same day you have to wait 1 hour.","QB points stay the same at 0.05 for yards and 5 points for TD.","1 point for 4th down stop.","The punishment is decided by a wheel.","You lose waiver wire privileges for no ice until it's paid.","Defenses count in ices still.","Schedule is set manually by me; you play each team once (11 games) and for the last three you play one game against your draft class (or closet) and the other two are rivalry games set up by your rankings. Nobody will play three times if set up manually.","Loser does shot for losing rivalry game.","Draft is done by march madness, unless someone gets a celebrity or coach to pick."],
-2025:["Playoff Bracket Reseeding: 5th place game is decided in week 16, loser plays the winner of the loser's bracket in week 17 for $40.","Changed FAAB rule to where you can bet $0 ON A FA (recent lowest is $1). If multiple GMS bet $0 then it will be based on waiver order.","Games can end in a tie.","No bonus wins and losses."]
+2023:["Week 11 stays as trade deadline","Ice punishment for player scoring 0 or below","Divisions will get randomized every year","Bench spot dropped from 7 to 6","Wheel of Punishments will include: Fully clothed shower; I suck at fantasy football sticker on car; Bedroom poster of leagues choosing; Polar Plunge; Hot Wing Podcast (Youtube); Comedy Set for League; Beer Mile; Apologize to each member of league with personal letter (Almost Unanimous)","Winner of consolation bracket gets $40"],
+2022:["Waiver Claims are now FAAB","Trade Deadline moved up from week 13 to week 11","Bench Spots went from 8 to 7","Playoffs start week 15 instead of week 14","The punishment is now sexy calendar","Not doing punishment results in lost of first round pick (Have to pick defense)","Trades are still voted on and any first round pick can be traded","Auto Drafters get lost pick the next year","Draft slot is determined by March madness brackets","Expand Payout to 5th (60) and 6th (50) get some money back and winner of losers bracket gets back (40) and loser of bracket gets S.H.I.T. and punishment"],
+2021:["Second Flex added and kicker position removed","First round picks no longer allowed to be traded (Grayson rule)","Playoffs expanded to 6 teams with the top two from each division getting a bye","First round picks can be traded (with stipulations)","Top four split cash with #4 getting money back"]
 };
+
 
 const allPsi = {
 2023:{main:[
@@ -62,17 +87,17 @@ const accoladeDefinitions = {
 };
 
 function accoladeBadges(text){
-  if(!text || text === "None") return text || "Add accolades here";
+  if(!text) return "Add accolades here";
+  if(text === "None") return `<span class="accolade-badge" tabindex="0">None<span class="accolade-tooltip">None</span></span>`;
   const names = Object.keys(accoladeDefinitions).sort((a,b)=>b.length-a.length);
   const parts = text.split(" • ");
   return parts.map(part=>{
     let matched = names.find(n=>part.toLowerCase().startsWith(n.toLowerCase()+" "));
-    if(!matched){
-      matched = names.find(n=>part.toLowerCase()===n.toLowerCase());
-    }
-    if(!matched) return `<span class="accolade-text">${part}</span>`;
-    const rest = part.slice(matched.length);
-    return `<span class="accolade-badge" tabindex="0">${matched}${rest}<span class="accolade-tooltip">${accoladeDefinitions[matched]}</span></span>`;
+    if(!matched) matched = names.find(n=>part.toLowerCase()===n.toLowerCase());
+    const label = matched || part;
+    const definition = matched ? accoladeDefinitions[matched] : label;
+    const rest = matched ? part.slice(matched.length) : "";
+    return `<span class="accolade-badge" tabindex="0">${label}${rest}<span class="accolade-tooltip">${definition}</span></span>`;
   }).join(" ");
 }
 
@@ -86,7 +111,7 @@ function history(){
   <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
   <div class="history-logo-card">
     <div class="history-label">ORIGINAL LEAGUE LOGO</div>
-    <img src="original-alpha-psi-logo.jpeg" alt="Original Alpha Psi Fantasy Football League logo" class="history-logo">
+    <img src="original-alpha-psi-logo.png" alt="Original Alpha Psi Fantasy Football League logo" class="history-logo">
     <h3>The Original Alpha Psi Fantasy Football League</h3>
     <p class="intro">The original logo used when the league began.</p>
   </div>
@@ -96,8 +121,18 @@ function stats(){return `<h2>Stats</h2><p class="intro">This section is ready fo
 function teams(){return `<h2>Teams</h2><p class="intro">Team pages are ready to be added as we bring over the league's ESPN history.</p><div class="grid">${champions.map(c=>`<div class="card"><strong>${c[2]}</strong><p>${c[0]} champion — ${c[1]} — ${c[3]}</p></div>`).join("")}</div>`}
 function schedule(){return `<h2>Schedule</h2><p class="intro">Schedule and matchup history will be added from your ESPN data.</p><div class="media-box">ESPN schedule links or screenshots can be added here.</div>`}
 function recordsPage(){return `<h2>League Records</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Record</th><th>Value</th><th>Holder / Details</th></tr></thead><tbody>${records.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>`}
-function playoffsPage(){return `<h2>Playoff Records</h2><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championships</th><th>Bye</th><th>Appearances</th><th>Record</th></tr></thead><tbody>${playoff.map(p=>`<tr><td><strong>${p[0]}</strong></td><td>${p[1]}</td><td>${p[2]}</td><td>${p[3]}</td><td>${p[4]}</td></tr>`).join("")}</tbody></table></div>`}
-function rulesPage(){return `<h2>Rule Amendments Following Season (All-Time)</h2><p class="intro"><span class="badge">Highlighted</span> Rules that are still in effect can be highlighted here as we confirm the current rulebook.</p>${Object.entries(rules).map(([y,items])=>`<div class="year-block"><h3>${y}</h3><ol>${items.map(x=>`<li>${x}</li>`).join("")}</ol></div>`).join("")}`}
+function playoffsPage(){return `<h2>Playoff Records</h2><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="playoff-definitions"><div><strong>Championship Appearances</strong><span>Years and championship record</span></div><div><strong>First Round Byes</strong><span>Years receiving a bye</span></div><div><strong>Playoff Appearances</strong><span>Years making the playoffs</span></div><div><strong>Playoff Record</strong><span>Playoff wins and losses</span></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championship Appearances</th><th>First Round Byes</th><th>Playoff Appearances</th><th>Playoff Record</th></tr></thead><tbody>${playoff.map(p=>{const champ=p[1].replace(/^Championship Appearance(?:s)?:\s*/,"").replace(/;\s*Championship record:/i," — Championship record:");const bye=p[2].replace(/^First Round Bye(?:s)?:\s*/,"");const apps=p[3].replace(/^Playoff Appearances:\s*/,"");const rec=p[4].replace(/^Playoff Record:\s*/,"");return `<tr><td><strong>${p[0]}</strong></td><td>${champ}</td><td>${bye}</td><td>${apps}</td><td>${rec}</td></tr>`}).join("")}</tbody></table></div>`}
+function rulesPage(){
+  return `<h2>Rule Amendments Following Season (All-Time)</h2>
+  <div class="current-rules">
+    <div class="current-rules-title">Current Rules</div>
+    <ol>${currentRules.map(x=>`<li>${x}</li>`).join("")}</ol>
+  </div>
+  <p class="intro"><span class="badge">Highlighted</span> Rules that are still in effect are highlighted in red.</p>
+  ${Object.entries(rules).map(([y,items])=>`<div class="year-block"><h3>${y}</h3><ol>${items.map(x=>`<li>${x}</li>`).join("")}</ol></div>`).join("")}
+  <div class="year-block"><h3>2020</h3><p class="intro">No rule amendments recorded for 2020.</p></div>`
+}
+
 function punishments(){const rows=[["2020–2021","No punishments (boo)","—"],["2022","24 hour Waffle House challenge","Drayton"],["2023","Sexy Calendar","Mac"],["2024","Personal Apology letter","Drayton"],["2025","Beer Mile","Grant"]];return `<h2>Punishments</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Year</th><th>Punishment</th><th>Member</th><th>Media</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td><a href="#" onclick="return false;">Add photo/video link</a></td></tr>`).join("")}</tbody></table></div><div class="media-box">Media placeholders are ready. Replace the “Add photo/video link” placeholders in the HTML/JS with YouTube, Google Drive, image, or other hosted-media URLs.</div>`}
 function allPsiPage(){let out=`<h2>Papa’s All-Psi Team</h2><img src="papas-all-psi-photo.jpeg" alt="Brother Robert Cowsert" class="allpsi-photo"><div class="dedication">In memory of Brother Robert Cowsert 836.</div>`;for(const y of [2023,2024,2025]){const d=allPsi[y];out+=`<div class="year-block"><h3>${y} Papa’s All-Psi Team</h3><div class="grid">${d.main.map(x=>`<div class="card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div><div class="honorable"><h3>Honorable Mentions</h3><div class="grid">${d.hm.map(x=>`<div class="card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div></div><div class="media-box">Add photo/video links for this year's All-Psi team here.</div></div>`}return out}
 function members(){
@@ -126,7 +161,7 @@ function members(){
   ];
   return `<h2>Members</h2>
   <h3>Current Members</h3>
-  <div class="grid member-grid">${current.map(n=>`<div class="member"><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">${n[4]}</span></div>${n[2]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${n[3]==="None"?"None":(n[3]?accoladeBadges(n[3]):"Add accolades here")}</div></div></div>`).join("")}</div>
+  <div class="grid member-grid">${current.map(n=>`<div class="member">${n[0]==="Bailey"?`<div class="member-heading"><img class="member-photo" src="bailey-champion.jpeg" alt="Bailey holding the Alpha Psi championship trophy"><div><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">${n[4]}</span></div></div></div>`:`<strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">${n[4]}</span></div>`}${n[2]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(n[3])}</div></div></div>`).join("")}</div>
   <div class="alumni">
     <h2>Alumni</h2>
     <div class="grid member-grid">${alumni.map(n=>`<div class="member"><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span>${n[2]}</span></div>${n[3]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${n[4]?accoladeBadges(n[4]):"Add accolades here"}</div></div></div>`).join("")}</div>

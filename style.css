@@ -3,9 +3,9 @@
 :root{--red:#c92c18;--red2:#8e180d;--white:#f1f1ee;--muted:#aaa;--bg:#050505;--panel:#0e0e0e;--line:#292929}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 15% 40%,rgba(201,44,24,.15),transparent 28%),radial-gradient(circle at 85% 55%,rgba(201,44,24,.12),transparent 28%),linear-gradient(#030303,#101010 60%,#050505);color:var(--white);font-family:Oswald,Arial,sans-serif;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;background-image:radial-gradient(#fff .5px,transparent .5px);background-size:8px 8px}
-.site-header{position:sticky;top:0;z-index:30;background:rgba(0,0,0,.92);border-bottom:1px solid #222;backdrop-filter:blur(8px)}
+body{margin:0;background:linear-gradient(180deg,#3a3a3a 0%,#303030 48%,#383838 100%);color:var(--white);font-family:Oswald,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.055;background-image:radial-gradient(#fff .5px,transparent .5px);background-size:9px 9px}
+.site-header{position:sticky;top:0;z-index:30;background:rgba(55,55,55,.94);border-bottom:1px solid #222;backdrop-filter:blur(8px)}
 .topbar{max-width:1250px;margin:auto;min-height:52px;padding:0 20px;display:flex;align-items:center;gap:16px}
 .mini-brand{font-family:"Roboto Slab",serif;font-weight:900;color:var(--red);font-size:23px}.topbar-title{font-weight:700;letter-spacing:1px;font-size:14px}.topbar-est{margin-left:auto;color:#aaa;font-size:12px;letter-spacing:2px}
 main{max-width:1300px;margin:auto}
@@ -19,7 +19,7 @@ main{max-width:1300px;margin:auto}
 .champion-banner{position:relative;min-height:370px;padding:30px 10px 28px;text-align:center;background:linear-gradient(135deg,rgba(255,255,255,.05),transparent 35%),linear-gradient(90deg,#050505,#171717,#070707);border:2px solid var(--red);border-top:0;clip-path:polygon(0 0,100% 0,100% 87%,50% 100%,0 87%);animation:breeze var(--speed) ease-in-out infinite;animation-delay:var(--delay);transform-origin:top center;transition:filter .2s}.champion-banner:before{content:"";position:absolute;left:-2px;right:-2px;top:0;height:7px;background:var(--red)}.champion-banner:hover{animation-play-state:paused;filter:brightness(1.2)}
 .year{font-size:35px;color:var(--red);font-weight:700;letter-spacing:2px;border-bottom:1px solid var(--red2);padding-bottom:13px}.team{margin-top:24px;font-family:"Roboto Slab",serif;font-weight:900;font-size:clamp(15px,1.5vw,21px);line-height:1.25;text-transform:uppercase}.champ{margin-top:16px;color:#bbb;font-size:15px;line-height:1.25}.record{position:absolute;bottom:35px;left:0;right:0;color:var(--white);font-family:"Roboto Slab",serif;font-weight:900;font-size:25px}.record:before{content:"RECORD";display:block;color:var(--red);font-family:Oswald,sans-serif;font-size:11px;letter-spacing:2px;margin-bottom:2px}
 @keyframes breeze{0%,100%{transform:perspective(900px) rotateY(-2deg) rotateZ(-.7deg) skewX(-.3deg)}25%{transform:perspective(900px) rotateY(3deg) rotateZ(.6deg) skewX(.6deg)}50%{transform:perspective(900px) rotateY(-1deg) rotateZ(1deg) skewX(-.5deg)}75%{transform:perspective(900px) rotateY(4deg) rotateZ(-.5deg) skewX(.5deg)}}
-.main-tabs{position:sticky;top:52px;z-index:25;display:flex;flex-wrap:wrap;justify-content:center;background:rgba(5,5,5,.96);border-top:1px solid #333;border-bottom:1px solid #333;padding:8px;backdrop-filter:blur(8px)}
+.main-tabs{position:sticky;top:52px;z-index:25;display:flex;flex-wrap:wrap;justify-content:center;background:rgba(48,48,48,.96);border-top:1px solid #333;border-bottom:1px solid #333;padding:8px;backdrop-filter:blur(8px)}
 .tab{appearance:none;background:transparent;border:0;border-right:1px solid #444;color:#ddd;padding:11px 15px;font:600 14px Oswald,sans-serif;text-transform:uppercase;letter-spacing:.7px;cursor:pointer}.tab:last-child{border-right:0}.tab:hover,.tab.active{color:var(--red)}.tab.active{box-shadow:inset 0 -2px var(--red)}
 .content-area{max-width:1120px;margin:0 auto;padding:42px 24px 70px;min-height:420px}
 .content-area h2{font-family:"Roboto Slab",serif;font-size:34px;margin:0 0 8px}.content-area h3{font-family:"Roboto Slab",serif;color:var(--red);margin-top:30px}.intro{color:#bbb;max-width:850px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:rgba(14,14,14,.9);border:1px solid #292929;padding:18px}.card strong{color:var(--red)}.card p{color:#bbb;line-height:1.5;margin:8px 0 0}
@@ -56,3 +56,35 @@ footer{text-align:center;padding:28px;border-top:1px solid #222;color:#777;font-
 .history-label{display:inline-block;color:var(--red);border:1px solid var(--red);padding:5px 10px;font-size:11px;letter-spacing:2px;font-weight:700;margin-bottom:20px}
 .history-logo{display:block;width:min(620px,100%);margin:0 auto 22px;border:1px solid #444}
 .history-logo-card h3{font-family:"Roboto Slab",serif;font-size:25px;margin:8px 0}
+
+/* Visual updates */
+.league-logo,.history-logo{mix-blend-mode:normal;object-fit:contain}
+.champion-banner .champ{font-size:clamp(19px,2vw,28px);font-weight:700;color:#f1f1ee}
+.accolades-placeholder{display:flex;flex-wrap:wrap;gap:5px}
+.accolade-badge{border-radius:3px}
+
+/* Rule amendments highlighted text */
+.rules-highlight,.badge{color:var(--red)!important}
+
+.current-rules{margin:25px 0 35px;padding:24px 28px;background:rgba(14,14,14,.92);border:2px solid var(--red);box-shadow:0 10px 28px rgba(0,0,0,.25)}
+.current-rules-title{font-family:"Roboto Slab",serif;font-size:30px;color:var(--red);font-weight:900;text-transform:uppercase;margin-bottom:12px}
+.current-rules ol{margin:0;padding-left:25px;color:#f1f1ee;line-height:1.7}
+.current-rules li::marker{color:var(--red);font-weight:700}
+
+.playoff-definitions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:25px 0 18px}
+.playoff-definitions div{padding:14px;background:rgba(14,14,14,.92);border:1px solid #444;text-align:center}
+.playoff-definitions strong{display:block;color:var(--red);font-family:"Roboto Slab",serif;font-size:15px}
+.playoff-definitions span{display:block;color:#aaa;font-size:11px;margin-top:5px}
+@media(max-width:800px){.playoff-definitions{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.playoff-definitions{grid-template-columns:1fr}}
+
+/* Championship banner support rod */
+.banner-row{position:relative;padding-top:18px}
+.banner-row:before{content:"";position:absolute;z-index:0;left:-8px;right:-8px;top:10px;height:12px;border-radius:8px;background:linear-gradient(180deg,#cfcfcf 0%,#7f7f7f 42%,#3f3f3f 58%,#bdbdbd 100%);box-shadow:0 3px 6px rgba(0,0,0,.55),inset 0 1px 2px rgba(255,255,255,.55)}
+.banner-row:after{content:"";position:absolute;z-index:1;left:-15px;top:6px;width:18px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#eee 0 14%,#888 30%,#444 65%,#222 100%);box-shadow:0 0 0 2px #222}
+.champion-banner{z-index:2}
+
+.member-heading{display:flex;align-items:center;justify-content:center;gap:12px;text-align:left}
+.member-photo{width:72px;height:72px;object-fit:cover;border-radius:50%;border:3px solid var(--red);box-shadow:0 3px 10px rgba(0,0,0,.45);flex:0 0 72px}
+.member-heading strong{display:block}
+@media(max-width:500px){.member-photo{width:60px;height:60px;flex-basis:60px}.member-heading{gap:9px}}
