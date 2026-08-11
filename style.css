@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Slab:wght@500;700;900&display=swap');
+
+:root{--red:#c92c18;--red2:#8e180d;--white:#f1f1ee;--muted:#aaa;--bg:#050505;--panel:#0e0e0e;--line:#292929}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 15% 40%,rgba(201,44,24,.15),transparent 28%),radial-gradient(circle at 85% 55%,rgba(201,44,24,.12),transparent 28%),linear-gradient(#030303,#101010 60%,#050505);color:var(--white);font-family:Oswald,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;background-image:radial-gradient(#fff .5px,transparent .5px);background-size:8px 8px}
+.site-header{position:sticky;top:0;z-index:30;background:rgba(0,0,0,.92);border-bottom:1px solid #222;backdrop-filter:blur(8px)}
+.topbar{max-width:1250px;margin:auto;min-height:52px;padding:0 20px;display:flex;align-items:center;gap:16px}
+.mini-brand{font-family:"Roboto Slab",serif;font-weight:900;color:var(--red);font-size:23px}.topbar-title{font-weight:700;letter-spacing:1px;font-size:14px}.topbar-est{margin-left:auto;color:#aaa;font-size:12px;letter-spacing:2px}
+main{max-width:1300px;margin:auto}
+.league-hero{display:flex;align-items:center;gap:45px;padding:58px 38px 35px}
+.league-logo{width:240px;max-width:28vw;mix-blend-mode:screen;filter:drop-shadow(0 12px 22px rgba(0,0,0,.55))}
+.hero-copy{border-left:1px solid #444;padding-left:45px;flex:1}.hero-kicker{font-family:"Roboto Slab",serif;font-weight:900;font-size:clamp(38px,6vw,78px);line-height:.95}.hero-copy h1{margin:8px 0 10px;color:var(--red);font-family:"Roboto Slab",serif;font-size:clamp(28px,4vw,55px);line-height:1}
+.motto{margin:8px 0 20px;color:#ddd;font-family:"Roboto Slab",serif;font-style:italic;font-size:clamp(16px,2vw,23px)}
+.est-line{display:flex;align-items:center;gap:14px;color:#bbb;letter-spacing:3px}.est-line span{height:2px;background:var(--red);flex:1;max-width:190px}
+.champions-wrap{padding:10px 18px 30px}.section-title{max-width:1160px;margin:0 auto 22px;display:flex;align-items:center;gap:18px}.section-title h2{margin:0;font-family:"Roboto Slab",serif;text-transform:uppercase;font-size:clamp(24px,3vw,39px);white-space:nowrap}.section-title span{height:2px;flex:1;background:linear-gradient(90deg,transparent,var(--red))}.section-title span:last-child{background:linear-gradient(90deg,var(--red),transparent)}
+.banner-row{max-width:1180px;margin:auto;display:grid;grid-template-columns:repeat(6,1fr);gap:7px}
+.champion-banner{position:relative;min-height:370px;padding:30px 10px 28px;text-align:center;background:linear-gradient(135deg,rgba(255,255,255,.05),transparent 35%),linear-gradient(90deg,#050505,#171717,#070707);border:2px solid var(--red);border-top:0;clip-path:polygon(0 0,100% 0,100% 87%,50% 100%,0 87%);animation:breeze var(--speed) ease-in-out infinite;animation-delay:var(--delay);transform-origin:top center;transition:filter .2s}.champion-banner:before{content:"";position:absolute;left:-2px;right:-2px;top:0;height:7px;background:var(--red)}.champion-banner:hover{animation-play-state:paused;filter:brightness(1.2)}
+.year{font-size:35px;color:var(--red);font-weight:700;letter-spacing:2px;border-bottom:1px solid var(--red2);padding-bottom:13px}.team{margin-top:24px;font-family:"Roboto Slab",serif;font-weight:900;font-size:clamp(15px,1.5vw,21px);line-height:1.25;text-transform:uppercase}.champ{margin-top:16px;color:#bbb;font-size:15px;line-height:1.25}.record{position:absolute;bottom:35px;left:0;right:0;color:var(--white);font-family:"Roboto Slab",serif;font-weight:900;font-size:25px}.record:before{content:"RECORD";display:block;color:var(--red);font-family:Oswald,sans-serif;font-size:11px;letter-spacing:2px;margin-bottom:2px}
+@keyframes breeze{0%,100%{transform:perspective(900px) rotateY(-2deg) rotateZ(-.7deg) skewX(-.3deg)}25%{transform:perspective(900px) rotateY(3deg) rotateZ(.6deg) skewX(.6deg)}50%{transform:perspective(900px) rotateY(-1deg) rotateZ(1deg) skewX(-.5deg)}75%{transform:perspective(900px) rotateY(4deg) rotateZ(-.5deg) skewX(.5deg)}}
+.main-tabs{position:sticky;top:52px;z-index:25;display:flex;flex-wrap:wrap;justify-content:center;background:rgba(5,5,5,.96);border-top:1px solid #333;border-bottom:1px solid #333;padding:8px;backdrop-filter:blur(8px)}
+.tab{appearance:none;background:transparent;border:0;border-right:1px solid #444;color:#ddd;padding:11px 15px;font:600 14px Oswald,sans-serif;text-transform:uppercase;letter-spacing:.7px;cursor:pointer}.tab:last-child{border-right:0}.tab:hover,.tab.active{color:var(--red)}.tab.active{box-shadow:inset 0 -2px var(--red)}
+.content-area{max-width:1120px;margin:0 auto;padding:42px 24px 70px;min-height:420px}
+.content-area h2{font-family:"Roboto Slab",serif;font-size:34px;margin:0 0 8px}.content-area h3{font-family:"Roboto Slab",serif;color:var(--red);margin-top:30px}.intro{color:#bbb;max-width:850px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:rgba(14,14,14,.9);border:1px solid #292929;padding:18px}.card strong{color:var(--red)}.card p{color:#bbb;line-height:1.5;margin:8px 0 0}
+.table-wrap{overflow-x:auto;border:1px solid #292929}.data-table{width:100%;border-collapse:collapse;min-width:720px}.data-table th,.data-table td{padding:11px 12px;border-bottom:1px solid #242424;text-align:left;vertical-align:top}.data-table th{color:var(--red);text-transform:uppercase;letter-spacing:.6px;background:#0b0b0b}.data-table tr:last-child td{border-bottom:0}
+.year-block{border-top:1px solid #333;padding:22px 0}.year-block:first-child{border-top:0}.year-block h3{margin:0 0 12px}.year-block ol{margin:0;padding-left:24px;color:#ccc;line-height:1.7}
+.badge{display:inline-block;color:var(--red);border:1px solid var(--red2);padding:3px 8px;font-size:12px;letter-spacing:1px;text-transform:uppercase}.media-box{margin-top:14px;padding:15px;border:1px dashed #555;color:#aaa}.media-box a{color:var(--red)}
+.allpsi-photo{display:block;width:min(430px,100%);max-height:520px;object-fit:cover;margin:0 auto 24px;border:3px solid var(--red);box-shadow:0 14px 35px rgba(0,0,0,.5)}.dedication{text-align:center;color:#ddd;font-family:"Roboto Slab",serif;font-style:italic;font-size:18px;margin-bottom:35px}
+.position{color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:1px}.honorable{margin-top:18px;padding-top:16px;border-top:1px solid #333}
+.member-grid{grid-template-columns:repeat(4,1fr)}.member{font-family:"Roboto Slab",serif;font-size:20px;padding:16px;border:1px solid #292929;background:#0d0d0d}.alumni{margin-top:50px;border-top:2px solid var(--red);padding-top:25px}.alumni .member{color:#aaa}
+footer{text-align:center;padding:28px;border-top:1px solid #222;color:#777;font-family:Arial,sans-serif;font-size:12px}
+@media(max-width:1000px){.banner-row{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.member-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:650px){.league-hero{flex-direction:column;text-align:center;padding:38px 18px 28px;gap:25px}.league-logo{max-width:210px}.hero-copy{border-left:0;border-top:1px solid #444;padding:24px 0 0;width:100%}.est-line{justify-content:center}.banner-row{grid-template-columns:repeat(2,1fr);gap:10px}.champion-banner{min-height:315px}.main-tabs{top:52px}.tab{padding:9px 9px;font-size:12px}.grid,.member-grid{grid-template-columns:1fr}.content-area{padding-left:16px;padding-right:16px}}
+@media(max-width:390px){.banner-row{grid-template-columns:1fr;max-width:235px}}
+
+.member-meta{margin-top:8px;color:#aaa;font-family:Oswald,Arial,sans-serif;font-size:14px;line-height:1.35;letter-spacing:.5px}
+.member-meta span{color:var(--red);font-family:"Roboto Slab",serif;font-weight:900;font-size:18px}
+
+.founder-badge{display:inline-block;margin-top:10px;padding:3px 7px;border:1px solid var(--red);color:var(--red);font-size:10px;letter-spacing:1px;font-weight:700;text-transform:uppercase;background:rgba(201,44,24,.08)}
+
+.accolades{margin-top:13px;padding-top:10px;border-top:1px solid #333;text-align:left}
+.accolades-title{color:var(--red);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:4px}
+.accolades-placeholder{color:#777;font-family:Arial,sans-serif;font-size:11px;line-height:1.35;font-style:italic}
+
+.accolade-badge{position:relative;display:inline-block;margin:2px 3px 3px 0;padding:4px 7px;border:1px solid #5b5b5b;background:#151515;color:#ddd;font-family:Oswald,Arial,sans-serif;font-size:11px;line-height:1.2;cursor:help}
+.accolade-badge:hover,.accolade-badge:focus{border-color:var(--red);color:#fff;outline:none}
+.accolade-tooltip{visibility:hidden;opacity:0;position:absolute;z-index:50;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(4px);width:190px;padding:9px 10px;background:#090909;border:1px solid var(--red);box-shadow:0 8px 22px rgba(0,0,0,.65);color:#eee;font-family:Arial,sans-serif;font-size:11px;line-height:1.35;text-align:center;pointer-events:none;transition:opacity .15s ease,transform .15s ease}
+.accolade-tooltip:after{content:"";position:absolute;left:50%;bottom:-6px;width:10px;height:10px;background:#090909;border-right:1px solid var(--red);border-bottom:1px solid var(--red);transform:translateX(-50%) rotate(45deg)}
+.accolade-badge:hover .accolade-tooltip,.accolade-badge:focus .accolade-tooltip{visibility:visible;opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:650px){.accolade-tooltip{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);width:min(260px,80vw)}.accolade-badge:hover .accolade-tooltip,.accolade-badge:focus .accolade-tooltip{transform:translateX(-50%)}}
+
+.member-record{color:var(--red);font-family:"Roboto Slab",serif;font-weight:900;font-size:18px}
+
+.history-logo-card{max-width:760px;margin:30px auto;padding:28px;text-align:center;background:rgba(14,14,14,.92);border:1px solid #333;box-shadow:0 14px 35px rgba(0,0,0,.35)}
+.history-label{display:inline-block;color:var(--red);border:1px solid var(--red);padding:5px 10px;font-size:11px;letter-spacing:2px;font-weight:700;margin-bottom:20px}
+.history-logo{display:block;width:min(620px,100%);margin:0 auto 22px;border:1px solid #444}
+.history-logo-card h3{font-family:"Roboto Slab",serif;font-size:25px;margin:8px 0}
