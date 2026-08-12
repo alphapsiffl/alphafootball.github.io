@@ -315,7 +315,7 @@ function history(){
     <section class="season-foundation">
       <div class="season-foundation-kicker">THE MODERN LEAGUE TAKES SHAPE</div>
       <h3>Becoming What We Know Today</h3>
-      <p>2023 was the year the league really started to become what we know today. The current group of brothers was beginning to take shape, and people were investing more of themselves into what we were building. The podcast was growing, giving everyone a chance to get on and talk football and league business together. We also started giving out ices for scoring 0 points, and bench spots were cut from 7 to 6, putting a much tighter limit on roster depth. Most importantly, we introduced a uniform punishment system through the Wheel of Punishments, creating the league tradition that we still use today.</p>
+      <p>2023 was the year the league really started to become what we know today. The current group of brothers was beginning to take shape, and people were investing more of themselves into what we were building. The podcast was growing, giving everyone a chance to get on and talk football and league business together. We also started giving out ices for scoring 0 points, and bench spots were cut from 7 to 6, putting a much tighter limit on roster depth. Most importantly, we introduced a uniform punishment system through the Wheel of Punishments, creating the league tradition that we still use today. Justin Cooper also became our Ice Commissioner, taking charge of the ice tradition that became part of the league.</p>
     <section class="history-photo-feature champion-photo-feature">
       <div class="history-photo-feature-title">2023 CHAMPION</div>
       <figure>
@@ -1008,12 +1008,3 @@ function bindChampionLinks(){
 
 const initial=location.hash.slice(1);render(pages[initial]?initial:"home");
 
-    <section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
-      <div class="history-photo-feature-title">2023 FANTASY LOSER</div>
-      <figure>
-        <a href="2023-fantasy-loser-chase-arrington.jpeg" target="_blank" rel="noopener">
-          <img src="2023-fantasy-loser-chase-arrington.jpeg" alt="Fantasy loser Chase Arrington">
-        </a>
-        <figcaption>Fantasy loser Chase Arrington</figcaption>
-      </figure>
-    </section>
