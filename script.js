@@ -2,7 +2,6 @@ const content = document.getElementById("content");
 const tabs = [...document.querySelectorAll(".tab")];
 
 const records = [
-["200 Point Club","254.0","Davis, Week 12, 2020"],["200 Point Club","202.5","Davis, Playoffs Round 2, 2024"],["200 Point Club","201.25","Bailey, Week 11, 2024 — Lower scoring era"],
 ["Lowest score for one week","52.8","Grant A., Week 11, 2020"],["Lowest score for one week","56.7","Mac, Week 2, 2024"],
 ["Most points in a season","2115.55","Bailey Coble, 2023"],["Most points in a season","2087.7","Andrew Blum, 2021"],
 ["Least points in a season","1334.45","Peachey, 2020"],["Highest point average","151.1","Bailey Coble, 2023"],["Highest point average","149.1","Andrew Blum, 2021"],
@@ -12,6 +11,11 @@ const records = [
 ["Longest win streak","7","Bailey, 2021"],["Longest losing streak","9","Grant, 2024"],["Longest losing streak","8","Justin, 2025"],["Longest losing streak","8","Drayton, 2024"],["Longest losing streak","6","Davis, 2023 — Scored second most points and missed offs"],
 ["Most trades in a season","19","Blake Jackson, 2023"],["Most ices in a season","9","Chase, 2025"],["Most ices in a season","6","Kameron, 2024"],["Least ices in a season","1","Braxton, 2024"],["Least ices in a season","1","Blum, 2025"],
 ["Worst loss","—","Victor losing to Mac when he had three players score 0, Week 7, 2025"]
+];
+const twoHundredClub=[
+["254.0","Davis, Week 12, 2020"],
+["202.5","Davis, Playoffs Round 2, 2024"],
+["201.25","Bailey, Week 11, 2024 — Lower scoring era"]
 ];
 
 const playoff = [
@@ -105,13 +109,13 @@ const champions = [
 ["2020","Grayson Maxfield","Bitchin’ Baker Beards","8–5"],["2021","Bailey Coble","Kareem Pie","9–5"],["2022","Jonathan Davis","Make it Hurts so Good","8–5"],["2023","Victor Barcenas","My Ball Zach Ertz","10–4"],["2024","Quinton Roof","King Henry’s Court","10–4"],["2025","Kameron Walker","Njigbas in Paris","8–6"]
 ];
 
-function home(){return `<h2>Welcome to the Alpha Psi League</h2><p class="intro">League history, champions, records, rules, punishments, and honors — all in one place.</p><div class="grid">${champions.map(c=>`<div class="card"><span class="badge">${c[0]} Champion</span><h3>${c[2]}</h3><p><strong>${c[1]}</strong><br>Record: ${c[3]}</p></div>`).join("")}</div>`}
+function home(){return `<div class="home-intro"><h2>Welcome to the Alpha Psi League</h2><p class="intro">League history, champions, records, rules, punishments, and honors — all in one place.</p></div><section class="champions-wrap"><div class="section-title"><span></span><h2>Hall of Champions</h2><span></span></div><div class="banner-row">${champions.map((c,i)=>`<div class="champion-banner" style="--speed:${5.2+i*.35}s;--delay:${i*-.55}s"><div class="year">${c[0]}</div>${c[0]==="2020"?`<img class="champion-photo" src="grayson-helmet.png" alt="Grayson's team helmet">`:c[0]==="2021"?`<img class="champion-photo" src="bailey-champion.jpeg" alt="Bailey championship photo">`:c[0]==="2022"?`<img class="champion-photo" src="davis-helmet.png" alt="Davis team helmet">`:c[0]==="2023"?`<img class="champion-photo" src="victor-helmet.png" alt="Victor team emblem">`:c[0]==="2024"?`<img class="champion-photo" src="quinton-helmet.png" alt="Quinton team emblem">`:c[0]==="2025"?`<img class="champion-photo" src="kameron-banner.png" alt="Kameron team image">`:""}<div class="team">${c[2]}</div><div class="champ">Champion<br><strong>${c[1]}</strong></div><div class="record">${c[3]}</div></div>`).join("")}</div></section>`}
 function history(){
   return `<h2>League History</h2>
   <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
   <div class="history-logo-card">
     <div class="history-label">ORIGINAL LEAGUE LOGO</div>
-    <img src="original-alpha-psi-logo.png" alt="Original Alpha Psi Fantasy Football League logo" class="history-logo">
+    <img src="original-alpha-psi-logo.jpeg" alt="Original Alpha Psi Fantasy Football League logo" class="history-logo">
     <h3>The Original Alpha Psi Fantasy Football League</h3>
     <p class="intro">The original logo used when the league began.</p>
   </div>
@@ -120,21 +124,27 @@ function history(){
 function stats(){return `<h2>Stats</h2><p class="intro">This section is ready for the ESPN league data you provide. We can expand it with team, player, weekly, and season statistics.</p><div class="grid"><div class="card"><strong>ESPN Data</strong><p>Roster and scoring data can be added here.</p></div><div class="card"><strong>Season Stats</strong><p>Season-by-season totals and averages can live here.</p></div><div class="card"><strong>Player Stats</strong><p>Individual player records can be added here.</p></div></div>`}
 function teams(){return `<h2>Teams</h2><p class="intro">Team pages are ready to be added as we bring over the league's ESPN history.</p><div class="grid">${champions.map(c=>`<div class="card"><strong>${c[2]}</strong><p>${c[0]} champion — ${c[1]} — ${c[3]}</p></div>`).join("")}</div>`}
 function schedule(){return `<h2>Schedule</h2><p class="intro">Schedule and matchup history will be added from your ESPN data.</p><div class="media-box">ESPN schedule links or screenshots can be added here.</div>`}
-function recordsPage(){return `<h2>League Records</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Record</th><th>Value</th><th>Holder / Details</th></tr></thead><tbody>${records.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>`}
+function recordsPage(){return `<h2>League Records</h2><p class="intro">The all-time Alpha Psi record book.</p>
+<div class="record-feature">
+  <div class="record-feature-title">200 POINT CLUB</div>
+  <div class="record-feature-sub">Three players have crossed the 200-point mark in a single fantasy matchup.</div>
+  <div class="two-hundred-grid">${twoHundredClub.map((r,i)=>`<div class="record-holder"><div class="record-rank">0${i+1}</div><div class="record-value">${r[0]}</div><div class="record-detail">${r[1]}</div></div>`).join("")}</div>
+</div>
+<div class="records-grid">${records.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-value">${r[1]}</div><div class="record-card-detail">${r[2]}</div></article>`).join("")}</div>`}
 function playoffsPage(){return `<h2>Playoff Records</h2><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="playoff-definitions"><div><strong>Championship Appearances</strong><span>Years and championship record</span></div><div><strong>First Round Byes</strong><span>Years receiving a bye</span></div><div><strong>Playoff Appearances</strong><span>Years making the playoffs</span></div><div><strong>Playoff Record</strong><span>Playoff wins and losses</span></div></div><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championship Appearances</th><th>First Round Byes</th><th>Playoff Appearances</th><th>Playoff Record</th></tr></thead><tbody>${playoff.map(p=>{const champ=p[1].replace(/^Championship Appearance(?:s)?:\s*/,"").replace(/;\s*Championship record:/i," — Championship record:");const bye=p[2].replace(/^First Round Bye(?:s)?:\s*/,"");const apps=p[3].replace(/^Playoff Appearances:\s*/,"");const rec=p[4].replace(/^Playoff Record:\s*/,"");return `<tr><td><strong>${p[0]}</strong></td><td>${champ}</td><td>${bye}</td><td>${apps}</td><td>${rec}</td></tr>`}).join("")}</tbody></table></div>`}
 function rulesPage(){
+  const activeMap={2025:[0,1,2,3],2024:[0,3,4,6,8],2023:[0,2,3,4,5],2022:[0,1,3,5,6,7,8,9],2021:[0,2,3]};
   return `<h2>Rule Amendments Following Season (All-Time)</h2>
   <div class="current-rules">
     <div class="current-rules-title">Current Rules</div>
     <ol>${currentRules.map(x=>`<li>${x}</li>`).join("")}</ol>
+    <div class="current-rules-origin"><strong>2020</strong><span>League founded. No rule amendments recorded for the founding season.</span></div>
   </div>
-  <p class="intro"><span class="badge">Highlighted</span> Rules that are still in effect are highlighted in red.</p>
-  ${Object.entries(rules).map(([y,items])=>`<div class="year-block"><h3>${y}</h3><ol>${items.map(x=>`<li>${x}</li>`).join("")}</ol></div>`).join("")}
-  <div class="year-block"><h3>2020</h3><p class="intro">No rule amendments recorded for 2020.</p></div>`
+  <p class="intro"><span class="badge">Highlighted</span> Rules that are still in effect are shown in red.</p>
+  ${Object.entries(rules).map(([y,items])=>`<div class="year-block"><h3>${y}</h3><ol>${items.map((x,i)=>`<li class="${(activeMap[y]||[]).includes(i)?"rule-active":""}">${x}</li>`).join("")}</ol></div>`).join("")}`
 }
-
 function punishments(){const rows=[["2020–2021","No punishments (boo)","—"],["2022","24 hour Waffle House challenge","Drayton"],["2023","Sexy Calendar","Mac"],["2024","Personal Apology letter","Drayton"],["2025","Beer Mile","Grant"]];return `<h2>Punishments</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Year</th><th>Punishment</th><th>Member</th><th>Media</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td><a href="#" onclick="return false;">Add photo/video link</a></td></tr>`).join("")}</tbody></table></div><div class="media-box">Media placeholders are ready. Replace the “Add photo/video link” placeholders in the HTML/JS with YouTube, Google Drive, image, or other hosted-media URLs.</div>`}
-function allPsiPage(){let out=`<h2>Papa’s All-Psi Team</h2><img src="papas-all-psi-photo.jpeg" alt="Brother Robert Cowsert" class="allpsi-photo"><div class="dedication">In memory of Brother Robert Cowsert 836.</div>`;for(const y of [2023,2024,2025]){const d=allPsi[y];out+=`<div class="year-block"><h3>${y} Papa’s All-Psi Team</h3><div class="grid">${d.main.map(x=>`<div class="card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div><div class="honorable"><h3>Honorable Mentions</h3><div class="grid">${d.hm.map(x=>`<div class="card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div></div><div class="media-box">Add photo/video links for this year's All-Psi team here.</div></div>`}return out}
+function allPsiPage(){let out=`<h2>Papa’s All-Psi Team</h2><img src="papas-all-psi-photo.jpeg" alt="Brother Robert Cowsert" class="allpsi-photo"><div class="dedication">In memory of Brother Robert Cowsert.</div>`;for(const y of [2023,2024,2025]){const d=allPsi[y];out+=`<div class="year-block"><h3>${y} Papa’s All-Psi Team</h3><div class="grid">${d.main.map(x=>`<div class="card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div><div class="honorable"><h3>Honorable Mentions</h3><div class="grid">${d.hm.map(x=>`<div class="card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div></div><div class="media-box">Add photo/video links for this year's All-Psi team here.</div></div>`}return out}
 function members(){
   const current=[
     ["Quinton","2020–Present",true,"Worse Name (’23) • 2024 Championship (’24) • GM of the Year (’24) • CBPOY (’24) • Falcon (’25)","39–43"],
@@ -161,7 +171,7 @@ function members(){
   ];
   return `<h2>Members</h2>
   <h3>Current Members</h3>
-  <div class="grid member-grid">${current.map(n=>`<div class="member">${n[0]==="Bailey"?`<div class="member-heading"><img class="member-photo" src="bailey-champion.jpeg" alt="Bailey holding the Alpha Psi championship trophy"><div><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">${n[4]}</span></div></div></div>`:`<strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">${n[4]}</span></div>`}${n[2]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(n[3])}</div></div></div>`).join("")}</div>
+  <div class="grid member-grid">${current.map(n=>`<div class="member">${["Bailey","Mac","Davis","Victor","Justin","Blum","Braxton","Grant","Quinton","Kameron","Peachey","Drayton"].includes(n[0])?`<div class="member-heading"><img class="member-photo" src="${n[0]==="Bailey"?"bailey-champion.jpeg":n[0]==="Mac"?"mac-member.png":n[0]==="Davis"?"davis-member.png":n[0]==="Victor"?"victor-member.png":n[0]==="Justin"?"justin-member.png":n[0]==="Blum"?"blum-member.png":n[0]==="Braxton"?"braxton-member.png":n[0]==="Grant"?"grant-member.png":n[0]==="Quinton"?"quinton-member.png":n[0]==="Kameron"?"kameron-member.png":n[0]==="Peachey"?"peachey-member.png":"drayton-member.png"}" alt="${n[0]} member photo"><div><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">${n[4]}</span></div></div></div>`:`<strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">${n[4]}</span></div>`}${n[2]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(n[3])}</div></div></div>`).join("")}</div>
   <div class="alumni">
     <h2>Alumni</h2>
     <div class="grid member-grid">${alumni.map(n=>`<div class="member"><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span>${n[2]}</span></div>${n[3]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${n[4]?accoladeBadges(n[4]):"Add accolades here"}</div></div></div>`).join("")}</div>

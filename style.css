@@ -10,7 +10,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.055;b
 .mini-brand{font-family:"Roboto Slab",serif;font-weight:900;color:var(--red);font-size:23px}.topbar-title{font-weight:700;letter-spacing:1px;font-size:14px}.topbar-est{margin-left:auto;color:#aaa;font-size:12px;letter-spacing:2px}
 main{max-width:1300px;margin:auto}
 .league-hero{display:flex;align-items:center;gap:45px;padding:58px 38px 35px}
-.league-logo{width:240px;max-width:28vw;mix-blend-mode:screen;filter:drop-shadow(0 12px 22px rgba(0,0,0,.55))}
+.league-logo{width:240px;max-width:28vw;mix-blend-mode:normal;filter:drop-shadow(0 12px 22px rgba(0,0,0,.55))}
 .hero-copy{border-left:1px solid #444;padding-left:45px;flex:1}.hero-kicker{font-family:"Roboto Slab",serif;font-weight:900;font-size:clamp(38px,6vw,78px);line-height:.95}.hero-copy h1{margin:8px 0 10px;color:var(--red);font-family:"Roboto Slab",serif;font-size:clamp(28px,4vw,55px);line-height:1}
 .motto{margin:8px 0 20px;color:#ddd;font-family:"Roboto Slab",serif;font-style:italic;font-size:clamp(16px,2vw,23px)}
 .est-line{display:flex;align-items:center;gap:14px;color:#bbb;letter-spacing:3px}.est-line span{height:2px;background:var(--red);flex:1;max-width:190px}
@@ -88,3 +88,63 @@ footer{text-align:center;padding:28px;border-top:1px solid #222;color:#777;font-
 .member-photo{width:72px;height:72px;object-fit:cover;border-radius:50%;border:3px solid var(--red);box-shadow:0 3px 10px rgba(0,0,0,.45);flex:0 0 72px}
 .member-heading strong{display:block}
 @media(max-width:500px){.member-photo{width:60px;height:60px;flex-basis:60px}.member-heading{gap:9px}}
+
+/* Requested homepage banner styling */
+.home-intro{text-align:center;padding:8px 20px 0}
+.banner-row{position:relative;padding-top:28px;grid-template-columns:repeat(6,1fr)}
+.banner-row:before{content:"";position:absolute;z-index:0;left:-8px;right:-8px;top:14px;height:11px;border-radius:8px;background:linear-gradient(180deg,#ededed 0%,#9c9c9c 40%,#4b4b4b 58%,#d8d8d8 100%);box-shadow:0 3px 7px rgba(0,0,0,.5),inset 0 1px 2px rgba(255,255,255,.7)}
+.banner-row:after{content:"";position:absolute;z-index:1;left:-15px;top:10px;width:19px;height:19px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0 10%,#aaa 28%,#555 60%,#222 100%);box-shadow:0 0 0 2px #222}
+.champion-banner{z-index:2;border:1px solid rgba(255,255,255,.92);border-top:0;box-shadow:0 0 0 1px rgba(255,255,255,.22),0 12px 22px rgba(0,0,0,.35)}
+.champion-banner:before{left:-1px;right:-1px}
+.year{font-size:39px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.75);border-bottom:1px solid rgba(255,255,255,.65)}
+.team{font-size:clamp(17px,1.7vw,25px);color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.champ strong{color:#fff}
+.record{color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.record:before{color:var(--red)}
+
+/* Current-rule origin and historical active-rule highlighting */
+.current-rules-origin{margin-top:18px;padding:12px 14px;border-top:1px solid #555;display:flex;gap:12px;align-items:baseline}
+.current-rules-origin strong{color:var(--red);font-family:"Roboto Slab",serif;font-size:18px}
+.current-rules-origin span{color:#ccc}
+.rule-active{color:var(--red)!important;font-weight:700}
+.rule-active::marker{color:var(--red)}
+
+/* More creative records page */
+.record-feature{position:relative;margin:26px 0 30px;padding:26px;background:linear-gradient(135deg,rgba(201,44,24,.18),rgba(14,14,14,.96) 42%);border:1px solid var(--red);box-shadow:0 12px 30px rgba(0,0,0,.28);overflow:hidden}
+.record-feature:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--red)}
+.record-feature-title{font-family:"Roboto Slab",serif;font-size:32px;font-weight:900;letter-spacing:2px;color:#fff}
+.record-feature-sub{color:#aaa;margin:5px 0 20px}
+.two-hundred-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.record-holder{background:rgba(0,0,0,.32);border:1px solid #4a4a4a;padding:17px;min-height:135px;position:relative;transition:transform .2s,border-color .2s}
+.record-holder:hover{transform:translateY(-4px);border-color:var(--red)}
+.record-rank{font-size:11px;color:var(--red);letter-spacing:2px}
+.record-value{font-family:"Roboto Slab",serif;font-weight:900;font-size:31px;color:#fff;margin:6px 0}
+.record-detail{font-size:13px;color:#bbb;line-height:1.4}
+.records-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.record-card{background:rgba(14,14,14,.92);border:1px solid #444;padding:18px;min-height:145px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s,box-shadow .2s}
+.record-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red)}
+.record-card:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.record-card-title{text-transform:uppercase;color:#ccc;font-size:13px;letter-spacing:1px}
+.record-card-value{font-family:"Roboto Slab",serif;font-weight:900;font-size:27px;color:#fff;margin:10px 0 6px}
+.record-card-detail{color:#aaa;font-size:13px;line-height:1.45}
+
+/* Responsive banner/record grids */
+@media(max-width:1050px){.banner-row{grid-template-columns:repeat(3,1fr)}.two-hundred-grid,.records-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.banner-row{grid-template-columns:repeat(2,1fr);gap:8px}.champion-banner{min-height:330px}.two-hundred-grid,.records-grid{grid-template-columns:1fr}.record-feature-title{font-size:26px}}
+@media(max-width:420px){.banner-row{grid-template-columns:1fr}.champion-banner{min-height:300px}}
+
+.champion-photo{display:block;width:112px;height:112px;object-fit:cover;border-radius:50%;margin:20px auto 10px;border:3px solid #fff;box-shadow:0 0 0 2px rgba(201,44,24,.9),0 6px 14px rgba(0,0,0,.45)}
+@media(max-width:650px){.champion-photo{width:96px;height:96px}}
+
+
+/* White outlines around dark website boxes */
+.card, .record-card, .member, .rule-card, .punishment-card, .champion-banner,
+.history-card, .accolade-card, .records-card, .playoff-card, .section-card,
+.table-wrap, .record-box, .info-box, .timeline-item, .team-banner {
+  border: 1px solid rgba(255,255,255,.9);
+}
+
+/* Slightly lighter neutral page background */
+body {
+  background-color: #3a3a3a !important;
+}
