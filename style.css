@@ -736,3 +736,1990 @@ main {
 .content-area .position {
   font-family: Oswald, "Arial Narrow", sans-serif !important;
 }
+
+/* Mobile banner team names: allow clean two-line wrapping */
+@media (max-width: 600px) {
+  .champion-banner .team {
+    font-size: clamp(5px, 1.65vw, 8px) !important;
+    line-height: 1.08 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    text-overflow: clip !important;
+    display: block !important;
+  }
+}
+@media (max-width: 390px) {
+  .champion-banner .team {
+    font-size: clamp(4.5px, 1.5vw, 7px) !important;
+    line-height: 1.05 !important;
+  }
+}
+
+/* Punishment media links: clear, tappable mobile presentation */
+.mobile-punishments {
+  display: none;
+}
+.punishment-link {
+  display: inline-block;
+  color: #c92c18 !important;
+  font-family: "Times New Roman", Times, serif !important;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .5px;
+  text-decoration: underline;
+  padding: 6px 0;
+}
+.punishment-link-disabled {
+  color: #777 !important;
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .desktop-punishments {
+    display: none !important;
+  }
+  .mobile-punishments {
+    display: grid !important;
+    gap: 10px;
+  }
+  .punishment-card {
+    padding: 12px;
+    background: #0b0b0b;
+    border: 1px solid #333;
+    border-left: 3px solid #c92c18;
+  }
+  .punishment-card-year {
+    color: #c92c18;
+    font-weight: 800;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .punishment-card-name {
+    color: #eee;
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  .punishment-card-member {
+    color: #aaa;
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .punishment-card-media {
+    margin-top: 7px;
+    min-height: 25px;
+  }
+  .punishment-card-media .punishment-link {
+    font-size: 14px;
+  }
+}
+
+/* Home: use the vertical space freed by removing the welcome block. */
+.content-area.home-view {
+  padding-top: 8px !important;
+}
+.content-area.home-view .champions-wrap {
+  padding-top: 0 !important;
+}
+.content-area.home-view .section-title {
+  margin-top: 0 !important;
+}
+
+/* Papa's All-Psi: compact position-by-position layout */
+.allpsi-year {
+  padding: 18px 0 10px;
+}
+.allpsi-positions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.allpsi-position-block {
+  background: rgba(14,14,14,.9);
+  border: 1px solid #292929;
+  padding: 11px 14px;
+}
+.allpsi-position-header {
+  color: var(--red);
+  font-family: "Roboto Slab", serif;
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #333;
+}
+.allpsi-selection,
+.allpsi-hm-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 7px 0;
+}
+.allpsi-selection strong,
+.allpsi-hm-row strong {
+  color: #eee;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17px;
+  flex: 0 0 auto;
+}
+.allpsi-selection span,
+.allpsi-hm-row span {
+  color: #bbb;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.3;
+  text-align: right;
+}
+.allpsi-hm-header {
+  color: #c92c18;
+  font-family: "Roboto Slab", serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .7px;
+  margin-top: 5px;
+  padding-top: 7px;
+  border-top: 1px solid #252525;
+}
+.allpsi-honorable-list {
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 600px) {
+  .allpsi-year {
+    padding-top: 14px;
+  }
+  .allpsi-position-block {
+    padding: 9px 11px;
+  }
+  .allpsi-selection,
+  .allpsi-hm-row {
+    display: block;
+    padding: 6px 0;
+  }
+  .allpsi-selection strong,
+  .allpsi-hm-row strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+  .allpsi-selection span,
+  .allpsi-hm-row span {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+  }
+}
+
+/* Championship banners — premium league centerpiece */
+.champions-wrap {
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 34px;
+}
+
+.champions-wrap .section-title h2 {
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 10px rgba(0,0,0,.45);
+}
+
+.champion-banner {
+  border: 2px solid transparent !important;
+  border-top: 0 !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.015) 30%, transparent 55%),
+    linear-gradient(90deg, #050505, #1b1b1b 48%, #070707);
+  box-shadow:
+    0 0 0 1px rgba(201,44,24,.95),
+    0 0 0 3px rgba(188,156,84,.38),
+    0 9px 18px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.18);
+  transition:
+    transform .22s ease,
+    filter .22s ease,
+    box-shadow .22s ease;
+}
+
+.champion-banner:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(110deg, transparent 0 42%, rgba(255,255,255,.045) 50%, transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,.05), transparent 18%);
+  opacity: .65;
+}
+
+.champion-banner:hover,
+.champion-banner:focus-within,
+.champion-banner:active {
+  animation-play-state: paused;
+  transform: translateY(-6px) scale(1.012);
+  filter: brightness(1.12);
+  box-shadow:
+    0 0 0 1px rgba(201,44,24,1),
+    0 0 0 3px rgba(188,156,84,.55),
+    0 16px 28px rgba(0,0,0,.58),
+    inset 0 1px 0 rgba(255,255,255,.24);
+  z-index: 3;
+}
+
+.champion-banner .year,
+.champion-banner .team,
+.champion-banner .champ,
+.champion-banner .record,
+.champion-banner .champion-photo {
+  position: relative;
+  z-index: 1;
+}
+
+.champion-banner .team {
+  margin-top: 22px;
+  font-size: clamp(13px, 1.35vw, 19px);
+  color: #ddd;
+  text-shadow: 0 1px 5px rgba(0,0,0,.7);
+}
+
+.champion-banner .champ {
+  margin-top: 15px;
+  color: #f2d27b;
+  font-family: "Roboto Slab", serif;
+  font-weight: 900;
+  font-size: clamp(18px, 1.8vw, 25px);
+  line-height: 1.12;
+  letter-spacing: .35px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 7px rgba(0,0,0,.85);
+}
+
+.champion-banner .champ:before {
+  content: "CHAMPION";
+  display: block;
+  color: var(--red);
+  font-family: Oswald, sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.champion-banner .champion-photo {
+  box-shadow:
+    0 0 0 2px rgba(201,44,24,.95),
+    0 0 0 4px rgba(188,156,84,.38),
+    0 7px 15px rgba(0,0,0,.55);
+}
+
+/* Keep the six-across mobile arrangement unchanged. */
+@media (max-width: 650px) {
+  .champion-banner:hover,
+  .champion-banner:focus-within {
+    transform: translateY(-3px) scale(1.005);
+  }
+
+  .champion-banner:active {
+    transform: translateY(-4px) scale(1.008);
+  }
+
+  .champion-banner .champ {
+    font-size: clamp(10px, 2.15vw, 16px);
+  }
+
+  .champion-banner .champ:before {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+
+  .champion-banner .team {
+    font-size: clamp(7px, 1.45vw, 11px);
+  }
+}
+
+/* Alpha Psi stadium atmosphere */
+html {
+  background: #090a0c;
+}
+
+body {
+  position: relative;
+  background:
+    radial-gradient(ellipse 42% 24% at 50% 8%, rgba(255,255,255,.12), transparent 68%),
+    radial-gradient(ellipse 38% 34% at 50% 35%, rgba(201,44,24,.045), transparent 72%),
+    linear-gradient(90deg, #070809 0%, #101214 11%, #343434 18%, #3a3a3a 50%, #343434 82%, #101214 89%, #070809 100%) !important;
+  box-shadow: inset 0 0 110px rgba(0,0,0,.72);
+}
+
+/* Wide stadium-wall side panels */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: max(42px, calc((100vw - 1300px) / 2));
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.72), rgba(0,0,0,.18)),
+    repeating-linear-gradient(
+      165deg,
+      rgba(255,255,255,.025) 0,
+      rgba(255,255,255,.025) 1px,
+      transparent 1px,
+      transparent 15px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 72px,
+      rgba(201,44,24,.045) 73px,
+      transparent 74px
+    ),
+    #0b0d0f;
+  box-shadow:
+    inset 0 0 35px rgba(0,0,0,.85),
+    inset 0 0 90px rgba(0,0,0,.45);
+}
+
+body::before {
+  left: 0;
+  border-right: 5px solid #8e1e16;
+  box-shadow:
+    inset -14px 0 22px rgba(201,44,24,.08),
+    inset 0 0 70px rgba(0,0,0,.82),
+    8px 0 30px rgba(0,0,0,.28);
+}
+
+body::after {
+  right: 0;
+  border-left: 5px solid #8e1e16;
+  transform: scaleX(-1);
+  box-shadow:
+    inset -14px 0 22px rgba(201,44,24,.08),
+    inset 0 0 70px rgba(0,0,0,.82),
+    8px 0 30px rgba(0,0,0,.28);
+}
+
+/* Very faint yard-line texture behind the main page */
+main {
+  position: relative;
+  isolation: isolate;
+}
+
+main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .16;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent calc(12.5% - 1px),
+      rgba(255,255,255,.06) 12.5%,
+      transparent calc(12.5% + 1px)
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 119px,
+      rgba(255,255,255,.035) 120px,
+      transparent 121px
+    );
+}
+
+/* Stadium-light glow at the top of the content */
+.site-header {
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.42),
+    0 0 65px rgba(255,255,255,.035);
+}
+
+/* Make the central page feel like it sits between stadium walls */
+.content-area {
+  position: relative;
+  box-shadow:
+    0 0 42px rgba(0,0,0,.32),
+    0 12px 32px rgba(0,0,0,.22);
+}
+
+@media (max-width: 700px) {
+  body {
+    background:
+      radial-gradient(ellipse 75% 18% at 50% 5%, rgba(255,255,255,.09), transparent 70%),
+      #3a3a3a !important;
+  }
+
+  body::before,
+  body::after {
+    width: 18px;
+  }
+
+  main::before {
+    opacity: .08;
+  }
+}
+
+/* Member cards — football player profile treatment */
+.player-profile-card {
+  position: relative;
+  overflow: hidden;
+  padding: 0 18px 18px !important;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.035), transparent 28%),
+    linear-gradient(180deg, #111214 0%, #090a0b 100%);
+  border: 1px solid #3a3a3a !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.player-profile-card::before {
+  content: "";
+  display: block;
+  height: 5px;
+  margin: 0 -18px 16px;
+  background: linear-gradient(90deg, #8e1e16, #c92c18 50%, #8e1e16);
+  box-shadow: 0 2px 9px rgba(201,44,24,.18);
+}
+.member-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+}
+.member-photo-frame {
+  flex: 0 0 auto;
+  padding: 3px;
+  border: 1px solid rgba(201,44,24,.75);
+  background: linear-gradient(135deg, #641710, #c92c18 50%, #641710);
+  box-shadow: 0 0 0 2px rgba(201,44,24,.12), 0 5px 14px rgba(0,0,0,.5);
+}
+.player-profile-card .member-photo {
+  width: 84px;
+  height: 84px;
+  flex-basis: 84px;
+  border: 2px solid #111 !important;
+  border-radius: 50%;
+  box-shadow: none;
+}
+.member-photo-empty {
+  display: block;
+  background: #161616;
+}
+.member-profile-info {
+  min-width: 0;
+  flex: 1;
+}
+.member-profile-label {
+  color: #888;
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  margin-bottom: 3px;
+}
+.member-profile-info strong {
+  display: block;
+  color: #f1f1f1;
+  font-family: "Roboto Slab", serif;
+  font-size: clamp(20px, 2.1vw, 28px);
+  font-weight: 900;
+  line-height: 1.08;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+.member-years {
+  margin-top: 6px;
+  color: #aaa;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+}
+.member-record-large {
+  margin-top: 4px;
+  color: var(--red);
+  font-family: "Roboto Slab", serif;
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+.player-profile-card .founder-badge {
+  margin-top: 13px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+.player-profile-card .trophy-case {
+  margin-top: 15px;
+  padding: 13px 12px;
+  border-top: 1px solid rgba(201,162,39,.38);
+  border-bottom: 1px solid rgba(201,162,39,.12);
+  background: linear-gradient(90deg, rgba(201,162,39,.045), transparent 65%);
+}
+.player-profile-card .trophy-case-title {
+  font-size: 12px;
+  letter-spacing: 1.8px;
+}
+.player-profile-card .trophy-item {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+}
+.player-profile-card .accolades {
+  margin-top: 13px;
+  padding-top: 12px;
+  border-top: 1px solid #333;
+}
+.player-profile-card .accolades-title {
+  font-size: 12px;
+  letter-spacing: 1.8px;
+}
+.player-profile-card .accolade-badge {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12px;
+}
+.player-profile-card .member-bio {
+  margin-top: 14px;
+  padding: 13px 12px 2px;
+  border-top: 1px solid #333;
+  background: rgba(255,255,255,.018);
+}
+.player-profile-card .member-bio-title {
+  color: #c9a227 !important;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+}
+.player-profile-card .member-bio-placeholder {
+  color: #c3c3c3 !important;
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 14px;
+  line-height: 1.55;
+  min-height: 0;
+}
+@media (max-width: 650px) {
+  .player-profile-card {
+    padding: 0 14px 16px !important;
+  }
+  .player-profile-card::before {
+    margin-left: -14px;
+    margin-right: -14px;
+    margin-bottom: 13px;
+  }
+  .member-profile-header {
+    gap: 11px;
+  }
+  .player-profile-card .member-photo {
+    width: 70px;
+    height: 70px;
+    flex-basis: 70px;
+  }
+  .member-profile-label {
+    font-size: 8px;
+  }
+  .member-profile-info strong {
+    font-size: 21px;
+  }
+  .member-years {
+    font-size: 14px;
+  }
+  .member-record-large {
+    font-size: 18px;
+  }
+  .player-profile-card .trophy-item {
+    font-size: 13px;
+  }
+  .player-profile-card .member-bio-placeholder {
+    font-size: 14px;
+  }
+}
+
+/* Trophy Case — dark glass display with gold framing */
+.player-profile-card .trophy-case {
+  position: relative;
+  margin: 17px 0 14px;
+  padding: 14px 14px 12px;
+  border: 1px solid rgba(201,162,39,.72);
+  border-top: 2px solid rgba(201,162,39,.9);
+  border-bottom: 1px solid rgba(201,162,39,.48);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.055), transparent 30%),
+    linear-gradient(180deg, rgba(20,18,12,.92), rgba(7,8,9,.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    inset 0 0 22px rgba(201,162,39,.035),
+    0 5px 15px rgba(0,0,0,.35);
+}
+
+.player-profile-card .trophy-case::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 6px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,162,39,.42), transparent);
+}
+
+.player-profile-card .trophy-case-title {
+  color: #d7b84c !important;
+  font-family: "Roboto Slab", serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding-bottom: 8px;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(201,162,39,.28);
+}
+
+.player-profile-card .trophy-items {
+  display: block;
+}
+
+.player-profile-card .trophy-item {
+  display: block;
+  margin: 0;
+  padding: 8px 2px;
+  color: #d2b347 !important;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+  border-bottom: 1px solid rgba(201,162,39,.16);
+}
+
+.player-profile-card .trophy-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 3px;
+}
+
+.player-profile-card .trophy-item:first-child {
+  padding-top: 10px;
+}
+
+/* Championship awards get the most visual weight. */
+.player-profile-card .trophy-item:first-child,
+.player-profile-card .trophy-item[class*="Championship"] {
+  font-size: 16px;
+  color: #f0d477 !important;
+  font-weight: 900;
+}
+
+.player-profile-card .trophy-empty {
+  padding: 10px 2px 3px;
+  color: #777 !important;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13px;
+  font-style: italic;
+}
+
+@media (max-width: 650px) {
+  .player-profile-card .trophy-case {
+    margin-top: 15px;
+    padding: 12px 11px 10px;
+  }
+
+  .player-profile-card .trophy-case-title {
+    font-size: 12px;
+    letter-spacing: 1.7px;
+  }
+
+  .player-profile-card .trophy-item {
+    font-size: 13px;
+    padding: 7px 1px;
+  }
+
+  .player-profile-card .trophy-item:first-child,
+  .player-profile-card .trophy-item[class*="Championship"] {
+    font-size: 15px;
+  }
+}
+
+/* League Archive — compact historical punishment cards */
+.league-archive {
+  margin-top: 24px;
+}
+.league-archive > h3 {
+  margin-bottom: 12px;
+}
+.archive-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #333;
+}
+.archive-entry {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 18px;
+  padding: 15px 4px;
+  border-bottom: 1px solid #333;
+}
+.archive-year {
+  color: var(--red);
+  font-family: "Roboto Slab", serif;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1;
+}
+.archive-details {
+  min-width: 0;
+}
+.archive-punishment {
+  color: #eee;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+.archive-member {
+  margin-top: 4px;
+  color: #999;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.archive-media {
+  margin-top: 8px;
+}
+.archive-media-link {
+  display: inline-block;
+  color: #d7b84c !important;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-decoration: underline;
+}
+.archive-coming {
+  display: inline-block;
+  color: #888;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.archive-document {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+}
+.archive-document img {
+  width: 42px;
+  height: 52px;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid #9e7f20;
+  box-shadow: 0 3px 8px rgba(0,0,0,.5);
+  background: #eee;
+}
+.archive-document span {
+  color: #d7b84c;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-decoration: underline;
+}
+@media (max-width: 600px) {
+  .archive-entry {
+    grid-template-columns: 58px 1fr;
+    gap: 11px;
+    padding: 13px 2px;
+  }
+  .archive-year {
+    font-size: 21px;
+  }
+  .archive-punishment {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  .archive-member {
+    font-size: 11px;
+  }
+}
+
+/* Papa's All-Psi — official annual award publication treatment */
+.allpsi-intro {
+  max-width: 680px;
+  margin: 8px auto 20px;
+  text-align: center;
+  color: #999;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.allpsi-season {
+  margin: 28px 0 38px;
+}
+
+.allpsi-season-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+  color: #999;
+  font-family: Oswald, Arial, sans-serif;
+  letter-spacing: 2px;
+}
+
+.allpsi-season-heading span {
+  font-size: 11px;
+}
+
+.allpsi-season-heading strong {
+  color: #d7b84c;
+  font-family: "Roboto Slab", serif;
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+
+.allpsi-season-rule {
+  height: 1px;
+  margin: 8px 0 15px;
+  background: linear-gradient(90deg, transparent, rgba(201,44,24,.8), rgba(201,162,39,.65), rgba(201,44,24,.8), transparent);
+}
+
+.allpsi-positions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.allpsi-position-card {
+  position: relative;
+  padding: 14px 18px 15px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.035), transparent 35%),
+    linear-gradient(180deg, #121314, #090a0b);
+  border: 1px solid #333;
+  border-left: 3px solid rgba(201,44,24,.75);
+  box-shadow: 0 5px 14px rgba(0,0,0,.28);
+}
+
+.allpsi-position-name {
+  color: #e7e7e7;
+  font-family: "Roboto Slab", serif;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.allpsi-position-rule {
+  height: 1px;
+  margin: 7px 0 10px;
+  background: linear-gradient(90deg, rgba(201,162,39,.55), rgba(255,255,255,.08), transparent);
+}
+
+.allpsi-winner {
+  padding: 2px 0 11px;
+}
+
+.allpsi-winner-name {
+  color: #f0d477;
+  font-family: "Roboto Slab", serif;
+  font-size: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.allpsi-winner-detail {
+  margin-top: 4px;
+  color: #d2d2d2;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.allpsi-honorable-title {
+  margin-top: 2px;
+  padding: 8px 0 5px;
+  border-top: 1px solid #2e2e2e;
+  color: #c92c18;
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.allpsi-honorable {
+  display: grid;
+  grid-template-columns: minmax(130px, .75fr) 1fr;
+  gap: 16px;
+  padding: 4px 0;
+}
+
+.allpsi-honorable-name {
+  color: #eee;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.allpsi-honorable-detail {
+  color: #aaa;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+@media (max-width: 600px) {
+  .allpsi-season {
+    margin: 22px 0 30px;
+  }
+
+  .allpsi-season-heading strong {
+    font-size: 26px;
+  }
+
+  .allpsi-position-card {
+    padding: 12px 13px 13px;
+  }
+
+  .allpsi-position-name {
+    font-size: 17px;
+  }
+
+  .allpsi-winner-name {
+    font-size: 18px;
+  }
+
+  .allpsi-honorable {
+    display: block;
+    padding: 5px 0;
+  }
+
+  .allpsi-honorable-name {
+    font-size: 14px;
+  }
+
+  .allpsi-honorable-detail {
+    margin-top: 2px;
+    font-size: 13px;
+  }
+}
+
+/* Papa's All-Psi — season tabs, with 2025 open by default */
+.allpsi-season-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 20px auto 18px;
+  padding: 5px;
+  max-width: 470px;
+  border: 1px solid #343434;
+  background: #0b0c0d;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 5px 14px rgba(0,0,0,.25);
+}
+
+.allpsi-season-tab {
+  flex: 1;
+  min-height: 38px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #888;
+  cursor: pointer;
+  font-family: "Roboto Slab", serif;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  transition: .18s ease;
+}
+
+.allpsi-season-tab:hover {
+  color: #ddd;
+  background: rgba(255,255,255,.035);
+}
+
+.allpsi-season-tab.active {
+  color: #f0d477;
+  border-color: rgba(201,44,24,.75);
+  background: linear-gradient(180deg, rgba(201,44,24,.18), rgba(201,44,24,.06));
+  box-shadow: inset 0 -2px 0 #c92c18, 0 0 12px rgba(201,44,24,.08);
+}
+
+.allpsi-season-panels {
+  width: 100%;
+}
+
+.allpsi-season-panel {
+  display: none;
+  animation: allPsiSeasonIn .2s ease;
+}
+
+.allpsi-season-panel.active {
+  display: block;
+}
+
+@keyframes allPsiSeasonIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .allpsi-season-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    margin: 14px 0 16px;
+    max-width: none;
+  }
+
+  .allpsi-season-tab {
+    min-height: 36px;
+    font-size: 13px;
+  }
+
+  .allpsi-season-heading {
+    margin-top: 8px;
+  }
+}
+
+/* =========================================================
+   Alpha Psi visual system
+   Charcoal / Light Gray / Cardinal / Gold
+   ========================================================= */
+:root {
+  --charcoal: #101214;
+  --light-gray: #d7d7d7;
+  --cardinal: #c92c18;
+  --gold: #d7b84c;
+  --gold-bright: #f0d477;
+}
+
+/* Keep body copy in Times New Roman; existing heading fonts remain intact. */
+body,
+p,
+li,
+td,
+th,
+input,
+textarea,
+select,
+button {
+  font-family: "Times New Roman", Times, serif;
+}
+
+body {
+  color: var(--light-gray);
+}
+
+/* ---------------------------------------------------------
+   Subtle page transitions
+   --------------------------------------------------------- */
+.content-area {
+  animation: alphaPageFade .22s ease both;
+}
+
+@keyframes alphaPageFade {
+  from { opacity: .72; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------------------------------------
+   Championship banners — gentle motion
+   --------------------------------------------------------- */
+.champion-banner {
+  will-change: transform, box-shadow, filter;
+}
+
+.champion-banner:hover,
+.champion-banner:focus-within {
+  animation-play-state: paused;
+  transform: translateY(-3px) scale(1.008);
+}
+
+.champion-banner .champ,
+.champion-banner .champion-photo {
+  transition: filter .25s ease, text-shadow .25s ease, box-shadow .25s ease;
+}
+
+.champion-banner:hover .champ,
+.champion-banner:focus-within .champ {
+  color: var(--gold-bright);
+  text-shadow: 0 0 10px rgba(215,184,76,.18);
+}
+
+.champion-banner:hover .champion-photo,
+.champion-banner:focus-within .champion-photo {
+  filter: brightness(1.08);
+}
+
+/* ---------------------------------------------------------
+   Member cards — 2–3px lift and gold accent response
+   --------------------------------------------------------- */
+.player-profile-card {
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease;
+}
+
+.player-profile-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201,44,24,.62) !important;
+  box-shadow:
+    0 12px 25px rgba(0,0,0,.48),
+    0 0 0 1px rgba(201,44,24,.12),
+    inset 0 1px 0 rgba(255,255,255,.07);
+}
+
+.player-profile-card .trophy-case {
+  transition: border-color .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+.player-profile-card:hover .trophy-case {
+  border-color: rgba(215,184,76,.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.09),
+    inset 0 0 26px rgba(215,184,76,.055),
+    0 5px 16px rgba(0,0,0,.4);
+}
+
+.player-profile-card .member-photo-frame {
+  transition: transform .25s ease, box-shadow .25s ease;
+  overflow: hidden;
+}
+
+.player-profile-card .member-photo {
+  transition: transform .28s ease, filter .28s ease;
+}
+
+.player-profile-card:hover .member-photo-frame {
+  box-shadow:
+    0 0 0 2px rgba(201,44,24,.16),
+    0 6px 16px rgba(0,0,0,.55);
+}
+
+.player-profile-card:hover .member-photo {
+  transform: scale(1.045);
+  filter: brightness(1.045);
+}
+
+/* Touch devices get the same restrained photo interaction without
+   requiring a hover state. */
+@media (hover: none) and (pointer: coarse) {
+  .player-profile-card:active {
+    transform: translateY(-2px);
+  }
+
+  .player-profile-card:active .member-photo {
+    transform: scale(1.035);
+  }
+
+  .champion-banner:active {
+    transform: translateY(-2px) scale(1.005);
+  }
+}
+
+/* ---------------------------------------------------------
+   Gold accents softly brighten
+   --------------------------------------------------------- */
+.trophy-case-title,
+.founder-badge,
+.allpsi-season-heading strong {
+  transition: color .2s ease, text-shadow .2s ease;
+}
+
+.player-profile-card:hover .trophy-case-title,
+.player-profile-card:hover .founder-badge {
+  color: var(--gold-bright) !important;
+  text-shadow: 0 0 8px rgba(215,184,76,.15);
+}
+
+/* ---------------------------------------------------------
+   All-Psi season tabs — sliding underline
+   --------------------------------------------------------- */
+.allpsi-season-tab {
+  position: relative;
+  overflow: hidden;
+}
+
+.allpsi-season-tab::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--cardinal);
+  transform: translateX(-50%);
+  transition: width .22s ease;
+}
+
+.allpsi-season-tab.active::after {
+  width: 72%;
+}
+
+.allpsi-season-tab:hover::after {
+  width: 42%;
+}
+
+.allpsi-season-tab.active:hover::after {
+  width: 78%;
+}
+
+/* ---------------------------------------------------------
+   League archive links and other interactive accents
+   --------------------------------------------------------- */
+.archive-media-link,
+.archive-document span {
+  transition: color .18s ease, letter-spacing .18s ease;
+}
+
+.archive-media-link:hover,
+.archive-document:hover span {
+  color: var(--gold-bright) !important;
+  letter-spacing: 1.2px;
+}
+
+.archive-document img {
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.archive-document:hover img {
+  transform: translateY(-2px) scale(1.025);
+  box-shadow: 0 5px 12px rgba(0,0,0,.55);
+}
+
+/* Respect reduced-motion accessibility preferences. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile: keep interactions subtle and prevent oversized effects. */
+@media (max-width: 650px) {
+  .player-profile-card:hover {
+    transform: none;
+  }
+
+  .champion-banner:hover {
+    transform: none;
+  }
+}
+
+.content-area.page-transition {
+  animation: alphaPageFade .22s ease both;
+}
+
+/* Legacy strip */
+.legacy-strip {
+  margin: 24px auto 0;
+  max-width: 980px;
+  padding: 14px;
+  border: 1px solid #3a3a3a;
+  background: linear-gradient(180deg,#141617,#0b0c0d);
+  box-shadow: 0 8px 20px rgba(0,0,0,.32);
+}
+.legacy-heading {
+  display:flex;
+  justify-content:center;
+  align-items:baseline;
+  gap:10px;
+  color:#999;
+  font-family:Oswald,Arial,sans-serif;
+  letter-spacing:1.7px;
+}
+.legacy-heading span{font-size:11px}
+.legacy-heading strong{color:var(--gold);font-family:"Roboto Slab",serif;font-size:17px}
+.legacy-stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:12px}
+.legacy-stats>div{text-align:center;border-left:1px solid #333}
+.legacy-stats>div:first-child{border-left:0}
+.legacy-stats strong{display:block;color:#eee;font-family:"Roboto Slab",serif;font-size:24px}
+.legacy-stats span{display:block;color:#888;font-size:10px;letter-spacing:1px;margin-top:3px}
+
+/* Clickable championship banners */
+.champion-banner-link{cursor:pointer}
+.champion-banner-link:focus{outline:2px solid var(--gold);outline-offset:3px}
+.champion-profile-highlight{
+  animation: championProfileHighlight 1.05s ease both;
+}
+@keyframes championProfileHighlight{
+  0%,100%{box-shadow:0 8px 22px rgba(0,0,0,.42)}
+  35%{box-shadow:0 0 0 2px var(--gold),0 0 25px rgba(215,184,76,.3),0 14px 28px rgba(0,0,0,.5)}
+}
+
+/* Career snapshots */
+.career-snapshot{
+  margin-top:14px;padding:11px 12px;
+  border:1px solid #333;
+  background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(0,0,0,.15));
+}
+.career-snapshot-title{color:var(--gold);font-family:Oswald,Arial,sans-serif;font-size:11px;font-weight:800;letter-spacing:1.8px;border-bottom:1px solid #333;padding-bottom:7px}
+.career-snapshot-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:8px}
+.career-snapshot-grid>div{text-align:center;border-left:1px solid #333;padding:2px 5px}
+.career-snapshot-grid>div:first-child{border-left:0}
+.career-snapshot-grid strong{display:block;color:#eee;font-family:"Roboto Slab",serif;font-size:18px}
+.career-snapshot-grid span{display:block;color:#888;font-size:9px;letter-spacing:.7px;margin-top:3px}
+
+/* Records leaders */
+.record-leaders{margin:20px 0 28px;padding:14px;border:1px solid #383838;background:linear-gradient(180deg,#121415,#0b0c0d)}
+.record-leaders-title{color:var(--gold);font-family:Oswald,Arial,sans-serif;font-size:12px;letter-spacing:2px;font-weight:800;border-bottom:1px solid #333;padding-bottom:9px}
+.record-leaders-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}
+.leader-card{position:relative;padding:13px;border:1px solid #303030;background:#111314;transition:transform .18s ease,border-color .18s ease}
+.leader-card:hover{transform:translateY(-2px);border-color:rgba(201,44,24,.65)}
+.leader-rank{color:#555;font-family:"Roboto Slab",serif;font-size:11px}
+.leader-category{margin-top:6px;color:#999;font-size:10px;letter-spacing:1px;font-weight:700}
+.leader-name{margin-top:5px;color:#eee;font-family:"Times New Roman",Times,serif;font-size:17px;font-weight:700}
+.leader-value{margin-top:2px;color:var(--gold);font-size:13px}
+
+/* League timeline */
+.league-timeline{margin:26px 0 30px;padding:15px 16px;border:1px solid #353535;background:#101213}
+.timeline-title{color:var(--gold);font-family:Oswald,Arial,sans-serif;font-size:12px;font-weight:800;letter-spacing:2px;border-bottom:1px solid #333;padding-bottom:9px}
+.timeline-list{position:relative;margin-top:10px}
+.timeline-list::before{content:"";position:absolute;left:48px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--cardinal),rgba(201,44,24,.12))}
+.timeline-list article{display:grid;grid-template-columns:82px 1fr;gap:15px;position:relative;padding:10px 0}
+.timeline-year{color:var(--cardinal);font-family:"Roboto Slab",serif;font-size:20px;font-weight:900}
+.timeline-list article>div:last-child{padding-left:13px;border-left:0}
+.timeline-list strong{display:block;color:#eee;font-family:"Times New Roman",Times,serif;font-size:16px}
+.timeline-list span{display:block;color:#999;font-family:"Times New Roman",Times,serif;font-size:13px;margin-top:2px}
+
+/* Mobile */
+@media (max-width:650px){
+  .legacy-stats{grid-template-columns:repeat(2,1fr);gap:8px}
+  .legacy-stats>div:nth-child(3){border-left:0}
+  .legacy-stats>div{padding:4px}
+  .legacy-stats strong{font-size:21px}
+  .record-leaders-grid{grid-template-columns:1fr 1fr}
+  .career-snapshot-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .career-snapshot-grid>div:nth-child(3){border-left:0}
+  .career-snapshot-grid>div{padding:4px}
+  .timeline-list::before{left:40px}
+  .timeline-list article{grid-template-columns:68px 1fr;gap:12px}
+  .timeline-year{font-size:18px}
+}
+
+/* League History season tabs */
+.history-season-tabs {
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  margin:22px auto 18px;
+  padding:5px;
+  max-width:680px;
+  border:1px solid #343434;
+  background:#0b0c0d;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 5px 14px rgba(0,0,0,.25);
+  overflow-x:auto;
+}
+.history-season-tab {
+  position:relative;
+  flex:1 0 76px;
+  min-height:38px;
+  border:1px solid transparent;
+  background:transparent;
+  color:#888;
+  cursor:pointer;
+  font-family:"Roboto Slab",serif;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
+  transition:.18s ease;
+}
+.history-season-tab::after {
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:0;
+  height:2px;
+  background:var(--cardinal);
+  transform:translateX(-50%);
+  transition:width .22s ease;
+}
+.history-season-tab:hover { color:#ddd; background:rgba(255,255,255,.035); }
+.history-season-tab.active {
+  color:var(--gold-bright);
+  border-color:rgba(201,44,24,.75);
+  background:linear-gradient(180deg,rgba(201,44,24,.18),rgba(201,44,24,.06));
+}
+.history-season-tab.active::after { width:72%; }
+.history-season-panels { width:100%; }
+.history-season-panel { display:none; animation:historySeasonIn .2s ease both; }
+.history-season-panel.active { display:block; }
+@keyframes historySeasonIn {
+  from { opacity:0; transform:translateY(4px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.history-season-heading {
+  display:flex;
+  justify-content:center;
+  align-items:baseline;
+  gap:10px;
+  color:#999;
+  font-family:Oswald,Arial,sans-serif;
+  letter-spacing:2px;
+}
+.history-season-heading span { font-size:11px; }
+.history-season-heading strong {
+  color:var(--gold);
+  font-family:"Roboto Slab",serif;
+  font-size:28px;
+}
+.history-season-rule {
+  height:1px;
+  margin:8px 0 15px;
+  background:linear-gradient(90deg,transparent,rgba(201,44,24,.8),rgba(201,162,39,.65),rgba(201,44,24,.8),transparent);
+}
+.archive-empty {
+  padding:18px 4px;
+  color:#777;
+  font-family:"Times New Roman",Times,serif;
+  font-size:14px;
+  font-style:italic;
+}
+@media (max-width:650px) {
+  .history-season-tabs {
+    justify-content:flex-start;
+    position:sticky;
+    top:0;
+    z-index:5;
+    max-width:none;
+  }
+  .history-season-tab { flex:1 0 58px; min-height:36px; font-size:12px; }
+  .history-season-heading strong { font-size:25px; }
+}
+
+/* =========================================================
+   2020 Founding Season — archival presentation
+   ========================================================= */
+.history-2020-panel {
+  color: #ddd;
+}
+
+.season-foundation {
+  max-width: 880px;
+  margin: 8px auto 30px;
+  padding: 22px 24px 20px;
+  border: 1px solid #393939;
+  border-top: 2px solid var(--cardinal);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.035), transparent 35%),
+    linear-gradient(180deg, #141617, #0b0c0d);
+  box-shadow: 0 9px 22px rgba(0,0,0,.3);
+}
+.season-foundation-kicker {
+  color: var(--gold);
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+.season-foundation h3 {
+  margin: 5px 0 10px;
+  color: #eee;
+  font-family: "Roboto Slab", serif;
+  font-size: 27px;
+}
+.season-foundation p {
+  margin: 0;
+  color: #c5c5c5;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.season-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0 14px;
+  color: #eee;
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.season-section-title::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(201,44,24,.7), transparent);
+}
+
+.podium-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr 1fr;
+  align-items: end;
+  gap: 12px;
+  margin: 0 0 28px;
+}
+.podium-place {
+  min-height: 220px;
+  padding: 17px 12px 15px;
+  text-align: center;
+  border: 1px solid #363636;
+  background: linear-gradient(180deg, #17191a, #0c0d0e);
+  box-shadow: 0 8px 18px rgba(0,0,0,.32);
+  transition: transform .2s ease, border-color .2s ease;
+}
+.podium-place:hover {
+  transform: translateY(-3px);
+  border-color: rgba(215,184,76,.55);
+}
+.podium-place.first {
+  min-height: 255px;
+  border-color: rgba(215,184,76,.55);
+  box-shadow: 0 12px 25px rgba(0,0,0,.42), inset 0 0 25px rgba(215,184,76,.025);
+}
+.podium-place.second { border-top: 2px solid #9a9a9a; }
+.podium-place.first { border-top: 2px solid var(--gold); }
+.podium-place.third { border-top: 2px solid #b36a35; }
+.podium-medal {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 4px solid #b9b9b9;
+  background: radial-gradient(circle at 35% 28%, #eeeeee, #858585 68%, #454545);
+  box-shadow: inset 0 2px 6px rgba(255,255,255,.3), 0 6px 14px rgba(0,0,0,.45);
+}
+.podium-place.first .podium-medal {
+  width: 96px;
+  height: 96px;
+  border-color: #f0c94a;
+  background: radial-gradient(circle at 35% 28%, #fff0a1, #d99e15 65%, #80560a);
+}
+.podium-place.third .podium-medal {
+  border-color: #d07b42;
+  background: radial-gradient(circle at 35% 28%, #ffd1a5, #c86b28 65%, #713313);
+}
+.podium-medal span {
+  color: #171717;
+  font-family: "Roboto Slab", serif;
+  font-size: 12px;
+  font-weight: 900;
+}
+.podium-team {
+  color: #eee;
+  font-family: "Roboto Slab", serif;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+.podium-place.first .podium-team {
+  color: var(--gold-bright);
+  font-size: 20px;
+}
+.podium-manager {
+  margin-top: 5px;
+  color: #aaa;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+}
+.podium-place-label {
+  margin-top: 12px;
+  color: var(--cardinal);
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.founding-member-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #343434;
+  background: #0d0f10;
+}
+.founding-member-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 8px 13px;
+  border-bottom: 1px solid #292929;
+}
+.founding-member-item:nth-child(odd) { border-right: 1px solid #292929; }
+.founding-member-item:nth-last-child(-n+2) { border-bottom: 0; }
+.founding-member-item span {
+  width: 25px;
+  color: var(--cardinal);
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 11px;
+}
+.founding-member-item strong {
+  color: #ddd;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+}
+
+.season-departures { margin-top: 28px; }
+.departure-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 16px;
+  border: 1px solid #3a3030;
+  border-left: 3px solid var(--cardinal);
+  background: linear-gradient(90deg, rgba(201,44,24,.08), #0e1011);
+}
+.departure-mark {
+  color: var(--cardinal);
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+}
+.departure-card strong {
+  display: block;
+  color: #eee;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17px;
+}
+.departure-card div span {
+  display: block;
+  margin-top: 3px;
+  color: #888;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13px;
+}
+
+.superlative-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+.superlative-grid article {
+  position: relative;
+  min-height: 145px;
+  padding: 20px 22px;
+  border: 1px solid #3a3a3a;
+  border-radius: 20px;
+  background: #111314;
+  box-shadow: 0 7px 17px rgba(0,0,0,.24);
+}
+.superlative-grid h4 {
+  margin: 0 0 18px;
+  color: #eee;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+.superlative-main strong,
+.superlative-main span {
+  display: block;
+  font-family: "Times New Roman", Times, serif;
+}
+.superlative-main strong { color: #eee; font-size: 18px; }
+.superlative-main span { color: #999; font-size: 15px; margin-top: 2px; }
+.superlative-grid article > b {
+  position: absolute;
+  right: 23px;
+  bottom: 20px;
+  color: #f0f0f0;
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 34px;
+}
+.superlative-blowout { grid-column: 1 / -1; }
+.superlative-meta {
+  position: absolute;
+  top: 20px;
+  right: 23px;
+  color: #888;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+}
+.superlative-score-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 13px;
+  padding-top: 10px;
+  border-top: 1px solid #2d2d2d;
+}
+.superlative-score-row b {
+  color: #eee;
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 31px;
+}
+.superlative-score-row.secondary { opacity: .62; }
+
+@media (max-width: 650px) {
+  .season-foundation { padding: 18px 15px; }
+  .season-foundation h3 { font-size: 23px; }
+  .season-foundation p { font-size: 15px; line-height: 1.55; }
+  .podium-grid { grid-template-columns: 1fr 1.12fr 1fr; gap: 6px; }
+  .podium-place { min-height: 180px; padding: 13px 7px; }
+  .podium-place.first { min-height: 215px; }
+  .podium-medal { width: 57px; height: 57px; border-width: 3px; margin-bottom: 10px; }
+  .podium-place.first .podium-medal { width: 70px; height: 70px; }
+  .podium-team { font-size: 14px; }
+  .podium-place.first .podium-team { font-size: 15px; }
+  .podium-manager { font-size: 12px; }
+  .podium-place-label { font-size: 8px; }
+  .founding-member-list { grid-template-columns: 1fr; }
+  .founding-member-item:nth-child(odd) { border-right: 0; }
+  .founding-member-item:nth-last-child(-n+2) { border-bottom: 1px solid #292929; }
+  .founding-member-item:last-child { border-bottom: 0; }
+  .superlative-grid { grid-template-columns: 1fr; }
+  .superlative-blowout { grid-column: auto; }
+  .superlative-grid article { border-radius: 15px; }
+  .superlative-meta { position: static; margin-top: -10px; margin-bottom: 13px; }
+}
+
+.departure-list { display: grid; gap: 9px; }
+
+/* 2021 archival additions */
+.history-2021-panel .season-foundation {
+  border-top-color: #9a9a9a;
+}
+.history-2021-panel .season-foundation-kicker {
+  color: #aaa;
+}
+.season-moves {
+  margin: 25px 0 5px;
+}
+.moves-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+.moves-box {
+  padding: 0 13px 13px;
+  border: 1px solid #343434;
+  background: linear-gradient(180deg,#121415,#0c0d0e);
+}
+.moves-box .season-section-title {
+  margin-top: 13px;
+  font-size: 15px;
+}
+.joined-box .season-section-title { color: var(--gold); }
+.lost-box .season-section-title { color: #aaa; }
+.move-list {
+  border-top: 1px solid #292929;
+}
+.move-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 47px;
+  border-bottom: 1px solid #292929;
+}
+.move-item:last-child { border-bottom: 0; }
+.move-item span {
+  color: var(--cardinal);
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 10px;
+}
+.move-item strong {
+  color: #ddd;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+}
+.lost-box .move-item strong { color: #aaa; }
+
+.superlative-wide {
+  grid-column: 1 / -1;
+}
+.superlative-stack {
+  margin-top: 4px;
+  border-top: 1px solid #2c2c2c;
+}
+.superlative-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 0;
+  border-bottom: 1px solid #2b2b2b;
+}
+.superlative-row:last-child { border-bottom: 0; }
+.superlative-row b {
+  position: static !important;
+  font-size: 30px !important;
+}
+.superlative-row .superlative-main strong {
+  font-size: 17px;
+}
+.superlative-row .superlative-main span {
+  font-size: 14px;
+}
+.history-2021-panel .superlative-grid article {
+  min-height: 140px;
+}
+
+@media (max-width:650px) {
+  .moves-grid { grid-template-columns: 1fr; }
+  .superlative-wide { grid-column: auto; }
+  .superlative-row { padding: 10px 0; }
+}
+
+/* 2022 archival presentation */
+.history-2022-panel .season-foundation {
+  border-top-color: var(--cardinal);
+}
+.history-2022-panel .season-foundation-kicker {
+  color: var(--cardinal);
+}
+.history-2022-panel .superlative-row b {
+  color: var(--gold-bright);
+}
+
+/* 2023 archival presentation */
+.history-2023-panel .season-foundation {
+  border-top-color: var(--gold);
+}
+.history-2023-panel .season-foundation-kicker {
+  color: var(--gold);
+}
+.history-2023-panel .superlative-row b {
+  color: var(--gold-bright);
+}
+
+/* 2021 rule-change archive */
+.season-rules {
+  margin: 32px 0 8px;
+  padding: 26px;
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(184,148,60,.45);
+  border-top: 3px solid var(--cardinal);
+}
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+.rules-grid article {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  padding: 18px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.rule-number {
+  min-width: 34px;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+.rules-grid h4 {
+  margin: 0 0 7px;
+}
+.rules-grid p {
+  margin: 0;
+}
+@media (max-width: 700px) {
+  .rules-grid { grid-template-columns: 1fr; }
+  .season-rules { padding: 18px; }
+}
+
+.history-2022-rules {
+  border-top-color: var(--cardinal);
+}
+.history-2022-rules .rule-number {
+  color: var(--gold);
+}
+.history-2022-rules h4 {
+  color: #f4f4f4;
+}
+
+.history-2024-panel .season-foundation {
+  border-top-color: var(--gold);
+}
+.history-2024-panel .season-foundation-kicker {
+  color: var(--gold);
+}
+.history-2024-panel .superlative-row b {
+  color: var(--gold-bright);
+}
+
+.history-2025-panel .season-foundation {
+  border-top-color: var(--gold);
+}
+.history-2025-panel .season-foundation-kicker {
+  color: var(--gold);
+}
+.history-2025-panel .superlative-row b,
+.history-2025-panel .superlative-grid article > b {
+  color: var(--gold-bright);
+}
+
+.history-trophy-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
+  gap: 28px;
+  align-items: center;
+  margin: 28px 0;
+  padding: 24px;
+  background: rgba(0,0,0,.24);
+  border: 1px solid rgba(184,148,60,.48);
+  border-top: 3px solid var(--gold);
+}
+.history-trophy-feature .season-foundation-kicker {
+  color: var(--gold);
+}
+.history-trophy-feature h3 {
+  margin: 6px 0 10px;
+}
+.history-trophy-feature p {
+  margin: 0;
+}
+.trophy-feature-image {
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(184,148,60,.55);
+  background: #111;
+}
+.trophy-feature-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform .25s ease;
+}
+.trophy-feature-image:hover img {
+  transform: scale(1.025);
+}
+@media (max-width: 700px) {
+  .history-trophy-feature {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 18px;
+  }
+}
+
+.history-photo-feature{margin:28px 0;padding:24px;background:rgba(0,0,0,.24);border:1px solid rgba(184,148,60,.45);border-top:3px solid var(--gold)}
+.history-photo-feature-title{margin-bottom:18px;color:var(--gold);font-weight:700;letter-spacing:.08em}
+.history-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.history-photo-grid figure{margin:0}
+.history-photo-grid a{display:block;overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+.history-photo-grid img{display:block;width:100%;height:320px;object-fit:cover;transition:transform .25s ease}
+.history-photo-grid a:hover img{transform:scale(1.025)}
+.history-photo-grid figcaption{padding-top:10px;font-family:"Times New Roman",Times,serif;font-style:italic;color:#d5d5d5}
+@media(max-width:700px){.history-photo-grid{grid-template-columns:1fr}.history-photo-grid img{height:auto;max-height:420px}.history-photo-feature{padding:18px}}
+
+.champion-photo-feature figure {
+  margin: 0;
+  max-width: 620px;
+}
+.champion-photo-feature img {
+  display: block;
+  width: 100%;
+  max-height: 620px;
+  object-fit: cover;
+}
+.champion-photo-feature figcaption {
+  padding-top: 10px;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  color: #d5d5d5;
+}

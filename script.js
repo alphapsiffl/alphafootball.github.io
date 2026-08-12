@@ -22,9 +22,9 @@ const recordPhotos = {
   "Quinton": "quinton-member.png",
   "Kameron": "kameron-member.png",
   "Kam": "kameron-member.png",
-  "Victor": "victor-member.png",
+  "Victor": "victor-member-photo.png",
   "Justin": "justin-member.png",
-  "Grant": "grant-member.png",
+  "Grant": "grant-member-photo.png",
   "Drayton": "drayton-member.png",
   "Mac": "mac-member.png",
   "Braxton": "braxton-member.png"
@@ -142,26 +142,631 @@ const champions = [
 ["2020","Grayson Maxfield","Bitchin’ Baker Beards","8–5"],["2021","Bailey Coble","Kareem Pie","9–5"],["2022","Jonathan Davis","Make it Hurts so Good","8–5"],["2023","Victor Barcenas","My Ball Zach Ertz","10–4"],["2024","Quinton Roof","King Henry’s Court","10–4"],["2025","Kameron Walker","Njigbas in Paris","8–6"]
 ];
 
-function home(){return `<div class="home-intro"><h2>Welcome to the Alpha Psi League</h2><p class="intro">League history, champions, records, rules, punishments, and honors — all in one place.</p></div><section class="champions-wrap"><div class="section-title"><span></span><h2>League Champions</h2><span></span></div><div class="banner-row">${champions.map((c,i)=>`<div class="champion-banner" style="--speed:${5.2+i*.35}s;--delay:${i*-.55}s"><div class="year">${c[0]}</div><div class="team">${c[2]}</div>${c[0]==="2020"?`<img class="champion-photo" src="grayson-helmet.png" alt="Grayson's team helmet">`:c[0]==="2021"?`<img class="champion-photo" src="bailey-banner.png" alt="Bailey E helmet">`:c[0]==="2022"?`<img class="champion-photo" src="davis-helmet.png" alt="Davis team helmet">`:c[0]==="2023"?`<img class="champion-photo" src="victor-helmet.png" alt="Victor team emblem">`:c[0]==="2024"?`<img class="champion-photo" src="quinton-banner.png" alt="Quinton team emblem">`:c[0]==="2025"?`<img class="champion-photo" src="kameron-banner.png" alt="Kameron team image">`:""}<div class="champ"><strong>${c[1]}</strong></div><div class="record">${c[3]}</div></div>`).join("")}</div></section>`}
+function home(){
+  const championMember={
+    "2020":"Grayson","2021":"Bailey","2022":"Davis","2023":"Victor B.","2024":"Quinton","2025":"Kameron"
+  };
+  const bannerPhoto={
+    "2020":"grayson-helmet.png","2021":"bailey-banner.png","2022":"davis-helmet.png",
+    "2023":"victor-helmet.png","2024":"quinton-banner.png","2025":"kameron-banner.png"
+  };
+  return `<section class="champions-wrap">
+    <div class="section-title"><span></span><h2>League Champions</h2><span></span></div>
+    <div class="banner-row">${champions.map((c,i)=>`<div class="champion-banner champion-banner-link" tabindex="0" role="button" data-member="${championMember[c[0]]}" aria-label="Open ${c[1]}'s member profile" style="--speed:${5.2+i*.35}s;--delay:${i*-.55}s">
+      <div class="year">${c[0]}</div>
+      <div class="team">${c[2]}</div>
+      <img class="champion-photo" src="${bannerPhoto[c[0]]}" alt="${c[1]} team image">
+      <div class="champ"><strong>${c[1]}</strong></div>
+      <div class="record">${c[3]}</div>
+    </div>`).join("")}</div>
+
+    <div class="legacy-strip">
+      <div class="legacy-heading"><span>ALPHA PSI LEGACY</span><strong>EST. 2020</strong></div>
+      <div class="legacy-stats">
+        <div><strong>6</strong><span>CHAMPIONSHIPS</span></div>
+        <div><strong>12</strong><span>CURRENT MEMBERS</span></div>
+        <div><strong>6</strong><span>SEASONS</span></div>
+        <div><strong>2025</strong><span>LATEST CHAMPION</span></div>
+      </div>
+    </div>
+  </section>`;
+}
 function history(){
-  const rows=[["2020–2021","No punishments (boo)","—"],["2022","24 hour Waffle House challenge","Drayton"],["2023","Sexy Calendar","Mac"],["2024","Personal Apology letter","Drayton"],["2025","Beer Mile","Grant"]];
+  const seasons={
+    2025:{archive:[["2025","Beer Mile","Grant","COMING SEPTEMBER 2025"]]},
+    2024:{archive:[["2024","Personal Apology Letter","Drayton",`<a class="archive-document" href="2024-punishment-apology.jpeg" target="_blank" rel="noopener"><img src="2024-punishment-apology.jpeg" alt="2024 Personal Apology Letter"><span>VIEW LETTER</span></a>`]]},
+    2023:{archive:[]},
+    2022:{archive:[["2022","24-Hour Waffle House Challenge","Drayton",`<a class="archive-media-link" href="https://youtu.be/3CWUCo5KeR8?si=_pKSGmxTgEuX6rXW" target="_blank" rel="noopener">WATCH VIDEO</a>`]]},
+    2021:{archive:[]},
+    2020:{archive:[]}
+  };
+
+  const renderArchive=(d)=>d.archive.length
+    ? d.archive.map(r=>`<article class="archive-entry">
+        <div class="archive-year">${r[0]}</div>
+        <div class="archive-details">
+          <div class="archive-punishment">${r[1]}</div>
+          <div class="archive-member">${r[2]}</div>
+          <div class="archive-media">${r[3]}</div>
+        </div>
+      </article>`).join("")
+    : `<div class="archive-empty">No archive entries for this season.</div>`;
+
+  const renderPodium=(places)=>`<section class="season-podium">
+    <div class="season-section-title">FINAL STANDINGS</div>
+    <div class="podium-grid">
+      ${places.map(p=>`<article class="podium-place ${p.cls}">
+        <div class="podium-medal"><span>${p.medal}</span></div>
+        <div class="podium-team">${p.team}</div>
+        <div class="podium-manager">${p.manager||""}</div>
+        <div class="podium-place-label">${p.label}</div>
+      </article>`).join("")}
+    </div>
+  </section>`;
+
+  const renderMoves=(joined,lost)=>`<section class="season-moves">
+    <div class="moves-grid">
+      <div class="moves-box joined-box">
+        <div class="season-section-title">BROTHERS GAINED</div>
+        <div class="move-list">${joined.map((n,i)=>`<div class="move-item"><span>${String(i+1).padStart(2,"0")}</span><strong>${n}</strong></div>`).join("")}</div>
+      </div>
+      <div class="moves-box lost-box">
+        <div class="season-section-title">BROTHERS LOST</div>
+        <div class="move-list">${lost.map((n,i)=>`<div class="move-item"><span>${String(i+1).padStart(2,"0")}</span><strong>${n}</strong></div>`).join("")}</div>
+      </div>
+    </div>
+  </section>`;
+
+  const render2024=()=>`<section class="history-season-panel history-2024-panel" data-season="2024">
+    <div class="history-season-heading"><span>SEASON</span><strong>2024</strong></div>
+    <div class="history-season-rule"></div>
+
+    <section class="season-foundation">
+      <div class="season-foundation-kicker">THE LEAGUE IS BUILT TO LAST</div>
+      <h3>Five Years Strong</h3>
+      <p>2024 was the year we knew the Alpha Psi Fake Football League was built to last. Going into the fifth year, we finally had a solid group of active brothers who were invested in the league and in what we were building together. We determined that draft order would be done by March Madness brackets, unless someone could get a celebrity or coach to make the pick. We also created our dynasty league this year, giving the Alpha Psi football community another way to compete and keep building for the future.</p>
+    <section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
+      <div class="history-photo-feature-title">2024 FANTASY LOSER</div>
+      <figure>
+        <a href="2024-fantasy-loser-drayton-paxton.jpeg" target="_blank" rel="noopener">
+          <img src="2024-fantasy-loser-drayton-paxton.jpeg" alt="2024 Fantasy loser Drayton Paxton">
+        </a>
+        <figcaption>Fantasy loser 2024 Drayton Paxton</figcaption>
+      </figure>
+    </section>
+
+    <section class="history-photo-feature champion-photo-feature">
+      <div class="history-photo-feature-title">2024 CHAMPION</div>
+      <figure>
+        <a href="2024-champion-quinton-roof.jpeg" target="_blank" rel="noopener">
+          <img src="2024-champion-quinton-roof.jpeg" alt="2024 Champion Quinton Roof">
+        </a>
+        <figcaption>2024 Champion Quinton Roof</figcaption>
+      </figure>
+    </section>
+
+    </section>
+
+    ${renderPodium([
+      {cls:"second",medal:"2ND",team:"Cocaine Cowboys",manager:"Jonathan Davis",label:"2ND PLACE"},
+      {cls:"first",medal:"1ST",team:"King Henry's Court",manager:"Quinton Roof",label:"2024 CHAMPION"},
+      {cls:"third",medal:"3RD",team:"Ice? Never heard of her",manager:"Alexander Peachey",label:"3RD PLACE"}
+    ])}
+
+    <section class="season-moves">
+      <div class="moves-grid">
+        <div class="moves-box joined-box">
+          <div class="season-section-title">BROTHERS GAINED</div>
+          <div class="move-list">
+            <div class="move-item"><span>01</span><strong>Grant Harris</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="season-superlatives">
+      <div class="season-section-title">SUPERLATIVES</div>
+      <div class="superlative-grid">
+        <article class="superlative-wide">
+          <h4>Most Wins</h4>
+          <div class="superlative-stack">
+            <div class="superlative-row"><div class="superlative-main"><strong>King Henry's Court</strong><span>Quinton Roof</span></div><b>10</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>Shambles</strong><span>Bailey Coble</span></div><b>10</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>Cocaine Cowboys</strong><span>Jonathan Davis, Jonathan Davis</span></div><b>10</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>Ice? Never heard of her</strong><span>Alexander Peachey, Caitlin Peachey</span></div><b>10</b></div>
+          </div>
+        </article>
+
+        <article class="superlative-wide">
+          <h4>Longest Win Streak</h4>
+          <div class="superlative-stack">
+            <div class="superlative-row"><div class="superlative-main"><strong>King Henry's Court</strong><span>Quinton Roof</span></div><b>5</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>Cocaine Cowboys</strong><span>Jonathan Davis, Jonathan Davis</span></div><b>5</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>My Ball Zach Ertz</strong><span>Victor Barcenas, Victor Barcenas</span></div><b>5</b></div>
+          </div>
+        </article>
+
+        <article>
+          <h4>Longest Losing Streak</h4>
+          <div class="superlative-main"><strong>A wish and a prayer</strong><span>Grant Harris</span></div>
+          <b>9</b>
+        </article>
+
+        <article class="superlative-blowout">
+          <h4>Biggest Blowout</h4>
+          <div class="superlative-meta">2024, Week 3</div>
+          <div class="superlative-score-row">
+            <div class="superlative-main"><strong>Cocaine Cowboys</strong><span>Jonathan Davis, Jonathan Davis</span></div>
+            <b>167.3</b>
+          </div>
+          <div class="superlative-score-row secondary">
+            <div class="superlative-main"><strong>njigbas in paris</strong><span>Kameron Walker</span></div>
+            <b>64.55</b>
+          </div>
+        </article>
+      </div>
+    </section>
+  </section>`;
+
+  const render2023=()=>`<section class="history-season-panel history-2023-panel" data-season="2023">
+    <div class="history-season-heading"><span>SEASON</span><strong>2023</strong></div>
+    <div class="history-season-rule"></div>
+
+    <section class="season-foundation">
+      <div class="season-foundation-kicker">THE MODERN LEAGUE TAKES SHAPE</div>
+      <h3>Becoming What We Know Today</h3>
+      <p>2023 was the year the league really started to become what we know today. The current group of brothers was beginning to take shape, and people were investing more of themselves into what we were building. The podcast was growing, giving everyone a chance to get on and talk football and league business together. We also started giving out ices for scoring 0 points, and bench spots were cut from 7 to 6, putting a much tighter limit on roster depth. Most importantly, we introduced a uniform punishment system through the Wheel of Punishments, creating the league tradition that we still use today.</p>
+    <section class="history-photo-feature champion-photo-feature">
+      <div class="history-photo-feature-title">2023 CHAMPION</div>
+      <figure>
+        <a href="2023-champion-victor-barcenas.jpeg" target="_blank" rel="noopener">
+          <img src="2023-champion-victor-barcenas.jpeg" alt="2023 Champion Victor Barcenas">
+        </a>
+        <figcaption>2023 Champion Victor Barcenas</figcaption>
+      </figure>
+    </section>
+
+    <section class="history-photo-feature">
+      <div class="history-photo-feature-title">DRAFT DAY 2023</div>
+      <div class="history-photo-grid">
+        <figure>
+          <a href="2023-draft-day-1.jpeg" target="_blank" rel="noopener"><img src="2023-draft-day-1.jpeg" alt="Draft day 2023"></a>
+          <figcaption>Draft day 2023</figcaption>
+        </figure>
+        <figure>
+          <a href="2023-draft-day-2.jpeg" target="_blank" rel="noopener"><img src="2023-draft-day-2.jpeg" alt="Draft day 2023"></a>
+          <figcaption>Draft day 2023</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    </section>
+
+    ${renderPodium([
+      {cls:"second",medal:"2ND",team:"Pillsbury Throw-boy",label:"2ND PLACE"},
+      {cls:"first",medal:"1ST",team:"My Ball Zach Ertz",manager:"Victor Barcenas",label:"2023 CHAMPION"},
+      {cls:"third",medal:"3RD",team:"El jeffe’s Kitchen",label:"3RD PLACE"}
+    ])}
+
+    ${renderMoves(["Justin Cooper","Victor Barcenas"],["Blake Jackson"])}
+
+    <section class="season-superlatives">
+      <div class="season-section-title">SUPERLATIVES</div>
+      <div class="superlative-grid">
+        <article class="superlative-wide">
+          <h4>Most Wins</h4>
+          <div class="superlative-stack">
+            <div class="superlative-row"><div class="superlative-main"><strong>Mean Machine</strong><span>Bailey Coble</span></div><b>10</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>My Ball Zach Ertz</strong><span>Victor Barcenas, Victor Barcenas</span></div><b>10</b></div>
+          </div>
+        </article>
+
+        <article class="superlative-wide">
+          <h4>Longest Win Streak</h4>
+          <div class="superlative-stack">
+            <div class="superlative-row"><div class="superlative-main"><strong>Mean Machine</strong><span>Bailey Coble</span></div><b>6</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>My Ball Zach Ertz</strong><span>Victor Barcenas, Victor Barcenas</span></div><b>6</b></div>
+          </div>
+        </article>
+
+        <article><h4>Longest Losing Streak</h4><div class="superlative-main"><strong>The AJ Saint Browns</strong><span>Jonathan Davis</span></div><b>6</b></article>
+
+        <article class="superlative-blowout">
+          <h4>Biggest Blowout</h4>
+          <div class="superlative-meta">2023, Week 6</div>
+          <div class="superlative-score-row secondary"><div class="superlative-main"><strong>Party City DrinkingProblem</strong><span>Drayton Paxton</span></div><b>91.35</b></div>
+          <div class="superlative-score-row"><div class="superlative-main"><strong>Mean Machine</strong><span>Bailey Coble</span></div><b>177.75</b></div>
+        </article>
+      </div>
+    </section>
+  </section>`;
+
+const render2022=()=>`<section class="history-season-panel history-2022-panel" data-season="2022">
+    <div class="history-season-heading"><span>SEASON</span><strong>2022</strong></div>
+    <div class="history-season-rule"></div>
+
+    <section class="season-foundation">
+      <div class="season-foundation-kicker">THE LEAGUE TAKES SHAPE</div>
+      <h3>Getting More Serious</h3>
+      <p>By 2022, the Alpha Psi Fake Football League was starting to get a little more serious. The competition was becoming more meaningful and the league was beginning to develop its identity, but there was still serious turnover from season to season. Bailey Coble and Quinton Roof also started the Alpha Sighs Podcast, giving the league another way to bring the brothers together, talk football, and build the league's personality outside of the weekly matchups. New brothers were coming in, others were moving on, and everyone was still figuring out what it meant to build a lasting league while competing for a championship. The rules were evolving quickly too: waiver claims moved to FAAB, the trade deadline moved up from Week 13 to Week 11, and bench spots were reduced from 8 to 7. The playoffs moved to a Week 15 start instead of Week 14. The punishment became the Sexy Calendar, and failing to complete a punishment meant losing your first-round pick and being forced to draft a defense. Trades continued to be voted on, and first-round picks could still be traded. Auto-drafters would lose a pick the following year, while draft position was determined by March Madness brackets. The payout structure also expanded, giving fifth place $60 and sixth place $50, while the winner of the losers bracket received $40 back. The loser of that bracket received S.H.I.T. and the punishment.</p>
+    <section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
+      <div class="history-photo-feature-title">2021 FANTASY LOSER</div>
+      <figure>
+        <a href="2021-fantasy-loser-marmo.jpeg" target="_blank" rel="noopener">
+          <img src="2021-fantasy-loser-marmo.jpeg" alt="2021 fantasy loser Marmo">
+        </a>
+        <figcaption>2021 Fantasy loser Marmo</figcaption>
+      </figure>
+    </section>
+
+    <section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
+      <div class="history-photo-feature-title">2022 FANTASY LOSER</div>
+      <figure>
+        <a href="2022-fantasy-loser-drayton-paxton.jpeg" target="_blank" rel="noopener">
+          <img src="2022-fantasy-loser-drayton-paxton.jpeg" alt="2022 Fantasy loser Drayton Paxton">
+        </a>
+        <figcaption>Fantasy loser 2022 Drayton Paxton</figcaption>
+      </figure>
+    </section>
+
+    <section class="history-photo-feature champion-photo-feature">
+      <div class="history-photo-feature-title">2022 CHAMPION</div>
+      <figure>
+        <a href="2022-champion-jonathan-davis.jpeg" target="_blank" rel="noopener">
+          <img src="2022-champion-jonathan-davis.jpeg" alt="2022 Champion Jonathan Davis">
+        </a>
+        <figcaption>2022 Champion Jonathan Davis</figcaption>
+      </figure>
+    </section>
+
+    </section>
+    <section class="season-rules history-2022-rules">
+      <div class="season-section-title">2022 RULE CHANGES</div>
+      <div class="rules-grid">
+        <article><span class="rule-number">01</span><div><h4>FAAB Waivers</h4><p>Waiver claims moved to FAAB.</p></div></article>
+        <article><span class="rule-number">02</span><div><h4>Earlier Trade Deadline</h4><p>Moved from Week 13 to Week 11.</p></div></article>
+        <article><span class="rule-number">03</span><div><h4>Seven Bench Spots</h4><p>Bench spots dropped from 8 to 7.</p></div></article>
+        <article><span class="rule-number">04</span><div><h4>Week 15 Playoffs</h4><p>Playoffs now begin in Week 15 instead of Week 14.</p></div></article>
+        <article><span class="rule-number">05</span><div><h4>Sexy Calendar Punishment</h4><p>The Sexy Calendar became the league punishment.</p></div></article>
+        <article><span class="rule-number">06</span><div><h4>Punishment Penalty</h4><p>Skipping a punishment costs a first-round pick, and the manager must draft a defense.</p></div></article>
+        <article><span class="rule-number">07</span><div><h4>Trades &amp; First-Round Picks</h4><p>Trades remained subject to league votes, and first-round picks could be traded.</p></div></article>
+        <article><span class="rule-number">08</span><div><h4>Auto-Draft Penalty</h4><p>Auto-drafters lose a pick the following year.</p></div></article>
+        <article><span class="rule-number">09</span><div><h4>Draft Slot</h4><p>Draft position is determined by March Madness brackets.</p></div></article>
+        <article><span class="rule-number">10</span><div><h4>Expanded Payouts</h4><p>5th receives $60, 6th receives $50, and the losers-bracket winner receives $40 back.</p></div></article>
+        <article><span class="rule-number">11</span><div><h4>Losers-Bracket Consequence</h4><p>The losers-bracket loser receives S.H.I.T. and the punishment.</p></div></article>
+      </div>
+    </section>
+
+    ${renderPodium([
+      {cls:"second",medal:"2ND",team:"Dirty Mikes And The Boys",manager:"Andrew Blum",label:"2ND PLACE"},
+      {cls:"first",medal:"1ST",team:"Make it Hurts So Good",manager:"Jonathan Davis",label:"2022 CHAMPION"},
+      {cls:"third",medal:"3RD",team:"Deshaun Watsons Happy Endings",manager:"Alexander Peachey",label:"3RD PLACE"}
+    ])}
+
+    ${renderMoves(["Blake Jackson","Braxton Ivey"],["Tyler Marmo","Corey Steele"])}
+
+    <section class="season-superlatives">
+      <div class="season-section-title">SUPERLATIVES</div>
+      <div class="superlative-grid">
+        <article class="superlative-wide">
+          <h4>Most Wins</h4>
+          <div class="superlative-stack">
+            <div class="superlative-row"><div class="superlative-main"><strong>Baseball's Better</strong><span>McKinzie Arrington</span></div><b>8</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>Derrick HitmanHenry</strong><span>Bailey Coble</span></div><b>8</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>Make it Hurts So Good</strong><span>Jonathan Davis</span></div><b>8</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>cousin named kirk</strong><span>Kameron Walker</span></div><b>8</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>Deshaun Watsons Happy Endings</strong><span>Alexander Peachey</span></div><b>8</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>Dirty Mikes And The Boys</strong><span>Andrew Blum</span></div><b>8</b></div>
+          </div>
+        </article>
+
+        <article><h4>Longest Win Streak</h4><div class="superlative-main"><strong>Make it Hurts So Good</strong><span>Jonathan Davis</span></div><b>6</b></article>
+
+        <article><h4>Longest Losing Streak</h4><div class="superlative-main"><strong>Party City DrinkingProblem</strong><span>Drayton Paxton</span></div><b>7</b></article>
+
+        <article class="superlative-blowout">
+          <h4>Biggest Blowout</h4>
+          <div class="superlative-meta">2022, Week 9</div>
+          <div class="superlative-score-row secondary"><div class="superlative-main"><strong>Dirty Mikes And The Boys</strong><span>Andrew Blum</span></div><b>59.35</b></div>
+          <div class="superlative-score-row"><div class="superlative-main"><strong>Deshaun Watsons Happy Endings</strong><span>Alexander Peachey</span></div><b>166.7</b></div>
+        </article>
+      </div>
+    </section>
+  </section>`;
+const render2021=()=>`<section class="history-season-panel history-2021-panel" data-season="2021">
+    <div class="history-season-heading"><span>SEASON</span><strong>2021</strong></div>
+    <div class="history-season-rule"></div>
+    <section class="season-foundation">
+      <div class="season-foundation-kicker">THE YOUNG LEAGUE</div>
+      <h3>Finding Its Footing</h3>
+      <p>2021 was still a shaky year for the young Alpha Psi Fake Football League. The league was trying to find its footing as two brothers left and two new ones joined. Everyone was learning what the league could become, while a gigantic hole remained at the top: there was no returning champion to set the standard. In a pandemic world, the league had football, each other, and another season to build on what had started the year before. The season also saw the creation of the Alpha Psi Lombardi trophy, giving the league a physical championship trophy and a lasting symbol of what the league was becoming.</p>
+    <section class="history-photo-feature champion-photo-feature">
+      <div class="history-photo-feature-title">2021 CHAMPION</div><figure>
+        <a href="2021-champion-jonathan-davis.jpeg" target="_blank" rel="noopener">
+          <img src="2021-champion-jonathan-davis.jpeg" alt="2021 Champion Bailey Coble">
+        </a>
+        <figcaption>2021 Champion Bailey Coble</figcaption>
+      </figure>
+    </section>
+
+    <section class="history-trophy-feature">
+      <div class="trophy-feature-copy">
+        <div class="season-foundation-kicker">THE ALPHA PSI LOMBARDI</div>
+        <h3>A Trophy for the League</h3>
+        <p>In 2021, the league created the Alpha Psi Lombardi trophy. The physical trophy gave the championship a permanent place in league history and became a centerpiece of the tradition we continue today.</p>
+      </div>
+      <a href="alpha-psi-lombardi-trophy.jpeg" target="_blank" rel="noopener" class="trophy-feature-image">
+        <img src="alpha-psi-lombardi-trophy.jpeg" alt="Alpha Psi Lombardi trophy">
+      </a>
+    </section>
+
+    </section>
+    <section class="season-rules">
+      <div class="season-section-title">2021 RULE CHANGES</div>
+      <div class="rules-grid">
+        <article><span class="rule-number">01</span><div><h4>Second Flex Added</h4><p>A second FLEX position was added to give managers another lineup decision each week.</p></div></article>
+        <article><span class="rule-number">02</span><div><h4>Kicker Position Removed</h4><p>The kicker position was removed from starting lineups.</p></div></article>
+        <article><span class="rule-number">03</span><div><h4>First-Round Picks Protected</h4><p>First-round picks could no longer be traded — the Grayson Maxfield Rule, after Grayson traded away Devonta Freeman for a bag of chips.</p></div></article>
+        <article><span class="rule-number">04</span><div><h4>Six-Team Playoffs</h4><p>The playoffs expanded to six teams, with the top two teams from each division receiving a bye.</p></div></article>
+        <article><span class="rule-number">05</span><div><h4>First-Round Picks Return With Stipulations</h4><p>First-round picks could once again be traded, but only under the league's new stipulations.</p></div></article>
+        <article><span class="rule-number">06</span><div><h4>Top Four Split the Cash</h4><p>The top four finishers received playoff money, with fourth place getting its entry money back.</p></div></article>
+      </div>
+    </section>
+    ${renderPodium([
+      {cls:"second",medal:"2ND",team:"Josh Allen's Boxers",manager:"Ty Katz",label:"2ND PLACE"},
+      {cls:"first",medal:"1ST",team:"Kareem Pie",manager:"Bailey Coble",label:"2021 CHAMPION"},
+      {cls:"third",medal:"3RD",team:"Grayson Sucks",manager:"Andrew Blum",label:"3RD PLACE"}
+    ])}
+    ${renderMoves(["Marmo","Cal"],["Ty","Cal"])}
+    <section class="season-superlatives">
+      <div class="season-section-title">SUPERLATIVES</div>
+      <div class="superlative-grid">
+        <article class="superlative-wide"><h4>Most Wins</h4><div class="superlative-stack">
+          <div class="superlative-row"><div class="superlative-main"><strong>Kareem Pie</strong><span>Bailey Coble</span></div><b>9</b></div>
+          <div class="superlative-row"><div class="superlative-main"><strong>You Make Me Gesicki</strong><span>Jonathan Davis</span></div><b>9</b></div>
+          <div class="superlative-row"><div class="superlative-main"><strong>Josh Allen's Boxers</strong><span>Ty Katz</span></div><b>9</b></div>
+          <div class="superlative-row"><div class="superlative-main"><strong>Grayson Sucks</strong><span>Andrew Blum</span></div><b>9</b></div>
+        </div></article>
+        <article><h4>Longest Win Streak</h4><div class="superlative-main"><strong>Kareem Pie</strong><span>Bailey Coble</span></div><b>8</b></article>
+        <article><h4>Longest Losing Streak</h4><div class="superlative-main"><strong>JulioJones Hamstring</strong><span>Tyler Marmo</span></div><b>10</b></article>
+        <article class="superlative-blowout"><h4>Biggest Blowout</h4><div class="superlative-meta">2021, Week 8</div><div class="superlative-score-row"><div class="superlative-main"><strong>Team McOuchMyCalfrey</strong><span>Corey Steele</span></div><b>107.35</b></div><div class="superlative-score-row"><div class="superlative-main"><strong>Grayson Sucks</strong><span>Andrew Blum</span></div><b>181.65</b></div></article>
+      </div>
+    </section>
+  </section>`;
+const render2020=()=>`<section class="history-season-panel history-2020-panel" data-season="2020">
+    <div class="history-season-heading"><span>SEASON</span><strong>2020</strong></div>
+    <div class="history-season-rule"></div>
+    <section class="season-foundation">
+      <div class="season-foundation-kicker">THE INAUGURAL SEASON</div>
+      <h3>Where It All Began</h3>
+      <p>2020 was the founding year of the Alpha Psi Fake Football League. The league was built around a simple idea: Alpha Psi brothers getting together, having fun, and competing in fantasy football. Twelve brothers took part in the inaugural season, establishing the league and the traditions that would carry it forward. Grayson Maxfield won the first championship with the Bitchin’ Baker Beards, becoming the league’s inaugural champion. After the season, Grayson left the league and never returned, making his championship the only season he played in Alpha Psi FFL.</p>
+    </section>
+    ${renderPodium([
+      {cls:"second",medal:"2ND",team:"Baby Shark",manager:"Jonathan Davis",label:"2ND PLACE"},
+      {cls:"first",medal:"1ST",team:"Bitchin’ Baker Beards",manager:"Grayson Maxfield",label:"2020 CHAMPION"},
+      {cls:"third",medal:"3RD",team:"Party City Drinking Problem",manager:"Drayton Paxton",label:"3RD PLACE"}
+    ])}
+    <section class="season-members-2020">
+      <div class="season-section-title">THE 12 BROTHERS OF 2020</div>
+      <div class="founding-member-list">
+        ${["Quinton Roof","Bailey Coble","Jonathan Davis","Andrew Blum","Alexander Peachey","Kameron Walker","Chase Arrington","Drayton Paxton","Grayson Maxfield","Corey Steele","Ty","Grant A."].map((n,i)=>`<div class="founding-member-item"><span>${String(i+1).padStart(2,"0")}</span><strong>${n}</strong></div>`).join("")}
+      </div>
+    </section>
+    ${renderMoves([],["Grayson Maxfield","Grant A."])}
+    <section class="season-superlatives">
+      <div class="season-section-title">SUPERLATIVES</div>
+      <div class="superlative-grid">
+        <article><h4>Most Wins</h4><div class="superlative-main"><strong>Baby Shark</strong><span>Jonathan Davis</span></div><b>9</b></article>
+        <article><h4>Longest Win Streak</h4><div class="superlative-main"><strong>Team Walker</strong><span>Kameron Walker</span></div><b>5</b></article>
+        <article><h4>Longest Losing Streak</h4><div class="superlative-main"><strong>Team Weenie Hut Jr</strong><span>Corey Steele</span></div><b>6</b></article>
+        <article class="superlative-blowout"><h4>Biggest Blowout</h4><div class="superlative-meta">2020, Week 12</div><div class="superlative-score-row"><div class="superlative-main"><strong>Baby Shark</strong><span>Jonathan Davis</span></div><b>254</b></div><div class="superlative-score-row secondary"><div class="superlative-main"><strong>Team Walker</strong><span>Kameron Walker</span></div><b>117.15</b></div></article>
+      </div>
+    </section>
+  </section>`;
+
+  const renderSeason=(year)=>{
+    const d=seasons[year];
+
+    if(year===2025) return `<section class="history-season-panel active history-2025-panel" data-season="2025">
+      <div class="history-season-heading"><span>SEASON</span><strong>2025</strong></div>
+      <div class="history-season-rule"></div>
+
+      <section class="season-foundation">
+        <div class="season-foundation-kicker">THE LEAGUE ENTERS A NEW ERA</div>
+        <h3>Same Brothers. New Season.</h3>
+        <p>2025 marked the first year in Alpha Psi Fake Football League history that we rolled over the exact same group of brothers from one season to the next. No one was added and no one was lost. After years of turnover and building the league piece by piece, having the same group return together was a major milestone. With the foundation finally settled, we are more excited than ever about the future of the league and what this group can continue to build together.</p>
+    <section class="history-photo-feature champion-photo-feature">
+      <div class="history-photo-feature-title">2025 CHAMPION</div>
+      <figure>
+        <a href="2025-champion-kameron-walker.jpeg" target="_blank" rel="noopener">
+          <img src="2025-champion-kameron-walker.jpeg" alt="2025 Champion Kameron Walker">
+        </a>
+        <figcaption>2025 Champion Kameron Walker</figcaption>
+      </figure>
+    </section>
+
+      </section>
+
+      ${renderPodium([
+        {cls:"second",medal:"2ND",team:"Big Maye Energy",manager:"Andrew Blum",label:"2ND PLACE"},
+        {cls:"first",medal:"1ST",team:"njigbas in paris",manager:"Kameron Walker",label:"2025 CHAMPION"},
+        {cls:"third",medal:"3RD",team:"Another one bites th...",label:"3RD PLACE"}
+      ])}
+
+      <section class="season-moves">
+        <div class="moves-grid">
+          <div class="moves-box joined-box">
+            <div class="season-section-title">BROTHERS GAINED</div>
+            <div class="move-list"><div class="archive-empty">No brothers added in 2025.</div></div>
+          </div>
+          <div class="moves-box lost-box">
+            <div class="season-section-title">BROTHERS LOST</div>
+            <div class="move-list"><div class="archive-empty">No brothers lost in 2025.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="season-superlatives">
+        <div class="season-section-title">SUPERLATIVES</div>
+        <div class="superlative-grid">
+          <article>
+            <h4>Most Wins</h4>
+            <div class="superlative-main"><strong>njigbas in paris</strong><span>Kameron Walker</span></div>
+            <b>10</b>
+          </article>
+
+          <article class="superlative-wide">
+            <h4>Longest Win Streak</h4>
+            <div class="superlative-stack">
+              <div class="superlative-row"><div class="superlative-main"><strong>Half a Chicken Sandwich</strong><span>Jonathan Davis, Jonathan Davis</span></div><b>6</b></div>
+              <div class="superlative-row"><div class="superlative-main"><strong>Schedule Merchants</strong><span>Victor Barcenas, Victor Barcenas</span></div><b>6</b></div>
+            </div>
+          </article>
+
+          <article>
+            <h4>Longest Losing Streak</h4>
+            <div class="superlative-main"><strong>Pillsbury Throwboy</strong><span>Justin Cooper</span></div>
+            <b>8</b>
+          </article>
+
+          <article class="superlative-blowout">
+            <h4>Biggest Blowout</h4>
+            <div class="superlative-meta">2025, Week 14</div>
+            <div class="superlative-score-row secondary"><div class="superlative-main"><strong>1-01 for nothing</strong><span>Mckinzie Arrington</span></div><b>85.6</b></div>
+            <div class="superlative-score-row"><div class="superlative-main"><strong>Big Maye Energy</strong><span>Andrew Blum</span></div><b>196.45</b></div>
+          </article>
+        </div>
+      </section>
+
+      <div class="history-punishments league-archive">
+        <h3>League Archive</h3>
+        <div class="archive-list">${renderArchive(d)}</div>
+      </div>
+    </section>`;
+
+    return `<section class="history-season-panel" data-season="${year}">
+      <div class="history-season-heading"><span>SEASON</span><strong>${year}</strong></div>
+      <div class="history-season-rule"></div>
+      <div class="league-timeline">
+        <div class="timeline-title">LEAGUE TIMELINE</div>
+        <div class="timeline-list">
+          ${year==="2024"?`<article><div class="timeline-year">2024</div><div><strong>Quinton Roof</strong><span>Wins the 2024 championship.</span></div></article>`:""}
+        </div>
+      </div>
+      <div class="history-punishments league-archive">
+        <h3>League Archive</h3>
+        <div class="archive-list">${renderArchive(d)}</div>
+      </div>
+    </section>`;
+  };
+
   return `<h2>League History</h2>
-  <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
-  <div class="history-logo-card">
-    <div class="history-label">ORIGINAL LEAGUE LOGO</div>
-    <img src="original-alpha-psi-logo.jpeg" alt="Original Alpha Psi Fantasy Football League logo" class="history-logo">
-    <h3>The Original Alpha Psi Fantasy Football League</h3>
-    <p class="intro">The original logo used when the league began.</p>
-  </div>
-  <div class="media-box">More league history, old logos, photos, and other historical material can be added here.</div>
-  <div class="history-punishments">
-    <h3>Punishments</h3>
-    <div class="table-wrap"><table class="data-table"><thead><tr><th>Year</th><th>Punishment</th><th>Member</th><th>Media</th></tr></thead>
-    <tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[0]==="2022"&&r[1]==="24 hour Waffle House challenge"?`<a href="https://youtu.be/3CWUCo5KeR8?si=_pKSGmxTgEuX6rXW" target="_blank" rel="noopener">Watch Video</a>`:r[0]==="2023"&&r[1]==="Sexy Calendar"?`<a href="sexy-calendar-punishment.png" target="_blank" rel="noopener">View Image</a>`:`<a href="#" onclick="return false;">Add photo/video link</a>`}</td></tr>`).join("")}</tbody></table></div>
-  </div>`;
+    <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
+    <div class="history-logo-card">
+      <div class="history-label">ORIGINAL LEAGUE LOGO</div>
+      <img src="original-alpha-psi-logo.jpeg" alt="Original Alpha Psi Fantasy Football League logo" class="history-logo">
+      <h3>The Original Alpha Psi Fantasy Football League</h3>
+      <p class="intro">The original logo used when the league began.</p>
+    </div>
+    <div class="media-box">More league history, old logos, photos, and other historical material can be added here.</div>
+    <div class="history-season-tabs" role="tablist" aria-label="League History seasons">
+      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
+    </div>
+    <div class="history-season-panels">
+      ${renderSeason(2025)}
+      ${render2024()}
+      ${render2023()}
+      ${render2022()}
+      ${render2021()}
+      ${render2020()}
+    </div>
+    <script>
+      (function(){
+        const tabs=document.querySelectorAll('.history-season-tab');
+        const panels=document.querySelectorAll('.history-season-panel');
+        tabs.forEach(tab=>{
+          tab.addEventListener('click',()=>{
+            const season=tab.dataset.season;
+            tabs.forEach(t=>{
+              const active=t===tab;
+              t.classList.toggle('active',active);
+              t.setAttribute('aria-selected',active?'true':'false');
+            });
+            panels.forEach(panel=>panel.classList.toggle('active',panel.dataset.season===season));
+          });
+        });
+      })();
+    </script>`;
 }
 
-function allPsiPage(){let out=`<h2>Papa’s All-Psi Team</h2><img src="papas-all-psi-photo.jpeg" alt="Brother Robert Cowsert" class="allpsi-photo"><div class="dedication">In memory of Brother Robert Cowsert.</div>`;for(const y of [2023,2024,2025]){const d=allPsi[y];out+=`<div class="year-block"><h3>${y} Papa’s All-Psi Team</h3><div class="grid">${d.main.map(x=>`<div class="card allpsi-team-card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div><div class="honorable"><h3>Honorable Mentions</h3><div class="grid">${d.hm.map(x=>`<div class="card allpsi-team-card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div></div><div class="media-box">Add photo/video links for this year's All-Psi team here.</div></div>`}return out}
+function allPsiPage(){
+  const renderSeason=(y)=>{
+    const d=allPsi[y];
+    const positions=[...new Set([...d.main.map(x=>x[0]),...d.hm.map(x=>x[0])])];
+
+    return `<section class="allpsi-season-panel" data-season="${y}">
+      <div class="allpsi-season-heading">
+        <span>SEASON</span>
+        <strong>${y}</strong>
+      </div>
+      <div class="allpsi-season-rule"></div>
+      <div class="allpsi-positions">
+        ${positions.map(pos=>{
+          const main=d.main.find(x=>x[0].toLowerCase()===pos.toLowerCase());
+          const mentions=d.hm.filter(x=>x[0].toLowerCase()===pos.toLowerCase());
+          return `<article class="allpsi-position-card">
+            <div class="allpsi-position-name">${pos}</div>
+            <div class="allpsi-position-rule"></div>
+            ${main?`<div class="allpsi-winner">
+              <div class="allpsi-winner-name">${main[1]}</div>
+              <div class="allpsi-winner-detail">${main[2]}</div>
+            </div>`:""}
+            ${mentions.length?`<div class="allpsi-honorable-title">HONORABLE MENTION${mentions.length>1?"S":""}</div>
+            <div class="allpsi-honorable-list">${mentions.map(x=>`<div class="allpsi-honorable">
+              <div class="allpsi-honorable-name">${x[1]}</div>
+              <div class="allpsi-honorable-detail">${x[2]}</div>
+            </div>`).join("")}</div>`:""}
+          </article>`;
+        }).join("")}
+      </div>
+    </section>`;
+  };
+
+  return `<h2>Papa’s All-Psi Team</h2>
+    <img src="papas-all-psi-photo.jpeg" alt="Brother Robert Cowsert" class="allpsi-photo">
+    <div class="dedication">In memory of Brother Robert Cowsert.</div>
+    <p class="allpsi-intro">An annual selection honoring the league’s most outstanding fantasy football performances.</p>
+
+    <div class="allpsi-season-tabs" role="tablist" aria-label="Papa's All-Psi seasons">
+      ${[2025,2024,2023].map((y,i)=>`<button class="allpsi-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
+    </div>
+
+    <div class="allpsi-season-panels">
+      ${renderSeason(2025)}
+      ${renderSeason(2024)}
+      ${renderSeason(2023)}
+    </div>
+
+    <script>
+      (function(){
+        const tabs=document.querySelectorAll('.allpsi-season-tab');
+        const panels=document.querySelectorAll('.allpsi-season-panel');
+        tabs.forEach(tab=>{
+          tab.addEventListener('click',()=>{
+            const season=tab.dataset.season;
+            tabs.forEach(t=>{
+              const active=t===tab;
+              t.classList.toggle('active',active);
+              t.setAttribute('aria-selected',active?'true':'false');
+            });
+            panels.forEach(panel=>{
+              panel.classList.toggle('active',panel.dataset.season===season);
+            });
+          });
+        });
+      })();
+    </script>`;
+}
 const memberFullNames = {"Quinton": "Quinton Roof", "Bailey": "Bailey Coble", "Davis": "Jonathan Davis", "Blum": "Andrew Blum", "Peachey": "Alexander Peachey", "Justin": "Justin Cooper", "Grant H.": "Grant Harris", "Kameron": "Kameron Walker", "Braxton": "Braxton Ivey", "Victor B.": "Victor Barcenas", "Mac": "Chase Arrington", "Drayton": "Drayton Paxton"};
 
 function trophyCase(name){
@@ -190,6 +795,34 @@ function trophyCase(name){
   return `<div class="trophy-case"><div class="trophy-case-title">TROPHY CASE</div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item">${x}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div>`;
 }
 
+function careerSnapshot(name){
+  const snapshots={
+    "Quinton":["1","2","’24","2020–Present"],
+    "Bailey":["1","5","’21","2020–Present"],
+    "Davis":["2","3","’20, ’22","2020–Present"],
+    "Blum":["0","3","’22, ’25","2020–Present"],
+    "Peachey":["0","3","—","2020–Present"],
+    "Justin":["0","1","—","2023–Present"],
+    "Grant H.":["0","0","—","2024–Present"],
+    "Kameron":["1","3","’25","2020–Present"],
+    "Braxton":["0","2","—","2022–Present"],
+    "Victor B.":["1","3","’23","2023–Present"],
+    "Mac":["0","2","—","2020–Present"],
+    "Drayton":["0","1","—","2020–Present"]
+  };
+  const s=snapshots[name];
+  if(!s) return "";
+  return `<div class="career-snapshot">
+    <div class="career-snapshot-title">CAREER SNAPSHOT</div>
+    <div class="career-snapshot-grid">
+      <div><strong>${s[0]}</strong><span>CHAMPIONSHIPS</span></div>
+      <div><strong>${s[1]}</strong><span>PLAYOFF APPS</span></div>
+      <div><strong>${s[2]}</strong><span>BEST FINISH</span></div>
+      <div><strong>${s[3]}</strong><span>YEARS ACTIVE</span></div>
+    </div>
+  </div>`;
+}
+
 const memberBios = {"Quinton": "The Commissioner. Quinton set out to create a more perfect union of Alpha Psi brothers having fun playing fantasy football. After the league was created in 2020, he has created what he hopes is a league that can span the years.", "Justin": "The Ice Commissioner. Justin took the league by storm coming in at the same time as Victor in 2023 and appearing in the title game. Although he came up short, he’s looking to make another appearance soon while juggling the duties of being ice commish, finance genius, and great father.", "Blum": "The Doc. Blum has slowed down in the past years but don’t let this fool you, he’s still a silent assassin. Coming off a championship appearance in ‘25 and he’s looking to make huge waves in the future years. No one should be surprised when he continues the push for the Alpha Psi FFL Mount Rushmore.", "Peachey": "The numbers guy. Peachey is not the best speller but he knows his way around the numbers and is always dangerous when in trade negotiations because he knows the hidden stats. Peachey is still looking for a championship appearance but he’s a mainstay in the playoffs as of late.", "Mac": "Doc Jr. Mac is our resident baseball guy and our backup doctor for when Blum goes down. There is a quote floating around about Mac asking when the baseball season starts but don’t let that distract you from his fantasy team. One of the most injury-ridden managers but once the injury bug leaves, his team could be good.", "Bailey": "The favorite host. Bailey is most famous for being the favorite podcast host but less known he won a championship in 2021. Now that might feel like forever ago but he’s one of the most decorated members in the league with several byes and almost perfect playoff appearance record.", "Davis": "The Coach. Davis is our 2022 champion and 2025 state champ. Davis isn’t afraid to spend time thinking about his next trade (or asking for outside help). One of the mainstays in the playoffs, he is always someone who will be near the top of the rankings.", "Victor B.": "The Rookie. Victor came in and won the championship his first year in 2023 and has made the playoffs every year after. A very good fantasy manager that is wise beyond his years despite being one of the youngest in the league. Victor should continue to be near the top half of the league for years to come.", "Kameron": "Regular SZN Beast. Kameron is one of the best drafters in the league and thus has some of the best regular seasons. In 2025, Kam finally put it all together winning the championship on the backs of JSN and friends. The regular season dominance should continue and he’s hoping for the same in the postseason.", "Grant H.": "Judge, Jury, Executioner. Grant is the latest guy to join the league, becoming a member in 2024. While there hasn’t been much success so far, he’s on his way to figuring it out. The league’s lawyer is sure to put together some good cases in future trades with his league mates.", "Braxton": "The Salesman. Braxton knows how to spin a good tale when it comes to trades and usually ends up on the winning side of the deal. Braxton is the longest tenured member that wasn’t a founder but he carries the same respect for what he can do with his fantasy teams.", "Drayton": "The Little. Drayton is the little brother of the commish but that doesn’t seem to help in fantasy. Drayton has been near the bottom of the league but is always the top in one of the nicest members. He will turn it around soon once he stops being the first member to take a QB each draft."};
 
 function memberBio(name){
@@ -205,10 +838,10 @@ function members(){
     ["Blum","2020–Present",true,"Marino (’21) • Best Podcast Guest (’24) • Falcon (’24) • Juggernaut (’23, ’25)","45–37","blum-member.png"],
     ["Peachey","2020–Present",true,"Punching Bag (’21)","44–38","peachey-member.png"],
     ["Justin","2023–Present",false,"GM of the Year (’23) • Lame Duck (’25) • Avenger (’25)","18–24","justin-member.png"],
-    ["Grant H.","2024–Present",false,"Avenger (’24)","5–23","grant-member.png"],
+    ["Grant H.","2024–Present",false,"Avenger (’24)","5–23","grant-member-photo.png"],
     ["Kameron","2020–Present",true,"2025 Championship (1x) • Best Name (’23) • CBPOY (’23) • The Falcon Award (’21) • CBPOY (’25) • Marino (’25) • GM of the Year (’25)","47–35","kameron-member.png"],
     ["Braxton","2022–Present",false,"None","29–26","braxton-member.png"],
-    ["Victor B.","2023–Present",false,"2023 Championship (1x) • Marino (’23, tied with Bailey) • Rookie of the Year (’23)","27–15","victor-member.png"],
+    ["Victor B.","2023–Present",false,"2023 Championship (1x) • Marino (’23, tied with Bailey) • Rookie of the Year (’23)","27–15","victor-member-photo.png"],
     ["Mac","2020–Present",true,"Punching Bag (’25) • Worst Name (’25)","43–39","mac-member.png"],
     ["Drayton","2020–Present",true,"Lame Duck (’21, ’23, ’24) • Avenger (’23) • Punching Bag (’24)","28–54","drayton-member.png"]
   ];
@@ -222,13 +855,39 @@ function members(){
     ["Cal","2021","7–7",false,"",""]
   ];
 
+  const profileHeader=(name,years,record,img)=>`
+    <div class="member-profile-header">
+      <div class="member-photo-frame">
+        ${img?`<img class="member-photo" src="${img}" alt="${memberFullNames[name]||name} member photo">`:`<div class="member-photo member-photo-empty"></div>`}
+      </div>
+      <div class="member-profile-info">
+        <div class="member-profile-label">ALPHA PSI MANAGER</div>
+        <strong>${memberFullNames[name]||name}</strong>
+        <div class="member-years">${years}</div>
+        <div class="member-record-large">${record}</div>
+      </div>
+    </div>`;
+
   const card=n=>{
     const [name,years,founder,accolades,record,img]=n;
-    const photo=img?`<div class="member-heading"><img class="member-photo" src="${img}" alt="${memberFullNames[name]||name} member photo"><div><strong>${memberFullNames[name]||name}</strong><div class="member-meta">${years}<br><span class="member-record">Overall record: ${record}</span></div></div></div>`:`<div class="member-heading"><div><strong>${memberFullNames[name]||name}</strong><div class="member-meta">${years}<br><span class="member-record">Overall record: ${record}</span></div></div></div>`;
-    return `<div class="member">${photo}${founder?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}${trophyCase(name)}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(accolades)}</div></div>${memberBio(name)}</div>`;
+    return `<article class="member player-profile-card">
+      ${profileHeader(name,years,record,img)}
+      ${founder?`<div class="founder-badge">FOUNDING MEMBER</div>`:""}
+      ${careerSnapshot(name)}
+      ${trophyCase(name)}
+      <div class="accolades"><div class="accolades-title">ACCOLADES</div><div class="accolades-placeholder">${accoladeBadges(accolades)}</div></div>
+      ${memberBio(name)}
+    </article>`;
   };
 
-  const alumniCard=n=>`<div class="member">${n[5]?`<div class="member-heading"><img class="member-photo" src="${n[5]}" alt="${memberFullNames[n[0]]||n[0]} member photo"><div><strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[2]}</span></div></div></div>`:`<div class="member-heading"><div><strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[2]}</span></div></div></div>`}${n[3]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}${trophyCase(n[0])}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${n[4]||"Add accolades here"}</div></div>${memberBio(name)}</div>`;
+  const alumniCard=n=>`<article class="member player-profile-card alumni-profile-card">
+    ${profileHeader(n[0],n[1],n[2],n[5])}
+    ${n[3]?`<div class="founder-badge">FOUNDING MEMBER</div>`:""}
+    ${careerSnapshot(n[0])}
+    ${trophyCase(n[0])}
+    <div class="accolades"><div class="accolades-title">ACCOLADES</div><div class="accolades-placeholder">${n[4]?accoladeBadges(n[4]):"None recorded"}</div></div>
+    ${memberBio(n[0])}
+  </article>`;
 
   return `<h2>Members</h2>
   <h3>Current Members</h3>
@@ -240,13 +899,33 @@ function members(){
 function stats(){return `<h2>Stats</h2><p class="intro">This section is ready for the ESPN league data you provide. We can expand it with team, player, weekly, and season statistics.</p><div class="grid"><div class="card"><strong>ESPN Data</strong><p>Roster and scoring data can be added here.</p></div><div class="card"><strong>Season Stats</strong><p>Season-by-season totals and averages can live here.</p></div><div class="card"><strong>Player Stats</strong><p>Individual player records can be added here.</p></div></div>`}
 function teams(){return `<h2>Teams</h2><p class="intro">Team pages are ready to be added as we bring over the league's ESPN history.</p><div class="grid">${champions.map(c=>`<div class="card"><strong>${c[2]}</strong><p>${c[0]} champion — ${c[1]} — ${c[3]}</p></div>`).join("")}</div>`}
 function schedule(){return `<h2>Schedule</h2><p class="intro">Schedule and matchup history will be added from your ESPN data.</p><div class="media-box">ESPN schedule links or screenshots can be added here.</div>`}
-function recordsPage(){return `<h2>League Records</h2><p class="intro">The all-time Alpha Psi record book. Hover over a record to see the member who holds it.</p>
-<div class="record-feature">
-  <div class="record-feature-title">200 POINT CLUB</div>
-  <div class="record-feature-sub">Three players have crossed the 200-point mark in a single fantasy matchup.</div>
-  <div class="two-hundred-grid">${twoHundredClub.map((r,i)=>`<div class="record-holder"><div class="record-value">${r[0]}</div><div class="record-detail">${r[1]}</div>${recordHover(r[1])}</div>`).join("")}</div>
-</div>
-<div class="records-grid">${records.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-value">${r[1]}</div><div class="record-card-detail">${r[2]}</div>${recordHover(r[2])}</article>`).join("")}</div>`}
+function recordsPage(){
+  const leaders=[
+    ["MOST CHAMPIONSHIPS","League Record","6 different champions — tied"],
+    ["MOST PLAYOFF APPEARANCES","Bailey Coble","5 appearances"],
+    ["MOST FIRST-ROUND BYES","Bailey Coble","3 byes"],
+    ["LONGEST WIN STREAK","Bailey Coble","7 straight wins"],
+    ["MOST POINTS IN A SEASON","Bailey Coble","2,115.55 points"],
+    ["MOST MOVES IN A SEASON","Quinton Roof","65 moves"]
+  ];
+  return `<h2>League Records</h2>
+  <p class="intro">The all-time Alpha Psi record book. The leader board uses records already documented in the league archive.</p>
+  <div class="record-leaders">
+    <div class="record-leaders-title">LEAGUE LEADERS</div>
+    <div class="record-leaders-grid">${leaders.map((r,i)=>`<article class="leader-card">
+      <div class="leader-rank">0${i+1}</div>
+      <div class="leader-category">${r[0]}</div>
+      <div class="leader-name">${r[1]}</div>
+      <div class="leader-value">${r[2]}</div>
+    </article>`).join("")}</div>
+  </div>
+  <div class="record-feature">
+    <div class="record-feature-title">200 POINT CLUB</div>
+    <div class="record-feature-sub">Three players have crossed the 200-point mark in a single fantasy matchup.</div>
+    <div class="two-hundred-grid">${twoHundredClub.map((r,i)=>`<div class="record-holder"><div class="record-value">${r[0]}</div><div class="record-detail">${r[1]}</div>${recordHover(r[1])}</div>`).join("")}</div>
+  </div>
+  <div class="records-grid">${records.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-value">${r[1]}</div><div class="record-card-detail">${r[2]}</div>${recordHover(r[2])}</article>`).join("")}</div>`;
+}
 function playoffsPage(){return `<h2>Playoff Records</h2><div class="playoff-definitions"><div><strong>Championship Appearances</strong><span>Years and championship record</span></div><div><strong>First Round Byes</strong><span>Years receiving a bye</span></div><div><strong>Playoff Appearances</strong><span>Years making the playoffs</span></div><div><strong>Playoff Record</strong><span>Playoff wins and losses</span></div></div><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championship Appearances<br><span class="table-subheader">* Parenthesis denotes record in championship game</span></th><th>First Round Byes</th><th>Playoff Appearances</th><th>Playoff Record</th></tr></thead><tbody>${playoff.map(p=>{const rawChamp=p[1].replace(/^Championship Appearance(?:s)?:\s*/,"");const cm=rawChamp.match(/^(.*?);\s*Championship record:\s*(.*)$/i);const champ=cm?`${cm[1]} (${cm[2]})`:rawChamp;const bye=p[2].replace(/^First Round Bye(?:s)?:\s*/,"");const apps=p[3].replace(/^Playoff Appearances:\s*/,"");const rec=p[4].replace(/^Playoff Record:\s*/,"");return `<tr><td><strong>${p[0]}</strong></td><td>${champ}</td><td>${bye}</td><td>${apps}</td><td>${rec}</td></tr>`}).join("")}</tbody></table></div>`}
 function rulesPage(){
   const activeMap={2025:[0,1,2,3],2024:[0,3,4,6,8],2023:[0,2,3,4,5],2022:[0,1,3,5,6,7,8,9],2021:[0,2,3]};
@@ -288,7 +967,7 @@ function members(){
   ];
   return `<h2>Members</h2>
   <h3>Current Members</h3>
-  <div class="grid member-grid">${current.map(n=>`<div class="member">${["Bailey","Mac","Davis","Victor","Justin","Blum","Braxton","Grant","Quinton","Kameron","Peachey","Drayton"].includes(n[0])?`<div class="member-heading"><img class="member-photo" src="${n[0]==="Bailey"?"bailey-champion.jpeg":n[0]==="Mac"?"mac-member.png":n[0]==="Davis"?"davis-member.png":n[0]==="Victor"?"victor-member.png":n[0]==="Justin"?"justin-member.png":n[0]==="Blum"?"blum-member.png":n[0]==="Braxton"?"braxton-member.png":n[0]==="Grant"?"grant-member.png":n[0]==="Quinton"?"quinton-member.png":n[0]==="Kameron"?"kameron-member.png":n[0]==="Peachey"?"peachey-member.png":"drayton-member.png"}" alt="${memberFullNames[n[0]]||n[0]} member photo"><div><strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div></div></div>`:`<strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div>`}${n[2]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(n[3])}</div></div></div>`).join("")}</div>
+  <div class="grid member-grid">${current.map(n=>`<div class="member">${["Bailey","Mac","Davis","Victor","Justin","Blum","Braxton","Grant","Quinton","Kameron","Peachey","Drayton"].includes(n[0])?`<div class="member-heading"><img class="member-photo" src="${n[0]==="Bailey"?"bailey-champion.jpeg":n[0]==="Mac"?"mac-member.png":n[0]==="Davis"?"davis-member.png":n[0]==="Victor"?"victor-member-photo.png":n[0]==="Justin"?"justin-member.png":n[0]==="Blum"?"blum-member.png":n[0]==="Braxton"?"braxton-member.png":n[0]==="Grant"?"grant-member-photo.png":n[0]==="Quinton"?"quinton-member.png":n[0]==="Kameron"?"kameron-member.png":n[0]==="Peachey"?"peachey-member.png":"drayton-member.png"}" alt="${memberFullNames[n[0]]||n[0]} member photo"><div><strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div></div></div>`:`<strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div>`}${n[2]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(n[3])}</div></div></div>`).join("")}</div>
   <div class="alumni">
     <h2>Alumni</h2>
     <div class="grid member-grid">${alumni.map(n=>`<div class="member"><strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span>${n[2]}</span></div>${n[3]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${n[4]?accoladeBadges(n[4]):"Add accolades here"}</div></div></div>`).join("")}</div>
@@ -299,7 +978,12 @@ const pages={home,members,history,records:recordsPage,rules:rulesPage,allpsi:all
 function render(page){
   try{
     if(!pages[page]) page="home";
-    content.innerHTML=pages[page]();
+    content.classList.remove('page-transition');
+void content.offsetWidth;
+content.innerHTML=pages[page]();
+content.classList.toggle('home-view',page==='home');
+content.classList.add('page-transition');
+    bindChampionLinks();
     tabs.forEach(t=>t.classList.toggle("active",t.dataset.page===page));
     const nav=document.querySelector(".main-tabs");
     if(nav && window.scrollTo) window.scrollTo({top:nav.offsetTop-60,behavior:"smooth"});
@@ -310,4 +994,26 @@ function render(page){
   }
 }
 tabs.forEach(t=>t.addEventListener("click",()=>render(t.dataset.page)));
+function bindChampionLinks(){
+  document.querySelectorAll(".champion-banner-link").forEach(card=>{
+    const open=()=>{ render("members"); setTimeout(()=>{
+      const name=card.dataset.member;
+      const target=[...document.querySelectorAll(".player-profile-card")].find(el=>el.querySelector(".member-profile-info strong")?.textContent=== (memberFullNames[name]||name));
+      if(target){ target.scrollIntoView({behavior:"smooth",block:"center"}); target.classList.add("champion-profile-highlight"); setTimeout(()=>target.classList.remove("champion-profile-highlight"),1100); }
+    },80); };
+    card.addEventListener("click",open);
+    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}});
+  });
+}
+
 const initial=location.hash.slice(1);render(pages[initial]?initial:"home");
+
+    <section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
+      <div class="history-photo-feature-title">2023 FANTASY LOSER</div>
+      <figure>
+        <a href="2023-fantasy-loser-chase-arrington.jpeg" target="_blank" rel="noopener">
+          <img src="2023-fantasy-loser-chase-arrington.jpeg" alt="Fantasy loser Chase Arrington">
+        </a>
+        <figcaption>Fantasy loser Chase Arrington</figcaption>
+      </figure>
+    </section>
