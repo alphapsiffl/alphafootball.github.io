@@ -207,7 +207,7 @@ function allPsiPhotoFor(year, position, member, honorable){
   }[k] || Object.values(allPsiPhotos)[0];
 }
 
-function allPsiPage(){let out=`<h2>Papa’s All-Psi Team</h2><img src="papas-all-psi-photo.jpeg" alt="Brother Robert Cowsert" class="allpsi-photo"><div class="dedication">In memory of Brother Robert Cowsert.</div>`;for(const y of [2023,2024,2025]){const d=allPsi[y];out+=`<div class="year-block"><h3>${y} Papa’s All-Psi Team</h3><div class="grid">${d.main.map(x=>`<div class="card allpsi-team-card"><img class="allpsi-member-photo" src="${allPsiPhotos[allPsiPhotoFor(y,x[0],x[1],false)]||"papas-all-psi-photo.jpeg"}" alt="${allPsiPhotoFor(y,x[0],x[1],true)}"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div><div class="honorable"><h3>Honorable Mentions</h3><div class="grid">${d.hm.map(x=>`<div class="card allpsi-team-card"><img class="allpsi-member-photo" src="${allPsiPhotos[allPsiPhotoFor(year,x[0],x[1],false)]||"papas-all-psi-photo.jpeg"}" alt="${allPsiPhotoFor(year,x[0],x[1],false)}"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div></div><div class="media-box">Add photo/video links for this year's All-Psi team here.</div></div>`}return out}
+function allPsiPage(){let out=`<h2>Papa’s All-Psi Team</h2><img src="papas-all-psi-photo.jpeg" alt="Brother Robert Cowsert" class="allpsi-photo"><div class="dedication">In memory of Brother Robert Cowsert.</div>`;for(const y of [2023,2024,2025]){const d=allPsi[y];out+=`<div class="year-block"><h3>${y} Papa’s All-Psi Team</h3><div class="grid">${d.main.map(x=>`<div class="card allpsi-team-card"><img class="allpsi-member-photo" src="${allPsiPhotos[allPsiPhotoFor(y,x[0],x[1],false)]||"papas-all-psi-photo.jpeg"}" alt="${allPsiPhotoFor(y,x[0],x[1],true)}"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div><div class="honorable"><h3>Honorable Mentions</h3><div class="grid">${d.hm.map(x=>`<div class="card allpsi-team-card"><img class="allpsi-member-photo" src="${allPsiPhotos[allPsiPhotoFor(y,x[0],x[1],true)]||"papas-all-psi-photo.jpeg"}" alt="${allPsiPhotoFor(y,x[0],x[1],true)}"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div></div><div class="media-box">Add photo/video links for this year's All-Psi team here.</div></div>`}return out}
 function members(){
   const current=[
     ["Quinton","2020–Present",true,"Worse Name (’23) • 2024 Championship (’24) • GM of the Year (’24) • CBPOY (’24) • Falcon (’25)","39–43"],
@@ -242,6 +242,18 @@ function members(){
 }
 
 const pages={home,history,teams,stats,schedule,records:recordsPage,playoffs:playoffsPage,rules:rulesPage,punishments,allpsi:allPsiPage,members};
-function render(page){content.innerHTML=pages[page]();tabs.forEach(t=>t.classList.toggle("active",t.dataset.page===page));window.scrollTo({top:document.querySelector(".main-tabs").offsetTop-60,behavior:"smooth"});location.hash=page}
+function render(page){
+  try{
+    if(!pages[page]) page="home";
+    content.innerHTML=pages[page]();
+    tabs.forEach(t=>t.classList.toggle("active",t.dataset.page===page));
+    const nav=document.querySelector(".main-tabs");
+    if(nav && window.scrollTo) window.scrollTo({top:nav.offsetTop-60,behavior:"smooth"});
+    location.hash=page;
+  }catch(err){
+    console.error("Alpha Psi page error:",page,err);
+    content.innerHTML=`<div class="card"><h2>Page temporarily unavailable</h2><p>Please refresh the page. If the problem continues, the page code needs repair.</p></div>`;
+  }
+}
 tabs.forEach(t=>t.addEventListener("click",()=>render(t.dataset.page)));
 const initial=location.hash.slice(1);render(pages[initial]?initial:"home");
