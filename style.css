@@ -148,3 +148,136 @@ footer{text-align:center;padding:28px;border-top:1px solid #222;color:#777;font-
 body {
   background-color: #3a3a3a !important;
 }
+
+
+/* Record-holder hover photos */
+.record-card,
+.record-holder { position: relative; }
+
+.record-hover-person {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translate(-50%, 10px);
+  width: 92px;
+  padding: 7px 8px 8px;
+  background: rgba(10,10,10,.98);
+  border: 1px solid #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,.45);
+}
+
+.record-hover-person img {
+  width: 58px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.record-hover-person span {
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.record-card:hover .record-hover-person,
+.record-holder:hover .record-hover-person {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.champions-wrap .hall-banner-label {
+  text-align:center;
+  margin:-4px auto 14px;
+  color:#fff;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  opacity:.9;
+}
+
+/* Smaller champion names so banner photos have room */
+.champion-banner .champ strong,
+.champion-banner .champ {
+  font-size: clamp(12px, 1.4vw, 17px);
+  line-height: 1.08;
+}
+
+/* NFL-themed decorative side rails */
+@media (min-width: 1100px) {
+  body {
+    position: relative;
+    padding-left: 145px;
+    padding-right: 145px;
+  }
+
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 118px;
+    z-index: -1;
+    background-repeat: repeat-y;
+    background-size: 118px auto;
+    background-position: center top;
+    opacity: .20;
+    filter: saturate(.9) contrast(1.05);
+    pointer-events: none;
+  }
+
+  body::before {
+    left: 10px;
+    background-image: url("https://pluspng.com/img-png/logo-nfl-png--912.png");
+  }
+
+  body::after {
+    right: 10px;
+    background-image: url("https://www.drodd.com/nfl/nfl39.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center;
+  }
+}
+
+@media (max-width: 1099px) {
+  body::before,
+  body::after { display: none; }
+}
+
+
+/* Center Davis's championship banner logo */
+.champion-banner[data-champion="Davis"] .banner-logo,
+.champion-banner[data-owner="Davis"] .banner-logo,
+.champion-banner.davis .banner-logo {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+
+/* Founding member badge */
+.founder-badge {
+  background: linear-gradient(135deg, #f7d774, #c9972b) !important;
+  color: #111 !important;
+  border: 1px solid #fff !important;
+  font-weight: 800;
+  text-shadow: none;
+}
