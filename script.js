@@ -14,7 +14,7 @@ const records = [
 ];
 const recordPhotos = {
   "Davis": "davis-member.png",
-  "Bailey": "bailey-banner.png",
+  "Bailey": "bailey-champion.jpeg",
   "Bailey Coble": "bailey-champion.jpeg",
   "Andrew Blum": "blum-member.png",
   "Blum": "blum-member.png",
@@ -129,8 +129,8 @@ function accoladeBadges(text){
     let matched = names.find(n=>part.toLowerCase().startsWith(n.toLowerCase()+" "));
     if(!matched) matched = names.find(n=>part.toLowerCase()===n.toLowerCase());
     const label = matched || part;
-    const definition = (matched && !/^comeback of the year$/i.test(matched) && !/^CBPOY$/i.test(matched)) ? accoladeDefinitions[matched] : (label + rest);
     const rest = matched ? part.slice(matched.length) : "";
+    const definition = (matched && !/^comeback of the year$/i.test(matched) && !/^CBPOY$/i.test(matched)) ? accoladeDefinitions[matched] : (label + rest);
     return `<span class="accolade-badge" tabindex="0">${label}${rest}<span class="accolade-tooltip">${definition}</span></span>`;
   }).join(" ");
 }
