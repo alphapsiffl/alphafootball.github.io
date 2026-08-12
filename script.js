@@ -127,7 +127,7 @@ function accoladeBadges(text){
   if(!text) return "Add accolades here";
   if(text === "None") return `<span class="accolade-badge" tabindex="0">None<span class="accolade-tooltip">None</span></span>`;
   const names = Object.keys(accoladeDefinitions).sort((a,b)=>b.length-a.length);
-  const parts = text.split(" • ");
+  const parts = text.split(" • ").filter(part=>!/^\s*(?:Championship|CBPOY|GM of the Year|Rookie of the Year)\b/i.test(part));
   return parts.map(part=>{
     let matched = names.find(n=>part.toLowerCase().startsWith(n.toLowerCase()+" "));
     if(!matched) matched = names.find(n=>part.toLowerCase()===n.toLowerCase());
@@ -142,7 +142,8 @@ const champions = [
 ["2020","Grayson Maxfield","Bitchin’ Baker Beards","8–5"],["2021","Bailey Coble","Kareem Pie","9–5"],["2022","Jonathan Davis","Make it Hurts so Good","8–5"],["2023","Victor Barcenas","My Ball Zach Ertz","10–4"],["2024","Quinton Roof","King Henry’s Court","10–4"],["2025","Kameron Walker","Njigbas in Paris","8–6"]
 ];
 
-function home(){return `<div class="home-intro"><h2>Welcome to the Alpha Psi League</h2><p class="intro">League history, champions, records, rules, punishments, and honors — all in one place.</p></div><section class="champions-wrap"><div class="section-title"><span></span><h2>League Champions</h2><span></span></div><div class="banner-row">${champions.map((c,i)=>`<div class="champion-banner" style="--speed:${5.2+i*.35}s;--delay:${i*-.55}s"><div class="year">${c[0]}</div><div class="team">${c[2]}</div>${c[0]==="2020"?`<img class="champion-photo" src="grayson-helmet.png" alt="Grayson's team helmet">`:c[0]==="2021"?`<img class="champion-photo" src="bailey-banner.png" alt="Bailey E helmet">`:c[0]==="2022"?`<img class="champion-photo" src="davis-helmet.png" alt="Davis team helmet">`:c[0]==="2023"?`<img class="champion-photo" src="victor-helmet.png" alt="Victor team emblem">`:c[0]==="2024"?`<img class="champion-photo" src="quinton-banner.png" alt="Quinton team emblem">`:c[0]==="2025"?`<img class="champion-photo" src="kameron-banner.png" alt="Kameron team image">`:""}<div class="champ"><strong>${c[1]}</strong></div><div class="record">${c[3]}</div></div>`).join("")}</div></section>`}
+function home(){return `<div class="home-intro"><h2>Welcome to the Alpha Psi League</h2><p class="intro">League history, champions, records, rules, punishments, and honors — all in one place.</p></div>`}
+function championsMarkup(){return `<section class="champions-wrap"><div class="section-title"><span></span><h2>League Champions</h2><span></span></div><div class="banner-row">${champions.map((c,i)=>`<div class="champion-banner" style="--speed:${5.2+i*.35}s;--delay:${i*-.55}s"><div class="year">${c[0]}</div><div class="team">${c[2]}</div>${c[0]==="2020"?`<img class="champion-photo" src="grayson-helmet.png" alt="Grayson's team helmet">`:c[0]==="2021"?`<img class="champion-photo" src="bailey-banner.png" alt="Bailey E helmet">`:c[0]==="2022"?`<img class="champion-photo" src="davis-helmet.png" alt="Davis team helmet">`:c[0]==="2023"?`<img class="champion-photo" src="victor-helmet.png" alt="Victor team emblem">`:c[0]==="2024"?`<img class="champion-photo" src="quinton-banner.png" alt="Quinton team emblem">`:c[0]==="2025"?`<img class="champion-photo" src="kameron-banner.png" alt="Kameron team image">`:""}<div class="champ"><strong>${c[1]}</strong></div><div class="record">${c[3]}</div></div>`).join("")}</div></section>`}
 function history(){
   return `<h2>League History</h2>
   <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
@@ -200,7 +201,7 @@ function trophyCase(name){
   return `<div class="trophy-case">
     <div class="trophy-case-title">Trophy Case</div>
     ${items.length
-      ? `<div class="trophy-grid">${items.map(t=>`<div class="trophy"><div class="trophy-icon">${t[0]}</div><div class="trophy-name">${t[1]}</div><div class="trophy-year">${t[2]}</div></div>`).join("")}</div>`
+      ? `<div class="trophy-grid">${items.map(t=>`<div class="trophy"><div class="trophy-name">${t[1]}</div><div class="trophy-year">${t[2]}</div></div>`).join("")}</div>`
       : `<div class="trophy-empty">Empty — for now.</div>`}
   </div>`;
 }
@@ -231,10 +232,10 @@ function members(){
   ];
   return `<h2>Members</h2>
   <h3>Current Members</h3>
-  <div class="grid member-grid">${current.map(n=>`<div class="member">${["Bailey","Mac","Davis","Victor","Justin","Blum","Braxton","Grant","Quinton","Kameron","Peachey","Drayton"].includes(n[0])?`<div class="member-heading"><img class="member-photo" src="${n[0]==="Bailey"?"bailey-champion.jpeg":n[0]==="Mac"?"mac-member.png":n[0]==="Davis"?"davis-member.png":n[0]==="Victor"?"victor-member.png":n[0]==="Justin"?"justin-member.png":n[0]==="Blum"?"blum-member.png":n[0]==="Braxton"?"braxton-member.png":n[0]==="Grant"?"grant-member.png":n[0]==="Quinton"?"quinton-member.png":n[0]==="Kameron"?"kameron-member.png":n[0]==="Peachey"?"peachey-member.png":"drayton-member.png"}" alt="${n[0]} member photo"><div><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div></div></div>`:`<strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div>`}${n[2]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(n[3])}</div></div>${trophyCase(n[0])}<div class="member-bio"><div class="member-bio-title">Bio</div><div class="member-bio-content">Add bio here.</div></div></div>`).join("")}</div>
+  <div class="grid member-grid">${current.map(n=>`<div class="member">${["Bailey","Mac","Davis","Victor","Justin","Blum","Braxton","Grant","Quinton","Kameron","Peachey","Drayton"].includes(n[0])?`<div class="member-heading"><img class="member-photo" src="${n[0]==="Bailey"?"bailey-champion.jpeg":n[0]==="Mac"?"mac-member.png":n[0]==="Davis"?"davis-member.png":n[0]==="Victor"?"victor-member.png":n[0]==="Justin"?"justin-member.png":n[0]==="Blum"?"blum-member.png":n[0]==="Braxton"?"braxton-member.png":n[0]==="Grant"?"grant-member.png":n[0]==="Quinton"?"quinton-member.png":n[0]==="Kameron"?"kameron-member.png":n[0]==="Peachey"?"peachey-member.png":"drayton-member.png"}" alt="${n[0]} member photo"><div><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div></div></div>`:`<strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div>`}${n[2]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}${trophyCase(n[0])}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(n[3])}</div></div><div class="member-bio"><div class="member-bio-title">Bio</div><div class="member-bio-content">Add bio here.</div></div></div>`).join("")}</div>
   <div class="alumni">
     <h2>Alumni</h2>
-    <div class="grid member-grid">${alumni.map(n=>`<div class="member"><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span>${n[2]}</span></div>${n[3]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${n[4]?accoladeBadges(n[4]):"Add accolades here"}</div></div>${trophyCase(n[0])}<div class="member-bio"><div class="member-bio-title">Bio</div><div class="member-bio-content">Add bio here.</div></div></div>`).join("")}</div>
+    <div class="grid member-grid">${alumni.map(n=>`<div class="member"><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span>${n[2]}</span></div>${n[3]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}${trophyCase(n[0])}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${n[4]?accoladeBadges(n[4]):"Add accolades here"}</div></div><div class="member-bio"><div class="member-bio-title">Bio</div><div class="member-bio-content">Add bio here.</div></div></div>`).join("")}</div>
   </div>`
 }
 
@@ -243,6 +244,8 @@ function render(page){
   try{
     if(!pages[page]) page="home";
     content.innerHTML=pages[page]();
+    const topChampions=document.getElementById("top-champions");
+    if(topChampions) topChampions.innerHTML=championsMarkup();
     tabs.forEach(t=>t.classList.toggle("active",t.dataset.page===page));
     const nav=document.querySelector(".main-tabs");
     if(nav && window.scrollTo) window.scrollTo({top:nav.offsetTop-60,behavior:"smooth"});
