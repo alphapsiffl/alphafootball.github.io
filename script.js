@@ -344,7 +344,7 @@ function history(){
 
     ${renderPodium([
       {cls:"second",medal:"2ND",team:"Pillsbury Throw-boy",label:"2ND PLACE"},
-      {cls:"first",medal:"1ST",team:"My Ball Zach Ertz",manager:"Victor Barcenas",label:"2023 CHAMPION"},
+      {cls:"first",medal:"1ST",team:"El Effes Kitchen",manager:"Braxton Ivey",label:"2023 CHAMPION"},
       {cls:"third",medal:"3RD",team:"El jeffe’s Kitchen",label:"3RD PLACE"}
     ])}
 
@@ -420,22 +420,6 @@ const render2022=()=>`<section class="history-season-panel history-2022-panel" d
     </section>
 
     </section>
-    <section class="season-rules history-2022-rules">
-      <div class="season-section-title">2022 RULE CHANGES</div>
-      <div class="rules-grid">
-        <article><span class="rule-number">01</span><div><h4>FAAB Waivers</h4><p>Waiver claims moved to FAAB.</p></div></article>
-        <article><span class="rule-number">02</span><div><h4>Earlier Trade Deadline</h4><p>Moved from Week 13 to Week 11.</p></div></article>
-        <article><span class="rule-number">03</span><div><h4>Seven Bench Spots</h4><p>Bench spots dropped from 8 to 7.</p></div></article>
-        <article><span class="rule-number">04</span><div><h4>Week 15 Playoffs</h4><p>Playoffs now begin in Week 15 instead of Week 14.</p></div></article>
-        <article><span class="rule-number">05</span><div><h4>Sexy Calendar Punishment</h4><p>The Sexy Calendar became the league punishment.</p></div></article>
-        <article><span class="rule-number">06</span><div><h4>Punishment Penalty</h4><p>Skipping a punishment costs a first-round pick, and the manager must draft a defense.</p></div></article>
-        <article><span class="rule-number">07</span><div><h4>Trades &amp; First-Round Picks</h4><p>Trades remained subject to league votes, and first-round picks could be traded.</p></div></article>
-        <article><span class="rule-number">08</span><div><h4>Auto-Draft Penalty</h4><p>Auto-drafters lose a pick the following year.</p></div></article>
-        <article><span class="rule-number">09</span><div><h4>Draft Slot</h4><p>Draft position is determined by March Madness brackets.</p></div></article>
-        <article><span class="rule-number">10</span><div><h4>Expanded Payouts</h4><p>5th receives $60, 6th receives $50, and the losers-bracket winner receives $40 back.</p></div></article>
-        <article><span class="rule-number">11</span><div><h4>Losers-Bracket Consequence</h4><p>The losers-bracket loser receives S.H.I.T. and the punishment.</p></div></article>
-      </div>
-    </section>
 
     ${renderPodium([
       {cls:"second",medal:"2ND",team:"Dirty Mikes And The Boys",manager:"Andrew Blum",label:"2ND PLACE"},
@@ -500,17 +484,6 @@ const render2021=()=>`<section class="history-season-panel history-2021-panel" d
       </a>
     </section>
 
-    </section>
-    <section class="season-rules">
-      <div class="season-section-title">2021 RULE CHANGES</div>
-      <div class="rules-grid">
-        <article><span class="rule-number">01</span><div><h4>Second Flex Added</h4><p>A second FLEX position was added to give managers another lineup decision each week.</p></div></article>
-        <article><span class="rule-number">02</span><div><h4>Kicker Position Removed</h4><p>The kicker position was removed from starting lineups.</p></div></article>
-        <article><span class="rule-number">03</span><div><h4>First-Round Picks Protected</h4><p>First-round picks could no longer be traded — the Grayson Maxfield Rule, after Grayson traded away Devonta Freeman for a bag of chips.</p></div></article>
-        <article><span class="rule-number">04</span><div><h4>Six-Team Playoffs</h4><p>The playoffs expanded to six teams, with the top two teams from each division receiving a bye.</p></div></article>
-        <article><span class="rule-number">05</span><div><h4>First-Round Picks Return With Stipulations</h4><p>First-round picks could once again be traded, but only under the league's new stipulations.</p></div></article>
-        <article><span class="rule-number">06</span><div><h4>Top Four Split the Cash</h4><p>The top four finishers received playoff money, with fourth place getting its entry money back.</p></div></article>
-      </div>
     </section>
     ${renderPodium([
       {cls:"second",medal:"2ND",team:"Josh Allen's Boxers",manager:"Ty Katz",label:"2ND PLACE"},
@@ -668,7 +641,6 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
       <h3>The Original Alpha Psi Fantasy Football League</h3>
       <p class="intro">The original logo used when the league began.</p>
     </div>
-    <div class="media-box">More league history, old logos, photos, and other historical material can be added here.</div>
     <div class="history-season-tabs" role="tablist" aria-label="League History seasons">
       ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
     </div>
@@ -792,7 +764,7 @@ function trophyCase(name){
     "Cal":[]
   };
   const items=trophies[name]||[];
-  return `<div class="trophy-case"><div class="trophy-case-title">TROPHY CASE</div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item">${x}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div>`;
+  return `<div class="trophy-case"><div class="trophy-case-title">TROPHY CASE</div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item${/championship/i.test(x)?" trophy-championship":""}">${x}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div>`;
 }
 
 function careerSnapshot(name){
@@ -815,7 +787,6 @@ function careerSnapshot(name){
   return `<div class="career-snapshot">
     <div class="career-snapshot-title">CAREER SNAPSHOT</div>
     <div class="career-snapshot-grid">
-      <div><strong>${s[0]}</strong><span>CHAMPIONSHIPS</span></div>
       <div><strong>${s[1]}</strong><span>PLAYOFF APPS</span></div>
       <div><strong>${s[2]}</strong><span>BEST FINISH</span></div>
       <div><strong>${s[3]}</strong><span>YEARS ACTIVE</span></div>
@@ -861,7 +832,6 @@ function members(){
         ${img?`<img class="member-photo" src="${img}" alt="${memberFullNames[name]||name} member photo">`:`<div class="member-photo member-photo-empty"></div>`}
       </div>
       <div class="member-profile-info">
-        <div class="member-profile-label">ALPHA PSI MANAGER</div>
         <strong>${memberFullNames[name]||name}</strong>
         <div class="member-years">${years}</div>
         <div class="member-record-large">${record}</div>
@@ -880,13 +850,9 @@ function members(){
     </article>`;
   };
 
-  const alumniCard=n=>`<article class="member player-profile-card alumni-profile-card">
-    ${profileHeader(n[0],n[1],n[2],n[5])}
-    ${n[3]?`<div class="founder-badge">FOUNDING MEMBER</div>`:""}
-    ${careerSnapshot(n[0])}
-    ${trophyCase(n[0])}
-    <div class="accolades"><div class="accolades-title">ACCOLADES</div><div class="accolades-placeholder">${n[4]?accoladeBadges(n[4]):"None recorded"}</div></div>
-    ${memberBio(n[0])}
+  const alumniCard=n=>`<article class="member player-profile-card alumni-profile-card alumni-minimal-card">
+    <div class="alumni-minimal-name">${memberFullNames[n[0]]||n[0]}</div>
+    ${n[0]==="Grayson"?trophyCase(n[0]):""}
   </article>`;
 
   return `<h2>Members</h2>
@@ -929,15 +895,37 @@ function recordsPage(){
 function playoffsPage(){return `<h2>Playoff Records</h2><div class="playoff-definitions"><div><strong>Championship Appearances</strong><span>Years and championship record</span></div><div><strong>First Round Byes</strong><span>Years receiving a bye</span></div><div><strong>Playoff Appearances</strong><span>Years making the playoffs</span></div><div><strong>Playoff Record</strong><span>Playoff wins and losses</span></div></div><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championship Appearances<br><span class="table-subheader">* Parenthesis denotes record in championship game</span></th><th>First Round Byes</th><th>Playoff Appearances</th><th>Playoff Record</th></tr></thead><tbody>${playoff.map(p=>{const rawChamp=p[1].replace(/^Championship Appearance(?:s)?:\s*/,"");const cm=rawChamp.match(/^(.*?);\s*Championship record:\s*(.*)$/i);const champ=cm?`${cm[1]} (${cm[2]})`:rawChamp;const bye=p[2].replace(/^First Round Bye(?:s)?:\s*/,"");const apps=p[3].replace(/^Playoff Appearances:\s*/,"");const rec=p[4].replace(/^Playoff Record:\s*/,"");return `<tr><td><strong>${p[0]}</strong></td><td>${champ}</td><td>${bye}</td><td>${apps}</td><td>${rec}</td></tr>`}).join("")}</tbody></table></div>`}
 function rulesPage(){
   const activeMap={2025:[0,1,2,3],2024:[0,3,4,6,8],2023:[0,2,3,4,5],2022:[0,1,3,5,6,7,8,9],2021:[0,2,3]};
+  const renderSeason=(y)=>{
+    const items=rules[y]||[];
+    return `<section class="rules-season-panel" data-season="${y}">
+      <div class="rules-season-heading">
+        <span>SEASON</span>
+        <strong>${y}</strong>
+      </div>
+      <div class="rules-season-rule"></div>
+      ${y===2020
+        ? `<p class="rule-origin">League founded. No rule amendments recorded for the founding season.</p>`
+        : `<ol class="rules-season-list">${items.map((x,i)=>`<li class="${(activeMap[y]||[]).includes(i)?"rule-active":""}">${x}</li>`).join("")}</ol>`
+      }
+    </section>`;
+  };
+
   return `<h2>Rule Amendments Following Season (All-Time)</h2>
-  <div class="current-rules">
-    <div class="current-rules-title">Current Rules</div>
-    <ol>${currentRules.map(x=>`<li>${x}</li>`).join("")}</ol>
-  </div>
-  <p class="intro"><span class="badge">Highlighted</span> Rules that are still in effect are shown in red.</p>
-  <div class="year-block"><h3>2020</h3><p class="rule-origin">League founded. No rule amendments recorded for the founding season.</p></div>
-  ${Object.entries(rules).map(([y,items])=>`<div class="year-block"><h3>${y}</h3><ol>${items.map((x,i)=>`<li class="${(activeMap[y]||[]).includes(i)?"rule-active":""}">${x}</li>`).join("")}</ol></div>`).join("")}`
+    <div class="current-rules">
+      <div class="current-rules-title">Current Rules</div>
+      <ol>${currentRules.map(x=>`<li>${x}</li>`).join("")}</ol>
+    </div>
+    <p class="intro"><span class="badge">Highlighted</span> Rules that are still in effect are shown in red.</p>
+
+    <div class="rules-season-tabs" role="tablist" aria-label="Rule amendment seasons">
+      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="rules-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
+    </div>
+
+    <div class="rules-season-panels">
+      ${[2025,2024,2023,2022,2021,2020].map(renderSeason).join("")}
+    </div>`;
 }
+
 function punishments(){const rows=[["2020–2021","No punishments (boo)","—"],["2022","24 hour Waffle House challenge","Drayton"],["2023","Sexy Calendar","Mac"],["2024","Personal Apology letter","Drayton"],["2025","Beer Mile","Grant"]];return `<h2>Punishments</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Year</th><th>Punishment</th><th>Member</th><th>Media</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[0]==="2022" && r[1]==="24 hour Waffle House challenge" ? `<a href="https://youtu.be/3CWUCo5KeR8?si=_pKSGmxTgEuX6rXW" target="_blank" rel="noopener">Watch Video</a>` : (r[0]==="2023" && r[1]==="Sexy Calendar" ? `<a href="sexy-calendar-punishment.png" target="_blank" rel="noopener">View Image</a>` : `<a href="#" onclick="return false;">Add photo/video link</a>`)}</td></tr>`).join("")}</tbody></table></div><div class="media-box">Media placeholders are ready. Replace the “Add photo/video link” placeholders in the HTML/JS with YouTube, Google Drive, image, or other hosted-media URLs.</div>`}
 
 const pages={home,members,history,records:recordsPage,rules:rulesPage,allpsi:allPsiPage};

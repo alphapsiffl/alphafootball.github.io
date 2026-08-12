@@ -85,7 +85,7 @@ footer{text-align:center;padding:28px;border-top:1px solid #222;color:#777;font-
 .champion-banner{z-index:2}
 
 .member-heading{display:flex;align-items:center;justify-content:center;gap:12px;text-align:left}
-.member-photo{width:72px;height:72px;object-fit:cover;border-radius:50%;border:3px solid var(--red);box-shadow:0 3px 10px rgba(0,0,0,.45);flex:0 0 72px}
+.member-photo{width:72px;height:72px;object-fit:cover;flex:0 0 72px}
 .member-heading strong{display:block}
 @media(max-width:500px){.member-photo{width:60px;height:60px;flex-basis:60px}.member-heading{gap:9px}}
 
@@ -1197,17 +1197,17 @@ main::before {
 .member-photo-frame {
   flex: 0 0 auto;
   padding: 3px;
-  border: 1px solid rgba(201,44,24,.75);
+  
   background: linear-gradient(135deg, #641710, #c92c18 50%, #641710);
-  box-shadow: 0 0 0 2px rgba(201,44,24,.12), 0 5px 14px rgba(0,0,0,.5);
+  
 }
 .player-profile-card .member-photo {
   width: 84px;
   height: 84px;
   flex-basis: 84px;
-  border: 2px solid #111 !important;
-  border-radius: 50%;
-  box-shadow: none;
+  
+  
+  
 }
 .member-photo-empty {
   display: block;
@@ -1893,9 +1893,7 @@ body {
 }
 
 .player-profile-card:hover .member-photo-frame {
-  box-shadow:
-    0 0 0 2px rgba(201,44,24,.16),
-    0 6px 16px rgba(0,0,0,.55);
+  
 }
 
 .player-profile-card:hover .member-photo {
@@ -2777,4 +2775,280 @@ body {
   .champion-banner .champion-photo { width:27px !important; height:27px !important; max-width:27px !important; max-height:27px !important; }
   .champion-banner .champ, .champion-banner .champ strong { font-size:7px !important; }
   .champion-banner .record { font-size:6px !important; }
+}
+
+.history-2021-panel .season-foundation-kicker,.history-2022-panel .season-foundation-kicker{color:var(--gold);}
+
+/* Member photos: remove the cardinal/metallic picture box treatment. */
+.member-card .member-photo,
+.member-card .member-photo-frame,
+.member-card .member-photo-wrap {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Career snapshot: three remaining metrics fill the box cleanly. */
+.career-snapshot-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.career-snapshot-grid > div {
+  min-width: 0;
+}
+.career-snapshot-grid span {
+  white-space: normal;
+  line-height: 1.15;
+}
+@media (max-width: 390px) {
+  .career-snapshot {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+  .career-snapshot-grid > div {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  .career-snapshot-grid strong {
+    font-size: 16px;
+  }
+  .career-snapshot-grid span {
+    font-size: 8px;
+    letter-spacing: .45px;
+  }
+}
+
+/* Cleaner member profiles: smaller names and no manager label. */
+.member-profile-info strong {
+  font-size: clamp(17px, 1.8vw, 23px);
+}
+@media (max-width: 650px) {
+  .member-profile-info strong {
+    font-size: 18px;
+  }
+}
+
+/* Compact unified Trophy Case */
+.player-profile-card .trophy-case {
+  margin: 10px 0 10px;
+  padding: 9px 10px 8px;
+  border: 1px solid rgba(201,162,39,.55);
+  border-top: 1px solid rgba(201,162,39,.72);
+  border-bottom: 1px solid rgba(201,162,39,.38);
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(20,18,12,.78), rgba(8,9,10,.92));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.player-profile-card .trophy-case::before,
+.player-profile-card .trophy-case::after {
+  display: none;
+}
+
+.player-profile-card .trophy-case-title {
+  margin: 0 0 6px;
+  color: var(--gold) !important;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(201,162,39,.22);
+}
+
+.player-profile-card .trophy-items {
+  display: grid;
+  gap: 0;
+}
+
+.player-profile-card .trophy-item,
+.player-profile-card .trophy-empty {
+  position: relative;
+  margin: 0;
+  padding: 5px 3px;
+  color: #d7d7d7 !important;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12px;
+  line-height: 1.25;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.player-profile-card .trophy-item:last-child,
+.player-profile-card .trophy-empty:last-child {
+  border-bottom: 0;
+}
+
+.player-profile-card .trophy-item::first-letter {
+  color: var(--gold);
+}
+
+/* Championship entries get the only special visual emphasis. */
+.player-profile-card .trophy-item:has(+ .trophy-item),
+.player-profile-card .trophy-item {
+  color: #d7d7d7 !important;
+}
+
+.player-profile-card .trophy-item {
+  border-radius: 2px;
+}
+
+@media (max-width: 650px) {
+  .player-profile-card .trophy-case {
+    margin-top: 9px;
+    margin-bottom: 9px;
+    padding: 8px 9px 7px;
+  }
+  .player-profile-card .trophy-case-title {
+    font-size: 9px;
+    margin-bottom: 4px;
+  }
+  .player-profile-card .trophy-item,
+  .player-profile-card .trophy-empty {
+    font-size: 11px;
+    padding: 4px 2px;
+  }
+}
+
+.player-profile-card .trophy-championship {
+  color: var(--gold) !important;
+  font-weight: 700;
+  background: radial-gradient(ellipse at center, rgba(201,162,39,.16) 0%, rgba(201,162,39,.055) 45%, transparent 78%);
+  box-shadow: 0 0 14px rgba(201,162,39,.18), inset 0 0 10px rgba(201,162,39,.06);
+  text-shadow: 0 0 7px rgba(201,162,39,.28);
+}
+
+/* Alumni are intentionally minimal: name only, with Grayson's Trophy Case retained. */
+.alumni-minimal-card {
+  padding: 16px 18px !important;
+  min-height: 0;
+}
+.alumni-minimal-card::before {
+  margin-left: -18px;
+  margin-right: -18px;
+  margin-bottom: 12px;
+}
+.alumni-minimal-name {
+  color: #f1f1f1;
+  font-family: "Roboto Slab", serif;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+.alumni-minimal-card .trophy-case {
+  margin-top: 10px;
+}
+@media (max-width: 650px) {
+  .alumni-minimal-card {
+    padding: 14px 14px !important;
+  }
+  .alumni-minimal-card::before {
+    margin-left: -14px;
+    margin-right: -14px;
+  }
+  .alumni-minimal-name {
+    font-size: 18px;
+  }
+}
+
+/* Rules season tabs — matches the Papa's All-Psi season selector */
+.rules-season-tabs {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 18px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #303030;
+}
+.rules-season-tab {
+  appearance: none;
+  border: 1px solid #3a3a3a;
+  background: #111314;
+  color: #999;
+  padding: 8px 14px;
+  font-family: "Roboto Slab", serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  cursor: pointer;
+  transition: color .18s ease, border-color .18s ease, transform .18s ease;
+}
+.rules-season-tab:hover {
+  color: #eee;
+  border-color: #666;
+  transform: translateY(-1px);
+}
+.rules-season-tab.active {
+  color: var(--gold);
+  border-color: rgba(201,162,39,.65);
+  box-shadow: inset 0 -2px 0 var(--gold);
+}
+.rules-season-panels {
+  margin-top: 8px;
+}
+.rules-season-panel {
+  display: none;
+}
+.rules-season-panel.active {
+  display: block;
+}
+.rules-season-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 8px 0 4px;
+}
+.rules-season-heading span {
+  color: var(--gold);
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+}
+.rules-season-heading strong {
+  color: #eee;
+  font-family: "Roboto Slab", serif;
+  font-size: 22px;
+  font-weight: 900;
+}
+.rules-season-rule {
+  height: 1px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, rgba(201,162,39,.6), #333, transparent);
+}
+.rules-season-list {
+  margin-top: 0;
+}
+.rules-season-list li {
+  margin-bottom: 8px;
+}
+@media (max-width: 650px) {
+  .rules-season-tabs {
+    gap: 5px;
+  }
+  .rules-season-tab {
+    flex: 1 1 calc(33.333% - 5px);
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+}
+
+/* Compact History photography */
+.history-season-panel .history-photo-feature {
+  max-width: 34%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.history-season-panel .history-photo-feature figure,
+.history-season-panel .history-photo-feature img,
+.history-season-panel .history-photo-feature .history-photo-grid {
+  max-width: 100%;
+}
+.history-season-panel .history-photo-feature img {
+  width: 100%;
+  height: auto;
+}
+.history-season-panel .history-photo-grid {
+  display: grid;
+  gap: 10px;
+}
+@media (max-width: 650px) {
+  .history-season-panel .history-photo-feature {
+    max-width: 45%;
+  }
 }
