@@ -869,3 +869,264 @@ body::after {
     display: flex !important;
   }
 }
+
+/* Shiva-style visual refresh: same information, cleaner league-HQ presentation */
+:root{
+  --green:#173f2b;
+  --green2:#0f2d20;
+  --gold:#c6a24a;
+  --cream:#eee8d8;
+  --paper:#f7f3e8;
+  --ink:#353535;
+  --muted-ink:#6b6b63;
+}
+
+/* Main canvas */
+html,body{
+  background:var(--cream) !important;
+  color:var(--ink) !important;
+  font-family:"Times New Roman",Times,serif !important;
+}
+body:before{
+  opacity:.035;
+  background-image:radial-gradient(#1b3a29 .45px,transparent .45px);
+}
+.site-header{
+  background:var(--green) !important;
+  border-bottom:3px solid var(--gold) !important;
+  box-shadow:0 3px 12px rgba(0,0,0,.18);
+}
+.topbar{
+  min-height:48px !important;
+}
+.mini-brand,.topbar-title,.topbar-est{
+  color:#f4efdf !important;
+}
+.mini-brand{color:var(--gold) !important}
+
+/* Compact editorial hero */
+.league-hero{
+  max-width:1180px;
+  margin:auto;
+  padding:32px 30px 24px !important;
+  gap:28px !important;
+  background:var(--cream);
+}
+.league-logo{
+  width:120px !important;
+  max-width:18vw !important;
+  filter:none !important;
+}
+.hero-copy{
+  border-left:2px solid var(--gold) !important;
+  padding-left:28px !important;
+}
+.hero-kicker{
+  color:var(--green) !important;
+  font-size:clamp(34px,5vw,62px) !important;
+}
+.hero-copy h1{
+  color:var(--green) !important;
+  font-size:clamp(24px,3.4vw,45px) !important;
+}
+.motto{color:var(--muted-ink) !important}
+.est-line{color:var(--muted-ink) !important}
+.est-line span{background:var(--gold) !important}
+
+/* Champions become compact trophy cards */
+.top-champions{
+  max-width:1180px;
+  margin:auto;
+  padding:0 18px;
+}
+.top-champions .champions-wrap{
+  background:transparent !important;
+}
+.top-champions .section-title{
+  margin-bottom:12px !important;
+}
+.top-champions .section-title h2{
+  color:var(--green) !important;
+  font-family:"Times New Roman",Times,serif !important;
+  font-size:26px !important;
+}
+.top-champions .section-title span{
+  background:var(--gold) !important;
+  height:1px !important;
+}
+.top-champions .banner-row{
+  grid-template-columns:repeat(6,1fr) !important;
+  gap:10px !important;
+}
+.top-champions .champion-banner{
+  min-height:135px !important;
+  padding:10px 7px 16px !important;
+  background:var(--green) !important;
+  border:1px solid var(--gold) !important;
+  border-top:4px solid var(--gold) !important;
+  clip-path:none !important;
+  border-radius:4px !important;
+  animation:none !important;
+  color:#f4efdf !important;
+}
+.top-champions .champion-banner:before{display:none}
+.top-champions .year{
+  color:var(--gold) !important;
+  border-bottom:1px solid rgba(198,162,74,.45) !important;
+  font-size:18px !important;
+  padding-bottom:5px !important;
+}
+.top-champions .team{
+  color:#f4efdf !important;
+  font-size:13px !important;
+  margin-top:7px !important;
+}
+.top-champions .champ{
+  color:#e1ddcf !important;
+  font-size:12px !important;
+}
+.top-champions .champ strong{color:var(--gold) !important}
+.top-champions .champion-photo{
+  width:40px !important;
+  height:40px !important;
+  max-width:40px !important;
+  max-height:40px !important;
+  margin:7px auto 3px !important;
+  border:1px solid var(--gold);
+  border-radius:50%;
+}
+.top-champions .record{
+  display:none !important;
+}
+
+/* Navigation like a league-site utility bar */
+.main-tabs{
+  position:sticky !important;
+  top:48px !important;
+  max-width:none !important;
+  background:var(--green) !important;
+  border-top:1px solid rgba(198,162,74,.4) !important;
+  border-bottom:3px solid var(--gold) !important;
+  padding:0 8px !important;
+}
+.tab{
+  color:#eee9dc !important;
+  border-right:1px solid rgba(255,255,255,.18) !important;
+  font-family:"Times New Roman",Times,serif !important;
+  font-size:14px !important;
+  padding:12px 18px !important;
+}
+.tab:hover,.tab.active{
+  color:var(--gold) !important;
+  background:rgba(255,255,255,.07) !important;
+}
+
+/* Page content becomes paper/card based */
+.content-area{
+  max-width:1120px;
+  margin:24px auto 50px !important;
+  padding:0 20px !important;
+  color:var(--ink) !important;
+}
+.content-area > h2:first-child{
+  background:var(--green) !important;
+  color:#f4efdf !important;
+  border:0 !important;
+  border-bottom:4px solid var(--gold) !important;
+  border-radius:5px !important;
+  padding:16px 20px !important;
+  box-shadow:0 3px 10px rgba(0,0,0,.12) !important;
+}
+.content-area > h2:first-child + .intro{
+  background:var(--paper) !important;
+  color:var(--muted-ink) !important;
+  border:0 !important;
+  border-radius:0 0 5px 5px !important;
+  box-shadow:none !important;
+}
+.content-area .card,
+.content-area .member,
+.content-area .history-logo-card,
+.content-area .media-box,
+.content-area .table-wrap,
+.content-area .playoff-definitions > div,
+.content-area .year-block,
+.content-area .current-rules,
+.member-bio,
+.trophy-case{
+  background:var(--paper) !important;
+  color:var(--ink) !important;
+  border:1px solid #d4cdbb !important;
+  border-radius:5px !important;
+  box-shadow:0 2px 8px rgba(45,45,30,.08) !important;
+}
+.content-area h2,
+.content-area h3,
+.content-area .section-title h2{
+  color:var(--green) !important;
+}
+.content-area p,
+.content-area li,
+.content-area span,
+.content-area td,
+.content-area th{
+  color:var(--ink);
+}
+.content-area .intro,.member-meta,.member-bio-content,.trophy-year{
+  color:var(--muted-ink) !important;
+}
+
+/* Gold labels / awards */
+.founder-badge,
+.trophy-case-title,
+.trophy-name{
+  color:var(--gold) !important;
+}
+.founder-badge{
+  font-weight:700 !important;
+}
+.trophy-case{
+  border-top:3px solid var(--gold) !important;
+}
+
+/* Tables */
+.data-table{
+  color:var(--ink) !important;
+}
+.data-table th{
+  background:var(--green) !important;
+  color:#f4efdf !important;
+}
+.data-table td{
+  background:var(--paper) !important;
+  border-bottom:1px solid #ddd5c3 !important;
+}
+a{color:var(--green) !important}
+a:hover{color:#8f7124 !important}
+
+/* Side banners now act like decorative league rails */
+.league-side .side-team{
+  background:var(--green) !important;
+  border-color:var(--gold) !important;
+  color:#f4efdf !important;
+}
+.league-side .side-team::before,
+.league-side .side-team::after{background:var(--gold) !important}
+
+footer{
+  background:var(--green) !important;
+  border-top:3px solid var(--gold) !important;
+  color:#eee9dc !important;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .top-champions .banner-row{grid-template-columns:repeat(3,1fr) !important}
+}
+@media(max-width:600px){
+  .league-hero{padding:22px 18px !important;gap:16px !important}
+  .league-logo{width:80px !important}
+  .hero-copy{padding-left:16px !important}
+  .top-champions .banner-row{grid-template-columns:repeat(2,1fr) !important}
+  .tab{padding:10px 12px !important}
+}
