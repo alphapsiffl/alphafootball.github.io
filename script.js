@@ -940,40 +940,6 @@ function rulesPage(){
 }
 function punishments(){const rows=[["2020–2021","No punishments (boo)","—"],["2022","24 hour Waffle House challenge","Drayton"],["2023","Sexy Calendar","Mac"],["2024","Personal Apology letter","Drayton"],["2025","Beer Mile","Grant"]];return `<h2>Punishments</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Year</th><th>Punishment</th><th>Member</th><th>Media</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[0]==="2022" && r[1]==="24 hour Waffle House challenge" ? `<a href="https://youtu.be/3CWUCo5KeR8?si=_pKSGmxTgEuX6rXW" target="_blank" rel="noopener">Watch Video</a>` : (r[0]==="2023" && r[1]==="Sexy Calendar" ? `<a href="sexy-calendar-punishment.png" target="_blank" rel="noopener">View Image</a>` : `<a href="#" onclick="return false;">Add photo/video link</a>`)}</td></tr>`).join("")}</tbody></table></div><div class="media-box">Media placeholders are ready. Replace the “Add photo/video link” placeholders in the HTML/JS with YouTube, Google Drive, image, or other hosted-media URLs.</div>`}
 
-function allPsiPage(){let out=`<h2>Papa’s All-Psi Team</h2><img src="papas-all-psi-photo.jpeg" alt="Brother Robert Cowsert" class="allpsi-photo"><div class="dedication">In memory of Brother Robert Cowsert.</div>`;for(const y of [2023,2024,2025]){const d=allPsi[y];out+=`<div class="year-block"><h3>${y} Papa’s All-Psi Team</h3><div class="grid">${d.main.map(x=>`<div class="card allpsi-team-card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div><div class="honorable"><h3>Honorable Mentions</h3><div class="grid">${d.hm.map(x=>`<div class="card allpsi-team-card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div></div><div class="media-box">Add photo/video links for this year's All-Psi team here.</div></div>`}return out}
-function members(){
-  const current=[
-    ["Quinton","2020–Present",true,"Worse Name (’23) • 2024 Championship (’24) • GM of the Year (’24) • CBPOY (’24) • Falcon (’25)","39–43"],
-    ["Bailey","2020–Present",true,"2021 Championship (1x) • Juggernaut Award (’23) • Marino (’23, tied with Vic) • CBPOY (’22) • GM of the Year (’21) • Best Name (’25)","52–30"],
-    ["Davis","2020–Present",true,"2020 Championship (1x) • Falcon Award (’23) • Punching Bag (’23) • GM of the Year (’22) • Juggernaut (’24) • Marino (’24)","50–32"],
-    ["Blum","2020–Present",true,"Marino (’21) • Best Podcast Guest (’24) • Falcon (’24) • Juggernaut (’23, ’25)","45–37"],
-    ["Peachey","2020–Present",true,"Punching Bag (’21)","44–38"],
-    ["Justin","2023–Present",false,"GM of the Year (’23) • Lame Duck (’25) • Avenger (’25)","18–24"],
-    ["Grant H.","2024–Present",false,"Avenger (’24)","5–23"],
-    ["Kameron","2020–Present",true,"2025 Championship (1x) • Best Name (’23) • CBPOY (’23) • The Falcon Award (’21) • CBPOY (’25) • Marino (’25) • GM of the Year (’25)","47–35"],
-    ["Braxton","2022–Present",false,"None","29–26"],
-    ["Victor B.","2023–Present",false,"2023 Championship (1x) • Marino (’23, tied with Bailey) • Rookie of the Year (’23)","27–15"],
-    ["Mac","2020–Present",true,"Punching Bag (’25) • Worst Name (’25)","43–39"],
-    ["Drayton","2020–Present",true,"Lame Duck (’21, ’23, ’24) • Avenger (’23) • Punching Bag (’24)","28–54"]
-  ];
-  const alumni=[
-    ["Blake","2022–2023","11–16",false,""],
-    ["Grayson","2020","8–5",true,"2020 League Champion"],
-    ["Corey","2020–2022","13–27",true,""],
-    ["Marmo","2021–2022","8–19",false,""],
-    ["Ty","2020–2021","15–12",true,""],
-    ["Grant A.","2020","3–10",true,""],
-    ["Cal","2021","7–7",false,""]
-  ];
-  return `<h2>Members</h2>
-  <h3>Current Members</h3>
-  <div class="grid member-grid">${current.map(n=>`<div class="member">${["Bailey","Mac","Davis","Victor","Justin","Blum","Braxton","Grant","Quinton","Kameron","Peachey","Drayton"].includes(n[0])?`<div class="member-heading"><img class="member-photo" src="${n[0]==="Bailey"?"bailey-champion.jpeg":n[0]==="Mac"?"mac-member.png":n[0]==="Davis"?"davis-member.png":n[0]==="Victor"?"victor-member-photo.png":n[0]==="Justin"?"justin-member.png":n[0]==="Blum"?"blum-member.png":n[0]==="Braxton"?"braxton-member.png":n[0]==="Grant"?"grant-member-photo.png":n[0]==="Quinton"?"quinton-member.png":n[0]==="Kameron"?"kameron-member.png":n[0]==="Peachey"?"peachey-member.png":"drayton-member.png"}" alt="${memberFullNames[n[0]]||n[0]} member photo"><div><strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div></div></div>`:`<strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div>`}${n[2]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(n[3])}</div></div></div>`).join("")}</div>
-  <div class="alumni">
-    <h2>Alumni</h2>
-    <div class="grid member-grid">${alumni.map(n=>`<div class="member"><strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span>${n[2]}</span></div>${n[3]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${n[4]?accoladeBadges(n[4]):"Add accolades here"}</div></div></div>`).join("")}</div>
-  </div>`
-}
-
 const pages={home,members,history,records:recordsPage,rules:rulesPage,allpsi:allPsiPage};
 function render(page){
   try{
@@ -994,6 +960,29 @@ content.classList.add('page-transition');
   }
 }
 tabs.forEach(t=>t.addEventListener("click",()=>render(t.dataset.page)));
+
+// Season tabs are rendered dynamically inside #content, so bind them through
+// event delegation instead of inline <script> tags (which do not execute when
+// inserted with innerHTML).
+content.addEventListener("click", (event) => {
+  const tab = event.target.closest(".history-season-tab, .allpsi-season-tab");
+  if (!tab || !content.contains(tab)) return;
+
+  const isHistory = tab.classList.contains("history-season-tab");
+  const tabSelector = isHistory ? ".history-season-tab" : ".allpsi-season-tab";
+  const panelSelector = isHistory ? ".history-season-panel" : ".allpsi-season-panel";
+  const season = tab.dataset.season;
+
+  content.querySelectorAll(tabSelector).forEach(t => {
+    const active = t === tab;
+    t.classList.toggle("active", active);
+    t.setAttribute("aria-selected", active ? "true" : "false");
+  });
+  content.querySelectorAll(panelSelector).forEach(panel => {
+    panel.classList.toggle("active", panel.dataset.season === season);
+  });
+});
+
 function bindChampionLinks(){
   document.querySelectorAll(".champion-banner-link").forEach(card=>{
     const open=()=>{ render("members"); setTimeout(()=>{
