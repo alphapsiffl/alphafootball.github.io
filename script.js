@@ -144,6 +144,7 @@ const champions = [
 
 function home(){return `<div class="home-intro"><h2>Welcome to the Alpha Psi League</h2><p class="intro">League history, champions, records, rules, punishments, and honors — all in one place.</p></div><section class="champions-wrap"><div class="section-title"><span></span><h2>League Champions</h2><span></span></div><div class="banner-row">${champions.map((c,i)=>`<div class="champion-banner" style="--speed:${5.2+i*.35}s;--delay:${i*-.55}s"><div class="year">${c[0]}</div><div class="team">${c[2]}</div>${c[0]==="2020"?`<img class="champion-photo" src="grayson-helmet.png" alt="Grayson's team helmet">`:c[0]==="2021"?`<img class="champion-photo" src="bailey-banner.png" alt="Bailey E helmet">`:c[0]==="2022"?`<img class="champion-photo" src="davis-helmet.png" alt="Davis team helmet">`:c[0]==="2023"?`<img class="champion-photo" src="victor-helmet.png" alt="Victor team emblem">`:c[0]==="2024"?`<img class="champion-photo" src="quinton-banner.png" alt="Quinton team emblem">`:c[0]==="2025"?`<img class="champion-photo" src="kameron-banner.png" alt="Kameron team image">`:""}<div class="champ"><strong>${c[1]}</strong></div><div class="record">${c[3]}</div></div>`).join("")}</div></section>`}
 function history(){
+  const rows=[["2020–2021","No punishments (boo)","—"],["2022","24 hour Waffle House challenge","Drayton"],["2023","Sexy Calendar","Mac"],["2024","Personal Apology letter","Drayton"],["2025","Beer Mile","Grant"]];
   return `<h2>League History</h2>
   <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
   <div class="history-logo-card">
@@ -152,8 +153,90 @@ function history(){
     <h3>The Original Alpha Psi Fantasy Football League</h3>
     <p class="intro">The original logo used when the league began.</p>
   </div>
-  <div class="media-box">More league history, old logos, photos, and other historical material can be added here.</div>`
+  <div class="media-box">More league history, old logos, photos, and other historical material can be added here.</div>
+  <div class="history-punishments">
+    <h3>Punishments</h3>
+    <div class="table-wrap"><table class="data-table"><thead><tr><th>Year</th><th>Punishment</th><th>Member</th><th>Media</th></tr></thead>
+    <tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[0]==="2022"&&r[1]==="24 hour Waffle House challenge"?`<a href="https://youtu.be/3CWUCo5KeR8?si=_pKSGmxTgEuX6rXW" target="_blank" rel="noopener">Watch Video</a>`:r[0]==="2023"&&r[1]==="Sexy Calendar"?`<a href="sexy-calendar-punishment.png" target="_blank" rel="noopener">View Image</a>`:`<a href="#" onclick="return false;">Add photo/video link</a>`}</td></tr>`).join("")}</tbody></table></div>
+  </div>`;
 }
+
+function allPsiPage(){let out=`<h2>Papa’s All-Psi Team</h2><img src="papas-all-psi-photo.jpeg" alt="Brother Robert Cowsert" class="allpsi-photo"><div class="dedication">In memory of Brother Robert Cowsert.</div>`;for(const y of [2023,2024,2025]){const d=allPsi[y];out+=`<div class="year-block"><h3>${y} Papa’s All-Psi Team</h3><div class="grid">${d.main.map(x=>`<div class="card allpsi-team-card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div><div class="honorable"><h3>Honorable Mentions</h3><div class="grid">${d.hm.map(x=>`<div class="card allpsi-team-card"><div class="position">${x[0]}</div><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div></div><div class="media-box">Add photo/video links for this year's All-Psi team here.</div></div>`}return out}
+const memberFullNames = {"Quinton": "Quinton Roof", "Bailey": "Bailey Coble", "Davis": "Jonathan Davis", "Blum": "Andrew Blum", "Peachey": "Alexander Peachey", "Justin": "Justin Cooper", "Grant H.": "Grant Harris", "Kameron": "Kameron Walker", "Braxton": "Braxton Ivey", "Victor B.": "Victor Barcenas", "Mac": "Chase Arrington", "Drayton": "Drayton Paxton"};
+
+function trophyCase(name){
+  const trophies={
+    "Quinton":["2024 Championship (’24)","GM of the Year (’24)","CBPOY (’24)"],
+    "Bailey":["2021 Championship (’21)","GM of the Year (’21)","CBPOY (’22)"],
+    "Davis":["2022 Championship (’22)","GM of the Year (’22)"],
+    "Blum":[],
+    "Peachey":[],
+    "Justin":[],
+    "Grant H.":[],
+    "Kameron":["2025 Championship (’25)","CBPOY (’23, ’25)","GM of the Year (’25)"],
+    "Braxton":[],
+    "Victor B.":["2023 Championship (’23)","Rookie of the Year (’23)"],
+    "Mac":[],
+    "Drayton":[],
+    "Blake":[],
+    "Grayson":["2020 Championship (’20)"],
+    "Corey":[],
+    "Marmo":[],
+    "Ty":[],
+    "Grant A.":[],
+    "Cal":[]
+  };
+  const items=trophies[name]||[];
+  return `<div class="trophy-case"><div class="trophy-case-title">TROPHY CASE</div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item">${x}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div>`;
+}
+
+const memberBios = {"Quinton": "The Commissioner. Quinton set out to create a more perfect union of Alpha Psi brothers having fun playing fantasy football. After the league was created in 2020, he has created what he hopes is a league that can span the years.", "Justin": "The Ice Commissioner. Justin took the league by storm coming in at the same time as Victor in 2023 and appearing in the title game. Although he came up short, he’s looking to make another appearance soon while juggling the duties of being ice commish, finance genius, and great father.", "Blum": "The Doc. Blum has slowed down in the past years but don’t let this fool you, he’s still a silent assassin. Coming off a championship appearance in ‘25 and he’s looking to make huge waves in the future years. No one should be surprised when he continues the push for the Alpha Psi FFL Mount Rushmore.", "Peachey": "The numbers guy. Peachey is not the best speller but he knows his way around the numbers and is always dangerous when in trade negotiations because he knows the hidden stats. Peachey is still looking for a championship appearance but he’s a mainstay in the playoffs as of late.", "Mac": "Doc Jr. Mac is our resident baseball guy and our backup doctor for when Blum goes down. There is a quote floating around about Mac asking when the baseball season starts but don’t let that distract you from his fantasy team. One of the most injury-ridden managers but once the injury bug leaves, his team could be good.", "Bailey": "The favorite host. Bailey is most famous for being the favorite podcast host but less known he won a championship in 2021. Now that might feel like forever ago but he’s one of the most decorated members in the league with several byes and almost perfect playoff appearance record.", "Davis": "The Coach. Davis is our 2022 champion and 2025 state champ. Davis isn’t afraid to spend time thinking about his next trade (or asking for outside help). One of the mainstays in the playoffs, he is always someone who will be near the top of the rankings.", "Victor B.": "The Rookie. Victor came in and won the championship his first year in 2023 and has made the playoffs every year after. A very good fantasy manager that is wise beyond his years despite being one of the youngest in the league. Victor should continue to be near the top half of the league for years to come.", "Kameron": "Regular SZN Beast. Kameron is one of the best drafters in the league and thus has some of the best regular seasons. In 2025, Kam finally put it all together winning the championship on the backs of JSN and friends. The regular season dominance should continue and he’s hoping for the same in the postseason.", "Grant H.": "Judge, Jury, Executioner. Grant is the latest guy to join the league, becoming a member in 2024. While there hasn’t been much success so far, he’s on his way to figuring it out. The league’s lawyer is sure to put together some good cases in future trades with his league mates.", "Braxton": "The Salesman. Braxton knows how to spin a good tale when it comes to trades and usually ends up on the winning side of the deal. Braxton is the longest tenured member that wasn’t a founder but he carries the same respect for what he can do with his fantasy teams.", "Drayton": "The Little. Drayton is the little brother of the commish but that doesn’t seem to help in fantasy. Drayton has been near the bottom of the league but is always the top in one of the nicest members. He will turn it around soon once he stops being the first member to take a QB each draft."};
+
+function memberBio(name){
+  const bio = memberBios[name] || "";
+  return `<div class="member-bio"><div class="member-bio-title">BIO</div><div class="member-bio-placeholder">${bio || "Add bio here."}</div></div>`;
+}
+
+function members(){
+  const current=[
+    ["Quinton","2020–Present",true,"Worse Name (’23) • 2024 Championship (’24) • GM of the Year (’24) • CBPOY (’24) • Falcon (’25)","39–43","quinton-member.png"],
+    ["Bailey","2020–Present",true,"2021 Championship (1x) • Juggernaut Award (’23) • Marino (’23, tied with Vic) • CBPOY (’22) • GM of the Year (’21) • Best Name (’25)","52–30","bailey-champion.jpeg"],
+    ["Davis","2020–Present",true,"2020 Championship (1x) • Falcon Award (’23) • Punching Bag (’23) • GM of the Year (’22) • Juggernaut (’24) • Marino (’24)","50–32","davis-member.png"],
+    ["Blum","2020–Present",true,"Marino (’21) • Best Podcast Guest (’24) • Falcon (’24) • Juggernaut (’23, ’25)","45–37","blum-member.png"],
+    ["Peachey","2020–Present",true,"Punching Bag (’21)","44–38","peachey-member.png"],
+    ["Justin","2023–Present",false,"GM of the Year (’23) • Lame Duck (’25) • Avenger (’25)","18–24","justin-member.png"],
+    ["Grant H.","2024–Present",false,"Avenger (’24)","5–23","grant-member.png"],
+    ["Kameron","2020–Present",true,"2025 Championship (1x) • Best Name (’23) • CBPOY (’23) • The Falcon Award (’21) • CBPOY (’25) • Marino (’25) • GM of the Year (’25)","47–35","kameron-member.png"],
+    ["Braxton","2022–Present",false,"None","29–26","braxton-member.png"],
+    ["Victor B.","2023–Present",false,"2023 Championship (1x) • Marino (’23, tied with Bailey) • Rookie of the Year (’23)","27–15","victor-member.png"],
+    ["Mac","2020–Present",true,"Punching Bag (’25) • Worst Name (’25)","43–39","mac-member.png"],
+    ["Drayton","2020–Present",true,"Lame Duck (’21, ’23, ’24) • Avenger (’23) • Punching Bag (’24)","28–54","drayton-member.png"]
+  ];
+  const alumni=[
+    ["Blake","2022–2023","11–16",false,"",""],
+    ["Grayson","2020","8–5",true,"2020 League Champion","grayson-member.png"],
+    ["Corey","2020–2022","13–27",true,"",""],
+    ["Marmo","2021–2022","8–19",false,"",""],
+    ["Ty","2020–2021","15–12",true,"",""],
+    ["Grant A.","2020","3–10",true,"",""],
+    ["Cal","2021","7–7",false,"",""]
+  ];
+
+  const card=n=>{
+    const [name,years,founder,accolades,record,img]=n;
+    const photo=img?`<div class="member-heading"><img class="member-photo" src="${img}" alt="${memberFullNames[name]||name} member photo"><div><strong>${memberFullNames[name]||name}</strong><div class="member-meta">${years}<br><span class="member-record">Overall record: ${record}</span></div></div></div>`:`<div class="member-heading"><div><strong>${memberFullNames[name]||name}</strong><div class="member-meta">${years}<br><span class="member-record">Overall record: ${record}</span></div></div></div>`;
+    return `<div class="member">${photo}${founder?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}${trophyCase(name)}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(accolades)}</div></div>${memberBio(name)}</div>`;
+  };
+
+  const alumniCard=n=>`<div class="member">${n[5]?`<div class="member-heading"><img class="member-photo" src="${n[5]}" alt="${memberFullNames[n[0]]||n[0]} member photo"><div><strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[2]}</span></div></div></div>`:`<div class="member-heading"><div><strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[2]}</span></div></div></div>`}${n[3]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}${trophyCase(n[0])}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${n[4]||"Add accolades here"}</div></div>${memberBio(name)}</div>`;
+
+  return `<h2>Members</h2>
+  <h3>Current Members</h3>
+  <div class="grid member-grid">${current.map(card).join("")}</div>
+  <h3>Alumni</h3>
+  <div class="grid member-grid">${alumni.map(alumniCard).join("")}</div>`;
+}
+
 function stats(){return `<h2>Stats</h2><p class="intro">This section is ready for the ESPN league data you provide. We can expand it with team, player, weekly, and season statistics.</p><div class="grid"><div class="card"><strong>ESPN Data</strong><p>Roster and scoring data can be added here.</p></div><div class="card"><strong>Season Stats</strong><p>Season-by-season totals and averages can live here.</p></div><div class="card"><strong>Player Stats</strong><p>Individual player records can be added here.</p></div></div>`}
 function teams(){return `<h2>Teams</h2><p class="intro">Team pages are ready to be added as we bring over the league's ESPN history.</p><div class="grid">${champions.map(c=>`<div class="card"><strong>${c[2]}</strong><p>${c[0]} champion — ${c[1]} — ${c[3]}</p></div>`).join("")}</div>`}
 function schedule(){return `<h2>Schedule</h2><p class="intro">Schedule and matchup history will be added from your ESPN data.</p><div class="media-box">ESPN schedule links or screenshots can be added here.</div>`}
@@ -205,14 +288,14 @@ function members(){
   ];
   return `<h2>Members</h2>
   <h3>Current Members</h3>
-  <div class="grid member-grid">${current.map(n=>`<div class="member">${["Bailey","Mac","Davis","Victor","Justin","Blum","Braxton","Grant","Quinton","Kameron","Peachey","Drayton"].includes(n[0])?`<div class="member-heading"><img class="member-photo" src="${n[0]==="Bailey"?"bailey-champion.jpeg":n[0]==="Mac"?"mac-member.png":n[0]==="Davis"?"davis-member.png":n[0]==="Victor"?"victor-member.png":n[0]==="Justin"?"justin-member.png":n[0]==="Blum"?"blum-member.png":n[0]==="Braxton"?"braxton-member.png":n[0]==="Grant"?"grant-member.png":n[0]==="Quinton"?"quinton-member.png":n[0]==="Kameron"?"kameron-member.png":n[0]==="Peachey"?"peachey-member.png":"drayton-member.png"}" alt="${n[0]} member photo"><div><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div></div></div>`:`<strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div>`}${n[2]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(n[3])}</div></div></div>`).join("")}</div>
+  <div class="grid member-grid">${current.map(n=>`<div class="member">${["Bailey","Mac","Davis","Victor","Justin","Blum","Braxton","Grant","Quinton","Kameron","Peachey","Drayton"].includes(n[0])?`<div class="member-heading"><img class="member-photo" src="${n[0]==="Bailey"?"bailey-champion.jpeg":n[0]==="Mac"?"mac-member.png":n[0]==="Davis"?"davis-member.png":n[0]==="Victor"?"victor-member.png":n[0]==="Justin"?"justin-member.png":n[0]==="Blum"?"blum-member.png":n[0]==="Braxton"?"braxton-member.png":n[0]==="Grant"?"grant-member.png":n[0]==="Quinton"?"quinton-member.png":n[0]==="Kameron"?"kameron-member.png":n[0]==="Peachey"?"peachey-member.png":"drayton-member.png"}" alt="${memberFullNames[n[0]]||n[0]} member photo"><div><strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div></div></div>`:`<strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span class="member-record">Overall record: ${n[4]}</span></div>`}${n[2]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${accoladeBadges(n[3])}</div></div></div>`).join("")}</div>
   <div class="alumni">
     <h2>Alumni</h2>
-    <div class="grid member-grid">${alumni.map(n=>`<div class="member"><strong>${n[0]}</strong><div class="member-meta">${n[1]}<br><span>${n[2]}</span></div>${n[3]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${n[4]?accoladeBadges(n[4]):"Add accolades here"}</div></div></div>`).join("")}</div>
+    <div class="grid member-grid">${alumni.map(n=>`<div class="member"><strong>${memberFullNames[n[0]]||n[0]}</strong><div class="member-meta">${n[1]}<br><span>${n[2]}</span></div>${n[3]?`<span class="founder-badge">FOUNDING MEMBER</span>`:""}<div class="accolades"><div class="accolades-title">Accolades</div><div class="accolades-placeholder">${n[4]?accoladeBadges(n[4]):"Add accolades here"}</div></div></div>`).join("")}</div>
   </div>`
 }
 
-const pages={home,history,teams,stats,schedule,records:recordsPage,playoffs:playoffsPage,rules:rulesPage,punishments,allpsi:allPsiPage,members};
+const pages={home,members,history,records:recordsPage,rules:rulesPage,allpsi:allPsiPage};
 function render(page){
   try{
     if(!pages[page]) page="home";

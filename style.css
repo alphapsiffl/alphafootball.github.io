@@ -374,3 +374,365 @@ body {
 .champion-banner .champion-photo {
   margin: 5px auto 8px !important;
 }
+
+/* v81 banner refinement: smaller logo, larger team name */
+.champion-banner .team {
+  font-size: 17px !important;
+  font-weight: 900 !important;
+  line-height: 1.08 !important;
+}
+
+.champion-banner .champion-photo {
+  width: 62px !important;
+  height: 62px !important;
+  max-width: 62px !important;
+  max-height: 62px !important;
+}
+
+/* Mobile: keep ALL championship banners in one horizontal row */
+@media (max-width: 600px) {
+  .champions-wrap {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    overflow: hidden !important;
+  }
+
+  .banner-row {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 3px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .champion-banner {
+    min-width: 0 !important;
+    width: 100% !important;
+    min-height: 155px !important;
+    height: 155px !important;
+    padding: 8px 2px 7px !important;
+    overflow: hidden !important;
+  }
+
+  .champion-banner .year {
+    font-size: 15px !important;
+    letter-spacing: 0 !important;
+    padding-bottom: 4px !important;
+  }
+
+  .champion-banner .team {
+    font-size: 7px !important;
+    line-height: 1 !important;
+    margin-top: 5px !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .champion-banner .champion-photo {
+    width: 28px !important;
+    height: 28px !important;
+    max-width: 28px !important;
+    max-height: 28px !important;
+    margin: 5px auto 3px !important;
+  }
+
+  .champion-banner .champ,
+  .champion-banner .champ strong {
+    font-size: 7px !important;
+    line-height: 1 !important;
+  }
+
+  .champion-banner .record {
+    font-size: 6px !important;
+    bottom: 12px !important;
+  }
+
+  .champion-banner .record:before {
+    font-size: 5px !important;
+    letter-spacing: 1px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .banner-row {
+    gap: 2px !important;
+  }
+
+  .champion-banner {
+    min-height: 140px !important;
+    height: 140px !important;
+  }
+
+  .champion-banner .year {
+    font-size: 13px !important;
+  }
+
+  .champion-banner .team,
+  .champion-banner .champ,
+  .champion-banner .champ strong {
+    font-size: 6px !important;
+  }
+
+  .champion-banner .champion-photo {
+    width: 24px !important;
+    height: 24px !important;
+    max-width: 24px !important;
+    max-height: 24px !important;
+  }
+}
+
+/* Alpha Psi stadium/pennant side panels — CSS only, no external images */
+main {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.league-side {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: clamp(150px, 14vw, 230px) !important;
+  height: 100vh !important;
+  box-sizing: border-box !important;
+  padding: 110px 18px 35px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,.035) 0px,
+      rgba(255,255,255,.035) 2px,
+      transparent 2px,
+      transparent 14px
+    ),
+    linear-gradient(90deg,#080808 0%,#171717 48%,#0a0a0a 100%) !important;
+  border: 1px solid #292929 !important;
+  box-shadow:
+    inset 0 0 45px rgba(0,0,0,.8),
+    inset 0 0 0 5px rgba(255,255,255,.025),
+    0 0 24px rgba(0,0,0,.35) !important;
+  border-radius: 0 !important;
+}
+
+.league-side-left {
+  left: 0 !important;
+  right: auto !important;
+  border-right: 5px solid #c92c18 !important;
+}
+
+.league-side-right {
+  right: 0 !important;
+  left: auto !important;
+  border-left: 5px solid #c92c18 !important;
+}
+
+.league-side::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 4px !important;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    #8e180d 12%,
+    #c92c18 50%,
+    #8e180d 88%,
+    transparent 100%
+  ) !important;
+  opacity: .8 !important;
+}
+
+.league-side-left::before { right: 13px !important; }
+.league-side-right::before { left: 13px !important; }
+
+.league-side::after {
+  content: "ALPHA PSI" !important;
+  position: absolute !important;
+  top: 45% !important;
+  left: 50% !important;
+  transform: translate(-50%,-50%) rotate(-90deg) !important;
+  color: rgba(201,44,24,.14) !important;
+  font-family: Georgia,serif !important;
+  font-size: clamp(22px,3vw,42px) !important;
+  font-weight: 900 !important;
+  letter-spacing: 6px !important;
+  white-space: nowrap !important;
+}
+
+.league-side .side-title {
+  display: block !important;
+  position: relative !important;
+  z-index: 2 !important;
+  color: #c92c18 !important;
+  font-family: Georgia,serif !important;
+  font-size: 15px !important;
+  letter-spacing: 3px !important;
+  text-align: center !important;
+  border-bottom: 1px solid #3a3a3a !important;
+  padding-bottom: 9px !important;
+}
+
+.league-side .side-team {
+  position: relative !important;
+  z-index: 2 !important;
+  min-height: 58px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  padding: 10px 8px !important;
+  color: #d8d8d8 !important;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.045),transparent 42%),
+    #111 !important;
+  border: 1px solid #343434 !important;
+  border-left: 3px solid #c92c18 !important;
+  border-radius: 2px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 5px 12px rgba(0,0,0,.35) !important;
+  font-family: Georgia,serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-align: center !important;
+}
+
+.league-side-right .side-team {
+  border-left: 1px solid #343434 !important;
+  border-right: 3px solid #c92c18 !important;
+}
+
+.league-side .side-team::before,
+.league-side .side-team::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 50% !important;
+  width: 5px !important;
+  height: 5px !important;
+  border-radius: 50% !important;
+  background: #c92c18 !important;
+  transform: translateY(-50%) !important;
+}
+
+.league-side .side-team::before { left: 7px !important; }
+.league-side .side-team::after { right: 7px !important; }
+
+@media (min-width: 1200px) {
+  main,
+  .site-header .topbar {
+    max-width: calc(100% - clamp(300px,28vw,460px)) !important;
+  }
+}
+
+@media (max-width: 1199px) {
+  .league-side {
+    display: none !important;
+  }
+}
+
+/* Member Trophy Case */
+.trophy-case {
+  margin: 14px 0 12px;
+  padding: 12px 10px;
+  border-top: 1px solid rgba(177,32,32,.45);
+  background: transparent;
+}
+.trophy-case-title {
+  color: #c9a227 !important;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+.trophy-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+.trophy-item {
+  color: #c9a227 !important;
+  font-weight: 700;
+  font-size: 13px;
+}
+.trophy-empty {
+  color: #777 !important;
+  font-size: 12px;
+  font-style: italic;
+}
+.member-bio {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.10);
+}
+.member-bio-title {
+  color: #c9a227 !important;
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+.member-bio-placeholder {
+  color: #777 !important;
+  font-size: 12px;
+  min-height: 34px;
+}
+.founder-badge {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #c9a227 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-weight: 800 !important;
+}
+
+/* Content typography: body copy under tabs uses Times New Roman.
+   Existing header/subheader typography is preserved. */
+.content-area,
+.content-area p,
+.content-area li,
+.content-area td,
+.content-area th,
+.content-area span,
+.content-area a,
+.content-area label,
+.content-area input,
+.content-area textarea,
+.content-area button,
+.content-area .intro,
+.content-area .member-meta,
+.content-area .member-record,
+.content-area .accolades-placeholder,
+.content-area .member-bio-placeholder,
+.content-area .trophy-item,
+.content-area .trophy-empty,
+.content-area .record-card-detail,
+.content-area .record-feature-sub {
+  font-family: "Times New Roman", Times, serif !important;
+}
+
+/* Keep headers and subheaders on their existing display fonts. */
+.content-area h1,
+.content-area h2,
+.content-area h3,
+.content-area h4,
+.content-area h5,
+.content-area h6,
+.content-area .section-title h2,
+.content-area .current-rules-title,
+.content-area .trophy-case-title,
+.content-area .member-bio-title,
+.content-area .accolades-title,
+.content-area .history-label,
+.content-area .record-feature-title,
+.content-area .record-card-title,
+.content-area .position {
+  font-family: Oswald, "Arial Narrow", sans-serif !important;
+}
