@@ -318,3 +318,253 @@ body {
   padding: 6px !important;
   box-sizing: border-box !important;
 }
+
+/* Stronger website paneling */
+.content-area .card,
+.content-area .member,
+.content-area .history-logo-card,
+.content-area .media-box,
+.content-area .table-wrap,
+.content-area .playoff-definitions > div,
+.content-area .year-block {
+  border-color: rgba(255,255,255,.18);
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.055);
+}
+
+.content-area .card:hover,
+.content-area .member:hover,
+.content-area .history-logo-card:hover,
+.content-area .media-box:hover,
+.content-area .playoff-definitions > div:hover {
+  border-color: rgba(255,255,255,.3);
+  box-shadow:
+    0 12px 26px rgba(0,0,0,.36),
+    inset 0 1px 0 rgba(255,255,255,.08);
+  transform: translateY(-2px);
+  transition: .18s ease;
+}
+
+.content-area .year-block {
+  background: rgba(20,20,20,.82);
+  border-left: 3px solid var(--red);
+  padding: 18px 20px;
+  border-radius: 8px;
+}
+
+.content-area .table-wrap {
+  overflow:hidden;
+  border-radius:8px;
+}
+
+/* Much smaller championship banner logos */
+.champion-banner .champion-photo {
+  width: 58px !important;
+  height: 58px !important;
+  max-width: 58px !important;
+  max-height: 58px !important;
+  margin: 12px auto 8px !important;
+}
+
+/* Championship banner order: team name above logo */
+.champion-banner .team {
+  margin: 8px auto 5px !important;
+}
+.champion-banner .champion-photo {
+  margin: 5px auto 8px !important;
+}
+
+/* Cream-and-gray site theme */
+:root {
+  --cream: #f3ead7;
+  --cream-deep: #e8dcc4;
+  --text-gray: #5f5f5f;
+  --text-gray-dark: #4f4f4f;
+}
+
+html, body {
+  background: var(--cream) !important;
+  color: var(--text-gray) !important;
+}
+
+body::before,
+body::after {
+  background-color: var(--cream-deep) !important;
+}
+
+.content-area,
+main,
+section {
+  color: var(--text-gray) !important;
+}
+
+.content-area h1,
+.content-area h2,
+.content-area h3,
+.content-area h4,
+.content-area p,
+.content-area li,
+.content-area span,
+.content-area label,
+.content-area th,
+.content-area td,
+.content-area strong,
+.content-area .intro,
+.content-area .section-title,
+.content-area .current-rules-title {
+  color: var(--text-gray) !important;
+}
+
+.content-area .card,
+.content-area .member,
+.content-area .history-logo-card,
+.content-area .media-box,
+.content-area .table-wrap,
+.content-area .playoff-definitions > div,
+.content-area .year-block,
+.content-area .current-rules {
+  background: #f8f0e1 !important;
+  color: var(--text-gray) !important;
+  border-color: rgba(95,95,95,.22) !important;
+}
+
+.content-area .year-block {
+  border-left-color: var(--red) !important;
+}
+
+.main-tabs,
+header {
+  color: var(--text-gray) !important;
+}
+
+.main-tabs .tab {
+  color: var(--text-gray) !important;
+}
+
+.main-tabs .tab.active {
+  color: var(--text-gray-dark) !important;
+}
+
+a {
+  color: var(--text-gray-dark) !important;
+}
+
+/* Navigation sits below the Home-page League Champions section */
+.main-tabs {
+  margin-top: 26px !important;
+  margin-bottom: 22px !important;
+  position: relative;
+  z-index: 5;
+}
+
+/* Member Trophy Case */
+.trophy-case{
+  margin-top:16px;
+  padding:14px;
+  border:1px solid rgba(95,95,95,.25);
+  border-radius:10px;
+  background:#efe4cf;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55), 0 5px 14px rgba(60,45,25,.10);
+}
+.trophy-case-title{
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-size:12px;
+  font-weight:800;
+  color:#686868;
+  text-align:center;
+  margin-bottom:10px;
+}
+.trophy-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(78px,1fr));
+  gap:8px;
+}
+.trophy{
+  text-align:center;
+  padding:8px 5px;
+  border-radius:8px;
+  background:#f8f0e1;
+  border:1px solid rgba(95,95,95,.18);
+}
+.trophy-icon{font-size:21px;line-height:1;margin-bottom:5px}
+.trophy-name{font-size:10px;font-weight:800;line-height:1.15;color:#5f5f5f}
+.trophy-year{font-size:10px;margin-top:3px;color:#777}
+.trophy-empty{font-size:11px;text-align:center;color:#777}
+
+/* Member bio section */
+.member-bio{
+  margin-top:14px;
+  padding:14px;
+  border:1px solid rgba(95,95,95,.22);
+  border-radius:10px;
+  background:#f8f0e1;
+}
+.member-bio-title{
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-size:12px;
+  font-weight:800;
+  color:#686868;
+  margin-bottom:8px;
+}
+.member-bio-content{
+  min-height:55px;
+  color:#777;
+  font-size:12px;
+  line-height:1.5;
+}
+
+/* Extended Cardinal header panels for every tab */
+.content-area > h2:first-child {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 18px 0 !important;
+  padding: 18px 24px 14px !important;
+  background: #8f1d2c !important;
+  color: #5f5f5f !important;
+  border: 1px solid rgba(95,95,95,.28);
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 7px 16px rgba(60,25,25,.16), inset 0 1px 0 rgba(255,255,255,.22);
+  text-align: left;
+}
+
+.content-area > h2:first-child + .intro {
+  box-sizing: border-box;
+  width: 100%;
+  margin: -18px 0 22px !important;
+  padding: 12px 24px 16px !important;
+  background: #8f1d2c !important;
+  color: #5f5f5f !important;
+  border: 1px solid rgba(95,95,95,.28);
+  border-top: 0;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 7px 16px rgba(60,25,25,.16);
+}
+
+.content-area > h2:first-child + .playoff-definitions {
+  margin-top: -18px;
+}
+
+.content-area > h2:first-child + .playoff-definitions,
+.content-area > h2:first-child + .current-rules {
+  margin-bottom: 22px;
+}
+
+.content-area > h2:first-child,
+.content-area > h2:first-child + .intro,
+.content-area > h2:first-child + .playoff-definitions {
+  color: #5f5f5f !important;
+}
+
+.content-area > h2:first-child + .playoff-definitions {
+  background: #8f1d2c;
+  border-radius: 0 0 10px 10px;
+  padding: 12px 18px 18px;
+}
+
+.content-area > h2:first-child + .playoff-definitions > div {
+  color: #5f5f5f !important;
+}
