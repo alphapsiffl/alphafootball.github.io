@@ -388,18 +388,7 @@ const render2022=()=>`<section class="history-season-panel history-2022-panel" d
     <section class="season-foundation">
       <div class="season-foundation-kicker">THE LEAGUE TAKES SHAPE</div>
       <h3>Getting More Serious</h3>
-      <p>By 2022, the Alpha Psi Fake Football League was starting to get a little more serious. The competition was becoming more meaningful and the league was beginning to develop its identity, but there was still serious turnover from season to season. Bailey Coble and Quinton Roof also started the Alpha Sighs Podcast, giving the league another way to bring the brothers together, talk football, and build the league's personality outside of the weekly matchups. New brothers were coming in, others were moving on, and everyone was still figuring out what it meant to build a lasting league while competing for a championship. The rules were evolving quickly too: waiver claims moved to FAAB, the trade deadline moved up from Week 13 to Week 11, and bench spots were reduced from 8 to 7. The playoffs moved to a Week 15 start instead of Week 14. The punishment became the Sexy Calendar, and failing to complete a punishment meant losing your first-round pick and being forced to draft a defense. Trades continued to be voted on, and first-round picks could still be traded. Auto-drafters would lose a pick the following year, while draft position was determined by March Madness brackets. The payout structure also expanded, giving fifth place $60 and sixth place $50, while the winner of the losers bracket received $40 back. The loser of that bracket received S.H.I.T. and the punishment.</p>
-    <section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
-      <div class="history-photo-feature-title">2021 FANTASY LOSER</div>
-      <figure>
-        <a href="2021-fantasy-loser-marmo.jpeg" target="_blank" rel="noopener">
-          <img src="2021-fantasy-loser-marmo.jpeg" alt="2021 fantasy loser Marmo">
-        </a>
-        <figcaption>2021 Fantasy loser Marmo</figcaption>
-      </figure>
-    </section>
-
-    <section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
+      <p>By 2022, the Alpha Psi Fake Football League was starting to get a little more serious. The competition was becoming more meaningful and the league was beginning to develop its identity, but there was still serious turnover from season to season. Bailey Coble and Quinton Roof also started the Alpha Sighs Podcast, giving the league another way to bring the brothers together, talk football, and build the league's personality outside of the weekly matchups. New brothers were coming in, others were moving on, and everyone was still figuring out what it meant to build a lasting league while competing for a championship. The rules were evolving quickly too: waiver claims moved to FAAB, the trade deadline moved up from Week 13 to Week 11, and bench spots were reduced from 8 to 7. The playoffs moved to a Week 15 start instead of Week 14. The punishment became the Sexy Calendar, and failing to complete a punishment meant losing your first-round pick and being forced to draft a defense. Trades continued to be voted on, and first-round picks could still be traded. Auto-drafters would lose a pick the following year, while draft position was determined by March Madness brackets. The payout structure also expanded, giving fifth place $60 and sixth place $50, while the winner of the losers bracket received $40 back. The loser of that bracket received S.H.I.T. and the punishment.</p><section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
       <div class="history-photo-feature-title">2022 FANTASY LOSER</div>
       <figure>
         <a href="2022-fantasy-loser-drayton-paxton.jpeg" target="_blank" rel="noopener">
@@ -472,6 +461,18 @@ const render2021=()=>`<section class="history-season-panel history-2021-panel" d
         <figcaption>2021 Champion Bailey Coble</figcaption>
       </figure>
     </section>
+
+    <section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
+      <div class="history-photo-feature-title">2021 FANTASY LOSER</div>
+      <figure>
+        <a href="2021-fantasy-loser-marmo.jpeg" target="_blank" rel="noopener">
+          <img src="2021-fantasy-loser-marmo.jpeg" alt="2021 fantasy loser Marmo">
+        </a>
+        <figcaption>2021 Fantasy loser Marmo</figcaption>
+      </figure>
+    </section>
+
+    
 
     <section class="history-trophy-feature">
       <div class="trophy-feature-copy">
@@ -676,7 +677,7 @@ function allPsiPage(){
     const d=allPsi[y];
     const positions=[...new Set([...d.main.map(x=>x[0]),...d.hm.map(x=>x[0])])];
 
-    return `<section class="allpsi-season-panel" data-season="${y}">
+    return `<section class="allpsi-season-panel${y===2025?" active":""}" data-season="${y}">
       <div class="allpsi-season-heading">
         <span>SEASON</span>
         <strong>${y}</strong>
@@ -812,7 +813,7 @@ function members(){
     ["Grant H.","2024–Present",false,"Avenger (’24)","5–23","grant-member-photo.png"],
     ["Kameron","2020–Present",true,"2025 Championship (1x) • Best Name (’23) • CBPOY (’23) • The Falcon Award (’21) • CBPOY (’25) • Marino (’25) • GM of the Year (’25)","47–35","kameron-member.png"],
     ["Braxton","2022–Present",false,"None","29–26","braxton-member.png"],
-    ["Victor B.","2023–Present",false,"2023 Championship (1x) • Marino (’23, tied with Bailey) • Rookie of the Year (’23)","27–15","victor-member-photo.png"],
+    ["Victor B.","2023–Present",false,"Marino (’23, tied with Bailey) • Rookie of the Year (’23)","27–15","victor-member-photo.png"],
     ["Mac","2020–Present",true,"Punching Bag (’25) • Worst Name (’25)","43–39","mac-member.png"],
     ["Drayton","2020–Present",true,"Lame Duck (’21, ’23, ’24) • Avenger (’23) • Punching Bag (’24)","28–54","drayton-member.png"]
   ];
@@ -953,12 +954,13 @@ tabs.forEach(t=>t.addEventListener("click",()=>render(t.dataset.page)));
 // event delegation instead of inline <script> tags (which do not execute when
 // inserted with innerHTML).
 content.addEventListener("click", (event) => {
-  const tab = event.target.closest(".history-season-tab, .allpsi-season-tab");
+  const tab = event.target.closest(".history-season-tab, .allpsi-season-tab, .rules-season-tab");
   if (!tab || !content.contains(tab)) return;
 
   const isHistory = tab.classList.contains("history-season-tab");
-  const tabSelector = isHistory ? ".history-season-tab" : ".allpsi-season-tab";
-  const panelSelector = isHistory ? ".history-season-panel" : ".allpsi-season-panel";
+  const isRules = tab.classList.contains("rules-season-tab");
+  const tabSelector = isHistory ? ".history-season-tab" : (isRules ? ".rules-season-tab" : ".allpsi-season-tab");
+  const panelSelector = isHistory ? ".history-season-panel" : (isRules ? ".rules-season-panel" : ".allpsi-season-panel");
   const season = tab.dataset.season;
 
   content.querySelectorAll(tabSelector).forEach(t => {

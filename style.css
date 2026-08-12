@@ -3052,3 +3052,187 @@ body {
     max-width: 45%;
   }
 }
+
+.rules-season-panel { display: none; }
+.rules-season-panel.active { display: block; }
+
+/* Champion banner: pin the record to the bottom of the card. */
+.champion-banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.champion-banner .record {
+  margin-top: auto;
+  align-self: center;
+  padding-top: 4px;
+  padding-bottom: 2px;
+}
+
+/* Championship banner team names: always use two balanced lines. */
+.champion-banner .team {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.05;
+  min-height: 2.1em;
+  max-width: 100%;
+  padding: 0 4px;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   UNIFIED HISTORY SEASON SYSTEM
+   Keep every season on the same visual template.
+   ========================================================= */
+.history-season-panel {
+  max-width: 100%;
+  color: #ddd;
+}
+
+.history-season-heading {
+  min-height: 34px;
+  margin: 0 auto;
+}
+
+.history-season-heading span {
+  color: var(--gold);
+  font-family: Oswald, Arial, sans-serif;
+  font-weight: 800;
+}
+
+.history-season-heading strong {
+  color: #eee;
+}
+
+.history-season-rule {
+  margin: 8px auto 20px;
+}
+
+/* Every season's opening story uses the same card. */
+.history-season-panel .season-foundation {
+  max-width: 880px;
+  margin: 0 auto 24px;
+  padding: 20px 22px 18px;
+  border: 1px solid #393939;
+  border-top: 2px solid var(--cardinal);
+  border-radius: 2px;
+  background: linear-gradient(180deg,#141617,#0b0c0d);
+  box-shadow: 0 8px 20px rgba(0,0,0,.28);
+}
+
+.history-season-panel .season-foundation-kicker {
+  color: var(--gold) !important;
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.history-season-panel .season-foundation h3 {
+  margin: 5px 0 9px;
+  font-size: 25px;
+  line-height: 1.2;
+}
+
+.history-season-panel .season-foundation p {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.58;
+  color: #c8c8c8;
+}
+
+/* Same spacing and heading treatment for every major history section. */
+.history-season-panel .season-section-title {
+  margin: 24px 0 12px;
+  font-size: 17px;
+}
+
+.history-season-panel .season-podium,
+.history-season-panel .season-moves,
+.history-season-panel .season-superlatives,
+.history-season-panel .season-archive {
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.history-season-panel .podium-grid {
+  margin-bottom: 22px;
+}
+
+.history-season-panel .podium-place {
+  min-height: 190px;
+}
+
+.history-season-panel .podium-place.first {
+  min-height: 220px;
+}
+
+/* Keep all historical photography in the same compact presentation. */
+.history-season-panel .history-photo-feature {
+  max-width: 880px;
+  margin: 20px auto;
+  padding: 16px 18px;
+  background: rgba(0,0,0,.24);
+  border: 1px solid rgba(184,148,60,.45);
+  border-top: 2px solid var(--gold);
+}
+
+.history-season-panel .history-photo-feature-title {
+  margin-bottom: 10px;
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.history-season-panel .champion-photo-feature figure {
+  max-width: 34%;
+  margin: 0 auto;
+}
+
+.history-season-panel .champion-photo-feature img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+.history-season-panel .history-trophy-feature {
+  max-width: 880px;
+  margin: 20px auto;
+  padding: 16px 18px;
+}
+
+/* Uniform mobile presentation. */
+@media (max-width: 650px) {
+  .history-season-panel .season-foundation {
+    padding: 16px 15px 15px;
+    margin-bottom: 18px;
+  }
+
+  .history-season-panel .season-foundation h3 {
+    font-size: 21px;
+  }
+
+  .history-season-panel .season-foundation p {
+    font-size: 14px;
+    line-height: 1.52;
+  }
+
+  .history-season-panel .season-section-title {
+    font-size: 15px;
+    margin-top: 20px;
+  }
+
+  .history-season-panel .champion-photo-feature figure {
+    max-width: 45%;
+  }
+
+  .history-season-panel .history-photo-feature {
+    padding: 13px;
+    margin: 16px auto;
+  }
+}
