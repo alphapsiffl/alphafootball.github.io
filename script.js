@@ -146,6 +146,18 @@ function home(){
   const championMember={
     "2020":"Grayson","2021":"Bailey","2022":"Davis","2023":"Victor B.","2024":"Quinton","2025":"Kameron"
   };
+  const splitBannerTeamName=(name)=>{
+    const words=name.trim().split(/\\s+/);
+    if(words.length<2) return name;
+    let best=1, bestDiff=Infinity;
+    for(let i=1;i<words.length;i++){
+      const a=words.slice(0,i).join(" ");
+      const b=words.slice(i).join(" ");
+      const diff=Math.abs(a.length-b.length);
+      if(diff<bestDiff){bestDiff=diff;best=i;}
+    }
+    return `${words.slice(0,best).join(" ")}<br><span>${words.slice(best).join(" ")}</span>`;
+  };
   const bannerPhoto={
     "2020":"grayson-helmet.png","2021":"bailey-banner.png","2022":"davis-helmet.png",
     "2023":"victor-helmet.png","2024":"quinton-banner.png","2025":"kameron-banner.png"
@@ -154,7 +166,7 @@ function home(){
     <div class="section-title"><span></span><h2>League Champions</h2><span></span></div>
     <div class="banner-row">${champions.map((c,i)=>`<div class="champion-banner champion-banner-link" tabindex="0" role="button" data-member="${championMember[c[0]]}" aria-label="Open ${c[1]}'s member profile" style="--speed:${5.2+i*.35}s;--delay:${i*-.55}s">
       <div class="year">${c[0]}</div>
-      <div class="team">${c[2]}</div>
+      <div class="team">${splitBannerTeamName(c[2])}</div>
       <img class="champion-photo" src="${bannerPhoto[c[0]]}" alt="${c[1]} team image">
       <div class="champ"><strong>${c[1]}</strong></div>
       <div class="record">${c[3]}</div>
@@ -224,16 +236,7 @@ function history(){
     <section class="season-foundation">
       <div class="season-foundation-kicker">THE LEAGUE IS BUILT TO LAST</div>
       <h3>Five Years Strong</h3>
-      <p>2024 was the year we knew the Alpha Psi Fake Football League was built to last. Going into the fifth year, we finally had a solid group of active brothers who were invested in the league and in what we were building together. We determined that draft order would be done by March Madness brackets, unless someone could get a celebrity or coach to make the pick. We also created our dynasty league this year, giving the Alpha Psi football community another way to compete and keep building for the future.</p>
-    <section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
-      <div class="history-photo-feature-title">2024 FANTASY LOSER</div>
-      <figure>
-        <a href="2024-fantasy-loser-drayton-paxton.jpeg" target="_blank" rel="noopener">
-          <img src="2024-fantasy-loser-drayton-paxton.jpeg" alt="2024 Fantasy loser Drayton Paxton">
-        </a>
-        <figcaption>Fantasy loser 2024 Drayton Paxton</figcaption>
-      </figure>
-    </section>
+      <p>2024 was the year we knew the Alpha Psi Fake Football League was built to last. Going into the fifth year, we finally had a solid group of active brothers who were invested in the league and in what we were building together. We determined that draft order would be done by March Madness brackets, unless someone could get a celebrity or coach to make the pick. We also created our dynasty league this year, giving the Alpha Psi football community another way to compete and keep building for the future.</p></section>
 
     <section class="history-photo-feature champion-photo-feature">
       <div class="history-photo-feature-title">2024 CHAMPION</div>
@@ -245,7 +248,18 @@ function history(){
       </figure>
     </section>
 
+    
+    <section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
+      <div class="history-photo-feature-title">2024 FANTASY LOSER</div>
+      <figure>
+        <a href="2024-fantasy-loser-drayton-paxton.jpeg" target="_blank" rel="noopener">
+          <img src="2024-fantasy-loser-drayton-paxton.jpeg" alt="2024 Fantasy loser Drayton Paxton">
+        </a>
+        <figcaption>Fantasy loser 2024 Drayton Paxton</figcaption>
+      </figure>
     </section>
+
+    
 
     ${renderPodium([
       {cls:"second",medal:"2ND",team:"Cocaine Cowboys",manager:"Jonathan Davis",label:"2ND PLACE"},
@@ -316,17 +330,7 @@ function history(){
       <div class="season-foundation-kicker">THE MODERN LEAGUE TAKES SHAPE</div>
       <h3>Becoming What We Know Today</h3>
       <p>2023 was the year the league really started to become what we know today. The current group of brothers was beginning to take shape, and people were investing more of themselves into what we were building. The podcast was growing, giving everyone a chance to get on and talk football and league business together. We also started giving out ices for scoring 0 points, and bench spots were cut from 7 to 6, putting a much tighter limit on roster depth. Most importantly, we introduced a uniform punishment system through the Wheel of Punishments, creating the league tradition that we still use today. Justin Cooper also became our Ice Commissioner, taking charge of the ice tradition that became part of the league.</p>
-    <section class="history-photo-feature champion-photo-feature">
-      <div class="history-photo-feature-title">2023 CHAMPION</div>
-      <figure>
-        <a href="2023-champion-victor-barcenas.jpeg" target="_blank" rel="noopener">
-          <img src="2023-champion-victor-barcenas.jpeg" alt="2023 Champion Victor Barcenas">
-        </a>
-        <figcaption>2023 Champion Victor Barcenas</figcaption>
-      </figure>
-    </section>
-
-    <section class="history-photo-feature">
+<section class="history-photo-feature">
       <div class="history-photo-feature-title">DRAFT DAY 2023</div>
       <div class="history-photo-grid">
         <figure>
@@ -339,13 +343,30 @@ function history(){
         </figure>
       </div>
     </section>
+<section class="history-photo-feature champion-photo-feature">
+      <div class="history-photo-feature-title">2023 CHAMPION</div>
+      <figure>
+        <a href="2023-champion-victor-barcenas.jpeg" target="_blank" rel="noopener">
+          <img src="2023-champion-victor-barcenas.jpeg" alt="2023 Champion Victor Barcenas">
+        </a>
+        <figcaption>2023 Champion Victor Barcenas</figcaption>
+      </figure>
+    </section>
+<section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
+  <div class="history-photo-feature-title">2023 FANTASY LOSER</div>
+  <figure class="history-photo-card">
+    <img src="2023-fantasy-loser-chase-arrington.jpeg" alt="2023 Fantasy loser Chase Arrington">
+    <figcaption>2023 Fantasy loser Chase Arrington</figcaption>
+  </figure>
+</section>
+
 
     </section>
 
     ${renderPodium([
       {cls:"second",medal:"2ND",team:"Pillsbury Throw-boy",label:"2ND PLACE"},
-      {cls:"first",medal:"1ST",team:"El Effes Kitchen",manager:"Braxton Ivey",label:"2023 CHAMPION"},
-      {cls:"third",medal:"3RD",team:"El jeffe’s Kitchen",label:"3RD PLACE"}
+      {cls:"first",medal:"1ST",team:"My Ball Zach Ertz",manager:"Victor Barcenas",label:"2023 CHAMPION"},
+      {cls:"third",medal:"3RD",team:"El Jeffe's Kitchen",manager:"Braxton Ivey",label:"3RD PLACE"}
     ])}
 
     ${renderMoves(["Justin Cooper","Victor Barcenas"],["Blake Jackson"])}
@@ -388,15 +409,7 @@ const render2022=()=>`<section class="history-season-panel history-2022-panel" d
     <section class="season-foundation">
       <div class="season-foundation-kicker">THE LEAGUE TAKES SHAPE</div>
       <h3>Getting More Serious</h3>
-      <p>By 2022, the Alpha Psi Fake Football League was starting to get a little more serious. The competition was becoming more meaningful and the league was beginning to develop its identity, but there was still serious turnover from season to season. Bailey Coble and Quinton Roof also started the Alpha Sighs Podcast, giving the league another way to bring the brothers together, talk football, and build the league's personality outside of the weekly matchups. New brothers were coming in, others were moving on, and everyone was still figuring out what it meant to build a lasting league while competing for a championship. The rules were evolving quickly too: waiver claims moved to FAAB, the trade deadline moved up from Week 13 to Week 11, and bench spots were reduced from 8 to 7. The playoffs moved to a Week 15 start instead of Week 14. The punishment became the Sexy Calendar, and failing to complete a punishment meant losing your first-round pick and being forced to draft a defense. Trades continued to be voted on, and first-round picks could still be traded. Auto-drafters would lose a pick the following year, while draft position was determined by March Madness brackets. The payout structure also expanded, giving fifth place $60 and sixth place $50, while the winner of the losers bracket received $40 back. The loser of that bracket received S.H.I.T. and the punishment.</p><section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
-      <div class="history-photo-feature-title">2022 FANTASY LOSER</div>
-      <figure>
-        <a href="2022-fantasy-loser-drayton-paxton.jpeg" target="_blank" rel="noopener">
-          <img src="2022-fantasy-loser-drayton-paxton.jpeg" alt="2022 Fantasy loser Drayton Paxton">
-        </a>
-        <figcaption>Fantasy loser 2022 Drayton Paxton</figcaption>
-      </figure>
-    </section>
+      <p>By 2022, the Alpha Psi Fake Football League was starting to get a little more serious. The competition was becoming more meaningful and the league was beginning to develop its identity, but there was still serious turnover from season to season. Bailey Coble and Quinton Roof also started the Alpha Sighs Podcast, giving the league another way to bring the brothers together, talk football, and build the league's personality outside of the weekly matchups. New brothers were coming in, others were moving on, and everyone was still figuring out what it meant to build a lasting league while competing for a championship. The rules were evolving quickly too: waiver claims moved to FAAB, the trade deadline moved up from Week 13 to Week 11, and bench spots were reduced from 8 to 7. The playoffs moved to a Week 15 start instead of Week 14. The punishment became the Sexy Calendar, and failing to complete a punishment meant losing your first-round pick and being forced to draft a defense. Trades continued to be voted on, and first-round picks could still be traded. Auto-drafters would lose a pick the following year, while draft position was determined by March Madness brackets. The payout structure also expanded, giving fifth place $60 and sixth place $50, while the winner of the losers bracket received $40 back. The loser of that bracket received S.H.I.T. and the punishment.</p></section>
 
     <section class="history-photo-feature champion-photo-feature">
       <div class="history-photo-feature-title">2022 CHAMPION</div>
@@ -408,7 +421,17 @@ const render2022=()=>`<section class="history-season-panel history-2022-panel" d
       </figure>
     </section>
 
+    <section class="history-photo-feature champion-photo-feature fantasy-loser-feature">
+      <div class="history-photo-feature-title">2022 FANTASY LOSER</div>
+      <figure>
+        <a href="2022-fantasy-loser-drayton-paxton.jpeg" target="_blank" rel="noopener">
+          <img src="2022-fantasy-loser-drayton-paxton.jpeg" alt="2022 Fantasy loser Drayton Paxton">
+        </a>
+        <figcaption>Fantasy loser 2022 Drayton Paxton</figcaption>
+      </figure>
     </section>
+
+    
 
     ${renderPodium([
       {cls:"second",medal:"2ND",team:"Dirty Mikes And The Boys",manager:"Andrew Blum",label:"2ND PLACE"},
@@ -835,6 +858,7 @@ function members(){
       <div class="member-profile-info">
         <strong>${memberFullNames[name]||name}</strong>
         <div class="member-years">${years}</div>
+        <div class="member-overall-label">OVERALL</div>
         <div class="member-record-large">${record}</div>
       </div>
     </div>`;
@@ -853,6 +877,8 @@ function members(){
 
   const alumniCard=n=>`<article class="member player-profile-card alumni-profile-card alumni-minimal-card">
     <div class="alumni-minimal-name">${memberFullNames[n[0]]||n[0]}</div>
+    <div class="alumni-overall-label">OVERALL</div>
+    <div class="alumni-record">${n[2]}</div>
     ${n[0]==="Grayson"?trophyCase(n[0]):""}
   </article>`;
 

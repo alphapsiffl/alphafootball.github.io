@@ -3236,3 +3236,113 @@ body {
     margin: 16px auto;
   }
 }
+
+
+/* Final championship banner typography refinement */
+.champion-banner .team {
+  white-space: normal !important;
+  width: 100%;
+  max-width: 145px;
+  min-height: 2.18em;
+  margin: 8px auto 5px !important;
+  font-size: 17px !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.1px;
+}
+.champion-banner .team span {
+  display: inline;
+}
+.champion-banner .record {
+  bottom: 13px !important;
+  font-size: 34px !important;
+  line-height: 1 !important;
+  letter-spacing: .2px;
+}
+.champion-banner .record:before {
+  font-size: 13px !important;
+  line-height: 1 !important;
+  letter-spacing: 2px;
+  margin-bottom: 3px;
+}
+@media (max-width: 650px) {
+  .champion-banner .team {
+    max-width: 105px;
+    font-size: 14px !important;
+  }
+  .champion-banner .record {
+    bottom: 10px !important;
+    font-size: 27px !important;
+  }
+  .champion-banner .record:before {
+    font-size: 10px !important;
+  }
+}
+
+
+/* Final member/alumni presentation update */
+.player-profile-card .member-photo-frame {
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+}
+.player-profile-card .member-photo,
+.player-profile-card .member-photo-empty {
+  width: 84px !important;
+  height: 84px !important;
+  flex-basis: 84px !important;
+  border-radius: 50% !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  object-fit: cover;
+}
+.member-years {
+  font-size: 12px !important;
+  line-height: 1.1 !important;
+}
+.member-overall-label,
+.alumni-overall-label {
+  margin-top: 6px;
+  color: #888;
+  font-family: Oswald, Arial, sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  line-height: 1;
+}
+.member-record-large {
+  margin-top: 2px !important;
+}
+.alumni-minimal-card {
+  text-align: center;
+}
+.alumni-minimal-name {
+  margin-bottom: 7px;
+}
+.alumni-record {
+  margin-top: 2px;
+  color: var(--red);
+  font-family: "Roboto Slab", serif;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.05;
+}
+.alumni-minimal-card .trophy-case {
+  margin-top: 10px;
+}
+@media (max-width: 650px) {
+  .player-profile-card .member-photo,
+  .player-profile-card .member-photo-empty {
+    width: 70px !important;
+    height: 70px !important;
+    flex-basis: 70px !important;
+  }
+  .member-years {
+    font-size: 11px !important;
+  }
+  .alumni-record {
+    font-size: 18px;
+  }
+}
