@@ -3238,111 +3238,106 @@ body {
 }
 
 
-/* Final championship banner typography refinement */
-.champion-banner .team {
-  white-space: normal !important;
+/* Papa's All-Psi: honorable mention names/details stack vertically on desktop too. */
+.allpsi-honorable {
+  display: block !important;
+  padding: 4px 0;
+}
+.allpsi-honorable-name,
+.allpsi-honorable-detail {
+  display: block;
   width: 100%;
-  max-width: 145px;
-  min-height: 2.18em;
-  margin: 8px auto 5px !important;
-  font-size: 17px !important;
-  line-height: 1.05 !important;
-  letter-spacing: -0.1px;
 }
-.champion-banner .team span {
-  display: inline;
-}
-.champion-banner .record {
-  bottom: 13px !important;
-  font-size: 34px !important;
-  line-height: 1 !important;
-  letter-spacing: .2px;
-}
-.champion-banner .record:before {
-  font-size: 13px !important;
-  line-height: 1 !important;
-  letter-spacing: 2px;
-  margin-bottom: 3px;
-}
-@media (max-width: 650px) {
-  .champion-banner .team {
-    max-width: 105px;
-    font-size: 14px !important;
-  }
-  .champion-banner .record {
-    bottom: 10px !important;
-    font-size: 27px !important;
-  }
-  .champion-banner .record:before {
-    font-size: 10px !important;
-  }
-}
-
-
-/* Final member/alumni presentation update */
-.player-profile-card .member-photo-frame {
-  padding: 0 !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  border-radius: 50% !important;
-  overflow: hidden !important;
-}
-.player-profile-card .member-photo,
-.player-profile-card .member-photo-empty {
-  width: 84px !important;
-  height: 84px !important;
-  flex-basis: 84px !important;
-  border-radius: 50% !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  object-fit: cover;
-}
-.member-years {
-  font-size: 12px !important;
-  line-height: 1.1 !important;
-}
-.member-overall-label,
-.alumni-overall-label {
-  margin-top: 6px;
-  color: #888;
-  font-family: Oswald, Arial, sans-serif;
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  line-height: 1;
-}
-.member-record-large {
-  margin-top: 2px !important;
-}
-.alumni-minimal-card {
-  text-align: center;
-}
-.alumni-minimal-name {
-  margin-bottom: 7px;
-}
-.alumni-record {
+.allpsi-honorable-detail {
   margin-top: 2px;
-  color: var(--red);
-  font-family: "Roboto Slab", serif;
-  font-size: 20px;
-  font-weight: 900;
-  line-height: 1.05;
 }
-.alumni-minimal-card .trophy-case {
-  margin-top: 10px;
+
+
+/* Championship banners: show the record numbers without the RECORD label. */
+.champion-banner .record:before {
+  content: none !important;
+  display: none !important;
 }
-@media (max-width: 650px) {
-  .player-profile-card .member-photo,
-  .player-profile-card .member-photo-empty {
-    width: 70px !important;
-    height: 70px !important;
-    flex-basis: 70px !important;
+
+
+/* Davis championship banner: give the helmet a larger visual presence. */
+.champion-banner .champion-photo[src="davis-helmet.png"] {
+  width: 82px !important;
+  height: 82px !important;
+  max-width: 82px !important;
+  max-height: 82px !important;
+  margin: 2px auto 5px !important;
+}
+@media (max-width: 600px) {
+  .champion-banner .champion-photo[src="davis-helmet.png"] {
+    width: 34px !important;
+    height: 34px !important;
+    max-width: 34px !important;
+    max-height: 34px !important;
+    margin: 4px auto 3px !important;
   }
-  .member-years {
-    font-size: 11px !important;
+}
+@media (max-width: 390px) {
+  .champion-banner .champion-photo[src="davis-helmet.png"] {
+    width: 30px !important;
+    height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
   }
-  .alumni-record {
-    font-size: 18px;
+}
+
+
+/* Championship banners: slightly larger season/year labels. */
+.champion-banner .year {
+  font-size: 37px !important;
+}
+@media (max-width: 600px) {
+  .champion-banner .year {
+    font-size: 17px !important;
+  }
+}
+@media (max-width: 390px) {
+  .champion-banner .year {
+    font-size: 15px !important;
+  }
+}
+
+
+/* 2025 Overall Statistics */
+.season-overall-stats {
+  max-width: 100%;
+  margin: 28px auto 30px;
+}
+.overall-stats-wrap {
+  overflow-x: auto;
+}
+.overall-stats-table {
+  min-width: 820px;
+}
+.overall-stats-table th,
+.overall-stats-table td {
+  white-space: nowrap;
+  text-align: center;
+  padding: 9px 10px;
+}
+.overall-stats-table th:first-child,
+.overall-stats-table td:first-child {
+  text-align: left;
+  font-weight: 700;
+}
+.overall-stats-table tbody tr:first-child td {
+  border-top: 1px solid #444;
+}
+@media (max-width: 700px) {
+  .season-overall-stats {
+    margin-top: 22px;
+  }
+  .overall-stats-table {
+    min-width: 780px;
+    font-size: 11px;
+  }
+  .overall-stats-table th,
+  .overall-stats-table td {
+    padding: 7px 8px;
   }
 }

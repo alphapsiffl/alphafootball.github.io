@@ -127,7 +127,13 @@ function accoladeBadges(text){
   if(!text) return "Add accolades here";
   if(text === "None") return `<span class="accolade-badge" tabindex="0">None<span class="accolade-tooltip">None</span></span>`;
   const names = Object.keys(accoladeDefinitions).sort((a,b)=>b.length-a.length);
-  const parts = text.split(" • ");
+  const parts = text.split(" • ").filter(part=>{
+    const normalized = part.trim().toLowerCase();
+    return !normalized.includes("championship")
+      && !normalized.includes("gm of the year")
+      && !normalized.includes("cbpoy");
+  });
+  if(!parts.length) return `<span class="accolade-badge" tabindex="0">None<span class="accolade-tooltip">None</span></span>`;
   return parts.map(part=>{
     let matched = names.find(n=>part.toLowerCase().startsWith(n.toLowerCase()+" "));
     if(!matched) matched = names.find(n=>part.toLowerCase()===n.toLowerCase());
@@ -146,18 +152,6 @@ function home(){
   const championMember={
     "2020":"Grayson","2021":"Bailey","2022":"Davis","2023":"Victor B.","2024":"Quinton","2025":"Kameron"
   };
-  const splitBannerTeamName=(name)=>{
-    const words=name.trim().split(/\\s+/);
-    if(words.length<2) return name;
-    let best=1, bestDiff=Infinity;
-    for(let i=1;i<words.length;i++){
-      const a=words.slice(0,i).join(" ");
-      const b=words.slice(i).join(" ");
-      const diff=Math.abs(a.length-b.length);
-      if(diff<bestDiff){bestDiff=diff;best=i;}
-    }
-    return `${words.slice(0,best).join(" ")}<br><span>${words.slice(best).join(" ")}</span>`;
-  };
   const bannerPhoto={
     "2020":"grayson-helmet.png","2021":"bailey-banner.png","2022":"davis-helmet.png",
     "2023":"victor-helmet.png","2024":"quinton-banner.png","2025":"kameron-banner.png"
@@ -166,7 +160,7 @@ function home(){
     <div class="section-title"><span></span><h2>League Champions</h2><span></span></div>
     <div class="banner-row">${champions.map((c,i)=>`<div class="champion-banner champion-banner-link" tabindex="0" role="button" data-member="${championMember[c[0]]}" aria-label="Open ${c[1]}'s member profile" style="--speed:${5.2+i*.35}s;--delay:${i*-.55}s">
       <div class="year">${c[0]}</div>
-      <div class="team">${splitBannerTeamName(c[2])}</div>
+      <div class="team">${c[2]}</div>
       <img class="champion-photo" src="${bannerPhoto[c[0]]}" alt="${c[1]} team image">
       <div class="champ"><strong>${c[1]}</strong></div>
       <div class="record">${c[3]}</div>
@@ -286,8 +280,8 @@ function history(){
           <div class="superlative-stack">
             <div class="superlative-row"><div class="superlative-main"><strong>King Henry's Court</strong><span>Quinton Roof</span></div><b>10</b></div>
             <div class="superlative-row"><div class="superlative-main"><strong>Shambles</strong><span>Bailey Coble</span></div><b>10</b></div>
-            <div class="superlative-row"><div class="superlative-main"><strong>Cocaine Cowboys</strong><span>Jonathan Davis, Jonathan Davis</span></div><b>10</b></div>
-            <div class="superlative-row"><div class="superlative-main"><strong>Ice? Never heard of her</strong><span>Alexander Peachey, Caitlin Peachey</span></div><b>10</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>Cocaine Cowboys</strong><span>Jonathan Davis</span></div><b>10</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>Ice? Never heard of her</strong><span>Alexander Peachey</span></div><b>10</b></div>
           </div>
         </article>
 
@@ -295,8 +289,8 @@ function history(){
           <h4>Longest Win Streak</h4>
           <div class="superlative-stack">
             <div class="superlative-row"><div class="superlative-main"><strong>King Henry's Court</strong><span>Quinton Roof</span></div><b>5</b></div>
-            <div class="superlative-row"><div class="superlative-main"><strong>Cocaine Cowboys</strong><span>Jonathan Davis, Jonathan Davis</span></div><b>5</b></div>
-            <div class="superlative-row"><div class="superlative-main"><strong>My Ball Zach Ertz</strong><span>Victor Barcenas, Victor Barcenas</span></div><b>5</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>Cocaine Cowboys</strong><span>Jonathan Davis</span></div><b>5</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>My Ball Zach Ertz</strong><span>Victor Barcenas</span></div><b>5</b></div>
           </div>
         </article>
 
@@ -310,7 +304,7 @@ function history(){
           <h4>Biggest Blowout</h4>
           <div class="superlative-meta">2024, Week 3</div>
           <div class="superlative-score-row">
-            <div class="superlative-main"><strong>Cocaine Cowboys</strong><span>Jonathan Davis, Jonathan Davis</span></div>
+            <div class="superlative-main"><strong>Cocaine Cowboys</strong><span>Jonathan Davis</span></div>
             <b>167.3</b>
           </div>
           <div class="superlative-score-row secondary">
@@ -330,19 +324,7 @@ function history(){
       <div class="season-foundation-kicker">THE MODERN LEAGUE TAKES SHAPE</div>
       <h3>Becoming What We Know Today</h3>
       <p>2023 was the year the league really started to become what we know today. The current group of brothers was beginning to take shape, and people were investing more of themselves into what we were building. The podcast was growing, giving everyone a chance to get on and talk football and league business together. We also started giving out ices for scoring 0 points, and bench spots were cut from 7 to 6, putting a much tighter limit on roster depth. Most importantly, we introduced a uniform punishment system through the Wheel of Punishments, creating the league tradition that we still use today. Justin Cooper also became our Ice Commissioner, taking charge of the ice tradition that became part of the league.</p>
-<section class="history-photo-feature">
-      <div class="history-photo-feature-title">DRAFT DAY 2023</div>
-      <div class="history-photo-grid">
-        <figure>
-          <a href="2023-draft-day-1.jpeg" target="_blank" rel="noopener"><img src="2023-draft-day-1.jpeg" alt="Draft day 2023"></a>
-          <figcaption>Draft day 2023</figcaption>
-        </figure>
-        <figure>
-          <a href="2023-draft-day-2.jpeg" target="_blank" rel="noopener"><img src="2023-draft-day-2.jpeg" alt="Draft day 2023"></a>
-          <figcaption>Draft day 2023</figcaption>
-        </figure>
-      </div>
-    </section>
+</section>
 <section class="history-photo-feature champion-photo-feature">
       <div class="history-photo-feature-title">2023 CHAMPION</div>
       <figure>
@@ -359,12 +341,23 @@ function history(){
     <figcaption>2023 Fantasy loser Chase Arrington</figcaption>
   </figure>
 </section>
-
-
+<section class="history-photo-feature">
+      <div class="history-photo-feature-title">DRAFT DAY 2023</div>
+      <div class="history-photo-grid">
+        <figure>
+          <a href="2023-draft-day-1.jpeg" target="_blank" rel="noopener"><img src="2023-draft-day-1.jpeg" alt="Draft day 2023"></a>
+          <figcaption>Draft day 2023</figcaption>
+        </figure>
+        <figure>
+          <a href="2023-draft-day-2.jpeg" target="_blank" rel="noopener"><img src="2023-draft-day-2.jpeg" alt="Draft day 2023"></a>
+          <figcaption>Draft day 2023</figcaption>
+        </figure>
+      </div>
     </section>
 
+
     ${renderPodium([
-      {cls:"second",medal:"2ND",team:"Pillsbury Throw-boy",label:"2ND PLACE"},
+      {cls:"second",medal:"2ND",team:"Pillsbury Throw-boy",manager:"Justin Cooper",label:"2ND PLACE"},
       {cls:"first",medal:"1ST",team:"My Ball Zach Ertz",manager:"Victor Barcenas",label:"2023 CHAMPION"},
       {cls:"third",medal:"3RD",team:"El Jeffe's Kitchen",manager:"Braxton Ivey",label:"3RD PLACE"}
     ])}
@@ -378,7 +371,7 @@ function history(){
           <h4>Most Wins</h4>
           <div class="superlative-stack">
             <div class="superlative-row"><div class="superlative-main"><strong>Mean Machine</strong><span>Bailey Coble</span></div><b>10</b></div>
-            <div class="superlative-row"><div class="superlative-main"><strong>My Ball Zach Ertz</strong><span>Victor Barcenas, Victor Barcenas</span></div><b>10</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>My Ball Zach Ertz</strong><span>Victor Barcenas</span></div><b>10</b></div>
           </div>
         </article>
 
@@ -386,7 +379,7 @@ function history(){
           <h4>Longest Win Streak</h4>
           <div class="superlative-stack">
             <div class="superlative-row"><div class="superlative-main"><strong>Mean Machine</strong><span>Bailey Coble</span></div><b>6</b></div>
-            <div class="superlative-row"><div class="superlative-main"><strong>My Ball Zach Ertz</strong><span>Victor Barcenas, Victor Barcenas</span></div><b>6</b></div>
+            <div class="superlative-row"><div class="superlative-main"><strong>My Ball Zach Ertz</strong><span>Victor Barcenas</span></div><b>6</b></div>
           </div>
         </article>
 
@@ -587,7 +580,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
       ${renderPodium([
         {cls:"second",medal:"2ND",team:"Big Maye Energy",manager:"Andrew Blum",label:"2ND PLACE"},
         {cls:"first",medal:"1ST",team:"njigbas in paris",manager:"Kameron Walker",label:"2025 CHAMPION"},
-        {cls:"third",medal:"3RD",team:"Another one bites th...",label:"3RD PLACE"}
+        {cls:"third",medal:"3RD",team:"Another one bites the dust",manager:"Alexander Peachey",label:"3RD PLACE"}
       ])}
 
       <section class="season-moves">
@@ -615,8 +608,8 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
           <article class="superlative-wide">
             <h4>Longest Win Streak</h4>
             <div class="superlative-stack">
-              <div class="superlative-row"><div class="superlative-main"><strong>Half a Chicken Sandwich</strong><span>Jonathan Davis, Jonathan Davis</span></div><b>6</b></div>
-              <div class="superlative-row"><div class="superlative-main"><strong>Schedule Merchants</strong><span>Victor Barcenas, Victor Barcenas</span></div><b>6</b></div>
+              <div class="superlative-row"><div class="superlative-main"><strong>Half a Chicken Sandwich</strong><span>Jonathan Davis</span></div><b>6</b></div>
+              <div class="superlative-row"><div class="superlative-main"><strong>Schedule Merchants</strong><span>Victor Barcenas</span></div><b>6</b></div>
             </div>
           </article>
 
@@ -632,6 +625,40 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
             <div class="superlative-score-row secondary"><div class="superlative-main"><strong>1-01 for nothing</strong><span>Mckinzie Arrington</span></div><b>85.6</b></div>
             <div class="superlative-score-row"><div class="superlative-main"><strong>Big Maye Energy</strong><span>Andrew Blum</span></div><b>196.45</b></div>
           </article>
+        </div>
+      </section>
+
+      <section class="season-overall-stats">
+        <div class="season-section-title">OVERALL LEAGUE STATISTICS</div>
+        <div class="table-wrap overall-stats-wrap">
+          <table class="data-table overall-stats-table">
+            <thead>
+              <tr>
+                <th>Member</th>
+                <th>Avg Rank</th>
+                <th>Best Finish</th>
+                <th>Worst Finish</th>
+                <th>Avg Score</th>
+                <th>Best Score</th>
+                <th>Worst Score</th>
+                <th>Total Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Quinton</td><td>4.6</td><td>1</td><td>11</td><td>134.1</td><td>178.8</td><td>90.4</td><td>1,876.85</td></tr>
+              <tr><td>Mac</td><td>7.6</td><td>1</td><td>12</td><td>115.5</td><td>163.0</td><td>78.3</td><td>1,616.50</td></tr>
+              <tr><td>Bailey</td><td>6.0</td><td>1</td><td>11</td><td>127.5</td><td>159.0</td><td>89.6</td><td>1,784.35</td></tr>
+              <tr><td>Drayton</td><td>7.1</td><td>3</td><td>11</td><td>119.0</td><td>161.5</td><td>64.95</td><td>1,665.40</td></tr>
+              <tr><td>Justin</td><td>9.2</td><td>5</td><td>12</td><td>105.2</td><td>145.6</td><td>77.0</td><td>1,472.90</td></tr>
+              <tr><td>Davis</td><td>6.9</td><td>1</td><td>12</td><td>125.2</td><td>158.1</td><td>99.95</td><td>1,752.25</td></tr>
+              <tr><td>Braxton</td><td>7.9</td><td>3</td><td>12</td><td>115.9</td><td>154.1</td><td>82.9</td><td>1,622.00</td></tr>
+              <tr><td>Grant</td><td>8.5</td><td>2</td><td>12</td><td>112.8</td><td>150.1</td><td>64.05</td><td>1,578.80</td></tr>
+              <tr><td>Kameron</td><td>4.1</td><td>1</td><td>12</td><td>139.9</td><td>169.45</td><td>83.15</td><td>1,957.90</td></tr>
+              <tr><td>Peachey</td><td>6.0</td><td>1</td><td>10</td><td>127.1</td><td>164.5</td><td>96.2</td><td>1,779.65</td></tr>
+              <tr><td>Blum</td><td>4.1</td><td>1</td><td>7</td><td>142.1</td><td>196.45</td><td>114.2</td><td>1,989.75</td></tr>
+              <tr><td>Victor</td><td>6.0</td><td>2</td><td>12</td><td>122.3</td><td>160.6</td><td>74.65</td><td>1,711.95</td></tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -955,7 +982,7 @@ function rulesPage(){
 
 function punishments(){const rows=[["2020–2021","No punishments (boo)","—"],["2022","24 hour Waffle House challenge","Drayton"],["2023","Sexy Calendar","Mac"],["2024","Personal Apology letter","Drayton"],["2025","Beer Mile","Grant"]];return `<h2>Punishments</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Year</th><th>Punishment</th><th>Member</th><th>Media</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[0]==="2022" && r[1]==="24 hour Waffle House challenge" ? `<a href="https://youtu.be/3CWUCo5KeR8?si=_pKSGmxTgEuX6rXW" target="_blank" rel="noopener">Watch Video</a>` : (r[0]==="2023" && r[1]==="Sexy Calendar" ? `<a href="sexy-calendar-punishment.png" target="_blank" rel="noopener">View Image</a>` : `<a href="#" onclick="return false;">Add photo/video link</a>`)}</td></tr>`).join("")}</tbody></table></div><div class="media-box">Media placeholders are ready. Replace the “Add photo/video link” placeholders in the HTML/JS with YouTube, Google Drive, image, or other hosted-media URLs.</div>`}
 
-const pages={home,members,history,records:recordsPage,rules:rulesPage,allpsi:allPsiPage};
+const pages={home,members,history,records:recordsPage,rules:rulesPage,punishments,allpsi:allPsiPage};
 function render(page){
   try{
     if(!pages[page]) page="home";
