@@ -866,7 +866,7 @@ function memberBio(name){
 }
 
 function overallRecordPercent(record){
-  const m=String(record||"").match(/^(\d+)\s*-\s*(\d+)$/);
+  const m=String(record||"").match(/^(\d+)\s*[-–]\s*(\d+)$/);
   if(!m) return record;
   const w=Number(m[1]), l=Number(m[2]), total=w+l;
   const pct=total ? (w/total).toFixed(3) : "0.000";
@@ -934,6 +934,7 @@ function members(){
 const alumniCard=n=>`<article class="member player-profile-card alumni-profile-card alumni-minimal-card">
     <div class="alumni-minimal-name">${memberFullNames[n[0]]||n[0]}</div>
     <div class="alumni-years">${n[1]}</div>
+    ${n[3]?`<div class="founder-badge">FOUNDING MEMBER</div>`:""}
     <div class="alumni-overall-label">OVERALL</div>
     <div class="alumni-record">${alumniRecordPercent(n[2])}</div>
     ${n[0]==="Grayson"?trophyCase(n[0]):""}

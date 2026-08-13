@@ -3865,3 +3865,63 @@ body {
     font-size: 9px !important;
   }
 }
+
+/* Trophy Case: remove cardinal backdrop, retain glass/depth. */
+.player-profile-card .trophy-case {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025) 42%, rgba(0,0,0,.12) 100%),
+    rgba(45,45,48,.72) !important;
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -10px 24px rgba(0,0,0,.12) !important;
+}
+
+/* Trophy Case — wood display frame */
+.player-profile-card .trophy-case {
+  border: 8px solid #6b4327 !important;
+  border-radius: 6px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.025) 42%, rgba(0,0,0,.12) 100%),
+    rgba(45,45,48,.72) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(188,132,72,.55),
+    inset 0 0 0 5px rgba(55,30,15,.45),
+    0 10px 24px rgba(0,0,0,.32) !important;
+  background-clip: padding-box;
+}
+
+.player-profile-card .trophy-case::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 6px;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      8deg,
+      rgba(255,255,255,.035) 0,
+      rgba(255,255,255,.035) 2px,
+      transparent 2px,
+      transparent 9px
+    );
+  mix-blend-mode: screen;
+  opacity: .7;
+}
+
+.player-profile-card .trophy-case::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 7%;
+  right: 7%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(214,160,94,.7), transparent);
+  pointer-events: none;
+}
+
+/* Trophy Case header: no emoji */
+.player-profile-card .trophy-case-title::before {
+  content: none !important;
+  display: none !important;
+}
