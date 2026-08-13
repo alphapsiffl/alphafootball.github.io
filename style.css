@@ -5438,3 +5438,7 @@ img[src="drayton-member.png"] {
 .ice-counter .ice-cube {
   display: none !important;
 }
+
+/* v183 — authoritative History season panel visibility */
+.history-season-panels .history-season-panel { display:none !important; }
+.history-season-panels .history-season-panel.active { display:block !important; }

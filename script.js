@@ -772,7 +772,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
     </div>
     <div class="history-subsection history-subsection-seasons active" data-history-section-panel="seasons">
     <div class="history-season-tabs" role="tablist" aria-label="League History seasons">
-      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}" onclick="showHistorySeason(${y});">${y}</button>`).join("")}
+      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
     </div>
     <div class="history-season-panels">
       ${renderSeason(2025)}
@@ -1131,6 +1131,38 @@ tabs.forEach(t=>t.addEventListener("click",()=>render(t.dataset.page)));
 // Season tabs are rendered dynamically inside #content, so bind them through
 // event delegation instead of inline <script> tags (which do not execute when
 // inserted with innerHTML).
+
+// History season tabs: delegated at document level because History is
+// rendered dynamically into #content.
+document.addEventListener("click", function(event){
+  const tab = event.target.closest && event.target.closest(".history-season-tab");
+  if(!tab) return;
+  const root=document.getElementById("content");
+  if(!root || !root.contains(tab)) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  const season=tab.getAttribute("data-season");
+  root.querySelectorAll(".history-season-tab").forEach(t=>{
+    const active=t===tab;
+    t.classList.toggle("active",active);
+    t.setAttribute("aria-selected",active?"true":"false");
+  });
+
+  root.querySelectorAll(".history-season-panel").forEach(panel=>{
+    const active=panel.getAttribute("data-season")===season;
+    panel.classList.toggle("active",active);
+    if(active){
+      panel.removeAttribute("hidden");
+      panel.style.setProperty("display","block","important");
+    }else{
+      panel.setAttribute("hidden","");
+      panel.style.setProperty("display","none","important");
+    }
+  });
+}, true);
+
 content.addEventListener("click", (event) => {
   const historySubtab = event.target.closest(".history-subtab");
   if (historySubtab && content.contains(historySubtab)) {
