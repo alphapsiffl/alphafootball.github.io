@@ -876,7 +876,7 @@ function members(){
     ["Grant H.","2024–Present",false,"Avenger (’24)","5–23","grant-member-photo.png"],
     ["Kameron","2020–Present",true,"2025 Championship (1x) • Best Name (’23) • CBPOY (’23) • The Falcon Award (’21) • CBPOY (’25) • Marino (’25) • GM of the Year (’25)","47–35","kameron-member.png"],
     ["Braxton","2022–Present",false,"None","29–26","braxton-member.png"],
-    ["Victor B.","2023–Present",false,"Marino (’23, tied with Bailey) • Rookie of the Year (’23)","27–15","victor-member-photo.png"],
+    ["Victor B.","2023–Present",false,"Marino (’23, tied with Bailey)","27–15","victor-member-photo.png"],
     ["Mac","2020–Present",true,"Punching Bag (’25) • Worst Name (’25)","43–39","mac-member.png"],
     ["Drayton","2020–Present",true,"Lame Duck (’21, ’23, ’24) • Avenger (’23) • Punching Bag (’24)","28–54","drayton-member.png"]
   ];

@@ -3505,3 +3505,87 @@ body {
   line-height: 1;
   vertical-align: -1px;
 }
+
+/* FINAL MEMBERS PHOTO FIX: remove every frame/background and make every
+   current-member photo circular, including Victor and Grant H. */
+.player-profile-card .member-photo-frame {
+  width: 96px !important;
+  height: 96px !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  overflow: hidden !important;
+}
+
+.player-profile-card .member-photo {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  object-fit: cover !important;
+}
+
+.player-profile-card .member-photo-empty {
+  background: transparent !important;
+}
+
+@media (max-width: 700px) {
+  .player-profile-card .member-photo-frame {
+    width: 84px !important;
+    height: 84px !important;
+  }
+}
+
+/* Trophy Case: non-championship first letters stay white. */
+.player-profile-card .trophy-item:not(.trophy-championship)::first-letter {
+  color: #ffffff !important;
+}
+
+/* Championship Trophy Case: animated golden glow. */
+@keyframes championshipTrophyGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 8px rgba(201,162,39,.18),
+      0 0 16px rgba(201,162,39,.10),
+      inset 0 0 10px rgba(201,162,39,.05);
+    text-shadow: 0 0 5px rgba(201,162,39,.20);
+  }
+  50% {
+    box-shadow:
+      0 0 14px rgba(201,162,39,.45),
+      0 0 30px rgba(201,162,39,.28),
+      inset 0 0 16px rgba(201,162,39,.12);
+    text-shadow:
+      0 0 7px rgba(201,162,39,.45),
+      0 0 14px rgba(201,162,39,.22);
+  }
+}
+
+.player-profile-card .trophy-item.trophy-championship {
+  animation: championshipTrophyGlow 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .player-profile-card .trophy-item.trophy-championship {
+    animation: none;
+  }
+}
+
+/* Bailey's member photo: match the circular member-photo treatment. */
+.player-profile-card .member-photo-frame img[src*="bailey-champion"],
+.player-profile-card .member-photo[src*="bailey-champion"] {
+  border-radius: 50% !important;
+  clip-path: circle(50% at 50% 50%) !important;
+}
