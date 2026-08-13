@@ -5364,10 +5364,6 @@ img[src="drayton-member.png"] {
   }
 }
 
-/* History season tabs v175 — explicit visibility so the selected season always shows. */
-.history-season-panel[hidden] {
-  display: none !important;
-}
 .history-season-panel:not([hidden]) {
   display: block !important;
 }
@@ -5417,32 +5413,11 @@ img[src="drayton-member.png"] {
   }
 }
 
-/* History seasons v179 — one authoritative visibility rule */
-.history-season-panels .history-season-panel {
-  display: none !important;
-}
-.history-season-panels .history-season-panel.active {
-  display: block !important;
-}
-.history-subsection[data-history-section-panel] {
-  display: none !important;
-}
-.history-subsection[data-history-section-panel].active {
-  display: block !important;
-}
 
-/* v181 cardinal enforcement */
-:root { --alpha-psi-cardinal:#A51C30; --red:#A51C30; --red2:#A51C30; --cardinal:#A51C30; }
 
-/* Ice Counter v182 — remove the decorative clip-art cube behind the supplied ice image */
-.ice-counter .ice-cube {
-  display: none !important;
-}
 
-/* v183 — authoritative History season panel visibility */
-.history-season-panels .history-season-panel { display:none !important; }
-.history-season-panels .history-season-panel.active { display:block !important; }
 
-/* v184 — authoritative History section visibility */
-.history-subsection[data-history-section-panel] { display:none !important; }
-.history-subsection[data-history-section-panel].active { display:block !important; }
+/* History tabs restored to original working behavior */
+.history-season-panel { display:none; animation:historySeasonIn .2s ease both; }
+.history-season-panel.active { display:block; }
+.history-subsection[hidden] { display:none !important; }

@@ -1,55 +1,6 @@
 const content = document.getElementById("content");
 const tabs = [...document.querySelectorAll(".tab")];
 
-function showHistorySection(section){
-  const root=document.getElementById("content");
-  if(!root) return false;
-  root.querySelectorAll(".history-subtab").forEach(tab=>{
-    const active=tab.getAttribute("data-history-section")===section;
-    tab.classList.toggle("active",active);
-    tab.setAttribute("aria-selected",active?"true":"false");
-  });
-  root.querySelectorAll(".history-subsection[data-history-section-panel]").forEach(panel=>{
-    const active=panel.getAttribute("data-history-section-panel")===section;
-    panel.classList.toggle("active",active);
-    if(active){
-      panel.removeAttribute("hidden");
-      panel.style.setProperty("display","block","important");
-    }else{
-      panel.setAttribute("hidden","");
-      panel.style.setProperty("display","none","important");
-    }
-  });
-  return true;
-}
-window.showHistorySection=showHistorySection;
-
-function showHistorySeason(season){
-  const root=document.getElementById("content");
-  if(!root) return false;
-  const tabs=root.querySelectorAll(".history-season-tab");
-  const panels=root.querySelectorAll(".history-season-panel");
-  tabs.forEach(t=>{
-    const active=t.getAttribute("data-season")===String(season);
-    t.classList.toggle("active",active);
-    t.setAttribute("aria-selected",active?"true":"false");
-  });
-  panels.forEach(p=>{
-    const active=p.getAttribute("data-season")===String(season);
-    p.classList.toggle("active",active);
-    if(active){
-      p.removeAttribute("hidden");
-      p.style.setProperty("display","block","important");
-    }else{
-      p.setAttribute("hidden","");
-      p.style.setProperty("display","none","important");
-    }
-  });
-  return true;
-}
-window.showHistorySeason=showHistorySeason;
-
-
 const records = [
 ["Lowest score for one week","52.8","Grant A., Week 11, 2020"],
 ["Most points in a season","2115.55","Bailey Coble, 2023"],
@@ -784,9 +735,9 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
   return `<h2>League History</h2>
     <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
     <div class="history-subtabs" role="tablist" aria-label="History sections">
-      <button class="history-subtab active" type="button" role="tab" aria-selected="true" data-history-section="seasons" onclick="showHistorySection('seasons');">Seasons</button>
-      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="allpsi" onclick="showHistorySection('allpsi');">Papa’s All-Psi</button>
-      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="punishments" onclick="showHistorySection('punishments');">Punishments</button>
+      <button class="history-subtab active" type="button" role="tab" aria-selected="true" data-history-section="seasons">Seasons</button>
+      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="allpsi">Papa’s All-Psi</button>
+      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="punishments">Punishments</button>
     </div>
     <div class="history-logo-card">
       <div class="history-label">ORIGINAL LEAGUE LOGO</div>
@@ -1156,37 +1107,6 @@ tabs.forEach(t=>t.addEventListener("click",()=>render(t.dataset.page)));
 // event delegation instead of inline <script> tags (which do not execute when
 // inserted with innerHTML).
 
-// History season tabs: delegated at document level because History is
-// rendered dynamically into #content.
-document.addEventListener("click", function(event){
-  const tab = event.target.closest && event.target.closest(".history-season-tab");
-  if(!tab) return;
-  const root=document.getElementById("content");
-  if(!root || !root.contains(tab)) return;
-
-  event.preventDefault();
-  event.stopPropagation();
-
-  const season=tab.getAttribute("data-season");
-  root.querySelectorAll(".history-season-tab").forEach(t=>{
-    const active=t===tab;
-    t.classList.toggle("active",active);
-    t.setAttribute("aria-selected",active?"true":"false");
-  });
-
-  root.querySelectorAll(".history-season-panel").forEach(panel=>{
-    const active=panel.getAttribute("data-season")===season;
-    panel.classList.toggle("active",active);
-    if(active){
-      panel.removeAttribute("hidden");
-      panel.style.setProperty("display","block","important");
-    }else{
-      panel.setAttribute("hidden","");
-      panel.style.setProperty("display","none","important");
-    }
-  });
-}, true);
-
 content.addEventListener("click", (event) => {
   const historySubtab = event.target.closest(".history-subtab");
   if (historySubtab && content.contains(historySubtab)) {
@@ -1204,7 +1124,25 @@ content.addEventListener("click", (event) => {
     return;
   }
 
+  const tab = event.target.closest(".history-season-tab, .allpsi-season-tab, .rules-season-tab");
+  if (!tab || !content.contains(tab)) return;
+
+  const isHistory = tab.classList.contains("history-season-tab");
+  const isRules = tab.classList.contains("rules-season-tab");
+  const tabSelector = isHistory ? ".history-season-tab" : (isRules ? ".rules-season-tab" : ".allpsi-season-tab");
+  const panelSelector = isHistory ? ".history-season-panel" : (isRules ? ".rules-season-panel" : ".allpsi-season-panel");
+  const season = tab.dataset.season;
+
+  content.querySelectorAll(tabSelector).forEach(t => {
+    const active = t === tab;
+    t.classList.toggle("active", active);
+    t.setAttribute("aria-selected", active ? "true" : "false");
+  });
+  content.querySelectorAll(panelSelector).forEach(panel => {
+    panel.classList.toggle("active", panel.dataset.season === season);
+  });
 });
+
 
 
 function bindChampionLinks(){
