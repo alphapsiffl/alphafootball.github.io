@@ -3660,3 +3660,60 @@ body {
     font-weight: 900 !important;
   }
 }
+
+/* Mobile championship banner records */
+@media (max-width: 900px) {
+  .champion-banner .record {
+    font-size: 16px !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .champion-banner img[src*="davis-helmet"] {
+    transform: translateY(5px) !important;
+  }
+  .champion-banner img[src*="grayson-helmet"] {
+    transform: translateY(5px) !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .champion-banner img[src*="quinton-helmet"] {
+    transform: translateY(5px) !important;
+  }
+}
+
+@media (min-width: 701px) {
+  .player-profile-card:has(img[src*="peachey-member"]) .member-profile-info strong {
+    font-size: 18px !important;
+  }
+}
+
+/* Members: smaller OVERALL label */
+@media (min-width: 701px) {
+  .member-card .overall-caption,
+  .member-card .member-overall-label,
+  .member-card .overall,
+  .player-profile-card .member-overall-label {
+    font-size: 6px !important;
+  }
+}
+@media (max-width: 700px) {
+  .member-card .overall-caption,
+  .member-card .member-overall-label,
+  .member-card .overall,
+  .player-profile-card .member-overall-label {
+    font-size: 5px !important;
+  }
+}
+
+/* Alumni overall records: match current-member cardinal styling. */
+.alumni-profile-card .alumni-record {
+  color: var(--cardinal) !important;
+}
+
+/* History season subheading: gold Season + number, 18px. */
+.season-subheading {
+  color: var(--gold) !important;
+  font-size: 18px !important;
+}

@@ -2,14 +2,14 @@ const content = document.getElementById("content");
 const tabs = [...document.querySelectorAll(".tab")];
 
 const records = [
-["Lowest score for one week","52.8","Grant A., Week 11, 2020"],["Lowest score for one week","56.7","Mac, Week 2, 2024"],
+["Lowest score for one week","52.8","Grant Alexander, Week 11, 2020"],["Lowest score for one week","56.7","Mac, Week 2, 2024"],
 ["Most points in a season","2115.55","Bailey Coble, 2023"],["Most points in a season","2087.7","Andrew Blum, 2021"],
 ["Least points in a season","1334.45","Peachey, 2020"],["Highest point average","151.1","Bailey Coble, 2023"],["Highest point average","149.1","Andrew Blum, 2021"],
 ["Most PA ever","1968.45","Drayton, 2020 and 2024"],["Lowest point average","102.7","Peachey, 2020"],
 ["Biggest blowout","254–117.15","Davis vs Kam, Week 12, 2020"],
 ["Most moves in a season","65","Quinton, 2023"],["Most POTWs in a season","8","Bailey Coble, 2023"],["Most POTWs in a season","6","Kam, 2025"],["Most POTWs in a season","6","Quinton, 2024"],["Most POTWs in a season","6","Blum, 2022"],
 ["Longest win streak","7","Bailey, 2021"],["Longest losing streak","9","Grant, 2024"],["Longest losing streak","8","Justin, 2025"],["Longest losing streak","8","Drayton, 2024"],["Longest losing streak","6","Davis, 2023 — Scored second most points and missed offs"],
-["Most trades in a season","19","Blake Jackson, 2023"],["Most ices in a season","9","Chase, 2025"],["Most ices in a season","6","Kameron, 2024"],["Least ices in a season","1","Braxton, 2024"],["Least ices in a season","1","Blum, 2025"],
+["Most trades in a season","19","Blake Jackson Jackson, 2023"],["Most ices in a season","9","Chase, 2025"],["Most ices in a season","6","Kameron, 2024"],["Least ices in a season","1","Braxton, 2024"],["Least ices in a season","1","Blum, 2025"],
 ["Worst loss","—","Victor losing to Mac when he had three players score 0, Week 7, 2025"]
 ];
 const recordPhotos = {
@@ -91,7 +91,7 @@ const rules = {
 2024:["If a trade is made with a player that plays on that same day, the trade gets pushed through the same day you have to wait 1 hour.","QB points stay the same at 0.05 for yards and 5 points for TD.","1 point for 4th down stop.","The punishment is decided by a wheel.","You lose waiver wire privileges for no ice until it's paid.","Defenses count in ices still.","Schedule is set manually by me; you play each team once (11 games) and for the last three you play one game against your draft class (or closet) and the other two are rivalry games set up by your rankings. Nobody will play three times if set up manually.","Loser does shot for losing rivalry game.","Draft is done by march madness, unless someone gets a celebrity or coach to pick."],
 2023:["Week 11 stays as trade deadline","Ice punishment for player scoring 0 or below","Divisions will get randomized every year","Bench spot dropped from 7 to 6","Wheel of Punishments will include: Fully clothed shower; I suck at fantasy football sticker on car; Bedroom poster of leagues choosing; Polar Plunge; Hot Wing Podcast (Youtube); Comedy Set for League; Beer Mile; Apologize to each member of league with personal letter (Almost Unanimous)","Winner of consolation bracket gets $40"],
 2022:["Waiver Claims are now FAAB","Trade Deadline moved up from week 13 to week 11","Bench Spots went from 8 to 7","Playoffs start week 15 instead of week 14","The punishment is now sexy calendar","Not doing punishment results in lost of first round pick (Have to pick defense)","Trades are still voted on and any first round pick can be traded","Auto Drafters get lost pick the next year","Draft slot is determined by March madness brackets","Expand Payout to 5th (60) and 6th (50) get some money back and winner of losers bracket gets back (40) and loser of bracket gets S.H.I.T. and punishment"],
-2021:["Second Flex added and kicker position removed","First round picks no longer allowed to be traded (Grayson rule)","Playoffs expanded to 6 teams with the top two from each division getting a bye","First round picks can be traded (with stipulations)","Top four split cash with #4 getting money back"]
+2021:["Second Flex added and kicker position removed","First round picks no longer allowed to be traded (Grayson Maxfield rule)","Playoffs expanded to 6 teams with the top two from each division getting a bye","First round picks can be traded (with stipulations)","Top four split cash with #4 getting money back"]
 };
 
 
@@ -100,7 +100,7 @@ const rules = {
 
 const allPsi = {
 2023:{main:[
-["QB","Drayton","Allen and $100 Derek Carr"],["RB","Bailey","K. Williams, Barkley, Kamara, R. White"],["WR","Davis","AJ Brown, Amon-Ra, Olave, Waddle"],["TE","Blake","LaPorta and Ferguson"],["FLEX","Braxton","Diggs, J. Cook, Jacobs, etc."],["DEFENSE","Victor","Browns"]],hm:[["QB","Quinton","Hurts, Murray, Burrow, Herbert"],["RB","Kameron","Henry, Mostert, and Stevenson"],["WR","Victor","Allen, Evans, Collins, London"],["TE","Peachey","Hockenson and Hill"],["Defense","Bailey","Cowboys were crazy lol"]]},
+["QB","Drayton","Allen and $100 Derek Carr"],["RB","Bailey","K. Williams, Barkley, Kamara, R. White"],["WR","Davis","AJ Brown, Amon-Ra, Olave, Waddle"],["TE","Blake Jackson","LaPorta and Ferguson"],["FLEX","Braxton","Diggs, J. Cook, Jacobs, etc."],["DEFENSE","Victor","Browns"]],hm:[["QB","Quinton","Hurts, Murray, Burrow, Herbert"],["RB","Kameron","Henry, Mostert, and Stevenson"],["WR","Victor","Allen, Evans, Collins, London"],["TE","Peachey","Hockenson and Hill"],["Defense","Bailey","Cowboys were crazy lol"]]},
 2024:{main:[["QB","Quinton","Josh Allen, Baker Mayfield"],["RB","Davis","Gibbs, Achane, McCaffery, Pacheco"],["WR","Quinton","Justin Jefferson, Amon-Ra St. Brown"],["TE","Bailey","Bowers, Cade Otton"],["FLEX","Braxton","BRob, Mike Evans"],["DEFENSE","Davis","Minnesota, Philadelphia"]],hm:[["QB","Peachey","Jackson, Herbert"],["RB","Blum","Kyren, Barkley, Tracy"],["WR","Davis","Chase, Wilson, JSN"],["TE","Davis","Jonnu, NJoku"],["Flex","Peachey","Adams, Shakir, Higgins"],["Defense","Braxton","Baltimore, Houston"]]},
 2025:{main:[["QB","Blum","Josh Allen and Drake Maye"],["RB","Kam","Bijan Robinson, Kyren Williams, and Rico Dowdle"],["WR","Peachey","Puka Nacua, Amon-Ra St. Brown, and DK Metcalf"],["TE","Kam","Brock Bowers, Harold Fannin, and Colston Loveland"],["FLEX","Quinton","Justin Jefferson and Terry McLaurin"],["Defense","Peachey","Seahawks"]],hm:[["QB","Quinton","Hurts and Daniels"],["RB","Blum","Jahmyr Gibbs, Chase Brown, Kenneth Gainwell"],["WR","Quinton","Ja’Marr Chase, AJ Brown, Justin Jefferson, and Terry McLaurin"],["TE","Peachey","Dalton Schultz and Jake Ferguson"],["Flex","Mac","Ladd McConkey and Jakobi Meyers"],["Defense","Grant","Texans"]]}
 };
@@ -145,12 +145,12 @@ function accoladeBadges(text){
 }
 
 const champions = [
-["2020","Grayson Maxfield","Bitchin’ Baker Beards","8–5"],["2021","Bailey Coble","Kareem Pie","9–5"],["2022","Jonathan Davis","Make it Hurts so Good","8–5"],["2023","Victor Barcenas","My Ball Zach Ertz","10–4"],["2024","Quinton Roof","King Henry’s Court","10–4"],["2025","Kameron Walker","Njigbas in Paris","8–6"]
+["2020","Grayson Maxfield Maxfield","Bitchin’ Baker Beards","8–5"],["2021","Bailey Coble","Kareem Pie","9–5"],["2022","Jonathan Davis","Make it Hurts so Good","8–5"],["2023","Victor Barcenas","My Ball Zach Ertz","10–4"],["2024","Quinton Roof","King Henry’s Court","10–4"],["2025","Kameron Walker","Njigbas in Paris","8–6"]
 ];
 
 function home(){
   const championMember={
-    "2020":"Grayson","2021":"Bailey","2022":"Davis","2023":"Victor B.","2024":"Quinton","2025":"Kameron"
+    "2020":"Grayson Maxfield","2021":"Bailey","2022":"Davis","2023":"Victor B.","2024":"Quinton","2025":"Kameron"
   };
   const bannerPhoto={
     "2020":"grayson-helmet.png","2021":"bailey-banner.png","2022":"davis-helmet.png",
@@ -362,7 +362,7 @@ function history(){
       {cls:"third",medal:"3RD",team:"El Jeffe's Kitchen",manager:"Braxton Ivey",label:"3RD PLACE"}
     ])}
 
-    ${renderMoves(["Justin Cooper","Victor Barcenas"],["Blake Jackson"])}
+    ${renderMoves(["Justin Cooper","Victor Barcenas"],["Blake Jackson Jackson"])}
 
     <section class="season-superlatives">
       <div class="season-section-title">SUPERLATIVES</div>
@@ -432,7 +432,7 @@ const render2022=()=>`<section class="history-season-panel history-2022-panel" d
       {cls:"third",medal:"3RD",team:"Deshaun Watsons Happy Endings",manager:"Alexander Peachey",label:"3RD PLACE"}
     ])}
 
-    ${renderMoves(["Blake Jackson","Braxton Ivey"],["Tyler Marmo","Corey Steele"])}
+    ${renderMoves(["Blake Jackson Jackson","Braxton Ivey"],["Tyler Tyler Marmo","Corey Steele Steele"])}
 
     <section class="season-superlatives">
       <div class="season-section-title">SUPERLATIVES</div>
@@ -482,9 +482,9 @@ const render2021=()=>`<section class="history-season-panel history-2021-panel" d
       <div class="history-photo-feature-title">2021 FANTASY LOSER</div>
       <figure>
         <a href="2021-fantasy-loser-marmo.jpeg" target="_blank" rel="noopener">
-          <img src="2021-fantasy-loser-marmo.jpeg" alt="2021 fantasy loser Marmo">
+          <img src="2021-fantasy-loser-marmo.jpeg" alt="2021 fantasy loser Tyler Marmo">
         </a>
-        <figcaption>2021 Fantasy loser Marmo</figcaption>
+        <figcaption>2021 Fantasy loser Tyler Marmo</figcaption>
       </figure>
     </section>
 
@@ -503,23 +503,23 @@ const render2021=()=>`<section class="history-season-panel history-2021-panel" d
 
     </section>
     ${renderPodium([
-      {cls:"second",medal:"2ND",team:"Josh Allen's Boxers",manager:"Ty Katz",label:"2ND PLACE"},
+      {cls:"second",medal:"2ND",team:"Josh Allen's Boxers",manager:"Ty Katz Katz",label:"2ND PLACE"},
       {cls:"first",medal:"1ST",team:"Kareem Pie",manager:"Bailey Coble",label:"2021 CHAMPION"},
-      {cls:"third",medal:"3RD",team:"Grayson Sucks",manager:"Andrew Blum",label:"3RD PLACE"}
+      {cls:"third",medal:"3RD",team:"Grayson Maxfield Sucks",manager:"Andrew Blum",label:"3RD PLACE"}
     ])}
-    ${renderMoves(["Marmo","Cal"],["Ty","Cal"])}
+    ${renderMoves(["Marmo","Cal McMeekin"],["Ty","Cal McMeekin"])}
     <section class="season-superlatives">
       <div class="season-section-title">SUPERLATIVES</div>
       <div class="superlative-grid">
         <article class="superlative-wide"><h4>Most Wins</h4><div class="superlative-stack">
           <div class="superlative-row"><div class="superlative-main"><strong>Kareem Pie</strong><span>Bailey Coble</span></div><b>9</b></div>
           <div class="superlative-row"><div class="superlative-main"><strong>You Make Me Gesicki</strong><span>Jonathan Davis</span></div><b>9</b></div>
-          <div class="superlative-row"><div class="superlative-main"><strong>Josh Allen's Boxers</strong><span>Ty Katz</span></div><b>9</b></div>
-          <div class="superlative-row"><div class="superlative-main"><strong>Grayson Sucks</strong><span>Andrew Blum</span></div><b>9</b></div>
+          <div class="superlative-row"><div class="superlative-main"><strong>Josh Allen's Boxers</strong><span>Ty Katz Katz</span></div><b>9</b></div>
+          <div class="superlative-row"><div class="superlative-main"><strong>Grayson Maxfield Sucks</strong><span>Andrew Blum</span></div><b>9</b></div>
         </div></article>
         <article><h4>Longest Win Streak</h4><div class="superlative-main"><strong>Kareem Pie</strong><span>Bailey Coble</span></div><b>8</b></article>
-        <article><h4>Longest Losing Streak</h4><div class="superlative-main"><strong>JulioJones Hamstring</strong><span>Tyler Marmo</span></div><b>10</b></article>
-        <article class="superlative-blowout"><h4>Biggest Blowout</h4><div class="superlative-meta">2021, Week 8</div><div class="superlative-score-row"><div class="superlative-main"><strong>Team McOuchMyCalfrey</strong><span>Corey Steele</span></div><b>107.35</b></div><div class="superlative-score-row"><div class="superlative-main"><strong>Grayson Sucks</strong><span>Andrew Blum</span></div><b>181.65</b></div></article>
+        <article><h4>Longest Losing Streak</h4><div class="superlative-main"><strong>JulioJones Hamstring</strong><span>Tyler Tyler Marmo</span></div><b>10</b></article>
+        <article class="superlative-blowout"><h4>Biggest Blowout</h4><div class="superlative-meta">2021, Week 8</div><div class="superlative-score-row"><div class="superlative-main"><strong>Team McOuchMyCalfrey</strong><span>Corey Steele Steele</span></div><b>107.35</b></div><div class="superlative-score-row"><div class="superlative-main"><strong>Grayson Maxfield Sucks</strong><span>Andrew Blum</span></div><b>181.65</b></div></article>
       </div>
     </section>
   </section>`;
@@ -529,26 +529,26 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
     <section class="season-foundation">
       <div class="season-foundation-kicker">THE INAUGURAL SEASON</div>
       <h3>Where It All Began</h3>
-      <p>2020 was the founding year of the Alpha Psi Fake Football League. The league was built around a simple idea: Alpha Psi brothers getting together, having fun, and competing in fantasy football. Twelve brothers took part in the inaugural season, establishing the league and the traditions that would carry it forward. Grayson Maxfield won the first championship with the Bitchin’ Baker Beards, becoming the league’s inaugural champion. After the season, Grayson left the league and never returned, making his championship the only season he played in Alpha Psi FFL.</p>
+      <p>2020 was the founding year of the Alpha Psi Fake Football League. The league was built around a simple idea: Alpha Psi brothers getting together, having fun, and competing in fantasy football. Twelve brothers took part in the inaugural season, establishing the league and the traditions that would carry it forward. Grayson Maxfield Maxfield won the first championship with the Bitchin’ Baker Beards, becoming the league’s inaugural champion. After the season, Grayson Maxfield left the league and never returned, making his championship the only season he played in Alpha Psi FFL.</p>
     </section>
     ${renderPodium([
       {cls:"second",medal:"2ND",team:"Baby Shark",manager:"Jonathan Davis",label:"2ND PLACE"},
-      {cls:"first",medal:"1ST",team:"Bitchin’ Baker Beards",manager:"Grayson Maxfield",label:"2020 CHAMPION"},
+      {cls:"first",medal:"1ST",team:"Bitchin’ Baker Beards",manager:"Grayson Maxfield Maxfield",label:"2020 CHAMPION"},
       {cls:"third",medal:"3RD",team:"Party City Drinking Problem",manager:"Drayton Paxton",label:"3RD PLACE"}
     ])}
     <section class="season-members-2020">
       <div class="season-section-title">THE 12 BROTHERS OF 2020</div>
       <div class="founding-member-list">
-        ${["Quinton Roof","Bailey Coble","Jonathan Davis","Andrew Blum","Alexander Peachey","Kameron Walker","Chase Arrington","Drayton Paxton","Grayson Maxfield","Corey Steele","Ty","Grant A."].map((n,i)=>`<div class="founding-member-item"><span>${String(i+1).padStart(2,"0")}</span><strong>${n}</strong></div>`).join("")}
+        ${["Quinton Roof","Bailey Coble","Jonathan Davis","Andrew Blum","Alexander Peachey","Kameron Walker","Chase Arrington","Drayton Paxton","Grayson Maxfield Maxfield","Corey Steele Steele","Ty Katz","Grant Alexander"].map((n,i)=>`<div class="founding-member-item"><span>${String(i+1).padStart(2,"0")}</span><strong>${n}</strong></div>`).join("")}
       </div>
     </section>
-    ${renderMoves([],["Grayson Maxfield","Grant A."])}
+    ${renderMoves([],["Grayson Maxfield Maxfield","Grant Alexander"])}
     <section class="season-superlatives">
       <div class="season-section-title">SUPERLATIVES</div>
       <div class="superlative-grid">
         <article><h4>Most Wins</h4><div class="superlative-main"><strong>Baby Shark</strong><span>Jonathan Davis</span></div><b>9</b></article>
         <article><h4>Longest Win Streak</h4><div class="superlative-main"><strong>Team Walker</strong><span>Kameron Walker</span></div><b>5</b></article>
-        <article><h4>Longest Losing Streak</h4><div class="superlative-main"><strong>Team Weenie Hut Jr</strong><span>Corey Steele</span></div><b>6</b></article>
+        <article><h4>Longest Losing Streak</h4><div class="superlative-main"><strong>Team Weenie Hut Jr</strong><span>Corey Steele Steele</span></div><b>6</b></article>
         <article class="superlative-blowout"><h4>Biggest Blowout</h4><div class="superlative-meta">2020, Week 12</div><div class="superlative-score-row"><div class="superlative-main"><strong>Baby Shark</strong><span>Jonathan Davis</span></div><b>254</b></div><div class="superlative-score-row secondary"><div class="superlative-main"><strong>Team Walker</strong><span>Kameron Walker</span></div><b>117.15</b></div></article>
       </div>
     </section>
@@ -803,7 +803,14 @@ function allPsiPage(){
       })();
     </script>`;
 }
-const memberFullNames = {"Quinton": "Quinton Roof", "Bailey": "Bailey Coble", "Davis": "Jonathan Davis", "Blum": "Andrew Blum", "Peachey": "Alexander Peachey", "Justin": "Justin Cooper", "Grant H.": "Grant Harris", "Kameron": "Kameron Walker", "Braxton": "Braxton Ivey", "Victor B.": "Victor Barcenas", "Mac": "Chase Arrington", "Drayton": "Drayton Paxton"};
+const memberFullNames = {"Quinton": "Quinton Roof", "Bailey": "Bailey Coble", "Davis": "Jonathan Davis", "Blum": "Andrew Blum", "Peachey": "Alexander Peachey", "Justin": "Justin Cooper", "Grant H.": "Grant Harris", "Kameron": "Kameron Walker", "Braxton": "Braxton Ivey", "Victor B.": "Victor Barcenas", "Mac": "Chase Arrington", "Drayton": "Drayton Paxton"},
+  "Blake": "Blake Jackson Jackson",
+  "Grayson": "Grayson Maxfield Maxfield",
+  "Corey": "Corey Steele Steele",
+  "Marmo": "Tyler Tyler Marmo",
+  "Ty": "Ty Katz Katz",
+  "Grant A.": "Grant Alexander",
+  "Cal": "Cal McMeekin McMeekin";
 
 function trophyCase(name){
   const trophies={
@@ -865,6 +872,14 @@ function memberBio(name){
   return `<div class="member-bio"><div class="member-bio-title">BIO</div><div class="member-bio-placeholder">${bio || "Add bio here."}</div></div>`;
 }
 
+function overallRecordPercent(record){
+  const m=String(record||"").match(/^(\d+)\s*-\s*(\d+)$/);
+  if(!m) return record;
+  const w=Number(m[1]), l=Number(m[2]), total=w+l;
+  const pct=total ? (w/total).toFixed(3) : "0.000";
+  return `${record} (${pct})`;
+}
+
 function members(){
   const current=[
     ["Quinton","2020–Present",true,"Worse Name (’23) • 2024 Championship • GM of the Year (’24) • CBPOY (’24) • Falcon (’25)","39–43","quinton-member.png"],
@@ -899,7 +914,7 @@ function members(){
         <strong>${memberFullNames[name]||name}</strong>
         <div class="member-years">${years}</div>
         <div class="member-overall-label">OVERALL</div>
-        <div class="member-record-large">${record}</div>
+        <div class="member-record-large">${overallRecordPercent(record)}</div>
       </div>
     </div>`;
 
@@ -915,11 +930,20 @@ function members(){
     </article>`;
   };
 
-  const alumniCard=n=>`<article class="member player-profile-card alumni-profile-card alumni-minimal-card">
+  function alumniRecordPercent(record){
+  const m=String(record||"").match(/^(\d+)\s*-\s*(\d+)$/);
+  if(!m) return record;
+  const w=Number(m[1]), l=Number(m[2]), total=w+l;
+  const pct=total ? (w/total).toFixed(3) : "0.000";
+  return `${record} (${pct})`;
+}
+
+const alumniCard=n=>`<article class="member player-profile-card alumni-profile-card alumni-minimal-card">
     <div class="alumni-minimal-name">${memberFullNames[n[0]]||n[0]}</div>
+    <div class="alumni-years">${n[1]}</div>
     <div class="alumni-overall-label">OVERALL</div>
-    <div class="alumni-record">${n[2]}</div>
-    ${n[0]==="Grayson"?trophyCase(n[0]):""}
+    <div class="alumni-record">${alumniRecordPercent(n[2])}</div>
+    ${n[0]==="Grayson Maxfield"?trophyCase(n[0]):""}
   </article>`;
 
   return `<h2>Members</h2>
@@ -998,7 +1022,7 @@ function punishments(){
     ["2020–2021","No punishments (boo)","—",null],
     ["2022","24 hour Waffle House challenge","Drayton","https://youtu.be/3CWUCo5KeR8?si=_pKSGmxTgEuX6rXW"],
     ["2023","Sexy Calendar","Mac","sexy-calendar-punishment.png"],
-    ["2024","Personal Apology letter","Drayton",null],
+    ["2024","Personal Apology Letter","Drayton",`<a class="archive-document" href="2024-punishment-apology.jpeg" target="_blank" rel="noopener">Personal Apology Letter</a>`],
     ["2025","Beer Mile","Grant",null]
   ];
   return `<h2>Punishments</h2>
