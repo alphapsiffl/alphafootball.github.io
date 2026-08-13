@@ -177,7 +177,7 @@ function home(){
       <div class="record">${c[3]}</div>
     </div>`).join("")}</div>
 
-    <div class="ice-counter" aria-label="All-time Ice counter">
+    <div class="ice-counter" aria-label="All-time Ice counter"><div class="ice-cube" aria-hidden="true"></div>
       <div class="ice-counter-label">${iceCounter.label}</div>
       <div class="ice-counter-number">${iceCounter.total}</div>
       <div class="ice-counter-subtitle">FANTASY PLAYERS SCORING 0 POINTS</div>
@@ -582,17 +582,36 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
         <div class="season-foundation-kicker">THE LEAGUE ENTERS A NEW ERA</div>
         <h3>Same Brothers. New Season.</h3>
         <p>2025 marked the first year in Alpha Psi Fake Football League history that we rolled over the exact same group of brothers from one season to the next. No one was added and no one was lost. After years of turnover and building the league piece by piece, having the same group return together was a major milestone. With the foundation finally settled, we are more excited than ever about the future of the league and what this group can continue to build together.</p>
-    <section class="history-photo-feature champion-photo-feature">
-      <div class="history-photo-feature-title">2025 CHAMPION</div>
-      <figure>
-        <a href="2025-champion-kameron-walker.jpeg" target="_blank" rel="noopener">
-          <img src="2025-champion-kameron-walker.jpeg" alt="2025 Champion Kameron Walker">
-        </a>
-        <figcaption>2025 Champion Kameron Walker</figcaption>
-      </figure>
-    </section>
-
+    <div class="history-2025-pyramid">
+      <section class="history-photo-feature champion-photo-feature history-2025-champion">
+        <div class="history-photo-feature-title">2025 CHAMPION</div>
+        <figure>
+          <a href="2025-champion-kameron-walker.jpeg" target="_blank" rel="noopener">
+            <img src="2025-champion-kameron-walker.jpeg" alt="2025 Champion Kameron Walker">
+          </a>
+          <figcaption>2025 Champion Kameron Walker</figcaption>
+        </figure>
       </section>
+
+      <section class="history-photo-feature fantasy-loser-feature history-photo-placeholder history-2025-loser">
+        <div class="history-photo-feature-title">2025 FANTASY LOSER</div>
+        <div class="history-photo-placeholder-inner">
+          <div class="placeholder-icon">?</div>
+          <strong>PHOTO COMING SOON</strong>
+          <span>2025 Fantasy Loser</span>
+        </div>
+      </section>
+
+      <section class="history-photo-feature recap-photo-feature history-2025-recap">
+        <div class="history-photo-feature-title">2025 RECAP</div>
+        <figure>
+          <a href="2025-recap-magazine.jpeg" target="_blank" rel="noopener">
+            <img src="2025-recap-magazine.jpeg" alt="2025 Recap Magazine">
+          </a>
+          <figcaption><a href="https://www.canva.com/design/DAG8kAhyKpE/ndo47mytn-qa9oJJB3TlqQ/view?utm_content=DAG8kAhyKpE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h46c1636b26#25" target="_blank" rel="noopener">Recap Magazine</a></figcaption>
+        </figure>
+      </section>
+    </div>
 
       ${renderPodium([
         {cls:"second",medal:"2ND",team:"Big Maye Energy",manager:"Andrew Blum",label:"2ND PLACE"},
@@ -845,7 +864,7 @@ function trophyCase(name){
     "Cal":[]
   };
   const items=trophies[name]||[];
-  return `<div class="trophy-case"><div class="trophy-top-lights" aria-hidden="true"></div><div class="trophy-case-title">TROPHY CASE</div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item${/championship/i.test(x)?" trophy-championship":""}">${x}${/championship/i.test(x)?' <span class="trophy-icon" aria-hidden="true">🏆</span>':""}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div>`;
+  return `<div class="trophy-case"><div class="trophy-top-lights" aria-hidden="true"></div><div class="trophy-cabinet-plaque" aria-hidden="true">ALPHA PSI TROPHY CASE</div><div class="trophy-case-title">TROPHY CASE</div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item${/championship/i.test(x)?" trophy-championship":""}">${x}${/championship/i.test(x)?' <span class="trophy-icon" aria-hidden="true">🏆</span>':""}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div>`;
 }
 
 function careerSnapshot(name){

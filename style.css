@@ -4453,3 +4453,591 @@ body {
 .player-profile-card .trophy-case .trophy-top-lights {
   z-index: 4 !important;
 }
+
+/* =========================================================
+   Trophy Case v157 — premium custom sports trophy cabinet
+   ========================================================= */
+
+/* Thicker beveled walnut-style cabinet frame + warm wood backing */
+.player-profile-card .trophy-case {
+  border: 16px solid transparent !important;
+  border-radius: 10px !important;
+  padding: 22px !important;
+  background:
+    linear-gradient(135deg,
+      rgba(112,61,27,.97),
+      rgba(75,37,15,.99) 32%,
+      rgba(137,78,33,.97) 56%,
+      rgba(70,34,14,.99) 100%
+    ) padding-box,
+    repeating-linear-gradient(
+      3deg,
+      #3f2110 0px,
+      #3f2110 4px,
+      #70401e 5px,
+      #9a6132 8px,
+      #5b3017 12px,
+      #7b471f 17px,
+      #47230f 22px
+    ) border-box !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(223,160,88,.75),
+    inset 0 0 0 5px rgba(46,21,8,.72),
+    inset 0 0 18px rgba(18,7,2,.45),
+    0 14px 30px rgba(0,0,0,.38) !important;
+}
+
+/* Warm walnut backing behind the glass */
+.player-profile-card .trophy-case::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 16px !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  border-radius: 3px !important;
+  background:
+    repeating-linear-gradient(
+      1deg,
+      rgba(42,20,8,.18) 0 5px,
+      rgba(158,91,39,.10) 6px 8px,
+      rgba(67,30,12,.14) 9px 14px
+    ),
+    linear-gradient(135deg,
+      #70401f,
+      #5a2f16 38%,
+      #7b471f 68%,
+      #4c2612
+    ) !important;
+}
+
+/* Realistic glass layer */
+.player-profile-card .trophy-case::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 16px !important;
+  pointer-events: none !important;
+  z-index: 5 !important;
+  border: 1px solid rgba(240,250,255,.28) !important;
+  border-radius: 3px !important;
+  background:
+    linear-gradient(116deg,
+      transparent 0%,
+      rgba(255,255,255,.15) 24%,
+      rgba(255,255,255,.035) 31%,
+      transparent 40%,
+      transparent 68%,
+      rgba(255,255,255,.055) 77%,
+      transparent 86%
+    ),
+    linear-gradient(180deg,
+      rgba(220,240,246,.075),
+      rgba(80,110,120,.025)
+    ) !important;
+  box-shadow:
+    inset 0 0 20px rgba(205,230,240,.09),
+    inset 0 1px 0 rgba(255,255,255,.20),
+    0 0 8px rgba(190,215,225,.08) !important;
+}
+
+/* Keep cabinet contents above the wood backing. */
+.player-profile-card .trophy-case > *:not(.trophy-top-lights):not(.trophy-cabinet-plaque) {
+  position: relative !important;
+  z-index: 3 !important;
+}
+
+/* Recessed warm-white/gold top lighting */
+.player-profile-card .trophy-case .trophy-top-lights {
+  position: absolute !important;
+  top: 5px !important;
+  left: 10% !important;
+  right: 10% !important;
+  height: 105px !important;
+  pointer-events: none !important;
+  z-index: 6 !important;
+  background:
+    radial-gradient(ellipse at 12% 0%,
+      rgba(255,248,211,.98) 0 3px,
+      rgba(255,224,125,.72) 5px,
+      rgba(255,214,110,.22) 19px,
+      transparent 46px),
+    radial-gradient(ellipse at 50% 0%,
+      rgba(255,248,211,.98) 0 3px,
+      rgba(255,224,125,.72) 5px,
+      rgba(255,214,110,.22) 19px,
+      transparent 46px),
+    radial-gradient(ellipse at 88% 0%,
+      rgba(255,248,211,.98) 0 3px,
+      rgba(255,224,125,.72) 5px,
+      rgba(255,214,110,.22) 19px,
+      transparent 46px);
+  animation: premiumTrophyLights 3.8s ease-in-out infinite alternate;
+}
+
+/* Spotlight cones */
+.player-profile-card .trophy-case .trophy-top-lights::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 5px 0 0 !important;
+  background:
+    conic-gradient(from 168deg at 12% 0%,
+      transparent 0 18deg,
+      rgba(255,224,132,.085) 23deg,
+      transparent 30deg),
+    conic-gradient(from 168deg at 50% 0%,
+      transparent 0 18deg,
+      rgba(255,224,132,.085) 23deg,
+      transparent 30deg),
+    conic-gradient(from 168deg at 88% 0%,
+      transparent 0 18deg,
+      rgba(255,224,132,.085) 23deg,
+      transparent 30deg);
+}
+
+/* Subtle gold plaque */
+.player-profile-card .trophy-case .trophy-cabinet-plaque {
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 7px !important;
+  transform: translateX(-50%) !important;
+  z-index: 7 !important;
+  padding: 5px 13px !important;
+  border: 1px solid rgba(229,188,77,.72) !important;
+  border-radius: 2px !important;
+  background: linear-gradient(180deg,#4a3820,#2a2115) !important;
+  color: #d9b64e !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: 1.6px !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 7px rgba(0,0,0,.32) !important;
+}
+
+/* Individual trophy/award glow when displayed inside the cabinet */
+.player-profile-card .trophy-case .trophy,
+.player-profile-card .trophy-case .award,
+.player-profile-card .trophy-case .award-item {
+  filter: drop-shadow(0 5px 7px rgba(255,215,100,.16)) !important;
+}
+
+/* Slight animated cabinet illumination */
+@keyframes premiumTrophyLights {
+  0% { opacity: .72; }
+  55% { opacity: .88; }
+  100% { opacity: 1; }
+}
+
+@media (max-width: 700px) {
+  .player-profile-card .trophy-case {
+    border-width: 11px !important;
+    padding: 15px !important;
+  }
+  .player-profile-card .trophy-case .trophy-top-lights {
+    height: 78px !important;
+  }
+  .player-profile-card .trophy-case .trophy-cabinet-plaque {
+    font-size: 7px !important;
+    letter-spacing: 1.2px !important;
+  }
+}
+
+/* =========================================================
+   Ice Counter v158 — premium frosted-glass display
+   ========================================================= */
+.ice-counter {
+  position: relative !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(205,225,235,.55) !important;
+  border-radius: 14px !important;
+  background:
+    radial-gradient(circle at 78% 18%,
+      rgba(255,255,255,.16),
+      transparent 26%),
+    linear-gradient(145deg,
+      rgba(205,225,235,.14),
+      rgba(105,130,145,.10) 42%,
+      rgba(30,42,48,.72)
+    ) !important;
+  backdrop-filter: blur(9px) saturate(115%);
+  -webkit-backdrop-filter: blur(9px) saturate(115%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.30),
+    inset 0 0 18px rgba(190,220,235,.08),
+    0 8px 22px rgba(0,0,0,.34),
+    0 0 18px rgba(190,220,235,.07) !important;
+}
+
+/* Cardinal accent edge */
+.ice-counter::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 12px !important;
+  bottom: 12px !important;
+  width: 3px !important;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    #a51c30 20%,
+    #c52a40 50%,
+    #a51c30 80%,
+    transparent
+  ) !important;
+  box-shadow: 0 0 8px rgba(165,28,48,.42) !important;
+  z-index: 4 !important;
+}
+
+/* Animated glass shimmer */
+.ice-counter::after {
+  content: "" !important;
+  position: absolute !important;
+  top: -45%;
+  left: -55%;
+  width: 42%;
+  height: 190%;
+  transform: rotate(20deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.13),
+    transparent
+  );
+  pointer-events: none;
+  animation: iceBoxShimmer 5.5s ease-in-out infinite;
+  z-index: 3;
+}
+
+.ice-counter-label {
+  position: relative;
+  z-index: 5;
+  color: #e5eef2 !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,.35);
+}
+
+.ice-counter-number {
+  position: relative;
+  z-index: 5;
+  color: #d4af37 !important;
+  font-size: clamp(40px, 5vw, 52px) !important;
+  text-shadow:
+    0 2px 8px rgba(0,0,0,.42),
+    0 0 10px rgba(212,175,55,.16);
+}
+
+.ice-counter-subtitle {
+  position: relative;
+  z-index: 5;
+  color: rgba(235,244,247,.72) !important;
+}
+
+/* Small frosty ice-cube accent */
+.ice-counter .ice-cube {
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(220,245,255,.55);
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,.28),
+      rgba(160,205,225,.10)
+    );
+  box-shadow:
+    inset 2px 2px 5px rgba(255,255,255,.15),
+    0 0 9px rgba(190,225,240,.14);
+  transform: rotate(8deg);
+  z-index: 5;
+}
+.ice-counter .ice-cube::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  right: 3px;
+  top: 3px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.34);
+  filter: blur(1px);
+}
+
+@keyframes iceBoxShimmer {
+  0%, 18% { left: -55%; opacity: 0; }
+  28% { opacity: 1; }
+  48% { left: 125%; opacity: .55; }
+  60%, 100% { left: 125%; opacity: 0; }
+}
+
+@media (max-width: 700px) {
+  .ice-counter {
+    border-radius: 12px !important;
+  }
+  .ice-counter-number {
+    font-size: 42px !important;
+  }
+}
+
+/* Drayton member photo: keep the same circular treatment as the other members. */
+img[src="drayton-member.png"] {
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+
+/* 2025 History recap/champion display */
+.history-2025-photo-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+  margin: 20px 0 24px;
+}
+.history-2025-photo-row .history-photo-feature {
+  margin: 0 !important;
+  height: 100%;
+}
+.history-2025-photo-row .history-photo-feature figure {
+  height: calc(100% - 38px);
+}
+.history-2025-photo-row .history-photo-feature img {
+  width: 100%;
+  height: 100%;
+  max-height: 560px;
+  object-fit: cover;
+  display: block;
+}
+.history-2025-photo-row .recap-photo-feature img {
+  object-fit: cover;
+}
+.history-2025-photo-row figcaption a {
+  color: inherit;
+  text-decoration: none;
+}
+.history-2025-photo-row figcaption a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 700px) {
+  .history-2025-photo-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* 2025 Fantasy Loser placeholder — same visual footprint as the photo */
+.history-2025-photo-row + .history-photo-placeholder {
+  margin: 0 0 24px !important;
+}
+.history-photo-placeholder {
+  min-height: 360px;
+  display: flex !important;
+  flex-direction: column;
+  overflow: hidden;
+}
+.history-photo-placeholder .history-photo-feature-title {
+  flex: 0 0 auto;
+}
+.history-photo-placeholder .history-photo-placeholder-inner {
+  flex: 1;
+  min-height: 300px;
+  margin: 0 14px 14px;
+  border: 2px dashed rgba(165,28,48,.48);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(165,28,48,.08), rgba(128,128,128,.08)),
+    repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0 10px, transparent 10px 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  color: rgba(255,255,255,.78);
+  text-align: center;
+}
+.history-photo-placeholder .placeholder-icon {
+  width: 54px;
+  height: 54px;
+  border: 2px solid rgba(212,175,55,.72);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4af37;
+  font-size: 30px;
+  font-weight: 800;
+}
+.history-photo-placeholder strong {
+  color: #d4af37;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+}
+.history-photo-placeholder span {
+  font-size: 11px;
+  opacity: .7;
+}
+@media (max-width: 700px) {
+  .history-photo-placeholder {
+    min-height: 280px;
+  }
+  .history-photo-placeholder .history-photo-placeholder-inner {
+    min-height: 220px;
+  }
+}
+
+/* 2025 History pyramid: champion centered above two bottom cards */
+.history-2025-pyramid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "champ champ"
+    "loser recap";
+  gap: 22px;
+  align-items: stretch;
+  margin: 20px auto 26px;
+  max-width: 980px;
+}
+.history-2025-pyramid .history-2025-champion {
+  grid-area: champ;
+  width: min(62%, 560px);
+  justify-self: center;
+  margin: 0 !important;
+}
+.history-2025-pyramid .history-2025-loser {
+  grid-area: loser;
+  margin: 0 !important;
+}
+.history-2025-pyramid .history-2025-recap {
+  grid-area: recap;
+  margin: 0 !important;
+}
+.history-2025-pyramid .history-photo-feature {
+  height: 100%;
+}
+.history-2025-pyramid .history-photo-feature figure {
+  margin: 0;
+}
+.history-2025-pyramid .history-photo-feature img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+}
+.history-2025-pyramid .history-2025-champion img {
+  height: 430px;
+}
+.history-2025-pyramid .history-photo-placeholder-inner {
+  min-height: 360px;
+  height: calc(100% - 38px);
+  box-sizing: border-box;
+}
+.history-2025-pyramid figcaption a {
+  color: inherit;
+  text-decoration: none;
+}
+.history-2025-pyramid figcaption a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 700px) {
+  .history-2025-pyramid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "champ"
+      "loser"
+      "recap";
+    gap: 16px;
+  }
+  .history-2025-pyramid .history-2025-champion {
+    width: 100%;
+  }
+  .history-2025-pyramid .history-photo-feature img,
+  .history-2025-pyramid .history-2025-champion img {
+    height: auto;
+    max-height: none;
+  }
+}
+
+/* Social footer */
+.site-footer {
+  margin-top: 34px;
+  padding: 24px 20px 28px;
+  text-align: center;
+  border-top: 1px solid rgba(212,175,55,.35);
+  background: linear-gradient(180deg, rgba(20,20,20,.12), rgba(0,0,0,.28));
+}
+.footer-brand {
+  color: rgba(255,255,255,.72);
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-brand span { color: #d4af37; margin: 0 5px; }
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  color: rgba(255,255,255,.78);
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: .35px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 7px;
+  background: rgba(255,255,255,.035);
+  transition: .2s ease;
+}
+.footer-socials a:hover {
+  color: #fff;
+  border-color: rgba(212,175,55,.45);
+  background: rgba(212,175,55,.08);
+  transform: translateY(-1px);
+}
+.footer-socials strong {
+  color: #d4af37;
+  font-weight: 800;
+}
+.social-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+}
+.instagram-icon {
+  border: 2px solid #fff;
+  border-radius: 6px;
+  font-size: 17px;
+  line-height: 1;
+}
+.youtube-icon {
+  background: #a51c30;
+  border-radius: 5px;
+  font-size: 9px;
+}
+.spotify-icon {
+  background: #d4af37;
+  color: #1c1c1c;
+  border-radius: 50%;
+  font-size: 9px;
+}
+@media (max-width:700px) {
+  .site-footer { padding: 20px 12px 24px; }
+  .footer-socials { flex-direction: column; }
+  .footer-socials a { width: min(280px, 90vw); justify-content: flex-start; }
+}
+
+.tiktok-icon {
+  background: #171717;
+  border: 1px solid rgba(255,255,255,.28);
+  color: #fff;
+  font-size: 12px;
+}
