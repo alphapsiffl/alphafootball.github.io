@@ -5364,9 +5364,6 @@ img[src="drayton-member.png"] {
   }
 }
 
-.history-season-panel:not([hidden]) {
-  display: block !important;
-}
 
 /* Season Superlatives mini ice counters — 2023/2024/2025 */
 .season-ice-mini {
@@ -5420,4 +5417,9 @@ img[src="drayton-member.png"] {
 /* History tabs restored to original working behavior */
 .history-season-panel { display:none; animation:historySeasonIn .2s ease both; }
 .history-season-panel.active { display:block; }
+.history-subsection[hidden] { display:none !important; }
+
+/* History visibility restored: only the active season panel is displayed. */
+.history-season-panel { display:none !important; }
+.history-season-panel.active { display:block !important; }
 .history-subsection[hidden] { display:none !important; }
