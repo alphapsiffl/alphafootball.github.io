@@ -3341,3 +3341,80 @@ body {
     padding: 7px 8px;
   }
 }
+
+/* History section subtabs */
+.history-subtabs {
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin:20px auto 24px;
+  border-bottom:1px solid rgba(128,128,128,.25);
+}
+.history-subtab {
+  appearance:none;
+  border:0;
+  background:transparent;
+  color:inherit;
+  padding:10px 18px 11px;
+  font:600 12px/1 "Oswald", Arial, sans-serif;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  position:relative;
+  cursor:pointer;
+}
+.history-subtab::after {
+  content:"";
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:-1px;
+  height:2px;
+  background:var(--red);
+  transform:scaleX(0);
+  transform-origin:center;
+  transition:transform .22s ease;
+}
+.history-subtab.active::after { transform:scaleX(1); }
+.history-subsection[hidden] { display:none !important; }
+@media (max-width:600px) {
+  .history-subtabs { margin-top:16px; }
+  .history-subtab { padding:9px 13px 10px; font-size:11px; }
+  .history-subtab::after { left:13px; right:13px; }
+}
+
+@media (max-width:600px) {
+  .history-subtabs { flex-wrap:wrap; }
+}
+
+
+/* Desktop championship banners: two-line team names and lower/larger records.
+   Mobile styling remains untouched. */
+@media (min-width: 901px) {
+  .champion-banner .team {
+    width: 90%;
+    max-width: 190px;
+    min-height: 44px;
+    margin: 2px auto 0;
+    font-size: 18px;
+    line-height: 1.02;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .champion-banner .record {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 9px;
+    margin: 0;
+    font-size: 19px;
+    line-height: 1;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: .4px;
+  }
+}

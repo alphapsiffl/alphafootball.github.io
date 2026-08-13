@@ -686,12 +686,18 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
 
   return `<h2>League History</h2>
     <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
+    <div class="history-subtabs" role="tablist" aria-label="History sections">
+      <button class="history-subtab active" type="button" role="tab" aria-selected="true" data-history-section="seasons">Seasons</button>
+      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="allpsi">Papa’s All-Psi</button>
+      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="punishments">Punishments</button>
+    </div>
     <div class="history-logo-card">
       <div class="history-label">ORIGINAL LEAGUE LOGO</div>
       <img src="original-alpha-psi-logo.jpeg" alt="Original Alpha Psi Fantasy Football League logo" class="history-logo">
       <h3>The Original Alpha Psi Fantasy Football League</h3>
       <p class="intro">The original logo used when the league began.</p>
     </div>
+    <div class="history-subsection history-subsection-seasons active" data-history-section-panel="seasons">
     <div class="history-season-tabs" role="tablist" aria-label="League History seasons">
       ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
     </div>
@@ -702,6 +708,13 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
       ${render2022()}
       ${render2021()}
       ${render2020()}
+    </div>
+    </div>
+    <div class="history-subsection" data-history-section-panel="allpsi" hidden>
+      ${allPsiPage()}
+    </div>
+    <div class="history-subsection" data-history-section-panel="punishments" hidden>
+      ${punishments().replace("<h2>Punishments</h2>","<h3>League Punishments</h3>")}
     </div>
     <script>
       (function(){
@@ -918,7 +931,7 @@ function members(){
 
 function stats(){return `<h2>Stats</h2><p class="intro">This section is ready for the ESPN league data you provide. We can expand it with team, player, weekly, and season statistics.</p><div class="grid"><div class="card"><strong>ESPN Data</strong><p>Roster and scoring data can be added here.</p></div><div class="card"><strong>Season Stats</strong><p>Season-by-season totals and averages can live here.</p></div><div class="card"><strong>Player Stats</strong><p>Individual player records can be added here.</p></div></div>`}
 function teams(){return `<h2>Teams</h2><p class="intro">Team pages are ready to be added as we bring over the league's ESPN history.</p><div class="grid">${champions.map(c=>`<div class="card"><strong>${c[2]}</strong><p>${c[0]} champion — ${c[1]} — ${c[3]}</p></div>`).join("")}</div>`}
-function schedule(){return `<h2>Schedule</h2><p class="intro">Schedule and matchup history will be added from your ESPN data.</p><div class="media-box">ESPN schedule links or screenshots can be added here.</div>`}
+function schedule(){return `<h2>Schedule</h2><p class="intro">Schedule and matchup history will be added from your ESPN data.</p>`}
 function recordsPage(){
   const leaders=[
     ["MOST CHAMPIONSHIPS","League Record","6 different champions — tied"],
@@ -980,26 +993,27 @@ function rulesPage(){
     </div>`;
 }
 
-function punishments(){const rows=[["2020–2021","No punishments (boo)","—"],["2022","24 hour Waffle House challenge","Drayton"],["2023","Sexy Calendar","Mac"],["2024","Personal Apology letter","Drayton"],["2025","Beer Mile","Grant"]];return `<h2>Punishments</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Year</th><th>Punishment</th><th>Member</th><th>Media</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[0]==="2022" && r[1]==="24 hour Waffle House challenge" ? `<a href="https://youtu.be/3CWUCo5KeR8?si=_pKSGmxTgEuX6rXW" target="_blank" rel="noopener">Watch Video</a>` : (r[0]==="2023" && r[1]==="Sexy Calendar" ? `<a href="sexy-calendar-punishment.png" target="_blank" rel="noopener">View Image</a>` : `<a href="#" onclick="return false;">Add photo/video link</a>`)}</td></tr>`).join("")}</tbody></table></div><div class="media-box">Media placeholders are ready. Replace the “Add photo/video link” placeholders in the HTML/JS with YouTube, Google Drive, image, or other hosted-media URLs.</div>`}
-
-const pages={home,members,history,records:recordsPage,rules:rulesPage,punishments,allpsi:allPsiPage};
-function render(page){
-  try{
-    if(!pages[page]) page="home";
-    content.classList.remove('page-transition');
-void content.offsetWidth;
-content.innerHTML=pages[page]();
-content.classList.toggle('home-view',page==='home');
-content.classList.add('page-transition');
-    bindChampionLinks();
-    tabs.forEach(t=>t.classList.toggle("active",t.dataset.page===page));
-    const nav=document.querySelector(".main-tabs");
-    if(nav && window.scrollTo) window.scrollTo({top:nav.offsetTop-60,behavior:"smooth"});
-    location.hash=page;
-  }catch(err){
-    console.error("Alpha Psi page error:",page,err);
-    content.innerHTML=`<div class="card"><h2>Page temporarily unavailable</h2><p>Please refresh the page. If the problem continues, the page code needs repair.</p></div>`;
-  }
+function punishments(){
+  const rows=[
+    ["2020–2021","No punishments (boo)","—",null],
+    ["2022","24 hour Waffle House challenge","Drayton","https://youtu.be/3CWUCo5KeR8?si=_pKSGmxTgEuX6rXW"],
+    ["2023","Sexy Calendar","Mac","sexy-calendar-punishment.png"],
+    ["2024","Personal Apology letter","Drayton",null],
+    ["2025","Beer Mile","Grant",null]
+  ];
+  return `<h2>Punishments</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Year</th><th>Punishment</th><th>Member</th></tr></thead>
+        <tbody>
+          ${rows.map(r=>`<tr>
+            <td>${r[0]}</td>
+            <td>${r[3] ? `<a href="${r[3]}" target="_blank" rel="noopener">${r[1]}</a>` : r[1]}</td>
+            <td>${r[2]}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>`;
 }
 tabs.forEach(t=>t.addEventListener("click",()=>render(t.dataset.page)));
 
@@ -1007,6 +1021,22 @@ tabs.forEach(t=>t.addEventListener("click",()=>render(t.dataset.page)));
 // event delegation instead of inline <script> tags (which do not execute when
 // inserted with innerHTML).
 content.addEventListener("click", (event) => {
+  const historySubtab = event.target.closest(".history-subtab");
+  if (historySubtab && content.contains(historySubtab)) {
+    const section = historySubtab.dataset.historySection;
+    content.querySelectorAll(".history-subtab").forEach(t => {
+      const active = t === historySubtab;
+      t.classList.toggle("active", active);
+      t.setAttribute("aria-selected", active ? "true" : "false");
+    });
+    content.querySelectorAll("[data-history-section-panel]").forEach(panel => {
+      const active = panel.dataset.historySectionPanel === section;
+      panel.hidden = !active;
+      panel.classList.toggle("active", active);
+    });
+    return;
+  }
+
   const tab = event.target.closest(".history-season-tab, .allpsi-season-tab, .rules-season-tab");
   if (!tab || !content.contains(tab)) return;
 
