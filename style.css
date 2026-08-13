@@ -3719,3 +3719,149 @@ body {
   color: var(--gold) !important;
   font-size: 18px !important;
 }
+
+@media (min-width: 901px) {
+  .champion-banner-link[data-member="Davis"] .banner-logo,
+  .champion-banner-link[data-member="Davis"] .banner-helmet,
+  .champion-banner-link[data-member="Davis"] img[src*="davis-helmet"] {
+    width: 96px !important;
+    height: 96px !important;
+    object-fit: contain !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .champion-banner img[src*="grayson-helmet"],
+  .champion-banner img[src*="davis-helmet"],
+  .champion-banner img[src*="quinton-helmet"] {
+    transform: translateY(6px);
+  }
+}
+
+/* Members: OVERALL label */
+@media (min-width: 701px) {
+  .member-card .overall-caption,
+  .member-card .member-overall-label,
+  .member-card .overall,
+  .player-profile-card .member-overall-label {
+    font-size: 7px !important;
+  }
+}
+@media (max-width: 700px) {
+  .member-card .overall-caption,
+  .member-card .member-overall-label,
+  .member-card .overall,
+  .player-profile-card .member-overall-label {
+    font-size: 6px !important;
+  }
+}
+
+/* Founding Member badge */
+.founding-member,
+.founding-badge,
+.member-founding-badge,
+.founding-label {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gold) !important;
+  color: var(--gold) !important;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px rgba(201,162,39,.18);
+}
+
+/* Founding Member badge — gold box treatment */
+.founder-badge {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 8px auto 4px;
+  padding: 4px 10px;
+  border: 1px solid var(--gold) !important;
+  border-radius: 999px;
+  color: var(--gold) !important;
+  background: rgba(201,162,39,.08);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  box-shadow: 0 0 10px rgba(201,162,39,.22);
+}
+
+/* Members section headings */
+.career-snapshot-title,
+.career-snapshot .career-snapshot-title,
+.trophy-case-title,
+.member-bio-title,
+.bio-title {
+  color: var(--cardinal) !important;
+}
+
+/* Championship award uses the same font size as the other Trophy Case awards. */
+.player-profile-card .trophy-championship {
+  font-size: 12px !important;
+}
+
+/* Trophy Case — glass display + cardinal ambient glow + plaque header */
+.player-profile-card .trophy-case {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(165,28,48,.16) 0%, rgba(165,28,48,.06) 30%, transparent 65%),
+    linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025) 42%, rgba(0,0,0,.12) 100%),
+    rgba(45,45,48,.72) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -10px 24px rgba(0,0,0,.12),
+    0 0 24px rgba(165,28,48,.12) !important;
+}
+
+.player-profile-card .trophy-case::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+  pointer-events: none;
+}
+
+.player-profile-card .trophy-case-title {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  position: relative;
+  padding: 4px 9px 5px !important;
+  margin: -2px 0 8px !important;
+  color: var(--cardinal) !important;
+  font-size: 10px !important;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(165,28,48,.72) !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.55);
+  background: linear-gradient(180deg, rgba(165,28,48,.10), transparent);
+}
+
+.player-profile-card .trophy-case-title::before {
+  content: "🏆";
+  font-size: 9px;
+  margin-right: 5px;
+  filter: saturate(.75);
+}
+
+@media (max-width: 650px) {
+  .player-profile-card .trophy-case-title {
+    font-size: 9px !important;
+  }
+}
