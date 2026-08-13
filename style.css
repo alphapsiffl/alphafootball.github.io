@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Slab:wght@500;700;900&display=swap');
 
-:root{--red:#c92c18;--red2:#8e180d;--white:#f1f1ee;--muted:#aaa;--bg:#050505;--panel:#0e0e0e;--line:#292929}
+:root{--red:#A51C30;--red2:#A51C30;--white:#f1f1ee;--muted:#aaa;--bg:#050505;--panel:#0e0e0e;--line:#292929}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:linear-gradient(180deg,#3a3a3a 0%,#303030 48%,#383838 100%);color:var(--white);font-family:Oswald,Arial,sans-serif;overflow-x:hidden}
@@ -250,8 +250,8 @@ body {
       repeating-linear-gradient(135deg,transparent 0 18px,rgba(255,255,255,.035) 18px 20px,transparent 20px 38px),
       linear-gradient(180deg,#111 0%,#292929 45%,#080808 100%);
   }
-  body:before{left:0;border-right:4px solid #c92c18}
-  body:after{right:0;border-left:4px solid #c92c18}
+  body:before{left:0;border-right:4px solid #A51C30}
+  body:after{right:0;border-left:4px solid #A51C30}
 }
 @media (max-width:1049px){body:before,body:after{display:none}}
 
@@ -522,13 +522,13 @@ main {
 .league-side-left {
   left: 0 !important;
   right: auto !important;
-  border-right: 5px solid #c92c18 !important;
+  border-right: 5px solid #A51C30 !important;
 }
 
 .league-side-right {
   right: 0 !important;
   left: auto !important;
-  border-left: 5px solid #c92c18 !important;
+  border-left: 5px solid #A51C30 !important;
 }
 
 .league-side::before {
@@ -540,9 +540,9 @@ main {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    #8e180d 12%,
-    #c92c18 50%,
-    #8e180d 88%,
+    #A51C30 12%,
+    #A51C30 50%,
+    #A51C30 88%,
     transparent 100%
   ) !important;
   opacity: .8 !important;
@@ -569,7 +569,7 @@ main {
   display: block !important;
   position: relative !important;
   z-index: 2 !important;
-  color: #c92c18 !important;
+  color: #A51C30 !important;
   font-family: Georgia,serif !important;
   font-size: 15px !important;
   letter-spacing: 3px !important;
@@ -592,7 +592,7 @@ main {
     linear-gradient(135deg,rgba(255,255,255,.045),transparent 42%),
     #111 !important;
   border: 1px solid #343434 !important;
-  border-left: 3px solid #c92c18 !important;
+  border-left: 3px solid #A51C30 !important;
   border-radius: 2px !important;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.05),
@@ -606,7 +606,7 @@ main {
 
 .league-side-right .side-team {
   border-left: 1px solid #343434 !important;
-  border-right: 3px solid #c92c18 !important;
+  border-right: 3px solid #A51C30 !important;
 }
 
 .league-side .side-team::before,
@@ -617,7 +617,7 @@ main {
   width: 5px !important;
   height: 5px !important;
   border-radius: 50% !important;
-  background: #c92c18 !important;
+  background: #A51C30 !important;
   transform: translateY(-50%) !important;
 }
 
@@ -766,7 +766,7 @@ main {
 }
 .punishment-link {
   display: inline-block;
-  color: #c92c18 !important;
+  color: #A51C30 !important;
   font-family: "Times New Roman", Times, serif !important;
   font-weight: 700;
   font-size: 13px;
@@ -790,10 +790,10 @@ main {
     padding: 12px;
     background: #0b0b0b;
     border: 1px solid #333;
-    border-left: 3px solid #c92c18;
+    border-left: 3px solid #A51C30;
   }
   .punishment-card-year {
-    color: #c92c18;
+    color: #A51C30;
     font-weight: 800;
     font-size: 14px;
     margin-bottom: 4px;
@@ -878,7 +878,7 @@ main {
   text-align: right;
 }
 .allpsi-hm-header {
-  color: #c92c18;
+  color: #A51C30;
   font-family: "Roboto Slab", serif;
   font-size: 13px;
   font-weight: 700;
@@ -1090,7 +1090,7 @@ body::after {
 
 body::before {
   left: 0;
-  border-right: 5px solid #8e1e16;
+  border-right: 5px solid #A51C30;
   box-shadow:
     inset -14px 0 22px rgba(201,44,24,.08),
     inset 0 0 70px rgba(0,0,0,.82),
@@ -1099,7 +1099,7 @@ body::before {
 
 body::after {
   right: 0;
-  border-left: 5px solid #8e1e16;
+  border-left: 5px solid #A51C30;
   transform: scaleX(-1);
   box-shadow:
     inset -14px 0 22px rgba(201,44,24,.08),
@@ -1185,7 +1185,7 @@ main::before {
   display: block;
   height: 5px;
   margin: 0 -18px 16px;
-  background: linear-gradient(90deg, #8e1e16, #c92c18 50%, #8e1e16);
+  background: linear-gradient(90deg, #A51C30, #A51C30 50%, #A51C30);
   box-shadow: 0 2px 9px rgba(201,44,24,.18);
 }
 .member-profile-header {
@@ -1198,7 +1198,7 @@ main::before {
   flex: 0 0 auto;
   padding: 3px;
   
-  background: linear-gradient(135deg, #641710, #c92c18 50%, #641710);
+  background: linear-gradient(135deg, #A51C30, #A51C30 50%, #A51C30);
   
 }
 .player-profile-card .member-photo {
@@ -1642,7 +1642,7 @@ main::before {
   margin-top: 2px;
   padding: 8px 0 5px;
   border-top: 1px solid #2e2e2e;
-  color: #c92c18;
+  color: #A51C30;
   font-family: Oswald, Arial, sans-serif;
   font-size: 10px;
   font-weight: 800;
@@ -1742,7 +1742,7 @@ main::before {
   color: #f0d477;
   border-color: rgba(201,44,24,.75);
   background: linear-gradient(180deg, rgba(201,44,24,.18), rgba(201,44,24,.06));
-  box-shadow: inset 0 -2px 0 #c92c18, 0 0 12px rgba(201,44,24,.08);
+  box-shadow: inset 0 -2px 0 #A51C30, 0 0 12px rgba(201,44,24,.08);
 }
 
 .allpsi-season-panels {
@@ -1789,7 +1789,7 @@ main::before {
 :root {
   --charcoal: #101214;
   --light-gray: #d7d7d7;
-  --cardinal: #c92c18;
+  --cardinal: #A51C30;
   --gold: #d7b84c;
   --gold-bright: #f0d477;
 }
@@ -5415,4 +5415,18 @@ img[src="drayton-member.png"] {
   .season-ice-mini span {
     font-size: 13px;
   }
+}
+
+/* History seasons v179 — one authoritative visibility rule */
+.history-season-panels .history-season-panel {
+  display: none !important;
+}
+.history-season-panels .history-season-panel.active {
+  display: block !important;
+}
+.history-subsection[data-history-section-panel] {
+  display: none !important;
+}
+.history-subsection[data-history-section-panel].active {
+  display: block !important;
 }
