@@ -185,7 +185,7 @@ function home(){
 }
 function history(){
   const seasons={
-    2025:{},
+    2025:{archive:[]},
     2024:{archive:[["2024","Personal Apology Letter","Drayton",`<a class="archive-document" href="2024-punishment-apology.jpeg" target="_blank" rel="noopener"><img src="2024-punishment-apology.jpeg" alt="2024 Personal Apology Letter"><span>VIEW LETTER</span></a>`]]},
     2023:{archive:[]},
     2022:{archive:[["2022","24-Hour Waffle House Challenge","Drayton",`<a class="archive-media-link" href="https://youtu.be/3CWUCo5KeR8?si=_pKSGmxTgEuX6rXW" target="_blank" rel="noopener">WATCH VIDEO</a>`]]},
