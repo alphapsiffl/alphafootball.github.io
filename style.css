@@ -4881,3 +4881,217 @@ img[src="drayton-member.png"] {
     min-height: 220px;
   }
 }
+
+/* 2025 History pyramid: champion centered above two bottom cards */
+.history-2025-pyramid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "champ champ"
+    "loser recap";
+  gap: 22px;
+  align-items: stretch;
+  margin: 20px auto 26px;
+  max-width: 980px;
+}
+.history-2025-pyramid .history-2025-champion {
+  grid-area: champ;
+  width: min(62%, 560px);
+  justify-self: center;
+  margin: 0 !important;
+}
+.history-2025-pyramid .history-2025-loser {
+  grid-area: loser;
+  margin: 0 !important;
+}
+.history-2025-pyramid .history-2025-recap {
+  grid-area: recap;
+  margin: 0 !important;
+}
+.history-2025-pyramid .history-photo-feature {
+  height: 100%;
+}
+.history-2025-pyramid .history-photo-feature figure {
+  margin: 0;
+}
+.history-2025-pyramid .history-photo-feature img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+}
+.history-2025-pyramid .history-2025-champion img {
+  height: 430px;
+}
+.history-2025-pyramid .history-photo-placeholder-inner {
+  min-height: 360px;
+  height: calc(100% - 38px);
+  box-sizing: border-box;
+}
+.history-2025-pyramid figcaption a {
+  color: inherit;
+  text-decoration: none;
+}
+.history-2025-pyramid figcaption a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 700px) {
+  .history-2025-pyramid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "champ"
+      "loser"
+      "recap";
+    gap: 16px;
+  }
+  .history-2025-pyramid .history-2025-champion {
+    width: 100%;
+  }
+  .history-2025-pyramid .history-photo-feature img,
+  .history-2025-pyramid .history-2025-champion img {
+    height: auto;
+    max-height: none;
+  }
+}
+
+/* Social footer */
+.site-footer {
+  margin-top: 34px;
+  padding: 24px 20px 28px;
+  text-align: center;
+  border-top: 1px solid rgba(212,175,55,.35);
+  background: linear-gradient(180deg, rgba(20,20,20,.12), rgba(0,0,0,.28));
+}
+.footer-brand {
+  color: rgba(255,255,255,.72);
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-brand span { color: #d4af37; margin: 0 5px; }
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  color: rgba(255,255,255,.78);
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: .35px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 7px;
+  background: rgba(255,255,255,.035);
+  transition: .2s ease;
+}
+.footer-socials a:hover {
+  color: #fff;
+  border-color: rgba(212,175,55,.45);
+  background: rgba(212,175,55,.08);
+  transform: translateY(-1px);
+}
+.footer-socials strong {
+  color: #d4af37;
+  font-weight: 800;
+}
+.social-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+}
+.instagram-icon {
+  border: 2px solid #fff;
+  border-radius: 6px;
+  font-size: 17px;
+  line-height: 1;
+}
+.youtube-icon {
+  background: #a51c30;
+  border-radius: 5px;
+  font-size: 9px;
+}
+.spotify-icon {
+  background: #d4af37;
+  color: #1c1c1c;
+  border-radius: 50%;
+  font-size: 9px;
+}
+@media (max-width:700px) {
+  .site-footer { padding: 20px 12px 24px; }
+  .footer-socials { flex-direction: column; }
+  .footer-socials a { width: min(280px, 90vw); justify-content: flex-start; }
+}
+
+.tiktok-icon {
+  background: #171717;
+  border: 1px solid rgba(255,255,255,.28);
+  color: #fff;
+  font-size: 12px;
+}
+
+/* Trophy Case v165 — unified cabinet heading + award plaques */
+.player-profile-card .trophy-case-wrap { margin-top: 15px; position: relative; }
+.player-profile-card .trophy-case-heading {
+  color: #a51c30 !important;
+  font-family: Oswald, "Arial Narrow", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.8px !important;
+  line-height: 1.1 !important;
+  text-transform: uppercase !important;
+  margin: 0 0 8px !important;
+  padding: 0 2px !important;
+  text-align: left !important;
+}
+.player-profile-card .trophy-case-title,
+.player-profile-card .trophy-cabinet-plaque { display: none !important; }
+.player-profile-card .trophy-items {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  position: relative;
+  z-index: 3;
+}
+.player-profile-card .trophy-item {
+  position: relative;
+  padding: 9px 12px !important;
+  border: 1px solid rgba(201,162,39,.45) !important;
+  border-left: 3px solid rgba(201,162,39,.72) !important;
+  border-radius: 4px !important;
+  background: linear-gradient(135deg, rgba(126,73,32,.58), rgba(48,27,14,.78) 48%, rgba(95,51,21,.58)) !important;
+  color: #f1eee7 !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10), inset 0 0 12px rgba(201,162,39,.045), 0 3px 8px rgba(0,0,0,.20) !important;
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+}
+.player-profile-card .trophy-item.trophy-championship {
+  color: #d9b64e !important;
+  border-color: rgba(217,182,78,.68) !important;
+  border-left-color: #d9b64e !important;
+  background: linear-gradient(135deg, rgba(143,101,39,.66), rgba(55,34,15,.82) 52%, rgba(119,77,25,.62)) !important;
+}
+.player-profile-card .trophy-item .trophy-icon { filter: drop-shadow(0 1px 3px rgba(217,182,78,.35)); }
+.player-profile-card .trophy-empty {
+  padding: 14px 12px !important;
+  border: 1px dashed rgba(201,162,39,.32) !important;
+  border-radius: 4px !important;
+  color: rgba(255,255,255,.55) !important;
+  background: rgba(40,25,15,.35) !important;
+}
+@media (max-width: 650px) {
+  .player-profile-card .trophy-case-heading { font-size: 9px !important; letter-spacing: 1.5px !important; }
+  .player-profile-card .trophy-item { font-size: 12px !important; }
+}
