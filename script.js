@@ -155,7 +155,7 @@ const champions = [
 ];
 
 const iceCounter = {
-  total: 0,
+  total: 124,
   label: "ALL-TIME ICES"
 };
 
@@ -240,7 +240,7 @@ function historyPage(){
     </div>
   </section>`;
 
-  const render2024=()=>`<section class="history-season-panel history-2024-panel" data-season="2024">
+  const render2024=()=>`<section class="history-season-panel history-2024-panel" data-season="2024" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>5</strong></div>
     <div class="history-season-rule"></div>
 
@@ -289,7 +289,11 @@ function historyPage(){
       </div>
     </section>
 
-    <section class="season-superlatives">
+    <div class="season-ice-mini" aria-label="41 total ices">
+          <img src="ice-cube-art.png" alt="" aria-hidden="true">
+          <span>41</span>
+        </div>
+        <section class="season-superlatives">
       <div class="season-section-title">SUPERLATIVES</div>
       <div class="superlative-grid">
         <article class="superlative-wide">
@@ -333,7 +337,7 @@ function historyPage(){
     </section>
   </section>`;
 
-  const render2023=()=>`<section class="history-season-panel history-2023-panel" data-season="2023">
+  const render2023=()=>`<section class="history-season-panel history-2023-panel" data-season="2023" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>4</strong></div>
     <div class="history-season-rule"></div>
 
@@ -381,7 +385,11 @@ function historyPage(){
 
     ${renderMoves(["Justin Cooper","Victor Barcenas"],["Blake Jackson"])}
 
-    <section class="season-superlatives">
+    <div class="season-ice-mini" aria-label="30 total ices">
+          <img src="ice-cube-art.png" alt="" aria-hidden="true">
+          <span>30</span>
+        </div>
+        <section class="season-superlatives">
       <div class="season-section-title">SUPERLATIVES</div>
       <div class="superlative-grid">
         <article class="superlative-wide">
@@ -412,7 +420,7 @@ function historyPage(){
     </section>
   </section>`;
 
-const render2022=()=>`<section class="history-season-panel history-2022-panel" data-season="2022">
+const render2022=()=>`<section class="history-season-panel history-2022-panel" data-season="2022" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>3</strong></div>
     <div class="history-season-rule"></div>
 
@@ -479,7 +487,7 @@ const render2022=()=>`<section class="history-season-panel history-2022-panel" d
       </div>
     </section>
   </section>`;
-const render2021=()=>`<section class="history-season-panel history-2021-panel" data-season="2021">
+const render2021=()=>`<section class="history-season-panel history-2021-panel" data-season="2021" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>2</strong></div>
     <div class="history-season-rule"></div>
     <section class="season-foundation">
@@ -540,7 +548,7 @@ const render2021=()=>`<section class="history-season-panel history-2021-panel" d
       </div>
     </section>
   </section>`;
-const render2020=()=>`<section class="history-season-panel history-2020-panel" data-season="2020">
+const render2020=()=>`<section class="history-season-panel history-2020-panel" data-season="2020" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>1</strong></div>
     <div class="history-season-rule"></div>
     <section class="season-foundation">
@@ -632,7 +640,11 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
         </div>
       </section>
 
-      <section class="season-superlatives">
+      <div class="season-ice-mini" aria-label="53 total ices">
+          <img src="ice-cube-art.png" alt="" aria-hidden="true">
+          <span>53</span>
+        </div>
+        <section class="season-superlatives">
         <div class="season-section-title">SUPERLATIVES</div>
         <div class="superlative-grid">
           <article>
@@ -735,7 +747,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
     </div>
     <div class="history-subsection history-subsection-seasons active" data-history-section-panel="seasons">
     <div class="history-season-tabs" role="tablist" aria-label="League History seasons">
-      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
+      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}" onclick="selectHistorySeason(this)">${y}</button>`).join("")}
     </div>
     <div class="history-season-panels">
       ${renderSeason(2025)}
@@ -1190,6 +1202,27 @@ document.addEventListener("click", (event) => {
     });
   }
 });
+
+
+function selectHistorySeason(tab){
+  const root=document.getElementById("content");
+  if(!root || !tab) return;
+  const season=tab.getAttribute("data-season");
+
+  root.querySelectorAll(".history-season-tab").forEach(t=>{
+    const active=t===tab;
+    t.classList.toggle("active",active);
+    t.setAttribute("aria-selected",active?"true":"false");
+  });
+
+  root.querySelectorAll(".history-season-panel").forEach(panel=>{
+    const active=panel.getAttribute("data-season")===season;
+    panel.classList.toggle("active",active);
+    panel.hidden=!active;
+    panel.style.display=active?"block":"none";
+  });
+}
+window.selectHistorySeason=selectHistorySeason;
 
 function bindChampionLinks(){
   document.querySelectorAll(".champion-banner-link").forEach(card=>{

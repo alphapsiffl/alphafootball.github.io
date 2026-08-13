@@ -5363,3 +5363,56 @@ img[src="drayton-member.png"] {
     height: 36px !important;
   }
 }
+
+/* History season tabs v175 — explicit visibility so the selected season always shows. */
+.history-season-panel[hidden] {
+  display: none !important;
+}
+.history-season-panel:not([hidden]) {
+  display: block !important;
+}
+
+/* Season Superlatives mini ice counters — 2023/2024/2025 */
+.season-ice-mini {
+  position: relative;
+  width: 58px;
+  height: 48px;
+  margin: 6px 0 10px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+}
+.season-ice-mini img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: .92;
+  filter: drop-shadow(0 2px 3px rgba(0,70,95,.25));
+  pointer-events: none;
+}
+.season-ice-mini span {
+  position: relative;
+  z-index: 2;
+  color: #A51C30;
+  font-family: Oswald, "Arial Narrow", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow:
+    0 1px 2px rgba(255,255,255,.85),
+    0 0 3px rgba(255,255,255,.7);
+}
+@media (max-width: 650px) {
+  .season-ice-mini {
+    width: 48px;
+    height: 40px;
+    margin-top: 4px;
+  }
+  .season-ice-mini span {
+    font-size: 13px;
+  }
+}
