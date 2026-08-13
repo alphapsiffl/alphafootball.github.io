@@ -803,14 +803,7 @@ function allPsiPage(){
       })();
     </script>`;
 }
-const memberFullNames = {"Quinton": "Quinton Roof", "Bailey": "Bailey Coble", "Davis": "Jonathan Davis", "Blum": "Andrew Blum", "Peachey": "Alexander Peachey", "Justin": "Justin Cooper", "Grant H.": "Grant Harris", "Kameron": "Kameron Walker", "Braxton": "Braxton Ivey", "Victor B.": "Victor Barcenas", "Mac": "Chase Arrington", "Drayton": "Drayton Paxton"},
-  "Blake": "Blake Jackson Jackson",
-  "Grayson": "Grayson Maxfield Maxfield",
-  "Corey": "Corey Steele Steele",
-  "Marmo": "Tyler Tyler Marmo",
-  "Ty": "Ty Katz Katz",
-  "Grant A.": "Grant Alexander",
-  "Cal": "Cal McMeekin McMeekin";
+const memberFullNames = {"Quinton": "Quinton Roof", "Bailey": "Bailey Coble", "Davis": "Jonathan Davis", "Blum": "Andrew Blum", "Peachey": "Alexander Peachey", "Justin": "Justin Cooper", "Grant H.": "Grant Harris", "Kameron": "Kameron Walker", "Braxton": "Braxton Ivey", "Victor B.": "Victor Barcenas", "Mac": "Chase Arrington", "Drayton": "Drayton Paxton", "Blake": "Blake Jackson", "Grayson": "Grayson Maxfield", "Corey": "Corey Steele", "Marmo": "Tyler Marmo", "Ty": "Ty Katz", "Grant A.": "Grant Alexander", "Cal": "Cal McMeekin"};
 
 function trophyCase(name){
   const trophies={
