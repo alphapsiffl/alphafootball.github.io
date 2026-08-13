@@ -1,5 +1,30 @@
 const content = document.getElementById("content");
 const tabs = [...document.querySelectorAll(".tab")];
+function showHistorySeason(season){
+  const root=document.getElementById("content");
+  if(!root) return false;
+  const tabs=root.querySelectorAll(".history-season-tab");
+  const panels=root.querySelectorAll(".history-season-panel");
+  tabs.forEach(t=>{
+    const active=t.getAttribute("data-season")===String(season);
+    t.classList.toggle("active",active);
+    t.setAttribute("aria-selected",active?"true":"false");
+  });
+  panels.forEach(p=>{
+    const active=p.getAttribute("data-season")===String(season);
+    p.classList.toggle("active",active);
+    if(active){
+      p.removeAttribute("hidden");
+      p.style.setProperty("display","block","important");
+    }else{
+      p.setAttribute("hidden","");
+      p.style.setProperty("display","none","important");
+    }
+  });
+  return true;
+}
+window.showHistorySeason=showHistorySeason;
+
 
 const records = [
 ["Lowest score for one week","52.8","Grant A., Week 11, 2020"],
@@ -747,7 +772,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
     </div>
     <div class="history-subsection history-subsection-seasons active" data-history-section-panel="seasons">
     <div class="history-season-tabs" role="tablist" aria-label="League History seasons">
-      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
+      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}" onclick="showHistorySeason(${y});">${y}</button>`).join("")}
     </div>
     <div class="history-season-panels">
       ${renderSeason(2025)}
@@ -763,24 +788,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
     </div>
     <div class="history-subsection" data-history-section-panel="punishments" hidden>
       ${punishments().replace("<h2>Punishments</h2>","<h3>League Punishments</h3>")}
-    </div>
-    <script>
-      (function(){
-        const tabs=document.querySelectorAll('.history-season-tab');
-        const panels=document.querySelectorAll('.history-season-panel');
-        tabs.forEach(tab=>{
-          tab.addEventListener('click',()=>{
-            const season=tab.dataset.season;
-            tabs.forEach(t=>{
-              const active=t===tab;
-              t.classList.toggle('active',active);
-              t.setAttribute('aria-selected',active?'true':'false');
-            });
-            panels.forEach(panel=>panel.classList.toggle('active',panel.dataset.season===season));
-          });
-        });
-      })();
-    </script>`;
+    </div>`;
 }
 
 function allPsiPage(){
@@ -1140,119 +1148,8 @@ content.addEventListener("click", (event) => {
     return;
   }
 
-  const tab = event.target.closest(".history-season-tab, .allpsi-season-tab, .rules-season-tab");
-  if (!tab || !content.contains(tab)) return;
-
-  const isHistory = tab.classList.contains("history-season-tab");
-  const isRules = tab.classList.contains("rules-season-tab");
-  const tabSelector = isHistory ? ".history-season-tab" : (isRules ? ".rules-season-tab" : ".allpsi-season-tab");
-  const panelSelector = isHistory ? ".history-season-panel" : (isRules ? ".rules-season-panel" : ".allpsi-season-panel");
-  const season = tab.dataset.season;
-
-  content.querySelectorAll(tabSelector).forEach(t => {
-    const active = t === tab;
-    t.classList.toggle("active", active);
-    t.setAttribute("aria-selected", active ? "true" : "false");
-  });
-  content.querySelectorAll(panelSelector).forEach(panel => {
-    panel.classList.toggle("active", panel.dataset.season === season);
-  });
 });
 
-
-// Robust history-tab delegation: history controls are rendered dynamically,
-// so handle them from the document as well as #content.
-document.addEventListener("click", (event) => {
-  const historySubtab = event.target.closest?.(".history-subtab");
-  if (historySubtab) {
-    const contentRoot = document.getElementById("content");
-    if (!contentRoot || !contentRoot.contains(historySubtab)) return;
-    event.preventDefault();
-    event.stopImmediatePropagation();
-
-    const section = historySubtab.dataset.historySection;
-    contentRoot.querySelectorAll(".history-subtab").forEach(t => {
-      const active = t === historySubtab;
-      t.classList.toggle("active", active);
-      t.setAttribute("aria-selected", active ? "true" : "false");
-    });
-    contentRoot.querySelectorAll("[data-history-section-panel]").forEach(panel => {
-      const active = panel.dataset.historySectionPanel === section;
-      panel.hidden = !active;
-      panel.classList.toggle("active", active);
-    });
-    return;
-  }
-
-  const seasonTab = event.target.closest?.(".history-season-tab");
-  if (seasonTab) {
-    const contentRoot = document.getElementById("content");
-    if (!contentRoot || !contentRoot.contains(seasonTab)) return;
-    event.preventDefault();
-    event.stopImmediatePropagation();
-
-    const season = seasonTab.dataset.season;
-    contentRoot.querySelectorAll(".history-season-tab").forEach(t => {
-      const active = t === seasonTab;
-      t.classList.toggle("active", active);
-      t.setAttribute("aria-selected", active ? "true" : "false");
-    });
-    contentRoot.querySelectorAll(".history-season-panel").forEach(panel => {
-      panel.classList.toggle("active", panel.dataset.season === season);
-    });
-  }
-});
-
-
-function selectHistorySeason(tab){
-  const root=document.getElementById("content");
-  if(!root || !tab) return;
-  const season=tab.getAttribute("data-season");
-
-  root.querySelectorAll(".history-season-tab").forEach(t=>{
-    const active=t===tab;
-    t.classList.toggle("active",active);
-    t.setAttribute("aria-selected",active?"true":"false");
-  });
-
-  root.querySelectorAll(".history-season-panel").forEach(panel=>{
-    const active=panel.getAttribute("data-season")===season;
-    panel.classList.toggle("active",active);
-    panel.hidden=!active;
-    panel.style.display=active?"block":"none";
-  });
-}
-window.selectHistorySeason=selectHistorySeason;
-
-
-document.addEventListener("click", (event) => {
-  const seasonTab = event.target.closest?.(".history-season-tab");
-  if (!seasonTab) return;
-  const root = document.getElementById("content");
-  if (!root || !root.contains(seasonTab)) return;
-
-  event.preventDefault();
-  event.stopImmediatePropagation();
-
-  const season = seasonTab.getAttribute("data-season");
-  root.querySelectorAll(".history-season-tab").forEach(t => {
-    const active = t === seasonTab;
-    t.classList.toggle("active", active);
-    t.setAttribute("aria-selected", active ? "true" : "false");
-  });
-
-  root.querySelectorAll(".history-season-panel").forEach(panel => {
-    const active = panel.getAttribute("data-season") === season;
-    panel.classList.toggle("active", active);
-    if (active) {
-      panel.removeAttribute("hidden");
-      panel.style.setProperty("display", "block", "important");
-    } else {
-      panel.setAttribute("hidden", "");
-      panel.style.setProperty("display", "none", "important");
-    }
-  });
-}, true);
 
 function bindChampionLinks(){
   document.querySelectorAll(".champion-banner-link").forEach(card=>{
