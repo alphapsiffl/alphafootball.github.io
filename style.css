@@ -3853,12 +3853,7 @@ body {
   background: linear-gradient(180deg, rgba(165,28,48,.10), transparent);
 }
 
-.player-profile-card .trophy-case-title::before {
-  content: "🏆";
-  font-size: 9px;
-  margin-right: 5px;
-  filter: saturate(.75);
-}
+
 
 @media (max-width: 650px) {
   .player-profile-card .trophy-case-title {
@@ -3921,7 +3916,11 @@ body {
 }
 
 /* Trophy Case header: no emoji */
-.player-profile-card .trophy-case-title::before {
+
+
+/* FINAL: Trophy Case heading has no icon/emoji beside it. */
+.player-profile-card .trophy-case-title::before,
+.player-profile-card .trophy-case-title::after {
   content: none !important;
   display: none !important;
 }
