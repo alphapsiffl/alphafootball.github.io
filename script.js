@@ -807,20 +807,20 @@ const memberFullNames = {"Quinton": "Quinton Roof", "Bailey": "Bailey Coble", "D
 
 function trophyCase(name){
   const trophies={
-    "Quinton":["2024 Championship (’24)","GM of the Year (’24)","CBPOY (’24)"],
-    "Bailey":["2021 Championship (’21)","GM of the Year (’21)","CBPOY (’22)"],
-    "Davis":["2022 Championship (’22)","GM of the Year (’22)"],
+    "Quinton":["2024 Championship","GM of the Year (’24)","CBPOY (’24)"],
+    "Bailey":["2021 Championship","GM of the Year (’21)","CBPOY (’22)"],
+    "Davis":["2022 Championship","GM of the Year (’22)"],
     "Blum":[],
     "Peachey":[],
     "Justin":[],
     "Grant H.":[],
-    "Kameron":["2025 Championship (’25)","CBPOY (’23, ’25)","GM of the Year (’25)"],
+    "Kameron":["2025 Championship","CBPOY (’23, ’25)","GM of the Year (’25)"],
     "Braxton":[],
-    "Victor B.":["2023 Championship (’23)","Rookie of the Year (’23)"],
+    "Victor B.":["2023 Championship","Rookie of the Year (’23)"],
     "Mac":[],
     "Drayton":[],
     "Blake":[],
-    "Grayson":["2020 Championship (’20)"],
+    "Grayson":["2020 Championship"],
     "Corey":[],
     "Marmo":[],
     "Ty":[],
@@ -828,23 +828,23 @@ function trophyCase(name){
     "Cal":[]
   };
   const items=trophies[name]||[];
-  return `<div class="trophy-case"><div class="trophy-case-title">TROPHY CASE</div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item${/championship/i.test(x)?" trophy-championship":""}">${x}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div>`;
+  return `<div class="trophy-case"><div class="trophy-case-title">TROPHY CASE</div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item${/championship/i.test(x)?" trophy-championship":""}">${x}${/championship/i.test(x)?' <span class="trophy-icon" aria-hidden="true">🏆</span>':""}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div>`;
 }
 
 function careerSnapshot(name){
   const snapshots={
-    "Quinton":["1","2","’24","2020–Present"],
-    "Bailey":["1","5","’21","2020–Present"],
-    "Davis":["2","3","’20, ’22","2020–Present"],
-    "Blum":["0","3","’22, ’25","2020–Present"],
-    "Peachey":["0","3","—","2020–Present"],
-    "Justin":["0","1","—","2023–Present"],
-    "Grant H.":["0","0","—","2024–Present"],
-    "Kameron":["1","3","’25","2020–Present"],
-    "Braxton":["0","2","—","2022–Present"],
-    "Victor B.":["1","3","’23","2023–Present"],
-    "Mac":["0","2","—","2020–Present"],
-    "Drayton":["0","1","—","2020–Present"]
+    "Quinton":["1","2","’24","4-1"],
+    "Bailey":["1","5","’21","2-4"],
+    "Davis":["2","3","’20, ’22","4-2"],
+    "Blum":["0","3","’22, ’25","3-3"],
+    "Peachey":["0","3","—","3-3"],
+    "Justin":["0","1","—","2-1"],
+    "Grant H.":["0","0","—","0-0"],
+    "Kameron":["1","3","’25","2-2"],
+    "Braxton":["0","2","—","1-2"],
+    "Victor B.":["1","3","’23","2-2"],
+    "Mac":["0","2","—","0-2"],
+    "Drayton":["0","1","—","0-1"]
   };
   const s=snapshots[name];
   if(!s) return "";
@@ -853,7 +853,7 @@ function careerSnapshot(name){
     <div class="career-snapshot-grid">
       <div><strong>${s[1]}</strong><span>PLAYOFF APPS</span></div>
       <div><strong>${s[2]}</strong><span>BEST FINISH</span></div>
-      <div><strong>${s[3]}</strong><span>YEARS ACTIVE</span></div>
+      <div><strong>${s[3]}</strong><span>PLAYOFF RECORD</span></div>
     </div>
   </div>`;
 }
@@ -867,7 +867,7 @@ function memberBio(name){
 
 function members(){
   const current=[
-    ["Quinton","2020–Present",true,"Worse Name (’23) • 2024 Championship (’24) • GM of the Year (’24) • CBPOY (’24) • Falcon (’25)","39–43","quinton-member.png"],
+    ["Quinton","2020–Present",true,"Worse Name (’23) • 2024 Championship • GM of the Year (’24) • CBPOY (’24) • Falcon (’25)","39–43","quinton-member.png"],
     ["Bailey","2020–Present",true,"2021 Championship (1x) • Juggernaut Award (’23) • Marino (’23, tied with Vic) • CBPOY (’22) • GM of the Year (’21) • Best Name (’25)","52–30","bailey-champion.jpeg"],
     ["Davis","2020–Present",true,"2020 Championship (1x) • Falcon Award (’23) • Punching Bag (’23) • GM of the Year (’22) • Juggernaut (’24) • Marino (’24)","50–32","davis-member.png"],
     ["Blum","2020–Present",true,"Marino (’21) • Best Podcast Guest (’24) • Falcon (’24) • Juggernaut (’23, ’25)","45–37","blum-member.png"],
