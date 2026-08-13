@@ -177,7 +177,7 @@ function home(){
       <div class="record">${c[3]}</div>
     </div>`).join("")}</div>
 
-    <div class="ice-counter" aria-label="All-time Ice counter"><img class="ice-brand-logo" src="smirnoff-ice-logo.png" alt="Smirnoff ICE"><div class="ice-cube" aria-hidden="true"></div>
+    <div class="ice-counter" aria-label="All-time Ice counter"><div class="ice-cube" aria-hidden="true"></div>
       <div class="ice-counter-label">${iceCounter.label}</div>
       <div class="ice-counter-number">${iceCounter.total}</div>
       <div class="ice-counter-subtitle">FANTASY PLAYERS SCORING 0 POINTS</div>
