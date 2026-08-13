@@ -3712,5 +3712,10 @@ body {
   color: var(--cardinal) !important;
 }
 
-/* History season heading: Season and year are both gold at 18px. */
-.history-season-heading, .history-season-heading span, .history-season-heading strong { color: var(--gold) !important; font-size: 18px !important; }
+/* History season heading: SEASON + year, same gold and 18px. */
+.history-season-heading,
+.history-season-heading span,
+.history-season-heading strong {
+  color: var(--gold) !important;
+  font-size: 18px !important;
+}
