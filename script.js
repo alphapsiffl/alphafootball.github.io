@@ -845,7 +845,7 @@ function trophyCase(name){
     "Cal":[]
   };
   const items=trophies[name]||[];
-  return `<div class="trophy-case"><div class="trophy-case-title">TROPHY CASE</div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item${/championship/i.test(x)?" trophy-championship":""}">${x}${/championship/i.test(x)?' <span class="trophy-icon" aria-hidden="true">🏆</span>':""}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div>`;
+  return `<div class="trophy-case"><div class="trophy-top-lights" aria-hidden="true"></div><div class="trophy-case-title">TROPHY CASE</div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item${/championship/i.test(x)?" trophy-championship":""}">${x}${/championship/i.test(x)?' <span class="trophy-icon" aria-hidden="true">🏆</span>':""}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div>`;
 }
 
 function careerSnapshot(name){

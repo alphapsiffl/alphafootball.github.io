@@ -4301,3 +4301,100 @@ body {
     border-radius: 12px !important;
   }
 }
+
+/* Trophy Case v154 — wood grain ONLY in the frame, glass inside */
+.player-profile-card .trophy-case {
+  border: 14px solid transparent !important;
+  border-radius: 9px !important;
+  padding: 18px !important;
+  background:
+    linear-gradient(135deg,
+      rgba(210,225,232,.11),
+      rgba(80,105,115,.08) 32%,
+      rgba(225,240,245,.06) 52%,
+      rgba(55,75,82,.10)
+    ) padding-box,
+    repeating-linear-gradient(
+      3deg,
+      #4b2a16 0px,
+      #4b2a16 4px,
+      #8b542b 5px,
+      #6b3d1e 9px,
+      #a06635 11px,
+      #512b15 15px,
+      #74431f 20px
+    ) border-box !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.22),
+    inset 0 0 22px rgba(185,220,230,.10),
+    0 10px 24px rgba(0,0,0,.34) !important;
+  overflow: hidden;
+}
+
+/* Remove the old wood/glass pseudo overlays so they cannot paint over the
+   glass interior. */
+.player-profile-card .trophy-case::before,
+.player-profile-card .trophy-case::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Trophy Case v155 — glowing display lights along the top */
+.player-profile-card .trophy-case {
+  position: relative !important;
+}
+
+/* Three soft spotlights hanging from the top edge */
+.player-profile-card .trophy-case .trophy-top-lights {
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 52px;
+  pointer-events: none;
+  z-index: 4;
+  background:
+    radial-gradient(ellipse at 12% 0%,
+      rgba(255,246,194,.95) 0 3px,
+      rgba(255,225,120,.55) 4px,
+      rgba(255,215,100,.18) 13px,
+      transparent 30px),
+    radial-gradient(ellipse at 50% 0%,
+      rgba(255,246,194,.95) 0 3px,
+      rgba(255,225,120,.55) 4px,
+      rgba(255,215,100,.18) 13px,
+      transparent 30px),
+    radial-gradient(ellipse at 88% 0%,
+      rgba(255,246,194,.95) 0 3px,
+      rgba(255,225,120,.55) 4px,
+      rgba(255,215,100,.18) 13px,
+      transparent 30px);
+  filter: blur(.15px);
+  animation: trophyLightsGlow 2.8s ease-in-out infinite alternate;
+}
+
+.player-profile-card .trophy-case .trophy-top-lights::after {
+  content: "";
+  position: absolute;
+  inset: 2px 0 0;
+  background:
+    linear-gradient(168deg,
+      transparent 0 9%,
+      rgba(255,232,150,.055) 18%,
+      transparent 31% 100%),
+    linear-gradient(192deg,
+      transparent 0 67%,
+      rgba(255,232,150,.045) 78%,
+      transparent 91% 100%);
+}
+
+@keyframes trophyLightsGlow {
+  0% {
+    opacity: .62;
+    filter: blur(.25px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(.05px);
+  }
+}
