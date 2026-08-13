@@ -148,6 +148,11 @@ const champions = [
 ["2020","Grayson Maxfield","Bitchin’ Baker Beards","8–5"],["2021","Bailey Coble","Kareem Pie","9–5"],["2022","Jonathan Davis","Make it Hurts so Good","8–5"],["2023","Victor Barcenas","My Ball Zach Ertz","10–4"],["2024","Quinton Roof","King Henry’s Court","10–4"],["2025","Kameron Walker","Njigbas in Paris","8–6"]
 ];
 
+const iceCounter = {
+  total: 0,
+  label: "ALL-TIME ICES"
+};
+
 function home(){
   const championMember={
     "2020":"Grayson","2021":"Bailey","2022":"Davis","2023":"Victor B.","2024":"Quinton","2025":"Kameron"
@@ -165,6 +170,12 @@ function home(){
       <div class="champ"><strong>${c[1]}</strong></div>
       <div class="record">${c[3]}</div>
     </div>`).join("")}</div>
+
+    <div class="ice-counter" aria-label="All-time Ice counter">
+      <div class="ice-counter-label">${iceCounter.label}</div>
+      <div class="ice-counter-number">${iceCounter.total}</div>
+      <div class="ice-counter-subtitle">FANTASY PLAYERS SCORING 0 POINTS</div>
+    </div>
 
     <div class="legacy-strip">
       <div class="legacy-heading"><span>ALPHA PSI LEGACY</span><strong>EST. 2020</strong></div>

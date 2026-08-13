@@ -3968,3 +3968,57 @@ body {
 .rules-season-heading strong {
   color: var(--gold, #d4af37) !important;
 }
+
+/* All-time Ice counter on Home */
+.ice-counter {
+  width: min(100%, 620px);
+  margin: 22px auto 18px;
+  padding: 15px 20px 14px;
+  text-align: center;
+  position: relative;
+  border: 2px solid rgba(212,175,55,.72);
+  border-radius: 10px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.015)),
+    rgba(35,35,38,.88);
+  box-shadow: 0 8px 22px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.ice-counter::before,
+.ice-counter::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 22%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(165,28,48,.8));
+}
+.ice-counter::before { left: 0; }
+.ice-counter::after { right: 0; transform: scaleX(-1); }
+.ice-counter-label {
+  color: var(--cardinal, #a51c30);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.ice-counter-number {
+  margin: 2px 0 0;
+  color: #d4af37;
+  font-size: clamp(38px, 6vw, 56px);
+  line-height: .95;
+  font-weight: 950;
+  text-shadow: 0 2px 8px rgba(0,0,0,.4);
+}
+.ice-counter-subtitle {
+  margin-top: 5px;
+  color: rgba(255,255,255,.72);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+@media (max-width: 700px) {
+  .ice-counter { margin: 16px auto 14px; padding: 13px 15px 12px; }
+  .ice-counter-label { font-size: 10px; }
+  .ice-counter-number { font-size: 42px; }
+  .ice-counter-subtitle { font-size: 8px; }
+}
