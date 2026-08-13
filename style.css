@@ -4022,3 +4022,58 @@ body {
   .ice-counter-number { font-size: 42px; }
   .ice-counter-subtitle { font-size: 8px; }
 }
+
+/* ===== FINAL REPAIR v140 ===== */
+
+/* Rules season heading: SEASON and year are equal size; year gold. */
+.rules-season-heading span,
+.rules-season-heading strong {
+  font-size: 18px !important;
+  line-height: 1 !important;
+}
+.rules-season-heading strong {
+  color: #d4af37 !important;
+}
+
+/* History inner heading: season number uses the same gold treatment. */
+.history-season-heading span,
+.history-season-heading strong {
+  font-size: 18px !important;
+  line-height: 1 !important;
+}
+.history-season-heading strong {
+  color: #d4af37 !important;
+}
+
+/* Trophy Case: wood frame, glass interior, no cardinal backdrop, no emoji. */
+.player-profile-card .trophy-case {
+  border: 8px solid #6b4327 !important;
+  border-radius: 6px !important;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025) 42%, rgba(0,0,0,.12) 100%),
+    rgba(45,45,48,.72) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(188,132,72,.55),
+    inset 0 0 0 5px rgba(55,30,15,.45),
+    0 10px 24px rgba(0,0,0,.32) !important;
+}
+.player-profile-card .trophy-case-title::before,
+.player-profile-card .trophy-case-title::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Overall percentage stays beside the record. */
+.member-record-large {
+  white-space: nowrap;
+}
+.member-record-large .member-overall-percentage {
+  margin-left: 5px !important;
+}
+@media (min-width:701px) {
+  .member-record-large { font-size:16px !important; line-height:1.05 !important; }
+  .member-record-large .member-overall-percentage { font-size:11px !important; }
+}
+
+/* Home Ice counter. */
+.ice-counter { display:block !important; }

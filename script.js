@@ -2,13 +2,8 @@ const content = document.getElementById("content");
 const tabs = [...document.querySelectorAll(".tab")];
 
 const records = [
-["Lowest score for one week","52.8","Grant A., Week 11, 2020"],
-["Most points in a season","2115.55","Bailey Coble, 2023"],
-["Least points in a season","1334.45","Peachey, 2020"],["Highest point average","151.1","Bailey Coble, 2023"],
 ["Most PA ever","1968.45","Drayton, 2020 and 2024"],["Lowest point average","102.7","Peachey, 2020"],
 ["Biggest blowout","254–117.15","Davis vs Kam, Week 12, 2020"],
-["Most moves in a season","65","Quinton, 2023"],["Most POTWs in a season","8","Bailey Coble, 2023"],
-["Longest win streak","7","Bailey, 2021"],["Longest losing streak","9","Grant, 2024"],
 ["Most trades in a season","19","Blake Jackson, 2023"],["Least ices in a season","1","Braxton, 2024 • Blum, 2025"],["Most ices in a season","9","Chase, 2025"],["Most ices in a season","6","Kameron, 2024"],
 ["Worst loss","—","Victor losing to Mac when he had three players score 0, Week 7, 2025"]
 ];
@@ -235,7 +230,7 @@ function history(){
   </section>`;
 
   const render2024=()=>`<section class="history-season-panel history-2024-panel" data-season="2024">
-    <div class="history-season-heading"><span>SEASON</span><strong>2024</strong></div>
+    <div class="history-season-heading"><span>SEASON</span><strong>5</strong></div>
     <div class="history-season-rule"></div>
 
     <section class="season-foundation">
@@ -328,7 +323,7 @@ function history(){
   </section>`;
 
   const render2023=()=>`<section class="history-season-panel history-2023-panel" data-season="2023">
-    <div class="history-season-heading"><span>SEASON</span><strong>2023</strong></div>
+    <div class="history-season-heading"><span>SEASON</span><strong>4</strong></div>
     <div class="history-season-rule"></div>
 
     <section class="season-foundation">
@@ -407,7 +402,7 @@ function history(){
   </section>`;
 
 const render2022=()=>`<section class="history-season-panel history-2022-panel" data-season="2022">
-    <div class="history-season-heading"><span>SEASON</span><strong>2022</strong></div>
+    <div class="history-season-heading"><span>SEASON</span><strong>3</strong></div>
     <div class="history-season-rule"></div>
 
     <section class="season-foundation">
@@ -474,7 +469,7 @@ const render2022=()=>`<section class="history-season-panel history-2022-panel" d
     </section>
   </section>`;
 const render2021=()=>`<section class="history-season-panel history-2021-panel" data-season="2021">
-    <div class="history-season-heading"><span>SEASON</span><strong>2021</strong></div>
+    <div class="history-season-heading"><span>SEASON</span><strong>2</strong></div>
     <div class="history-season-rule"></div>
     <section class="season-foundation">
       <div class="season-foundation-kicker">THE YOUNG LEAGUE</div>
@@ -535,7 +530,7 @@ const render2021=()=>`<section class="history-season-panel history-2021-panel" d
     </section>
   </section>`;
 const render2020=()=>`<section class="history-season-panel history-2020-panel" data-season="2020">
-    <div class="history-season-heading"><span>SEASON</span><strong>2020</strong></div>
+    <div class="history-season-heading"><span>SEASON</span><strong>1</strong></div>
     <div class="history-season-rule"></div>
     <section class="season-foundation">
       <div class="season-foundation-kicker">THE INAUGURAL SEASON</div>
@@ -569,7 +564,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
     const d=seasons[year];
 
     if(year===2025) return `<section class="history-season-panel active history-2025-panel" data-season="2025">
-      <div class="history-season-heading"><span>SEASON</span><strong>2025</strong></div>
+      <div class="history-season-heading"><span>SEASON</span><strong>6</strong></div>
       <div class="history-season-rule"></div>
 
       <section class="season-foundation">
@@ -827,7 +822,7 @@ function trophyCase(name){
     "Grant H.":[],
     "Kameron":["2025 Championship","CBPOY (’23, ’25)","GM of the Year (’25)"],
     "Braxton":[],
-    "Victor B.":["2023 Championship","Rookie of the Year (’23)"],
+    "Victor B.":["2023 Championship"],
     "Mac":[],
     "Drayton":[],
     "Blake":[],
@@ -907,13 +902,13 @@ function members(){
     ["Drayton","2020–Present",true,"Lame Duck (’21, ’23, ’24) • Avenger (’23) • Punching Bag (’24)","28–54","drayton-member.png"]
   ];
   const alumni=[
-    ["Blake","2022–2023","11–16",false,"",""],
-    ["Grayson","2020","8–5",true,"2020 League Champion","grayson-member.png"],
-    ["Corey","2020–2022","13–27",true,"",""],
-    ["Marmo","2021–2022","8–19",false,"",""],
-    ["Ty","2020–2021","15–12",true,"",""],
-    ["Grant A.","2020","3–10",true,"",""],
-    ["Cal","2021","7–7",false,"",""]
+    ["Blake Jackson","2022–2023","11–16",false,"",""],
+    ["Grayson Maxfield","2020","8–5",true,"2020 League Champion","grayson-member.png"],
+    ["Corey Steele","2020–2022","13–27",true,"",""],
+    ["Tyler Marmo","2021–2022","8–19",false,"",""],
+    ["Ty Katz","2020–2021","15–12",true,"",""],
+    ["Grant Alexander","2020","3–10",true,"",""],
+    ["Cal McMeekin","2021","7–7",false,"",""]
   ];
 
   const profileHeader=(name,years,record,img)=>`
