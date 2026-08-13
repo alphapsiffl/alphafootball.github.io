@@ -582,8 +582,8 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
         <div class="season-foundation-kicker">THE LEAGUE ENTERS A NEW ERA</div>
         <h3>Same Brothers. New Season.</h3>
         <p>2025 marked the first year in Alpha Psi Fake Football League history that we rolled over the exact same group of brothers from one season to the next. No one was added and no one was lost. After years of turnover and building the league piece by piece, having the same group return together was a major milestone. With the foundation finally settled, we are more excited than ever about the future of the league and what this group can continue to build together.</p>
-    <div class="history-2025-pyramid">
-      <section class="history-photo-feature champion-photo-feature history-2025-champion">
+    <div class="history-2025-photo-row">
+      <section class="history-photo-feature champion-photo-feature">
         <div class="history-photo-feature-title">2025 CHAMPION</div>
         <figure>
           <a href="2025-champion-kameron-walker.jpeg" target="_blank" rel="noopener">
@@ -593,16 +593,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
         </figure>
       </section>
 
-      <section class="history-photo-feature fantasy-loser-feature history-photo-placeholder history-2025-loser">
-        <div class="history-photo-feature-title">2025 FANTASY LOSER</div>
-        <div class="history-photo-placeholder-inner">
-          <div class="placeholder-icon">?</div>
-          <strong>PHOTO COMING SOON</strong>
-          <span>2025 Fantasy Loser</span>
-        </div>
-      </section>
-
-      <section class="history-photo-feature recap-photo-feature history-2025-recap">
+      <section class="history-photo-feature recap-photo-feature">
         <div class="history-photo-feature-title">2025 RECAP</div>
         <figure>
           <a href="2025-recap-magazine.jpeg" target="_blank" rel="noopener">
@@ -612,6 +603,17 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
         </figure>
       </section>
     </div>
+
+      <section class="history-photo-feature fantasy-loser-feature history-photo-placeholder">
+        <div class="history-photo-feature-title">2025 FANTASY LOSER</div>
+        <div class="history-photo-placeholder-inner">
+          <div class="placeholder-icon">?</div>
+          <strong>PHOTO COMING SOON</strong>
+          <span>2025 Fantasy Loser</span>
+        </div>
+      </section>
+
+      </section>
 
       ${renderPodium([
         {cls:"second",medal:"2ND",team:"Big Maye Energy",manager:"Andrew Blum",label:"2ND PLACE"},
