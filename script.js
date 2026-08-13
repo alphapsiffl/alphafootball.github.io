@@ -2,10 +2,7 @@ const content = document.getElementById("content");
 const tabs = [...document.querySelectorAll(".tab")];
 
 const records = [
-["Most PA ever","1968.45","Drayton, 2020 and 2024"],["Lowest point average","102.7","Peachey, 2020"],
-["Biggest blowout","254–117.15","Davis vs Kam, Week 12, 2020"],
-["Most trades in a season","19","Blake Jackson, 2023"],["Least ices in a season","1","Braxton, 2024 • Blum, 2025"],["Most ices in a season","9","Chase, 2025"],["Most ices in a season","6","Kameron, 2024"],
-["Worst loss","—","Victor losing to Mac when he had three players score 0, Week 7, 2025"]
+["Lowest score for one week","52.8","Grant A., Week 11, 2020"],["Most points in a season","2115.55","Bailey Coble, 2023"],["Least points in a season","1334.45","Peachey, 2020"],["Highest point average","151.1","Bailey Coble, 2023"],["Most PA ever","1968.45","Drayton, 2020 and 2024"],["Lowest point average","102.7","Peachey, 2020"],["Biggest blowout","254–117.15","Davis vs Kam, Week 12, 2020"],["Most moves in a season","65","Quinton, 2023"],["Most POTWs in a season","8","Bailey Coble, 2023"],["Longest win streak","7","Bailey, 2021"],["Longest losing streak","9","Grant, 2024"],["Most trades in a season","19","Blake Jackson, 2023"],["Most ices in a season","9","Chase, 2025"],["Most ices in a season","6","Kameron, 2024"],["Least ices in a season","1","Braxton, 2024 • Blum, 2025"],["Worst loss","—","Victor losing to Mac when he had three players score 0, Week 7, 2025"]
 ];
 const recordPhotos = {
   "Davis": "davis-member.png",
@@ -183,7 +180,7 @@ function home(){
     </div>
   </section>`;
 }
-function history(){
+function historyPage(){
   const seasons={
     2025:{archive:[]},
     2024:{archive:[["2024","Personal Apology Letter","Drayton",`<a class="archive-document" href="2024-punishment-apology.jpeg" target="_blank" rel="noopener"><img src="2024-punishment-apology.jpeg" alt="2024 Personal Apology Letter"><span>VIEW LETTER</span></a>`]]},
@@ -1050,7 +1047,7 @@ function punishments(){
 const pages = {
   home,
   members,
-  history,
+  history: historyPage,
   records: recordsPage,
   rules: rulesPage,
   allpsi: allPsiPage,
