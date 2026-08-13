@@ -4128,3 +4128,176 @@ body {
     );
   opacity: .7;
 }
+
+/* Trophy Case v150: wood frame only, glass interior */
+.player-profile-card .trophy-case {
+  border: 12px solid #6b4327 !important;
+  border-radius: 7px !important;
+  background:
+    linear-gradient(90deg,
+      rgba(45,20,8,.42) 0%,
+      rgba(145,86,38,.34) 8%,
+      rgba(66,29,12,.30) 16%,
+      rgba(163,98,43,.28) 27%,
+      rgba(55,24,10,.34) 39%,
+      rgba(143,80,34,.30) 52%,
+      rgba(61,27,11,.36) 65%,
+      rgba(153,91,39,.30) 78%,
+      rgba(48,21,9,.40) 91%,
+      rgba(128,70,29,.30) 100%
+    ),
+    repeating-linear-gradient(
+      3deg,
+      rgba(255,205,135,.10) 0px,
+      rgba(255,205,135,.10) 2px,
+      rgba(55,24,9,.13) 3px,
+      rgba(55,24,9,.13) 7px,
+      rgba(255,190,110,.07) 8px,
+      rgba(255,190,110,.07) 13px
+    ) !important;
+  padding: 18px !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(215,151,79,.72),
+    inset 0 0 0 5px rgba(55,25,10,.62),
+    0 10px 24px rgba(0,0,0,.34) !important;
+  overflow: hidden;
+}
+
+/* Put the glass/display surface inside the wooden frame. */
+.player-profile-card .trophy-case > * {
+  position: relative;
+  z-index: 1;
+}
+
+.player-profile-card .trophy-case::before {
+  content: "" !important;
+  position: absolute;
+  inset: 12px;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 2px;
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,.14),
+      rgba(255,255,255,.035) 35%,
+      rgba(255,255,255,.06) 65%,
+      rgba(255,255,255,.02)
+    ),
+    rgba(125,150,160,.08);
+  box-shadow:
+    inset 0 0 22px rgba(190,220,230,.10),
+    inset 0 1px 0 rgba(255,255,255,.16);
+  opacity: 1;
+}
+
+.player-profile-card .trophy-case::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg,
+      transparent 0%,
+      rgba(255,255,255,.12) 28%,
+      transparent 38%,
+      transparent 70%,
+      rgba(255,255,255,.05) 78%,
+      transparent 86%
+    );
+  opacity: .65;
+  z-index: 2;
+}
+
+/* Members overall percentage: desktop only, +2px */
+@media (min-width: 701px) {
+  .member-record-large .member-overall-percentage {
+    font-size: 13px !important;
+  }
+}
+
+/* Home: compact Legacy + Ice boxes under the championship banners */
+@media (min-width: 701px) {
+  .ice-counter,
+  .legacy-strip {
+    display: inline-flex !important;
+    vertical-align: top;
+    box-sizing: border-box;
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+    min-height: 145px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .legacy-strip {
+    width: 62% !important;
+    max-width: none !important;
+    margin-left: 2% !important;
+    margin-right: 0 !important;
+    padding: 16px !important;
+    flex-direction: column;
+    border-radius: 12px !important;
+  }
+
+  .ice-counter {
+    width: 32% !important;
+    margin-left: 2% !important;
+    margin-right: 2% !important;
+    padding: 12px 10px !important;
+    flex-direction: column;
+    border-radius: 12px !important;
+  }
+
+  .ice-counter-number {
+    font-size: 42px !important;
+  }
+
+  .ice-counter-label {
+    font-size: 10px !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  .ice-counter-subtitle {
+    font-size: 8px !important;
+  }
+
+  .legacy-heading {
+    gap: 8px;
+  }
+
+  .legacy-heading span {
+    font-size: 10px;
+  }
+
+  .legacy-heading strong {
+    font-size: 15px;
+  }
+
+  .legacy-stats {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .legacy-stats strong {
+    font-size: 21px;
+  }
+
+  .legacy-stats span {
+    font-size: 8px;
+  }
+}
+
+/* Mobile: stack the two boxes cleanly. */
+@media (max-width: 700px) {
+  .legacy-strip {
+    width: calc(100% - 24px) !important;
+    margin: 12px auto !important;
+    border-radius: 12px !important;
+  }
+
+  .ice-counter {
+    width: calc(100% - 24px) !important;
+    margin: 12px auto !important;
+    border-radius: 12px !important;
+  }
+}
