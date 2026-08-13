@@ -5423,3 +5423,9 @@ img[src="drayton-member.png"] {
 .history-season-panel { display:none !important; }
 .history-season-panel.active { display:block !important; }
 .history-subsection[hidden] { display:none !important; }
+
+/* v187 — History panels: direct button switching */
+.history-season-panel[hidden],
+.history-subsection[hidden] { display:none !important; }
+.history-season-panel.active { display:block !important; }
+.history-subsection.active { display:block !important; }

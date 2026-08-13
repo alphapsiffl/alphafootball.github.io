@@ -1,3 +1,35 @@
+
+function switchHistorySeason(year){
+  const root=document.getElementById("content");
+  if(!root) return;
+  root.querySelectorAll(".history-season-tab").forEach(btn=>{
+    const on=String(btn.dataset.season)===String(year);
+    btn.classList.toggle("active",on);
+    btn.setAttribute("aria-selected",on?"true":"false");
+  });
+  root.querySelectorAll(".history-season-panel").forEach(panel=>{
+    const on=String(panel.dataset.season)===String(year);
+    panel.classList.toggle("active",on);
+    panel.hidden=!on;
+  });
+}
+function switchHistorySection(section){
+  const root=document.getElementById("content");
+  if(!root) return;
+  root.querySelectorAll(".history-subtab").forEach(btn=>{
+    const on=btn.dataset.historySection===section;
+    btn.classList.toggle("active",on);
+    btn.setAttribute("aria-selected",on?"true":"false");
+  });
+  root.querySelectorAll(".history-subsection[data-history-section-panel]").forEach(panel=>{
+    const on=panel.dataset.historySectionPanel===section;
+    panel.classList.toggle("active",on);
+    panel.hidden=!on;
+  });
+}
+window.switchHistorySeason=switchHistorySeason;
+window.switchHistorySection=switchHistorySection;
+
 const content = document.getElementById("content");
 const tabs = [...document.querySelectorAll(".tab")];
 
@@ -240,7 +272,7 @@ function historyPage(){
     </div>
   </section>`;
 
-  const render2024=()=>`<section class="history-season-panel history-2024-panel" data-season="2024">
+  const render2024=()=>`<section class="history-season-panel history-2024-panel" data-season="2024" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>5</strong></div>
     <div class="history-season-rule"></div>
 
@@ -337,7 +369,7 @@ function historyPage(){
     </section>
   </section>`;
 
-  const render2023=()=>`<section class="history-season-panel history-2023-panel" data-season="2023">
+  const render2023=()=>`<section class="history-season-panel history-2023-panel" data-season="2023" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>4</strong></div>
     <div class="history-season-rule"></div>
 
@@ -420,7 +452,7 @@ function historyPage(){
     </section>
   </section>`;
 
-const render2022=()=>`<section class="history-season-panel history-2022-panel" data-season="2022">
+const render2022=()=>`<section class="history-season-panel history-2022-panel" data-season="2022" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>3</strong></div>
     <div class="history-season-rule"></div>
 
@@ -487,7 +519,7 @@ const render2022=()=>`<section class="history-season-panel history-2022-panel" d
       </div>
     </section>
   </section>`;
-const render2021=()=>`<section class="history-season-panel history-2021-panel" data-season="2021">
+const render2021=()=>`<section class="history-season-panel history-2021-panel" data-season="2021" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>2</strong></div>
     <div class="history-season-rule"></div>
     <section class="season-foundation">
@@ -548,7 +580,7 @@ const render2021=()=>`<section class="history-season-panel history-2021-panel" d
       </div>
     </section>
   </section>`;
-const render2020=()=>`<section class="history-season-panel history-2020-panel" data-season="2020">
+const render2020=()=>`<section class="history-season-panel history-2020-panel" data-season="2020" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>1</strong></div>
     <div class="history-season-rule"></div>
     <section class="season-foundation">
@@ -716,7 +748,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
       </div>
     </section>`;
 
-    return `<section class="history-season-panel" data-season="${year}">
+    return `<section class="history-season-panel${year==="2025"?" active":""}" data-season="${year}"${year==="2025"?"":" hidden"}>
       <div class="history-season-heading"><span>SEASON</span><strong>${year}</strong></div>
       <div class="history-season-rule"></div>
       <div class="league-timeline">
@@ -735,9 +767,9 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
   return `<h2>League History</h2>
     <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
     <div class="history-subtabs" role="tablist" aria-label="History sections">
-      <button class="history-subtab active" type="button" role="tab" aria-selected="true" data-history-section="seasons">Seasons</button>
-      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="allpsi">Papa’s All-Psi</button>
-      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="punishments">Punishments</button>
+      <button class="history-subtab active" type="button" role="tab" aria-selected="true" data-history-section="seasons" onclick="switchHistorySection('seasons')">Seasons</button>
+      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="allpsi" onclick="switchHistorySection('allpsi')">Papa’s All-Psi</button>
+      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="punishments" onclick="switchHistorySection('punishments')">Punishments</button>
     </div>
     <div class="history-logo-card">
       <div class="history-label">ORIGINAL LEAGUE LOGO</div>
@@ -747,7 +779,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
     </div>
     <div class="history-subsection history-subsection-seasons active" data-history-section-panel="seasons">
     <div class="history-season-tabs" role="tablist" aria-label="League History seasons">
-      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
+      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}" onclick="switchHistorySeason(${y})">${y}</button>`).join("")}
     </div>
     <div class="history-season-panels">
       ${renderSeason(2025)}
