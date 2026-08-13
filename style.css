@@ -5429,3 +5429,7 @@ img[src="drayton-member.png"] {
 .history-subsection[hidden] { display:none !important; }
 .history-season-panel.active { display:block !important; }
 .history-subsection.active { display:block !important; }
+
+/* v188 — season tab active state must also clear the HTML hidden attribute */
+.history-season-panel[hidden] { display:none !important; }
+.history-season-panel.active:not([hidden]) { display:block !important; }

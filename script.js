@@ -1171,7 +1171,9 @@ content.addEventListener("click", (event) => {
     t.setAttribute("aria-selected", active ? "true" : "false");
   });
   content.querySelectorAll(panelSelector).forEach(panel => {
-    panel.classList.toggle("active", panel.dataset.season === season);
+    const active = panel.dataset.season === season;
+    panel.classList.toggle("active", active);
+    panel.hidden = !active;
   });
 });
 
