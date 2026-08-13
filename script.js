@@ -177,7 +177,7 @@ function home(){
       <div class="record">${c[3]}</div>
     </div>`).join("")}</div>
 
-    <div class="ice-counter" aria-label="All-time Ice counter"><img class="ice-brand-logo" src="smirnoff-ice-logo.png" alt="Smirnoff ICE"><div class="ice-cube" aria-hidden="true"></div>
+    <div class="ice-counter" aria-label="All-time Ice counter"><img class="ice-cube-art" src="ice-cube-art.png" alt="" aria-hidden="true"><img class="ice-brand-logo" src="smirnoff-ice-logo.png" alt="Smirnoff ICE"><div class="ice-cube" aria-hidden="true"></div>
       <div class="ice-counter-label">${iceCounter.label}</div>
       <div class="ice-counter-number">${iceCounter.total}</div>
       
@@ -1145,6 +1145,50 @@ content.addEventListener("click", (event) => {
   content.querySelectorAll(panelSelector).forEach(panel => {
     panel.classList.toggle("active", panel.dataset.season === season);
   });
+});
+
+
+// Robust history-tab delegation: history controls are rendered dynamically,
+// so handle them from the document as well as #content.
+document.addEventListener("click", (event) => {
+  const historySubtab = event.target.closest?.(".history-subtab");
+  if (historySubtab) {
+    const contentRoot = document.getElementById("content");
+    if (!contentRoot || !contentRoot.contains(historySubtab)) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    const section = historySubtab.dataset.historySection;
+    contentRoot.querySelectorAll(".history-subtab").forEach(t => {
+      const active = t === historySubtab;
+      t.classList.toggle("active", active);
+      t.setAttribute("aria-selected", active ? "true" : "false");
+    });
+    contentRoot.querySelectorAll("[data-history-section-panel]").forEach(panel => {
+      const active = panel.dataset.historySectionPanel === section;
+      panel.hidden = !active;
+      panel.classList.toggle("active", active);
+    });
+    return;
+  }
+
+  const seasonTab = event.target.closest?.(".history-season-tab");
+  if (seasonTab) {
+    const contentRoot = document.getElementById("content");
+    if (!contentRoot || !contentRoot.contains(seasonTab)) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    const season = seasonTab.dataset.season;
+    contentRoot.querySelectorAll(".history-season-tab").forEach(t => {
+      const active = t === seasonTab;
+      t.classList.toggle("active", active);
+      t.setAttribute("aria-selected", active ? "true" : "false");
+    });
+    contentRoot.querySelectorAll(".history-season-panel").forEach(panel => {
+      panel.classList.toggle("active", panel.dataset.season === season);
+    });
+  }
 });
 
 function bindChampionLinks(){
