@@ -2,14 +2,14 @@ const content = document.getElementById("content");
 const tabs = [...document.querySelectorAll(".tab")];
 
 const records = [
-["Lowest score for one week","52.8","Grant A., Week 11, 2020"],["Lowest score for one week","56.7","Mac, Week 2, 2024"],
-["Most points in a season","2115.55","Bailey Coble, 2023"],["Most points in a season","2087.7","Andrew Blum, 2021"],
-["Least points in a season","1334.45","Peachey, 2020"],["Highest point average","151.1","Bailey Coble, 2023"],["Highest point average","149.1","Andrew Blum, 2021"],
+["Lowest score for one week","52.8","Grant A., Week 11, 2020"],
+["Most points in a season","2115.55","Bailey Coble, 2023"],
+["Least points in a season","1334.45","Peachey, 2020"],["Highest point average","151.1","Bailey Coble, 2023"],
 ["Most PA ever","1968.45","Drayton, 2020 and 2024"],["Lowest point average","102.7","Peachey, 2020"],
 ["Biggest blowout","254–117.15","Davis vs Kam, Week 12, 2020"],
-["Most moves in a season","65","Quinton, 2023"],["Most POTWs in a season","8","Bailey Coble, 2023"],["Most POTWs in a season","6","Kam, 2025"],["Most POTWs in a season","6","Quinton, 2024"],["Most POTWs in a season","6","Blum, 2022"],
-["Longest win streak","7","Bailey, 2021"],["Longest losing streak","9","Grant, 2024"],["Longest losing streak","8","Justin, 2025"],["Longest losing streak","8","Drayton, 2024"],["Longest losing streak","6","Davis, 2023 — Scored second most points and missed offs"],
-["Most trades in a season","19","Blake Jackson, 2023"],["Most ices in a season","9","Chase, 2025"],["Most ices in a season","6","Kameron, 2024"],["Least ices in a season","1","Braxton, 2024"],["Least ices in a season","1","Blum, 2025"],
+["Most moves in a season","65","Quinton, 2023"],["Most POTWs in a season","8","Bailey Coble, 2023"],
+["Longest win streak","7","Bailey, 2021"],["Longest losing streak","9","Grant, 2024"],
+["Most trades in a season","19","Blake Jackson, 2023"],["Least ices in a season","1","Braxton, 2024 • Blum, 2025"],["Most ices in a season","9","Chase, 2025"],["Most ices in a season","6","Kameron, 2024"],
 ["Worst loss","—","Victor losing to Mac when he had three players score 0, Week 7, 2025"]
 ];
 const recordPhotos = {
@@ -865,6 +865,13 @@ function memberBio(name){
   return `<div class="member-bio"><div class="member-bio-title">BIO</div><div class="member-bio-placeholder">${bio || "Add bio here."}</div></div>`;
 }
 
+function overallRecordPercentage(record){
+  const m=String(record||"").match(/^(\d+)\s*[-–]\s*(\d+)$/);
+  if(!m) return "";
+  const w=Number(m[1]), l=Number(m[2]), total=w+l;
+  return total ? `(${(w/total).toFixed(3)})` : "(0.000)";
+}
+
 function overallRecordPercent(record){
   const m=String(record||"").match(/^(\d+)\s*[-–]\s*(\d+)$/);
   if(!m) return record;
@@ -907,7 +914,7 @@ function members(){
         <strong>${memberFullNames[name]||name}</strong>
         <div class="member-years">${years}</div>
         <div class="member-overall-label">OVERALL</div>
-        <div class="member-record-large">${overallRecordPercent(record)}</div>
+        <div class="member-record-large">${record} <span class="member-overall-percentage">${overallRecordPercentage(record)}</span></div>
       </div>
     </div>`;
 

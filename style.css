@@ -3924,3 +3924,23 @@ body {
   content: none !important;
   display: none !important;
 }
+
+/* Overall percentage sits directly beside OVERALL. */
+.member-overall-label {
+  white-space: nowrap;
+}
+.member-overall-percentage {
+  margin-left: 4px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* Overall percentage sits directly beside the overall record. */
+.member-record-large {
+  white-space: nowrap;
+}
+.member-record-large .member-overall-percentage {
+  margin-left: 5px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
