@@ -3944,3 +3944,27 @@ body {
   font-weight: 700;
   letter-spacing: .2px;
 }
+
+/* Members overall record + percentage: compact desktop sizing */
+@media (min-width: 701px) {
+  .member-card .member-record-large,
+  .player-profile-card .member-record-large {
+    font-size: 16px !important;
+    line-height: 1.05 !important;
+  }
+  .member-card .member-overall-percentage,
+  .player-profile-card .member-overall-percentage {
+    font-size: 11px !important;
+    margin-left: 4px !important;
+  }
+}
+
+/* Rules season headings: matching size, gold year */
+.rules-season-heading span,
+.rules-season-heading strong {
+  font-size: 18px !important;
+  line-height: 1 !important;
+}
+.rules-season-heading strong {
+  color: var(--gold, #d4af37) !important;
+}

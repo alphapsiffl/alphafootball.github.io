@@ -179,7 +179,7 @@ function home(){
 }
 function history(){
   const seasons={
-    2025:{archive:[["2025","Beer Mile","Grant","COMING SEPTEMBER 2025"]]},
+    2025:{},
     2024:{archive:[["2024","Personal Apology Letter","Drayton",`<a class="archive-document" href="2024-punishment-apology.jpeg" target="_blank" rel="noopener"><img src="2024-punishment-apology.jpeg" alt="2024 Personal Apology Letter"><span>VIEW LETTER</span></a>`]]},
     2023:{archive:[]},
     2022:{archive:[["2022","24-Hour Waffle House Challenge","Drayton",`<a class="archive-media-link" href="https://youtu.be/3CWUCo5KeR8?si=_pKSGmxTgEuX6rXW" target="_blank" rel="noopener">WATCH VIDEO</a>`]]},
@@ -986,7 +986,7 @@ function recordsPage(){
 }
 function playoffsPage(){return `<h2>Playoff Records</h2><div class="playoff-definitions"><div><strong>Championship Appearances</strong><span>Years and championship record</span></div><div><strong>First Round Byes</strong><span>Years receiving a bye</span></div><div><strong>Playoff Appearances</strong><span>Years making the playoffs</span></div><div><strong>Playoff Record</strong><span>Playoff wins and losses</span></div></div><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championship Appearances<br><span class="table-subheader">* Parenthesis denotes record in championship game</span></th><th>First Round Byes</th><th>Playoff Appearances</th><th>Playoff Record</th></tr></thead><tbody>${playoff.map(p=>{const rawChamp=p[1].replace(/^Championship Appearance(?:s)?:\s*/,"");const cm=rawChamp.match(/^(.*?);\s*Championship record:\s*(.*)$/i);const champ=cm?`${cm[1]} (${cm[2]})`:rawChamp;const bye=p[2].replace(/^First Round Bye(?:s)?:\s*/,"");const apps=p[3].replace(/^Playoff Appearances:\s*/,"");const rec=p[4].replace(/^Playoff Record:\s*/,"");return `<tr><td><strong>${p[0]}</strong></td><td>${champ}</td><td>${bye}</td><td>${apps}</td><td>${rec}</td></tr>`}).join("")}</tbody></table></div>`}
 function rulesPage(){
-  const activeMap={2025:[0,1,2,3],2024:[0,3,4,6,8],2023:[0,2,3,4,5],2022:[0,1,3,5,6,7,8,9],2021:[0,2,3]};
+  const activeMap={2025:[0,1,2,3],2024:[1,5],2023:[1],2022:[0,1,3,5,6,7,8,9],2021:[0,2,3]};
   const renderSeason=(y)=>{
     const items=rules[y]||[];
     return `<section class="rules-season-panel" data-season="${y}">
