@@ -1,5 +1,29 @@
 const content = document.getElementById("content");
 const tabs = [...document.querySelectorAll(".tab")];
+
+function showHistorySection(section){
+  const root=document.getElementById("content");
+  if(!root) return false;
+  root.querySelectorAll(".history-subtab").forEach(tab=>{
+    const active=tab.getAttribute("data-history-section")===section;
+    tab.classList.toggle("active",active);
+    tab.setAttribute("aria-selected",active?"true":"false");
+  });
+  root.querySelectorAll(".history-subsection[data-history-section-panel]").forEach(panel=>{
+    const active=panel.getAttribute("data-history-section-panel")===section;
+    panel.classList.toggle("active",active);
+    if(active){
+      panel.removeAttribute("hidden");
+      panel.style.setProperty("display","block","important");
+    }else{
+      panel.setAttribute("hidden","");
+      panel.style.setProperty("display","none","important");
+    }
+  });
+  return true;
+}
+window.showHistorySection=showHistorySection;
+
 function showHistorySeason(season){
   const root=document.getElementById("content");
   if(!root) return false;
@@ -760,9 +784,9 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
   return `<h2>League History</h2>
     <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
     <div class="history-subtabs" role="tablist" aria-label="History sections">
-      <button class="history-subtab active" type="button" role="tab" aria-selected="true" data-history-section="seasons">Seasons</button>
-      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="allpsi">Papa’s All-Psi</button>
-      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="punishments">Punishments</button>
+      <button class="history-subtab active" type="button" role="tab" aria-selected="true" data-history-section="seasons" onclick="showHistorySection('seasons');">Seasons</button>
+      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="allpsi" onclick="showHistorySection('allpsi');">Papa’s All-Psi</button>
+      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="punishments" onclick="showHistorySection('punishments');">Punishments</button>
     </div>
     <div class="history-logo-card">
       <div class="history-label">ORIGINAL LEAGUE LOGO</div>

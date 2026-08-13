@@ -5442,3 +5442,7 @@ img[src="drayton-member.png"] {
 /* v183 — authoritative History season panel visibility */
 .history-season-panels .history-season-panel { display:none !important; }
 .history-season-panels .history-season-panel.active { display:block !important; }
+
+/* v184 — authoritative History section visibility */
+.history-subsection[data-history-section-panel] { display:none !important; }
+.history-subsection[data-history-section-panel].active { display:block !important; }
