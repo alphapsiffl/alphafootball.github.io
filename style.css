@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto+Slab:wght@500;700;900&display=swap');
 
-:root{--red:#A51C30;--red2:#A51C30;--white:#f1f1ee;--muted:#aaa;--bg:#050505;--panel:#0e0e0e;--line:#292929}
+:root{--red:#c92c18;--red2:#8e180d;--white:#f1f1ee;--muted:#aaa;--bg:#050505;--panel:#0e0e0e;--line:#292929}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:linear-gradient(180deg,#3a3a3a 0%,#303030 48%,#383838 100%);color:var(--white);font-family:Oswald,Arial,sans-serif;overflow-x:hidden}
@@ -37,7 +37,7 @@ footer{text-align:center;padding:28px;border-top:1px solid #222;color:#777;font-
 .member-meta{margin-top:8px;color:#aaa;font-family:Oswald,Arial,sans-serif;font-size:14px;line-height:1.35;letter-spacing:.5px}
 .member-meta span{color:var(--red);font-family:"Roboto Slab",serif;font-weight:900;font-size:18px}
 
-.founder-badge{display:inline-block;margin-top:10px;padding:3px 7px;border:1px solid var(--red);color:var(--red);font-size:10px;letter-spacing:1px;font-weight:700;text-transform:uppercase;background:rgba(165,28,48,.08)}
+.founder-badge{display:inline-block;margin-top:10px;padding:3px 7px;border:1px solid var(--red);color:var(--red);font-size:10px;letter-spacing:1px;font-weight:700;text-transform:uppercase;background:rgba(201,44,24,.08)}
 
 .accolades{margin-top:13px;padding-top:10px;border-top:1px solid #333;text-align:left}
 .accolades-title{color:var(--red);font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:4px}
@@ -110,7 +110,7 @@ footer{text-align:center;padding:28px;border-top:1px solid #222;color:#777;font-
 .rule-active::marker{color:var(--red)}
 
 /* More creative records page */
-.record-feature{position:relative;margin:26px 0 30px;padding:26px;background:linear-gradient(135deg,rgba(165,28,48,.18),rgba(14,14,14,.96) 42%);border:1px solid var(--red);box-shadow:0 12px 30px rgba(0,0,0,.28);overflow:hidden}
+.record-feature{position:relative;margin:26px 0 30px;padding:26px;background:linear-gradient(135deg,rgba(201,44,24,.18),rgba(14,14,14,.96) 42%);border:1px solid var(--red);box-shadow:0 12px 30px rgba(0,0,0,.28);overflow:hidden}
 .record-feature:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--red)}
 .record-feature-title{font-family:"Roboto Slab",serif;font-size:32px;font-weight:900;letter-spacing:2px;color:#fff}
 .record-feature-sub{color:#aaa;margin:5px 0 20px}
@@ -133,7 +133,7 @@ footer{text-align:center;padding:28px;border-top:1px solid #222;color:#777;font-
 @media(max-width:650px){.banner-row{grid-template-columns:repeat(2,1fr);gap:8px}.champion-banner{min-height:330px}.two-hundred-grid,.records-grid{grid-template-columns:1fr}.record-feature-title{font-size:26px}}
 @media(max-width:420px){.banner-row{grid-template-columns:1fr}.champion-banner{min-height:300px}}
 
-.champion-photo{display:block;width:112px;height:112px;object-fit:cover;border-radius:50%;margin:20px auto 10px;border:3px solid #fff;box-shadow:0 0 0 2px rgba(165,28,48,.9),0 6px 14px rgba(0,0,0,.45)}
+.champion-photo{display:block;width:112px;height:112px;object-fit:cover;border-radius:50%;margin:20px auto 10px;border:3px solid #fff;box-shadow:0 0 0 2px rgba(201,44,24,.9),0 6px 14px rgba(0,0,0,.45)}
 @media(max-width:650px){.champion-photo{width:96px;height:96px}}
 
 
@@ -250,8 +250,8 @@ body {
       repeating-linear-gradient(135deg,transparent 0 18px,rgba(255,255,255,.035) 18px 20px,transparent 20px 38px),
       linear-gradient(180deg,#111 0%,#292929 45%,#080808 100%);
   }
-  body:before{left:0;border-right:4px solid #A51C30}
-  body:after{right:0;border-left:4px solid #A51C30}
+  body:before{left:0;border-right:4px solid #c92c18}
+  body:after{right:0;border-left:4px solid #c92c18}
 }
 @media (max-width:1049px){body:before,body:after{display:none}}
 
@@ -522,13 +522,13 @@ main {
 .league-side-left {
   left: 0 !important;
   right: auto !important;
-  border-right: 5px solid #A51C30 !important;
+  border-right: 5px solid #c92c18 !important;
 }
 
 .league-side-right {
   right: 0 !important;
   left: auto !important;
-  border-left: 5px solid #A51C30 !important;
+  border-left: 5px solid #c92c18 !important;
 }
 
 .league-side::before {
@@ -540,9 +540,9 @@ main {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    #A51C30 12%,
-    #A51C30 50%,
-    #A51C30 88%,
+    #8e180d 12%,
+    #c92c18 50%,
+    #8e180d 88%,
     transparent 100%
   ) !important;
   opacity: .8 !important;
@@ -557,7 +557,7 @@ main {
   top: 45% !important;
   left: 50% !important;
   transform: translate(-50%,-50%) rotate(-90deg) !important;
-  color: rgba(165,28,48,.14) !important;
+  color: rgba(201,44,24,.14) !important;
   font-family: Georgia,serif !important;
   font-size: clamp(22px,3vw,42px) !important;
   font-weight: 900 !important;
@@ -569,7 +569,7 @@ main {
   display: block !important;
   position: relative !important;
   z-index: 2 !important;
-  color: #A51C30 !important;
+  color: #c92c18 !important;
   font-family: Georgia,serif !important;
   font-size: 15px !important;
   letter-spacing: 3px !important;
@@ -592,7 +592,7 @@ main {
     linear-gradient(135deg,rgba(255,255,255,.045),transparent 42%),
     #111 !important;
   border: 1px solid #343434 !important;
-  border-left: 3px solid #A51C30 !important;
+  border-left: 3px solid #c92c18 !important;
   border-radius: 2px !important;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.05),
@@ -606,7 +606,7 @@ main {
 
 .league-side-right .side-team {
   border-left: 1px solid #343434 !important;
-  border-right: 3px solid #A51C30 !important;
+  border-right: 3px solid #c92c18 !important;
 }
 
 .league-side .side-team::before,
@@ -617,7 +617,7 @@ main {
   width: 5px !important;
   height: 5px !important;
   border-radius: 50% !important;
-  background: #A51C30 !important;
+  background: #c92c18 !important;
   transform: translateY(-50%) !important;
 }
 
@@ -766,7 +766,7 @@ main {
 }
 .punishment-link {
   display: inline-block;
-  color: #A51C30 !important;
+  color: #c92c18 !important;
   font-family: "Times New Roman", Times, serif !important;
   font-weight: 700;
   font-size: 13px;
@@ -790,10 +790,10 @@ main {
     padding: 12px;
     background: #0b0b0b;
     border: 1px solid #333;
-    border-left: 3px solid #A51C30;
+    border-left: 3px solid #c92c18;
   }
   .punishment-card-year {
-    color: #A51C30;
+    color: #c92c18;
     font-weight: 800;
     font-size: 14px;
     margin-bottom: 4px;
@@ -878,7 +878,7 @@ main {
   text-align: right;
 }
 .allpsi-hm-header {
-  color: #A51C30;
+  color: #c92c18;
   font-family: "Roboto Slab", serif;
   font-size: 13px;
   font-weight: 700;
@@ -937,7 +937,7 @@ main {
     linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.015) 30%, transparent 55%),
     linear-gradient(90deg, #050505, #1b1b1b 48%, #070707);
   box-shadow:
-    0 0 0 1px rgba(165,28,48,.95),
+    0 0 0 1px rgba(201,44,24,.95),
     0 0 0 3px rgba(188,156,84,.38),
     0 9px 18px rgba(0,0,0,.45),
     inset 0 1px 0 rgba(255,255,255,.18);
@@ -965,7 +965,7 @@ main {
   transform: translateY(-6px) scale(1.012);
   filter: brightness(1.12);
   box-shadow:
-    0 0 0 1px rgba(165,28,48,1),
+    0 0 0 1px rgba(201,44,24,1),
     0 0 0 3px rgba(188,156,84,.55),
     0 16px 28px rgba(0,0,0,.58),
     inset 0 1px 0 rgba(255,255,255,.24);
@@ -1012,7 +1012,7 @@ main {
 
 .champion-banner .champion-photo {
   box-shadow:
-    0 0 0 2px rgba(165,28,48,.95),
+    0 0 0 2px rgba(201,44,24,.95),
     0 0 0 4px rgba(188,156,84,.38),
     0 7px 15px rgba(0,0,0,.55);
 }
@@ -1051,7 +1051,7 @@ body {
   position: relative;
   background:
     radial-gradient(ellipse 42% 24% at 50% 8%, rgba(255,255,255,.12), transparent 68%),
-    radial-gradient(ellipse 38% 34% at 50% 35%, rgba(165,28,48,.045), transparent 72%),
+    radial-gradient(ellipse 38% 34% at 50% 35%, rgba(201,44,24,.045), transparent 72%),
     linear-gradient(90deg, #070809 0%, #101214 11%, #343434 18%, #3a3a3a 50%, #343434 82%, #101214 89%, #070809 100%) !important;
   box-shadow: inset 0 0 110px rgba(0,0,0,.72);
 }
@@ -1079,7 +1079,7 @@ body::after {
       0deg,
       transparent 0,
       transparent 72px,
-      rgba(165,28,48,.045) 73px,
+      rgba(201,44,24,.045) 73px,
       transparent 74px
     ),
     #0b0d0f;
@@ -1090,19 +1090,19 @@ body::after {
 
 body::before {
   left: 0;
-  border-right: 5px solid #A51C30;
+  border-right: 5px solid #8e1e16;
   box-shadow:
-    inset -14px 0 22px rgba(165,28,48,.08),
+    inset -14px 0 22px rgba(201,44,24,.08),
     inset 0 0 70px rgba(0,0,0,.82),
     8px 0 30px rgba(0,0,0,.28);
 }
 
 body::after {
   right: 0;
-  border-left: 5px solid #A51C30;
+  border-left: 5px solid #8e1e16;
   transform: scaleX(-1);
   box-shadow:
-    inset -14px 0 22px rgba(165,28,48,.08),
+    inset -14px 0 22px rgba(201,44,24,.08),
     inset 0 0 70px rgba(0,0,0,.82),
     8px 0 30px rgba(0,0,0,.28);
 }
@@ -1185,8 +1185,8 @@ main::before {
   display: block;
   height: 5px;
   margin: 0 -18px 16px;
-  background: linear-gradient(90deg, #A51C30, #A51C30 50%, #A51C30);
-  box-shadow: 0 2px 9px rgba(165,28,48,.18);
+  background: linear-gradient(90deg, #8e1e16, #c92c18 50%, #8e1e16);
+  box-shadow: 0 2px 9px rgba(201,44,24,.18);
 }
 .member-profile-header {
   display: flex;
@@ -1198,7 +1198,7 @@ main::before {
   flex: 0 0 auto;
   padding: 3px;
   
-  background: linear-gradient(135deg, #A51C30, #A51C30 50%, #A51C30);
+  background: linear-gradient(135deg, #641710, #c92c18 50%, #641710);
   
 }
 .player-profile-card .member-photo {
@@ -1582,7 +1582,7 @@ main::before {
 .allpsi-season-rule {
   height: 1px;
   margin: 8px 0 15px;
-  background: linear-gradient(90deg, transparent, rgba(165,28,48,.8), rgba(201,162,39,.65), rgba(165,28,48,.8), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201,44,24,.8), rgba(201,162,39,.65), rgba(201,44,24,.8), transparent);
 }
 
 .allpsi-positions {
@@ -1598,7 +1598,7 @@ main::before {
     linear-gradient(135deg, rgba(255,255,255,.035), transparent 35%),
     linear-gradient(180deg, #121314, #090a0b);
   border: 1px solid #333;
-  border-left: 3px solid rgba(165,28,48,.75);
+  border-left: 3px solid rgba(201,44,24,.75);
   box-shadow: 0 5px 14px rgba(0,0,0,.28);
 }
 
@@ -1642,7 +1642,7 @@ main::before {
   margin-top: 2px;
   padding: 8px 0 5px;
   border-top: 1px solid #2e2e2e;
-  color: #A51C30;
+  color: #c92c18;
   font-family: Oswald, Arial, sans-serif;
   font-size: 10px;
   font-weight: 800;
@@ -1740,9 +1740,9 @@ main::before {
 
 .allpsi-season-tab.active {
   color: #f0d477;
-  border-color: rgba(165,28,48,.75);
-  background: linear-gradient(180deg, rgba(165,28,48,.18), rgba(165,28,48,.06));
-  box-shadow: inset 0 -2px 0 #A51C30, 0 0 12px rgba(165,28,48,.08);
+  border-color: rgba(201,44,24,.75);
+  background: linear-gradient(180deg, rgba(201,44,24,.18), rgba(201,44,24,.06));
+  box-shadow: inset 0 -2px 0 #c92c18, 0 0 12px rgba(201,44,24,.08);
 }
 
 .allpsi-season-panels {
@@ -1789,7 +1789,7 @@ main::before {
 :root {
   --charcoal: #101214;
   --light-gray: #d7d7d7;
-  --cardinal:#A51C30;
+  --cardinal: #c92c18;
   --gold: #d7b84c;
   --gold-bright: #f0d477;
 }
@@ -1864,10 +1864,10 @@ body {
 
 .player-profile-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(165,28,48,.62) !important;
+  border-color: rgba(201,44,24,.62) !important;
   box-shadow:
     0 12px 25px rgba(0,0,0,.48),
-    0 0 0 1px rgba(165,28,48,.12),
+    0 0 0 1px rgba(201,44,24,.12),
     inset 0 1px 0 rgba(255,255,255,.07);
 }
 
@@ -2069,7 +2069,7 @@ body {
 .record-leaders-title{color:var(--gold);font-family:Oswald,Arial,sans-serif;font-size:12px;letter-spacing:2px;font-weight:800;border-bottom:1px solid #333;padding-bottom:9px}
 .record-leaders-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}
 .leader-card{position:relative;padding:13px;border:1px solid #303030;background:#111314;transition:transform .18s ease,border-color .18s ease}
-.leader-card:hover{transform:translateY(-2px);border-color:rgba(165,28,48,.65)}
+.leader-card:hover{transform:translateY(-2px);border-color:rgba(201,44,24,.65)}
 .leader-rank{color:#555;font-family:"Roboto Slab",serif;font-size:11px}
 .leader-category{margin-top:6px;color:#999;font-size:10px;letter-spacing:1px;font-weight:700}
 .leader-name{margin-top:5px;color:#eee;font-family:"Times New Roman",Times,serif;font-size:17px;font-weight:700}
@@ -2079,7 +2079,7 @@ body {
 .league-timeline{margin:26px 0 30px;padding:15px 16px;border:1px solid #353535;background:#101213}
 .timeline-title{color:var(--gold);font-family:Oswald,Arial,sans-serif;font-size:12px;font-weight:800;letter-spacing:2px;border-bottom:1px solid #333;padding-bottom:9px}
 .timeline-list{position:relative;margin-top:10px}
-.timeline-list::before{content:"";position:absolute;left:48px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--cardinal),rgba(165,28,48,.12))}
+.timeline-list::before{content:"";position:absolute;left:48px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--cardinal),rgba(201,44,24,.12))}
 .timeline-list article{display:grid;grid-template-columns:82px 1fr;gap:15px;position:relative;padding:10px 0}
 .timeline-year{color:var(--cardinal);font-family:"Roboto Slab",serif;font-size:20px;font-weight:900}
 .timeline-list article>div:last-child{padding-left:13px;border-left:0}
@@ -2142,8 +2142,8 @@ body {
 .history-season-tab:hover { color:#ddd; background:rgba(255,255,255,.035); }
 .history-season-tab.active {
   color:var(--gold-bright);
-  border-color:rgba(165,28,48,.75);
-  background:linear-gradient(180deg,rgba(165,28,48,.18),rgba(165,28,48,.06));
+  border-color:rgba(201,44,24,.75);
+  background:linear-gradient(180deg,rgba(201,44,24,.18),rgba(201,44,24,.06));
 }
 .history-season-tab.active::after { width:72%; }
 .history-season-panels { width:100%; }
@@ -2171,7 +2171,7 @@ body {
 .history-season-rule {
   height:1px;
   margin:8px 0 15px;
-  background:linear-gradient(90deg,transparent,rgba(165,28,48,.8),rgba(201,162,39,.65),rgba(165,28,48,.8),transparent);
+  background:linear-gradient(90deg,transparent,rgba(201,44,24,.8),rgba(201,162,39,.65),rgba(201,44,24,.8),transparent);
 }
 .archive-empty {
   padding:18px 4px;
@@ -2247,7 +2247,7 @@ body {
   content: "";
   height: 1px;
   flex: 1;
-  background: linear-gradient(90deg, rgba(165,28,48,.7), transparent);
+  background: linear-gradient(90deg, rgba(201,44,24,.7), transparent);
 }
 
 .podium-grid {
@@ -2368,7 +2368,7 @@ body {
   padding: 14px 16px;
   border: 1px solid #3a3030;
   border-left: 3px solid var(--cardinal);
-  background: linear-gradient(90deg, rgba(165,28,48,.08), #0e1011);
+  background: linear-gradient(90deg, rgba(201,44,24,.08), #0e1011);
 }
 .departure-mark {
   color: var(--cardinal);
@@ -3995,7 +3995,7 @@ body {
 .ice-counter::before { left: 0; }
 .ice-counter::after { right: 0; transform: scaleX(-1); }
 .ice-counter-label {
-  color: var(--cardinal, #A51C30);
+  color: var(--cardinal, #a51c30);
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 2px;
@@ -4677,9 +4677,9 @@ body {
   background: linear-gradient(
     180deg,
     transparent,
-    #A51C30 20%,
-    #A51C30 50%,
-    #A51C30 80%,
+    #a51c30 20%,
+    #c52a40 50%,
+    #a51c30 80%,
     transparent
   ) !important;
   box-shadow: 0 0 8px rgba(165,28,48,.42) !important;
@@ -5019,7 +5019,7 @@ img[src="drayton-member.png"] {
   line-height: 1;
 }
 .youtube-icon {
-  background: #A51C30;
+  background: #a51c30;
   border-radius: 5px;
   font-size: 9px;
 }
@@ -5045,7 +5045,7 @@ img[src="drayton-member.png"] {
 /* Trophy Case v165 — unified cabinet heading + award plaques */
 .player-profile-card .trophy-case-wrap { margin-top: 15px; position: relative; }
 .player-profile-card .trophy-case-heading {
-  color: #A51C30 !important;
+  color: #a51c30 !important;
   font-family: Oswald, "Arial Narrow", sans-serif !important;
   font-size: 12px !important;
   font-weight: 700 !important;
@@ -5265,171 +5265,3 @@ img[src="drayton-member.png"] {
     inset -2px -2px 5px rgba(20,100,125,.18),
     0 0 12px rgba(175,240,250,.28) !important;
 }
-
-/* Footer v170: social bar stands on its own without the old league/established line. */
-.site-footer .footer-socials {
-  margin-top: 0 !important;
-}
-
-/* Cardinal standardization v172 — all site reds use one Alpha Psi cardinal. */
-:root {
-  --alpha-psi-cardinal: #A51C30;
-}
-
-.red,
-.cardinal,
-.text-red,
-[style*="color:red"],
-[style*="color: red"] {
-  color: var(--alpha-psi-cardinal) !important;
-}
-
-.bg-red,
-.cardinal-bg,
-[style*="background:red"],
-[style*="background: red"] {
-  background-color: var(--alpha-psi-cardinal) !important;
-}
-
-.footer-socials .youtube-icon,
-.ice-counter::before,
-.trophy-case-heading,
-.history-2025-pyramid .history-photo-feature-title,
-.history-subtab.active,
-.history-season-tab.active {
-  --site-red: var(--alpha-psi-cardinal);
-}
-
-/* Trophy Case v173 — clean horizontal award layout */
-.player-profile-card .trophy-items {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 10px !important;
-  align-items: stretch !important;
-}
-
-.player-profile-card .trophy-item {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  min-height: 44px !important;
-  box-sizing: border-box !important;
-  padding: 9px 12px !important;
-  text-align: left !important;
-}
-
-/* Keep championship awards prominent without making them full-height blocks. */
-.player-profile-card .trophy-item.trophy-championship {
-  min-height: 48px !important;
-}
-
-/* Let the trophy icon sit naturally at the right side of the award. */
-.player-profile-card .trophy-item .trophy-icon {
-  margin-left: 10px !important;
-  flex: 0 0 auto !important;
-}
-
-/* On narrow screens use one clean horizontal card per row. */
-@media (max-width: 650px) {
-  .player-profile-card .trophy-items {
-    grid-template-columns: 1fr !important;
-    gap: 7px !important;
-  }
-
-  .player-profile-card .trophy-item {
-    min-height: 40px !important;
-    padding: 8px 10px !important;
-  }
-}
-
-/* Ice Counter v174 — supplied ice-cube art in top-right */
-.ice-counter .ice-cube-art {
-  position: absolute !important;
-  top: 7px !important;
-  right: 7px !important;
-  width: 62px !important;
-  height: 48px !important;
-  object-fit: contain !important;
-  object-position: center !important;
-  z-index: 7 !important;
-  pointer-events: none !important;
-  filter: drop-shadow(0 2px 4px rgba(0,70,95,.28)) !important;
-}
-@media (max-width: 700px) {
-  .ice-counter .ice-cube-art {
-    top: 5px !important;
-    right: 5px !important;
-    width: 46px !important;
-    height: 36px !important;
-  }
-}
-
-
-/* Season Superlatives mini ice counters — 2023/2024/2025 */
-.season-ice-mini {
-  position: relative;
-  width: 58px;
-  height: 48px;
-  margin: 6px 0 10px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  z-index: 2;
-}
-.season-ice-mini img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: .92;
-  filter: drop-shadow(0 2px 3px rgba(0,70,95,.25));
-  pointer-events: none;
-}
-.season-ice-mini span {
-  position: relative;
-  z-index: 2;
-  color: #A51C30;
-  font-family: Oswald, "Arial Narrow", sans-serif;
-  font-size: 15px;
-  font-weight: 800;
-  line-height: 1;
-  text-shadow:
-    0 1px 2px rgba(255,255,255,.85),
-    0 0 3px rgba(255,255,255,.7);
-}
-@media (max-width: 650px) {
-  .season-ice-mini {
-    width: 48px;
-    height: 40px;
-    margin-top: 4px;
-  }
-  .season-ice-mini span {
-    font-size: 13px;
-  }
-}
-
-
-
-
-
-/* History tabs restored to original working behavior */
-.history-season-panel { display:none; animation:historySeasonIn .2s ease both; }
-.history-season-panel.active { display:block; }
-.history-subsection[hidden] { display:none !important; }
-
-/* History visibility restored: only the active season panel is displayed. */
-.history-season-panel { display:none !important; }
-.history-season-panel.active { display:block !important; }
-.history-subsection[hidden] { display:none !important; }
-
-/* v187 — History panels: direct button switching */
-.history-season-panel[hidden],
-.history-subsection[hidden] { display:none !important; }
-.history-season-panel.active { display:block !important; }
-.history-subsection.active { display:block !important; }
-
-/* v188 — season tab active state must also clear the HTML hidden attribute */
-.history-season-panel[hidden] { display:none !important; }
-.history-season-panel.active:not([hidden]) { display:block !important; }
