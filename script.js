@@ -1015,6 +1015,36 @@ function punishments(){
       </table>
     </div>`;
 }
+
+const pages = {
+  home,
+  members,
+  history,
+  records: recordsPage,
+  rules: rulesPage,
+  allpsi: allPsiPage,
+  punishments
+};
+
+function render(page){
+  try{
+    if(!pages[page]) page="home";
+    content.classList.remove("page-transition");
+    void content.offsetWidth;
+    content.innerHTML = pages[page]();
+    content.classList.toggle("home-view", page==="home");
+    content.classList.add("page-transition");
+    if(typeof bindChampionLinks==="function") bindChampionLinks();
+    tabs.forEach(t=>t.classList.toggle("active",t.dataset.page===page));
+    const nav=document.querySelector(".main-tabs");
+    if(nav && window.scrollTo) window.scrollTo({top:nav.offsetTop-60,behavior:"smooth"});
+    location.hash=page;
+  }catch(err){
+    console.error("Alpha Psi page error:",page,err);
+    content.innerHTML=`<div class="card"><h2>Page temporarily unavailable</h2><p>Please refresh the page. If the problem continues, the page code needs repair.</p></div>`;
+  }
+}
+
 tabs.forEach(t=>t.addEventListener("click",()=>render(t.dataset.page)));
 
 // Season tabs are rendered dynamically inside #content, so bind them through
