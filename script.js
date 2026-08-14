@@ -155,7 +155,7 @@ const champions = [
 ];
 
 const iceCounter = {
-  total: 0,
+  total: 124,
   label: "ALL-TIME ICES"
 };
 
@@ -177,10 +177,10 @@ function home(){
       <div class="record">${c[3]}</div>
     </div>`).join("")}</div>
 
-    <div class="ice-counter" aria-label="All-time Ice counter"><div class="ice-cube" aria-hidden="true"></div>
+    <div class="ice-counter" aria-label="All-time Ice counter"><img class="ice-cube-art" src="ice-cube-art.png" alt="" aria-hidden="true"><img class="ice-brand-logo" src="smirnoff-ice-logo.png" alt="Smirnoff ICE"><div class="ice-cube" aria-hidden="true"></div>
       <div class="ice-counter-label">${iceCounter.label}</div>
       <div class="ice-counter-number">${iceCounter.total}</div>
-      <div class="ice-counter-subtitle">FANTASY PLAYERS SCORING 0 POINTS</div>
+      
     </div>
 
     <div class="legacy-strip">
@@ -240,7 +240,7 @@ function historyPage(){
     </div>
   </section>`;
 
-  const render2024=()=>`<section class="history-season-panel history-2024-panel" data-season="2024">
+  const render2024=()=>`<section class="history-season-panel history-2024-panel" data-season="2024" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>5</strong></div>
     <div class="history-season-rule"></div>
 
@@ -333,7 +333,7 @@ function historyPage(){
     </section>
   </section>`;
 
-  const render2023=()=>`<section class="history-season-panel history-2023-panel" data-season="2023">
+  const render2023=()=>`<section class="history-season-panel history-2023-panel" data-season="2023" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>4</strong></div>
     <div class="history-season-rule"></div>
 
@@ -412,7 +412,7 @@ function historyPage(){
     </section>
   </section>`;
 
-const render2022=()=>`<section class="history-season-panel history-2022-panel" data-season="2022">
+const render2022=()=>`<section class="history-season-panel history-2022-panel" data-season="2022" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>3</strong></div>
     <div class="history-season-rule"></div>
 
@@ -479,7 +479,7 @@ const render2022=()=>`<section class="history-season-panel history-2022-panel" d
       </div>
     </section>
   </section>`;
-const render2021=()=>`<section class="history-season-panel history-2021-panel" data-season="2021">
+const render2021=()=>`<section class="history-season-panel history-2021-panel" data-season="2021" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>2</strong></div>
     <div class="history-season-rule"></div>
     <section class="season-foundation">
@@ -540,7 +540,7 @@ const render2021=()=>`<section class="history-season-panel history-2021-panel" d
       </div>
     </section>
   </section>`;
-const render2020=()=>`<section class="history-season-panel history-2020-panel" data-season="2020">
+const render2020=()=>`<section class="history-season-panel history-2020-panel" data-season="2020" hidden>
     <div class="history-season-heading"><span>SEASON</span><strong>1</strong></div>
     <div class="history-season-rule"></div>
     <section class="season-foundation">
@@ -582,8 +582,8 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
         <div class="season-foundation-kicker">THE LEAGUE ENTERS A NEW ERA</div>
         <h3>Same Brothers. New Season.</h3>
         <p>2025 marked the first year in Alpha Psi Fake Football League history that we rolled over the exact same group of brothers from one season to the next. No one was added and no one was lost. After years of turnover and building the league piece by piece, having the same group return together was a major milestone. With the foundation finally settled, we are more excited than ever about the future of the league and what this group can continue to build together.</p>
-    <div class="history-2025-photo-row">
-      <section class="history-photo-feature champion-photo-feature">
+    <div class="history-2025-pyramid">
+      <section class="history-photo-feature champion-photo-feature history-2025-champion">
         <div class="history-photo-feature-title">2025 CHAMPION</div>
         <figure>
           <a href="2025-champion-kameron-walker.jpeg" target="_blank" rel="noopener">
@@ -593,7 +593,16 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
         </figure>
       </section>
 
-      <section class="history-photo-feature recap-photo-feature">
+      <section class="history-photo-feature fantasy-loser-feature history-photo-placeholder history-2025-loser">
+        <div class="history-photo-feature-title">2025 FANTASY LOSER</div>
+        <div class="history-photo-placeholder-inner">
+          <div class="placeholder-icon">?</div>
+          <strong>PHOTO COMING SOON</strong>
+          <span>2025 Fantasy Loser</span>
+        </div>
+      </section>
+
+      <section class="history-photo-feature recap-photo-feature history-2025-recap">
         <div class="history-photo-feature-title">2025 RECAP</div>
         <figure>
           <a href="2025-recap-magazine.jpeg" target="_blank" rel="noopener">
@@ -603,17 +612,6 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
         </figure>
       </section>
     </div>
-
-      <section class="history-photo-feature fantasy-loser-feature history-photo-placeholder">
-        <div class="history-photo-feature-title">2025 FANTASY LOSER</div>
-        <div class="history-photo-placeholder-inner">
-          <div class="placeholder-icon">?</div>
-          <strong>PHOTO COMING SOON</strong>
-          <span>2025 Fantasy Loser</span>
-        </div>
-      </section>
-
-      </section>
 
       ${renderPodium([
         {cls:"second",medal:"2ND",team:"Big Maye Energy",manager:"Andrew Blum",label:"2ND PLACE"},
@@ -737,7 +735,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
     </div>
     <div class="history-subsection history-subsection-seasons active" data-history-section-panel="seasons">
     <div class="history-season-tabs" role="tablist" aria-label="League History seasons">
-      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
+      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}" onclick="selectHistorySeason(this)">${y}</button>`).join("")}
     </div>
     <div class="history-season-panels">
       ${renderSeason(2025)}
@@ -866,7 +864,7 @@ function trophyCase(name){
     "Cal":[]
   };
   const items=trophies[name]||[];
-  return `<div class="trophy-case"><div class="trophy-case-title">TROPHY CASE</div><div class="trophy-top-lights" aria-hidden="true"></div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item${/championship/i.test(x)?" trophy-championship":""}"><span class="trophy-award-text">${x}</span>${/championship/i.test(x)?' <span class="trophy-icon" aria-hidden="true">🏆</span>':""}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div>`;
+  return `<div class="trophy-case-wrap"><div class="trophy-case-heading">TROPHY CASE</div><div class="trophy-case"><div class="trophy-top-lights" aria-hidden="true"></div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item${/championship/i.test(x)?" trophy-championship":""}">${x}${/championship/i.test(x)?' <span class="trophy-icon" aria-hidden="true">🏆</span>':""}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div></div>`;
 }
 
 function careerSnapshot(name){
@@ -1148,6 +1146,71 @@ content.addEventListener("click", (event) => {
     panel.classList.toggle("active", panel.dataset.season === season);
   });
 });
+
+
+// Robust history-tab delegation: history controls are rendered dynamically,
+// so handle them from the document as well as #content.
+document.addEventListener("click", (event) => {
+  const historySubtab = event.target.closest?.(".history-subtab");
+  if (historySubtab) {
+    const contentRoot = document.getElementById("content");
+    if (!contentRoot || !contentRoot.contains(historySubtab)) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    const section = historySubtab.dataset.historySection;
+    contentRoot.querySelectorAll(".history-subtab").forEach(t => {
+      const active = t === historySubtab;
+      t.classList.toggle("active", active);
+      t.setAttribute("aria-selected", active ? "true" : "false");
+    });
+    contentRoot.querySelectorAll("[data-history-section-panel]").forEach(panel => {
+      const active = panel.dataset.historySectionPanel === section;
+      panel.hidden = !active;
+      panel.classList.toggle("active", active);
+    });
+    return;
+  }
+
+  const seasonTab = event.target.closest?.(".history-season-tab");
+  if (seasonTab) {
+    const contentRoot = document.getElementById("content");
+    if (!contentRoot || !contentRoot.contains(seasonTab)) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    const season = seasonTab.dataset.season;
+    contentRoot.querySelectorAll(".history-season-tab").forEach(t => {
+      const active = t === seasonTab;
+      t.classList.toggle("active", active);
+      t.setAttribute("aria-selected", active ? "true" : "false");
+    });
+    contentRoot.querySelectorAll(".history-season-panel").forEach(panel => {
+      panel.classList.toggle("active", panel.dataset.season === season);
+    });
+  }
+});
+
+
+function selectHistorySeason(tab){
+  const root=document.getElementById("content");
+  if(!root || !tab) return;
+  const season=tab.getAttribute("data-season");
+
+  root.querySelectorAll(".history-season-tab").forEach(t=>{
+    const active=t===tab;
+    t.classList.toggle("active",active);
+    t.setAttribute("aria-selected",active?"true":"false");
+  });
+
+  root.querySelectorAll(".history-season-panel").forEach(panel=>{
+    const active=panel.getAttribute("data-season")===season;
+    panel.classList.toggle("active",active);
+    panel.hidden=!active;
+    panel.style.display=active?"block":"none";
+  });
+}
+window.selectHistorySeason=selectHistorySeason;
 
 function bindChampionLinks(){
   document.querySelectorAll(".champion-banner-link").forEach(card=>{
