@@ -4881,3 +4881,196 @@ img[src="drayton-member.png"] {
     min-height: 220px;
   }
 }
+
+/* Trophy Case v162 — wood cabinet with glass interior and refined awards */
+.player-profile-card .trophy-case {
+  position: relative !important;
+  overflow: visible !important;
+  margin: 28px 0 16px !important;
+  padding: 24px 18px 16px !important;
+  border: 12px solid transparent !important;
+  border-radius: 7px !important;
+  background:
+    linear-gradient(rgba(82,46,23,.18), rgba(82,46,23,.18)) padding-box,
+    repeating-linear-gradient(
+      3deg,
+      #3f2110 0 4px,
+      #70401e 5px 8px,
+      #9a6132 9px 12px,
+      #5b3017 13px 17px,
+      #7b471f 18px 22px,
+      #47230f 23px 27px
+    ) border-box !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(223,160,88,.72),
+    inset 0 0 0 5px rgba(55,30,15,.42),
+    0 10px 24px rgba(0,0,0,.34) !important;
+}
+.player-profile-card .trophy-case::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 12px !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  border: 1px solid rgba(240,250,255,.26) !important;
+  border-radius: 3px !important;
+  background:
+    linear-gradient(116deg, transparent 0%, rgba(255,255,255,.12) 24%,
+      rgba(255,255,255,.025) 32%, transparent 40%, transparent 69%,
+      rgba(255,255,255,.05) 77%, transparent 86%),
+    rgba(125,150,160,.055) !important;
+  box-shadow: inset 0 0 20px rgba(205,230,240,.08),
+              inset 0 1px 0 rgba(255,255,255,.16) !important;
+}
+.player-profile-card .trophy-case-title {
+  position: absolute !important;
+  top: -22px !important;
+  left: 0 !important;
+  z-index: 8 !important;
+  display: block !important;
+  width: auto !important;
+  padding: 0 0 5px !important;
+  margin: 0 !important;
+  color: #A51C30 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 2px solid #A51C30 !important;
+  font-family: Oswald, "Arial Narrow", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.8px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  text-shadow: none !important;
+}
+.player-profile-card .trophy-cabinet-plaque {
+  display: none !important;
+}
+.player-profile-card .trophy-items {
+  position: relative !important;
+  z-index: 4 !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+.player-profile-card .trophy-item {
+  min-width: 0 !important;
+  min-height: 42px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 9px 11px !important;
+  color: #d7b84c !important;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.018)),
+    rgba(12,13,14,.52) !important;
+  border: 1px solid rgba(201,162,39,.42) !important;
+  border-radius: 3px !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08),
+              inset 0 0 10px rgba(201,162,39,.035),
+              0 2px 5px rgba(0,0,0,.22) !important;
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+}
+.player-profile-card .trophy-item .trophy-award-text {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+.player-profile-card .trophy-item .trophy-icon {
+  flex: 0 0 auto !important;
+  margin-left: auto !important;
+  font-size: 15px !important;
+  line-height: 1 !important;
+}
+.player-profile-card .trophy-item.trophy-championship {
+  font-size: 14px !important;
+  color: #e2c65b !important;
+  font-weight: 700 !important;
+  border-color: rgba(215,184,76,.62) !important;
+}
+.player-profile-card .trophy-empty {
+  grid-column: 1 / -1 !important;
+  padding: 12px !important;
+  color: #777 !important;
+  text-align: center !important;
+}
+@media (max-width: 650px) {
+  .player-profile-card .trophy-case {
+    margin-top: 25px !important;
+    padding: 19px 11px 12px !important;
+    border-width: 10px !important;
+  }
+  .player-profile-card .trophy-case-title {
+    top: -19px !important;
+    font-size: 11px !important;
+    letter-spacing: 1.6px !important;
+  }
+  .player-profile-card .trophy-items {
+    grid-template-columns: 1fr !important;
+    gap: 7px !important;
+  }
+  .player-profile-card .trophy-item {
+    min-height: 40px !important;
+    padding: 8px 10px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Ice Counter v163 — target the actual visible .ice-cube element */
+.ice-counter {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  border: 1px solid rgba(222,248,255,.9) !important;
+  background: radial-gradient(circle at 20% 15%, rgba(255,255,255,.28), transparent 28%), linear-gradient(145deg, rgba(229,250,255,.18), rgba(104,190,224,.16) 45%, rgba(20,70,92,.68)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8), inset 0 -14px 28px rgba(54,157,196,.22), inset 0 0 26px rgba(201,244,255,.25), 0 0 12px rgba(166,232,255,.52), 0 0 30px rgba(80,196,238,.35) !important;
+}
+.ice-counter::before {
+  content:"" !important; position:absolute !important; inset:0 !important; z-index:1 !important; pointer-events:none !important;
+  background: repeating-linear-gradient(117deg, transparent 0 15px, rgba(240,252,255,.075) 16px 17px, transparent 18px 31px), repeating-linear-gradient(28deg, transparent 0 22px, rgba(255,255,255,.06) 23px 24px, transparent 25px 43px), radial-gradient(circle at 18% 75%, rgba(255,255,255,.25) 0 1px, transparent 2px), radial-gradient(circle at 74% 25%, rgba(255,255,255,.22) 0 1px, transparent 2px);
+  opacity:.9 !important;
+}
+.ice-counter::after {
+  content:"" !important; position:absolute !important; top:-60% !important; left:-90% !important; width:45% !important; height:220% !important; z-index:6 !important; pointer-events:none !important; transform:rotate(23deg) !important;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.52), transparent) !important; filter:blur(1px) !important; animation:iceCounterSweep 5s ease-in-out infinite !important;
+}
+@keyframes iceCounterSweep {
+  0%,55% { left:-90%; opacity:0; } 64% { opacity:.22; } 76% { left:145%; opacity:.42; } 86%,100% { left:155%; opacity:0; }
+}
+.ice-counter .ice-counter-number {
+  position:relative !important; z-index:7 !important; color:#f5fdff !important;
+  background:linear-gradient(180deg,#fff 0%,#e7fbff 34%,#a8e8fa 67%,#fff 100%) !important;
+  -webkit-background-clip:text !important; background-clip:text !important; -webkit-text-fill-color:transparent !important;
+  text-shadow:0 0 5px rgba(244,253,255,.95),0 0 12px rgba(155,232,255,.85),0 0 26px rgba(72,194,237,.65) !important;
+  filter:drop-shadow(0 2px 3px rgba(0,52,73,.4)) !important;
+  animation:iceNumberFrost 3.8s ease-in-out infinite !important;
+}
+@keyframes iceNumberFrost {
+  0%,45%,100% { filter:drop-shadow(0 2px 3px rgba(0,52,73,.4)); }
+  55% { filter:drop-shadow(0 2px 3px rgba(0,52,73,.4)) brightness(1.16); }
+  68% { filter:drop-shadow(0 2px 3px rgba(0,52,73,.4)) brightness(1.28); }
+  80% { filter:drop-shadow(0 2px 3px rgba(0,52,73,.4)); }
+}
+.ice-counter .ice-cube {
+  position:absolute !important; top:7px !important; right:7px !important; width:58px !important; height:48px !important; z-index:8 !important;
+  border-radius:10px !important; background:linear-gradient(135deg, rgba(255,255,255,.72), rgba(172,235,252,.28) 40%, rgba(78,178,218,.20)) !important;
+  border:1px solid rgba(237,253,255,.72) !important;
+  box-shadow:inset 5px 4px 9px rgba(255,255,255,.38), inset -6px -6px 10px rgba(58,157,198,.2), 0 0 9px rgba(165,235,255,.65), 0 2px 6px rgba(0,64,87,.32) !important;
+  transform:rotate(-6deg) skew(-3deg) !important; opacity:.9 !important;
+}
+.ice-counter .ice-cube::before,.ice-counter .ice-cube::after { content:"" !important; position:absolute !important; pointer-events:none !important; }
+.ice-counter .ice-cube::before {
+  inset:6px !important; border-radius:7px !important;
+  background:linear-gradient(122deg, rgba(255,255,255,.65), transparent 35%), linear-gradient(30deg, transparent 48%, rgba(255,255,255,.3) 49%, transparent 52%) !important;
+  filter:blur(.4px) !important;
+}
+.ice-counter .ice-cube::after {
+  width:22px !important; height:7px !important; top:9px !important; left:10px !important; border-radius:50% !important;
+  background:rgba(255,255,255,.72) !important; filter:blur(3px) !important;
+}
+@media(max-width:700px){ .ice-counter .ice-cube{width:44px !important;height:37px !important;top:5px !important;right:5px !important;} }
