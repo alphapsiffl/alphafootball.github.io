@@ -3995,7 +3995,7 @@ body {
 .ice-counter::before { left: 0; }
 .ice-counter::after { right: 0; transform: scaleX(-1); }
 .ice-counter-label {
-  color: var(--cardinal, #A51C30);
+  color: var(--cardinal, #a51c30);
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 2px;
@@ -4677,9 +4677,9 @@ body {
   background: linear-gradient(
     180deg,
     transparent,
-    #A51C30 20%,
-    #A51C30 50%,
-    #A51C30 80%,
+    #a51c30 20%,
+    #c52a40 50%,
+    #a51c30 80%,
     transparent
   ) !important;
   box-shadow: 0 0 8px rgba(165,28,48,.42) !important;
@@ -4882,168 +4882,1231 @@ img[src="drayton-member.png"] {
   }
 }
 
-/* 2025 History pyramid: champion centered above two bottom cards */
-.history-2025-pyramid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-areas:
-    "champ champ"
-    "loser recap";
-  gap: 22px;
-  align-items: stretch;
-  margin: 20px auto 26px;
-  max-width: 980px;
+
+/* v177 reference components only: Trophy Case + Ice Counter */
+
+
+/* Member Trophy Case */
+.trophy-case {
+  margin: 14px 0 12px;
+  padding: 12px 10px;
+  border-top: 1px solid rgba(177,32,32,.45);
+  background: transparent;
 }
-.history-2025-pyramid .history-2025-champion {
-  grid-area: champ;
-  width: min(62%, 560px);
-  justify-self: center;
-  margin: 0 !important;
+
+
+.trophy-case-title {
+  color: #c9a227 !important;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  font-size: 14px;
+  margin-bottom: 7px;
 }
-.history-2025-pyramid .history-2025-loser {
-  grid-area: loser;
-  margin: 0 !important;
+
+
+.trophy-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
 }
-.history-2025-pyramid .history-2025-recap {
-  grid-area: recap;
-  margin: 0 !important;
+
+
+.trophy-item {
+  color: #c9a227 !important;
+  font-weight: 700;
+  font-size: 13px;
 }
-.history-2025-pyramid .history-photo-feature {
-  height: 100%;
+
+
+.trophy-empty {
+  color: #777 !important;
+  font-size: 12px;
+  font-style: italic;
 }
-.history-2025-pyramid .history-photo-feature figure {
-  margin: 0;
+
+
+
+/* Content typography: body copy under tabs uses Times New Roman.
+   Existing header/subheader typography is preserved. */
+.content-area,
+.content-area p,
+.content-area li,
+.content-area td,
+.content-area th,
+.content-area span,
+.content-area a,
+.content-area label,
+.content-area input,
+.content-area textarea,
+.content-area button,
+.content-area .intro,
+.content-area .member-meta,
+.content-area .member-record,
+.content-area .accolades-placeholder,
+.content-area .member-bio-placeholder,
+.content-area .trophy-item,
+.content-area .trophy-empty,
+.content-area .record-card-detail,
+.content-area .record-feature-sub {
+  font-family: "Times New Roman", Times, serif !important;
 }
-.history-2025-pyramid .history-photo-feature img {
-  width: 100%;
-  height: 360px;
-  object-fit: cover;
+
+
+
+/* Keep headers and subheaders on their existing display fonts. */
+.content-area h1,
+.content-area h2,
+.content-area h3,
+.content-area h4,
+.content-area h5,
+.content-area h6,
+.content-area .section-title h2,
+.content-area .current-rules-title,
+.content-area .trophy-case-title,
+.content-area .member-bio-title,
+.content-area .accolades-title,
+.content-area .history-label,
+.content-area .record-feature-title,
+.content-area .record-card-title,
+.content-area .position {
+  font-family: Oswald, "Arial Narrow", sans-serif !important;
+}
+
+
+.player-profile-card .trophy-case {
+  margin-top: 15px;
+  padding: 13px 12px;
+  border-top: 1px solid rgba(201,162,39,.38);
+  border-bottom: 1px solid rgba(201,162,39,.12);
+  background: linear-gradient(90deg, rgba(201,162,39,.045), transparent 65%);
+}
+
+
+.player-profile-card .trophy-case-title {
+  font-size: 12px;
+  letter-spacing: 1.8px;
+}
+
+
+.player-profile-card .trophy-item {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+}
+
+
+
+/* Trophy Case — dark glass display with gold framing */
+.player-profile-card .trophy-case {
+  position: relative;
+  margin: 17px 0 14px;
+  padding: 14px 14px 12px;
+  border: 1px solid rgba(201,162,39,.72);
+  border-top: 2px solid rgba(201,162,39,.9);
+  border-bottom: 1px solid rgba(201,162,39,.48);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.055), transparent 30%),
+    linear-gradient(180deg, rgba(20,18,12,.92), rgba(7,8,9,.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    inset 0 0 22px rgba(201,162,39,.035),
+    0 5px 15px rgba(0,0,0,.35);
+}
+
+
+
+.player-profile-card .trophy-case::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 6px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,162,39,.42), transparent);
+}
+
+
+
+.player-profile-card .trophy-case-title {
+  color: #d7b84c !important;
+  font-family: "Roboto Slab", serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding-bottom: 8px;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(201,162,39,.28);
+}
+
+
+
+.player-profile-card .trophy-items {
   display: block;
 }
-.history-2025-pyramid .history-2025-champion img {
-  height: 430px;
-}
-.history-2025-pyramid .history-photo-placeholder-inner {
-  min-height: 360px;
-  height: calc(100% - 38px);
-  box-sizing: border-box;
-}
-.history-2025-pyramid figcaption a {
-  color: inherit;
-  text-decoration: none;
-}
-.history-2025-pyramid figcaption a:hover {
-  text-decoration: underline;
-}
-@media (max-width: 700px) {
-  .history-2025-pyramid {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "champ"
-      "loser"
-      "recap";
-    gap: 16px;
-  }
-  .history-2025-pyramid .history-2025-champion {
-    width: 100%;
-  }
-  .history-2025-pyramid .history-photo-feature img,
-  .history-2025-pyramid .history-2025-champion img {
-    height: auto;
-    max-height: none;
-  }
+
+
+
+.player-profile-card .trophy-item {
+  display: block;
+  margin: 0;
+  padding: 8px 2px;
+  color: #d2b347 !important;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+  border-bottom: 1px solid rgba(201,162,39,.16);
 }
 
-/* Social footer */
-.site-footer {
-  margin-top: 34px;
-  padding: 24px 20px 28px;
-  text-align: center;
-  border-top: 1px solid rgba(212,175,55,.35);
-  background: linear-gradient(180deg, rgba(20,20,20,.12), rgba(0,0,0,.28));
+
+
+.player-profile-card .trophy-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 3px;
 }
-.footer-brand {
-  color: rgba(255,255,255,.72);
-  font-size: 12px;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  margin-bottom: 16px;
+
+
+
+.player-profile-card .trophy-item:first-child {
+  padding-top: 10px;
 }
-.footer-brand span { color: #d4af37; margin: 0 5px; }
-.footer-socials {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.footer-socials a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  color: rgba(255,255,255,.78);
-  text-decoration: none;
-  font-size: 10px;
-  letter-spacing: .35px;
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 7px;
-  background: rgba(255,255,255,.035);
-  transition: .2s ease;
-}
-.footer-socials a:hover {
-  color: #fff;
-  border-color: rgba(212,175,55,.45);
-  background: rgba(212,175,55,.08);
-  transform: translateY(-1px);
-}
-.footer-socials strong {
-  color: #d4af37;
-  font-weight: 800;
-}
-.social-icon {
-  width: 20px;
-  height: 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  color: #fff;
-  font-size: 12px;
+
+
+
+/* Championship awards get the most visual weight. */
+.player-profile-card .trophy-item:first-child,
+.player-profile-card .trophy-item[class*="Championship"] {
+  font-size: 16px;
+  color: #f0d477 !important;
   font-weight: 900;
 }
-.instagram-icon {
-  border: 2px solid #fff;
-  border-radius: 6px;
-  font-size: 17px;
-  line-height: 1;
-}
-.youtube-icon {
-  background: #A51C30;
-  border-radius: 5px;
-  font-size: 9px;
-}
-.spotify-icon {
-  background: #d4af37;
-  color: #1c1c1c;
-  border-radius: 50%;
-  font-size: 9px;
-}
-@media (max-width:700px) {
-  .site-footer { padding: 20px 12px 24px; }
-  .footer-socials { flex-direction: column; }
-  .footer-socials a { width: min(280px, 90vw); justify-content: flex-start; }
+
+
+
+.player-profile-card .trophy-empty {
+  padding: 10px 2px 3px;
+  color: #777 !important;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13px;
+  font-style: italic;
 }
 
-.tiktok-icon {
-  background: #171717;
-  border: 1px solid rgba(255,255,255,.28);
-  color: #fff;
-  font-size: 12px;
+
+
+.player-profile-card .trophy-case {
+  transition: border-color .22s ease, box-shadow .22s ease, background .22s ease;
 }
+
+
+
+.player-profile-card:hover .trophy-case {
+  border-color: rgba(215,184,76,.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.09),
+    inset 0 0 26px rgba(215,184,76,.055),
+    0 5px 16px rgba(0,0,0,.4);
+}
+
+
+
+/* ---------------------------------------------------------
+   Gold accents softly brighten
+   --------------------------------------------------------- */
+.trophy-case-title,
+.founder-badge,
+.allpsi-season-heading strong {
+  transition: color .2s ease, text-shadow .2s ease;
+}
+
+
+
+.player-profile-card:hover .trophy-case-title,
+.player-profile-card:hover .founder-badge {
+  color: var(--gold-bright) !important;
+  text-shadow: 0 0 8px rgba(215,184,76,.15);
+}
+
+
+
+/* Compact unified Trophy Case */
+.player-profile-card .trophy-case {
+  margin: 10px 0 10px;
+  padding: 9px 10px 8px;
+  border: 1px solid rgba(201,162,39,.55);
+  border-top: 1px solid rgba(201,162,39,.72);
+  border-bottom: 1px solid rgba(201,162,39,.38);
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(20,18,12,.78), rgba(8,9,10,.92));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+
+
+.player-profile-card .trophy-case::before,
+.player-profile-card .trophy-case::after {
+  display: none;
+}
+
+
+
+.player-profile-card .trophy-case-title {
+  margin: 0 0 6px;
+  color: var(--gold) !important;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(201,162,39,.22);
+}
+
+
+
+.player-profile-card .trophy-items {
+  display: grid;
+  gap: 0;
+}
+
+
+
+.player-profile-card .trophy-item,
+.player-profile-card .trophy-empty {
+  position: relative;
+  margin: 0;
+  padding: 5px 3px;
+  color: #d7d7d7 !important;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12px;
+  line-height: 1.25;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+
+
+.player-profile-card .trophy-item:last-child,
+.player-profile-card .trophy-empty:last-child {
+  border-bottom: 0;
+}
+
+
+
+.player-profile-card .trophy-item::first-letter {
+  color: var(--gold);
+}
+
+
+
+/* Championship entries get the only special visual emphasis. */
+.player-profile-card .trophy-item:has(+ .trophy-item),
+.player-profile-card .trophy-item {
+  color: #d7d7d7 !important;
+}
+
+
+
+.player-profile-card .trophy-item {
+  border-radius: 2px;
+}
+
+
+.alumni-minimal-card .trophy-case {
+  margin-top: 10px;
+}
+
+
+
+/* Trophy Case: all trophy names use white text. */
+.player-profile-card .trophy-item,
+.player-profile-card .trophy-item.trophy-championship {
+  color: #ffffff !important;
+}
+
+
+
+/* Trophy Case: championships are gold with a small trophy icon. */
+.player-profile-card .trophy-item.trophy-championship {
+  color: var(--gold) !important;
+}
+
+
+.player-profile-card .trophy-item.trophy-championship .trophy-icon {
+  display: inline-block;
+  margin-left: 3px;
+  font-size: 11px;
+  line-height: 1;
+  vertical-align: -1px;
+}
+
+
+
+/* Trophy Case: non-championship first letters stay white. */
+.player-profile-card .trophy-item:not(.trophy-championship)::first-letter {
+  color: #ffffff !important;
+}
+
+
+
+.player-profile-card .trophy-item.trophy-championship {
+  animation: championshipTrophyGlow 2.4s ease-in-out infinite;
+}
+
+
+
+/* Members section headings */
+.career-snapshot-title,
+.career-snapshot .career-snapshot-title,
+.trophy-case-title,
+.member-bio-title,
+.bio-title {
+  color: var(--cardinal) !important;
+}
+
+
+
+/* Trophy Case — glass display + cardinal ambient glow + plaque header */
+.player-profile-card .trophy-case {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(165,28,48,.16) 0%, rgba(165,28,48,.06) 30%, transparent 65%),
+    linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025) 42%, rgba(0,0,0,.12) 100%),
+    rgba(45,45,48,.72) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -10px 24px rgba(0,0,0,.12),
+    0 0 24px rgba(165,28,48,.12) !important;
+}
+
+
+
+.player-profile-card .trophy-case::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+  pointer-events: none;
+}
+
+
+
+.player-profile-card .trophy-case-title {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  position: relative;
+  padding: 4px 9px 5px !important;
+  margin: -2px 0 8px !important;
+  color: var(--cardinal) !important;
+  font-size: 10px !important;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(165,28,48,.72) !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.55);
+  background: linear-gradient(180deg, rgba(165,28,48,.10), transparent);
+}
+
+
+
+/* Trophy Case: remove cardinal backdrop, retain glass/depth. */
+.player-profile-card .trophy-case {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025) 42%, rgba(0,0,0,.12) 100%),
+    rgba(45,45,48,.72) !important;
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -10px 24px rgba(0,0,0,.12) !important;
+}
+
+
+
+/* Trophy Case — wood display frame */
+.player-profile-card .trophy-case {
+  border: 8px solid #6b4327 !important;
+  border-radius: 6px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.025) 42%, rgba(0,0,0,.12) 100%),
+    rgba(45,45,48,.72) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(188,132,72,.55),
+    inset 0 0 0 5px rgba(55,30,15,.45),
+    0 10px 24px rgba(0,0,0,.32) !important;
+  background-clip: padding-box;
+}
+
+
+
+.player-profile-card .trophy-case::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 6px;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      8deg,
+      rgba(255,255,255,.035) 0,
+      rgba(255,255,255,.035) 2px,
+      transparent 2px,
+      transparent 9px
+    );
+  mix-blend-mode: screen;
+  opacity: .7;
+}
+
+
+
+.player-profile-card .trophy-case::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 7%;
+  right: 7%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(214,160,94,.7), transparent);
+  pointer-events: none;
+}
+
+
+
+/* Trophy Case header: no emoji */
+
+
+/* FINAL: Trophy Case heading has no icon/emoji beside it. */
+.player-profile-card .trophy-case-title::before,
+.player-profile-card .trophy-case-title::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+
+/* All-time Ice counter on Home */
+.ice-counter {
+  width: min(100%, 620px);
+  margin: 22px auto 18px;
+  padding: 15px 20px 14px;
+  text-align: center;
+  position: relative;
+  border: 2px solid rgba(212,175,55,.72);
+  border-radius: 10px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.015)),
+    rgba(35,35,38,.88);
+  box-shadow: 0 8px 22px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+
+.ice-counter::before,
+.ice-counter::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 22%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(165,28,48,.8));
+}
+
+
+.ice-counter::before { left: 0; }
+
+
+.ice-counter::after { right: 0; transform: scaleX(-1); }
+
+
+.ice-counter-label {
+  color: var(--cardinal, #A51C30);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+
+.ice-counter-number {
+  margin: 2px 0 0;
+  color: #d4af37;
+  font-size: clamp(38px, 6vw, 56px);
+  line-height: .95;
+  font-weight: 950;
+  text-shadow: 0 2px 8px rgba(0,0,0,.4);
+}
+
+
+.ice-counter-subtitle {
+  margin-top: 5px;
+  color: rgba(255,255,255,.72);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+
+
+/* Trophy Case: wood frame, glass interior, no cardinal backdrop, no emoji. */
+.player-profile-card .trophy-case {
+  border: 8px solid #6b4327 !important;
+  border-radius: 6px !important;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025) 42%, rgba(0,0,0,.12) 100%),
+    rgba(45,45,48,.72) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(188,132,72,.55),
+    inset 0 0 0 5px rgba(55,30,15,.45),
+    0 10px 24px rgba(0,0,0,.32) !important;
+}
+
+
+.player-profile-card .trophy-case-title::before,
+.player-profile-card .trophy-case-title::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+
+/* Home Ice counter. */
+.ice-counter { display:block !important; }
+
+
+
+/* Trophy Case: richer wood-grain frame */
+.player-profile-card .trophy-case {
+  border: 12px solid #6b4327 !important;
+  border-radius: 7px !important;
+  background:
+    linear-gradient(90deg,
+      rgba(45,20,8,.42) 0%,
+      rgba(145,86,38,.34) 8%,
+      rgba(66,29,12,.30) 16%,
+      rgba(163,98,43,.28) 27%,
+      rgba(55,24,10,.34) 39%,
+      rgba(143,80,34,.30) 52%,
+      rgba(61,27,11,.36) 65%,
+      rgba(153,91,39,.30) 78%,
+      rgba(48,21,9,.40) 91%,
+      rgba(128,70,29,.30) 100%
+    ),
+    repeating-linear-gradient(
+      3deg,
+      rgba(255,205,135,.10) 0px,
+      rgba(255,205,135,.10) 2px,
+      rgba(55,24,9,.13) 3px,
+      rgba(55,24,9,.13) 7px,
+      rgba(255,190,110,.07) 8px,
+      rgba(255,190,110,.07) 13px
+    ),
+    rgba(54,29,15,.94) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(215,151,79,.72),
+    inset 0 0 0 5px rgba(55,25,10,.62),
+    inset 0 0 18px rgba(20,8,3,.45),
+    0 10px 24px rgba(0,0,0,.34) !important;
+  overflow: hidden;
+}
+
+
+
+.player-profile-card .trophy-case::before {
+  content: "" !important;
+  position: absolute;
+  inset: 3px;
+  pointer-events: none;
+  border: 1px solid rgba(238,184,112,.28);
+  background:
+    repeating-radial-gradient(
+      ellipse at 20% 45%,
+      transparent 0 8px,
+      rgba(255,210,150,.075) 9px 10px,
+      transparent 11px 17px
+    );
+  opacity: .7;
+}
+
+
+
+/* Trophy Case v150: wood frame only, glass interior */
+.player-profile-card .trophy-case {
+  border: 12px solid #6b4327 !important;
+  border-radius: 7px !important;
+  background:
+    linear-gradient(90deg,
+      rgba(45,20,8,.42) 0%,
+      rgba(145,86,38,.34) 8%,
+      rgba(66,29,12,.30) 16%,
+      rgba(163,98,43,.28) 27%,
+      rgba(55,24,10,.34) 39%,
+      rgba(143,80,34,.30) 52%,
+      rgba(61,27,11,.36) 65%,
+      rgba(153,91,39,.30) 78%,
+      rgba(48,21,9,.40) 91%,
+      rgba(128,70,29,.30) 100%
+    ),
+    repeating-linear-gradient(
+      3deg,
+      rgba(255,205,135,.10) 0px,
+      rgba(255,205,135,.10) 2px,
+      rgba(55,24,9,.13) 3px,
+      rgba(55,24,9,.13) 7px,
+      rgba(255,190,110,.07) 8px,
+      rgba(255,190,110,.07) 13px
+    ) !important;
+  padding: 18px !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(215,151,79,.72),
+    inset 0 0 0 5px rgba(55,25,10,.62),
+    0 10px 24px rgba(0,0,0,.34) !important;
+  overflow: hidden;
+}
+
+
+
+/* Put the glass/display surface inside the wooden frame. */
+.player-profile-card .trophy-case > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+.player-profile-card .trophy-case::before {
+  content: "" !important;
+  position: absolute;
+  inset: 12px;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 2px;
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,.14),
+      rgba(255,255,255,.035) 35%,
+      rgba(255,255,255,.06) 65%,
+      rgba(255,255,255,.02)
+    ),
+    rgba(125,150,160,.08);
+  box-shadow:
+    inset 0 0 22px rgba(190,220,230,.10),
+    inset 0 1px 0 rgba(255,255,255,.16);
+  opacity: 1;
+}
+
+
+
+.player-profile-card .trophy-case::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg,
+      transparent 0%,
+      rgba(255,255,255,.12) 28%,
+      transparent 38%,
+      transparent 70%,
+      rgba(255,255,255,.05) 78%,
+      transparent 86%
+    );
+  opacity: .65;
+  z-index: 2;
+}
+
+
+
+/* Trophy Case v154 — wood grain ONLY in the frame, glass inside */
+.player-profile-card .trophy-case {
+  border: 14px solid transparent !important;
+  border-radius: 9px !important;
+  padding: 18px !important;
+  background:
+    linear-gradient(135deg,
+      rgba(210,225,232,.11),
+      rgba(80,105,115,.08) 32%,
+      rgba(225,240,245,.06) 52%,
+      rgba(55,75,82,.10)
+    ) padding-box,
+    repeating-linear-gradient(
+      3deg,
+      #4b2a16 0px,
+      #4b2a16 4px,
+      #8b542b 5px,
+      #6b3d1e 9px,
+      #a06635 11px,
+      #512b15 15px,
+      #74431f 20px
+    ) border-box !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.22),
+    inset 0 0 22px rgba(185,220,230,.10),
+    0 10px 24px rgba(0,0,0,.34) !important;
+  overflow: hidden;
+}
+
+
+
+/* Remove the old wood/glass pseudo overlays so they cannot paint over the
+   glass interior. */
+.player-profile-card .trophy-case::before,
+.player-profile-card .trophy-case::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+
+/* Trophy Case v155 — glowing display lights along the top */
+.player-profile-card .trophy-case {
+  position: relative !important;
+}
+
+
+
+/* Three soft spotlights hanging from the top edge */
+.player-profile-card .trophy-case .trophy-top-lights {
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 52px;
+  pointer-events: none;
+  z-index: 4;
+  background:
+    radial-gradient(ellipse at 12% 0%,
+      rgba(255,246,194,.95) 0 3px,
+      rgba(255,225,120,.55) 4px,
+      rgba(255,215,100,.18) 13px,
+      transparent 30px),
+    radial-gradient(ellipse at 50% 0%,
+      rgba(255,246,194,.95) 0 3px,
+      rgba(255,225,120,.55) 4px,
+      rgba(255,215,100,.18) 13px,
+      transparent 30px),
+    radial-gradient(ellipse at 88% 0%,
+      rgba(255,246,194,.95) 0 3px,
+      rgba(255,225,120,.55) 4px,
+      rgba(255,215,100,.18) 13px,
+      transparent 30px);
+  filter: blur(.15px);
+  animation: trophyLightsGlow 2.8s ease-in-out infinite alternate;
+}
+
+
+
+.player-profile-card .trophy-case .trophy-top-lights::after {
+  content: "";
+  position: absolute;
+  inset: 2px 0 0;
+  background:
+    linear-gradient(168deg,
+      transparent 0 9%,
+      rgba(255,232,150,.055) 18%,
+      transparent 31% 100%),
+    linear-gradient(192deg,
+      transparent 0 67%,
+      rgba(255,232,150,.045) 78%,
+      transparent 91% 100%);
+}
+
+
+
+/* Trophy Case v156 — warm wood interior behind the glass.
+   The outer glass/frame treatment stays unchanged. */
+.player-profile-card .trophy-case {
+  background:
+    linear-gradient(135deg,
+      rgba(116,67,31,.96),
+      rgba(91,48,21,.98) 38%,
+      rgba(132,77,35,.96) 68%,
+      rgba(82,42,18,.98)
+    ) padding-box,
+    repeating-linear-gradient(
+      3deg,
+      #4b2a16 0px,
+      #4b2a16 4px,
+      #8b542b 5px,
+      #6b3d1e 9px,
+      #a06635 11px,
+      #512b15 15px,
+      #74431f 20px
+    ) border-box !important;
+}
+
+
+
+/* Keep the glass as a transparent layer over the wood interior. */
+.player-profile-card .trophy-case::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  inset: 14px !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  border-radius: 2px !important;
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,.13),
+      rgba(255,255,255,.035) 32%,
+      rgba(255,255,255,.06) 60%,
+      rgba(255,255,255,.015)
+    ) !important;
+  box-shadow:
+    inset 0 0 22px rgba(190,220,230,.10),
+    inset 0 1px 0 rgba(255,255,255,.16) !important;
+}
+
+
+
+/* Keep trophy contents above the glass reflection while preserving the
+   existing top display lights. */
+.player-profile-card .trophy-case > *:not(.trophy-top-lights) {
+  position: relative;
+  z-index: 3;
+}
+
+
+
+.player-profile-card .trophy-case .trophy-top-lights {
+  z-index: 4 !important;
+}
+
+
+
+/* =========================================================
+   Trophy Case v157 — premium custom sports trophy cabinet
+   ========================================================= */
+
+/* Thicker beveled walnut-style cabinet frame + warm wood backing */
+.player-profile-card .trophy-case {
+  border: 16px solid transparent !important;
+  border-radius: 10px !important;
+  padding: 22px !important;
+  background:
+    linear-gradient(135deg,
+      rgba(112,61,27,.97),
+      rgba(75,37,15,.99) 32%,
+      rgba(137,78,33,.97) 56%,
+      rgba(70,34,14,.99) 100%
+    ) padding-box,
+    repeating-linear-gradient(
+      3deg,
+      #3f2110 0px,
+      #3f2110 4px,
+      #70401e 5px,
+      #9a6132 8px,
+      #5b3017 12px,
+      #7b471f 17px,
+      #47230f 22px
+    ) border-box !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(223,160,88,.75),
+    inset 0 0 0 5px rgba(46,21,8,.72),
+    inset 0 0 18px rgba(18,7,2,.45),
+    0 14px 30px rgba(0,0,0,.38) !important;
+}
+
+
+
+/* Warm walnut backing behind the glass */
+.player-profile-card .trophy-case::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 16px !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  border-radius: 3px !important;
+  background:
+    repeating-linear-gradient(
+      1deg,
+      rgba(42,20,8,.18) 0 5px,
+      rgba(158,91,39,.10) 6px 8px,
+      rgba(67,30,12,.14) 9px 14px
+    ),
+    linear-gradient(135deg,
+      #70401f,
+      #5a2f16 38%,
+      #7b471f 68%,
+      #4c2612
+    ) !important;
+}
+
+
+
+/* Realistic glass layer */
+.player-profile-card .trophy-case::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 16px !important;
+  pointer-events: none !important;
+  z-index: 5 !important;
+  border: 1px solid rgba(240,250,255,.28) !important;
+  border-radius: 3px !important;
+  background:
+    linear-gradient(116deg,
+      transparent 0%,
+      rgba(255,255,255,.15) 24%,
+      rgba(255,255,255,.035) 31%,
+      transparent 40%,
+      transparent 68%,
+      rgba(255,255,255,.055) 77%,
+      transparent 86%
+    ),
+    linear-gradient(180deg,
+      rgba(220,240,246,.075),
+      rgba(80,110,120,.025)
+    ) !important;
+  box-shadow:
+    inset 0 0 20px rgba(205,230,240,.09),
+    inset 0 1px 0 rgba(255,255,255,.20),
+    0 0 8px rgba(190,215,225,.08) !important;
+}
+
+
+
+/* Keep cabinet contents above the wood backing. */
+.player-profile-card .trophy-case > *:not(.trophy-top-lights):not(.trophy-cabinet-plaque) {
+  position: relative !important;
+  z-index: 3 !important;
+}
+
+
+
+/* Recessed warm-white/gold top lighting */
+.player-profile-card .trophy-case .trophy-top-lights {
+  position: absolute !important;
+  top: 5px !important;
+  left: 10% !important;
+  right: 10% !important;
+  height: 105px !important;
+  pointer-events: none !important;
+  z-index: 6 !important;
+  background:
+    radial-gradient(ellipse at 12% 0%,
+      rgba(255,248,211,.98) 0 3px,
+      rgba(255,224,125,.72) 5px,
+      rgba(255,214,110,.22) 19px,
+      transparent 46px),
+    radial-gradient(ellipse at 50% 0%,
+      rgba(255,248,211,.98) 0 3px,
+      rgba(255,224,125,.72) 5px,
+      rgba(255,214,110,.22) 19px,
+      transparent 46px),
+    radial-gradient(ellipse at 88% 0%,
+      rgba(255,248,211,.98) 0 3px,
+      rgba(255,224,125,.72) 5px,
+      rgba(255,214,110,.22) 19px,
+      transparent 46px);
+  animation: premiumTrophyLights 3.8s ease-in-out infinite alternate;
+}
+
+
+
+/* Spotlight cones */
+.player-profile-card .trophy-case .trophy-top-lights::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 5px 0 0 !important;
+  background:
+    conic-gradient(from 168deg at 12% 0%,
+      transparent 0 18deg,
+      rgba(255,224,132,.085) 23deg,
+      transparent 30deg),
+    conic-gradient(from 168deg at 50% 0%,
+      transparent 0 18deg,
+      rgba(255,224,132,.085) 23deg,
+      transparent 30deg),
+    conic-gradient(from 168deg at 88% 0%,
+      transparent 0 18deg,
+      rgba(255,224,132,.085) 23deg,
+      transparent 30deg);
+}
+
+
+
+/* Subtle gold plaque */
+.player-profile-card .trophy-case .trophy-cabinet-plaque {
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 7px !important;
+  transform: translateX(-50%) !important;
+  z-index: 7 !important;
+  padding: 5px 13px !important;
+  border: 1px solid rgba(229,188,77,.72) !important;
+  border-radius: 2px !important;
+  background: linear-gradient(180deg,#4a3820,#2a2115) !important;
+  color: #d9b64e !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+  letter-spacing: 1.6px !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 7px rgba(0,0,0,.32) !important;
+}
+
+
+
+/* Individual trophy/award glow when displayed inside the cabinet */
+.player-profile-card .trophy-case .trophy,
+.player-profile-card .trophy-case .award,
+.player-profile-card .trophy-case .award-item {
+  filter: drop-shadow(0 5px 7px rgba(255,215,100,.16)) !important;
+}
+
+
+
+/* =========================================================
+   Ice Counter v158 — premium frosted-glass display
+   ========================================================= */
+.ice-counter {
+  position: relative !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(205,225,235,.55) !important;
+  border-radius: 14px !important;
+  background:
+    radial-gradient(circle at 78% 18%,
+      rgba(255,255,255,.16),
+      transparent 26%),
+    linear-gradient(145deg,
+      rgba(205,225,235,.14),
+      rgba(105,130,145,.10) 42%,
+      rgba(30,42,48,.72)
+    ) !important;
+  backdrop-filter: blur(9px) saturate(115%);
+  -webkit-backdrop-filter: blur(9px) saturate(115%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.30),
+    inset 0 0 18px rgba(190,220,235,.08),
+    0 8px 22px rgba(0,0,0,.34),
+    0 0 18px rgba(190,220,235,.07) !important;
+}
+
+
+
+/* Cardinal accent edge */
+.ice-counter::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 12px !important;
+  bottom: 12px !important;
+  width: 3px !important;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    #A51C30 20%,
+    #A51C30 50%,
+    #A51C30 80%,
+    transparent
+  ) !important;
+  box-shadow: 0 0 8px rgba(165,28,48,.42) !important;
+  z-index: 4 !important;
+}
+
+
+
+/* Animated glass shimmer */
+.ice-counter::after {
+  content: "" !important;
+  position: absolute !important;
+  top: -45%;
+  left: -55%;
+  width: 42%;
+  height: 190%;
+  transform: rotate(20deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.13),
+    transparent
+  );
+  pointer-events: none;
+  animation: iceBoxShimmer 5.5s ease-in-out infinite;
+  z-index: 3;
+}
+
+
+
+.ice-counter-label {
+  position: relative;
+  z-index: 5;
+  color: #e5eef2 !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,.35);
+}
+
+
+
+.ice-counter-number {
+  position: relative;
+  z-index: 5;
+  color: #d4af37 !important;
+  font-size: clamp(40px, 5vw, 52px) !important;
+  text-shadow:
+    0 2px 8px rgba(0,0,0,.42),
+    0 0 10px rgba(212,175,55,.16);
+}
+
+
+
+.ice-counter-subtitle {
+  position: relative;
+  z-index: 5;
+  color: rgba(235,244,247,.72) !important;
+}
+
+
+
+/* Small frosty ice-cube accent */
+.ice-counter .ice-cube {
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(220,245,255,.55);
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg,
+      rgba(255,255,255,.28),
+      rgba(160,205,225,.10)
+    );
+  box-shadow:
+    inset 2px 2px 5px rgba(255,255,255,.15),
+    0 0 9px rgba(190,225,240,.14);
+  transform: rotate(8deg);
+  z-index: 5;
+}
+
+
+.ice-counter .ice-cube::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  right: 3px;
+  top: 3px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.34);
+  filter: blur(1px);
+}
+
+
+
+@keyframes iceBoxShimmer {
+  0%, 18% { left: -55%; opacity: 0; }
+  28% { opacity: 1; }
+  48% { left: 125%; opacity: .55; }
+  60%, 100% { left: 125%; opacity: 0; }
+}
+
+
 
 /* Trophy Case v165 — unified cabinet heading + award plaques */
 .player-profile-card .trophy-case-wrap { margin-top: 15px; position: relative; }
+
+
 .player-profile-card .trophy-case-heading {
   color: #A51C30 !important;
   font-family: Oswald, "Arial Narrow", sans-serif !important;
@@ -5056,8 +6119,12 @@ img[src="drayton-member.png"] {
   padding: 0 2px !important;
   text-align: left !important;
 }
+
+
 .player-profile-card .trophy-case-title,
 .player-profile-card .trophy-cabinet-plaque { display: none !important; }
+
+
 .player-profile-card .trophy-items {
   display: flex;
   flex-direction: column;
@@ -5065,6 +6132,8 @@ img[src="drayton-member.png"] {
   position: relative;
   z-index: 3;
 }
+
+
 .player-profile-card .trophy-item {
   position: relative;
   padding: 9px 12px !important;
@@ -5077,13 +6146,19 @@ img[src="drayton-member.png"] {
   font-size: 14px !important;
   line-height: 1.25 !important;
 }
+
+
 .player-profile-card .trophy-item.trophy-championship {
   color: #d9b64e !important;
   border-color: rgba(217,182,78,.68) !important;
   border-left-color: #d9b64e !important;
   background: linear-gradient(135deg, rgba(143,101,39,.66), rgba(55,34,15,.82) 52%, rgba(119,77,25,.62)) !important;
 }
+
+
 .player-profile-card .trophy-item .trophy-icon { filter: drop-shadow(0 1px 3px rgba(217,182,78,.35)); }
+
+
 .player-profile-card .trophy-empty {
   padding: 14px 12px !important;
   border: 1px dashed rgba(201,162,39,.32) !important;
@@ -5091,64 +6166,8 @@ img[src="drayton-member.png"] {
   color: rgba(255,255,255,.55) !important;
   background: rgba(40,25,15,.35) !important;
 }
-@media (max-width: 650px) {
-  .player-profile-card .trophy-case-heading { font-size: 9px !important; letter-spacing: 1.5px !important; }
-  .player-profile-card .trophy-item { font-size: 12px !important; }
-}
 
-/* Mobile footer: keep all social links on one horizontal bar */
-@media (max-width: 700px) {
-  .site-footer {
-    padding: 16px 6px 20px !important;
-  }
 
-  .footer-socials {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    width: 100% !important;
-    gap: 4px !important;
-    justify-content: space-between !important;
-    align-items: stretch !important;
-  }
-
-  .footer-socials a {
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
-    width: auto !important;
-    padding: 7px 3px !important;
-    gap: 4px !important;
-    justify-content: center !important;
-    white-space: nowrap !important;
-    font-size: 7px !important;
-    letter-spacing: 0 !important;
-    border-radius: 5px !important;
-  }
-
-  .footer-socials a strong {
-    font-size: 7px !important;
-  }
-
-  .social-icon {
-    flex: 0 0 16px !important;
-    width: 16px !important;
-    height: 16px !important;
-    font-size: 9px !important;
-  }
-
-  .instagram-icon {
-    font-size: 13px !important;
-  }
-
-  .youtube-icon {
-    font-size: 7px !important;
-  }
-
-  .spotify-icon,
-  .tiktok-icon {
-    font-size: 8px !important;
-  }
-}
 
 /* Smirnoff ICE logo in the top-left of the All-Time Ices box */
 .ice-counter .ice-brand-logo {
@@ -5164,14 +6183,8 @@ img[src="drayton-member.png"] {
   pointer-events: none;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,.35));
 }
-@media (max-width: 700px) {
-  .ice-counter .ice-brand-logo {
-    top: 6px;
-    left: 6px;
-    width: 54px;
-    max-height: 27px;
-  }
-}
+
+
 
 /* Ice Counter v168 — make the count itself look like real crystalline ice */
 .ice-counter-number {
@@ -5200,6 +6213,8 @@ img[src="drayton-member.png"] {
   filter: drop-shadow(0 2px 3px rgba(0,55,75,.38)) !important;
 }
 
+
+
 /* Frosty crystalline highlights behind the number */
 .ice-counter-number::before {
   content: "" !important;
@@ -5222,6 +6237,8 @@ img[src="drayton-member.png"] {
   opacity: .9;
 }
 
+
+
 /* A thin frozen shine that moves slowly across the count */
 .ice-counter-number::after {
   content: "" !important;
@@ -5242,12 +6259,16 @@ img[src="drayton-member.png"] {
   filter: blur(.4px);
 }
 
+
+
 @keyframes iceNumberShine {
   0%, 30% { left: -35%; opacity: 0; }
   42% { opacity: .75; }
   60% { left: 120%; opacity: .18; }
   100% { left: 120%; opacity: 0; }
 }
+
+
 
 /* Make the small cube read as a translucent chunk of ice. */
 .ice-counter .ice-cube {
@@ -5266,30 +6287,7 @@ img[src="drayton-member.png"] {
     0 0 12px rgba(175,240,250,.28) !important;
 }
 
-/* Footer v170: social bar stands on its own without the old league/established line. */
-.site-footer .footer-socials {
-  margin-top: 0 !important;
-}
 
-/* Cardinal standardization v172 — all site reds use one Alpha Psi cardinal. */
-:root {
-  --alpha-psi-cardinal: #A51C30;
-}
-
-.red,
-.cardinal,
-.text-red,
-[style*="color:red"],
-[style*="color: red"] {
-  color: var(--alpha-psi-cardinal) !important;
-}
-
-.bg-red,
-.cardinal-bg,
-[style*="background:red"],
-[style*="background: red"] {
-  background-color: var(--alpha-psi-cardinal) !important;
-}
 
 .footer-socials .youtube-icon,
 .ice-counter::before,
@@ -5300,6 +6298,8 @@ img[src="drayton-member.png"] {
   --site-red: var(--alpha-psi-cardinal);
 }
 
+
+
 /* Trophy Case v173 — clean horizontal award layout */
 .player-profile-card .trophy-items {
   display: grid !important;
@@ -5307,6 +6307,8 @@ img[src="drayton-member.png"] {
   gap: 10px !important;
   align-items: stretch !important;
 }
+
+
 
 .player-profile-card .trophy-item {
   display: flex !important;
@@ -5318,10 +6320,14 @@ img[src="drayton-member.png"] {
   text-align: left !important;
 }
 
+
+
 /* Keep championship awards prominent without making them full-height blocks. */
 .player-profile-card .trophy-item.trophy-championship {
   min-height: 48px !important;
 }
+
+
 
 /* Let the trophy icon sit naturally at the right side of the award. */
 .player-profile-card .trophy-item .trophy-icon {
@@ -5329,18 +6335,7 @@ img[src="drayton-member.png"] {
   flex: 0 0 auto !important;
 }
 
-/* On narrow screens use one clean horizontal card per row. */
-@media (max-width: 650px) {
-  .player-profile-card .trophy-items {
-    grid-template-columns: 1fr !important;
-    gap: 7px !important;
-  }
 
-  .player-profile-card .trophy-item {
-    min-height: 40px !important;
-    padding: 8px 10px !important;
-  }
-}
 
 /* Ice Counter v174 — supplied ice-cube art in top-right */
 .ice-counter .ice-cube-art {
@@ -5355,49 +6350,6 @@ img[src="drayton-member.png"] {
   pointer-events: none !important;
   filter: drop-shadow(0 2px 4px rgba(0,70,95,.28)) !important;
 }
-@media (max-width: 700px) {
-  .ice-counter .ice-cube-art {
-    top: 5px !important;
-    right: 5px !important;
-    width: 46px !important;
-    height: 36px !important;
-  }
-}
 
-/* History season tabs v175 — explicit visibility so the selected season always shows. */
-.history-season-panel[hidden] {
-  display: none !important;
-}
-.history-season-panel:not([hidden]) {
-  display: block !important;
-}
-
-/* Reference-style final trophy presentation */
-.player-profile-card .trophy-cabinet-plaque {
-  display: none !important;
-}
-.player-profile-card .trophy-case-heading {
-  color: #A51C30 !important;
-  font-family: Oswald, "Arial Narrow", sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: 1.8px !important;
-  font-size: 12px !important;
-  text-transform: uppercase !important;
-  border-bottom: 2px solid #A51C30 !important;
-  width: max-content !important;
-  margin: 0 0 7px !important;
-  padding: 0 0 5px !important;
-  background: transparent !important;
-}
-.player-profile-card .trophy-case-wrap {
-  position: relative !important;
-}
-.player-profile-card .trophy-case {
-  margin-top: 0 !important;
-}
-
-/* Keep the uploaded reference's premium frosted-glass ice treatment,
-   including its small cube, shimmer, and 124 counter. */
-.ice-counter {
-  overflow: hidden !important;
-}
+/* Requested trophy-case cleanup */
+.player-profile-card .trophy-cabinet-plaque { display:none !important; }
