@@ -7977,3 +7977,68 @@ button.active,
 .history-nav-menu.open:not([hidden]) {
   display:block !important;
 }
+
+/* v195 — smoother History dropdown, directly beneath the History tab */
+.history-nav-item {
+  position:relative;
+}
+.history-nav-menu {
+  position:absolute;
+  z-index:200;
+  top:100%;
+  left:50%;
+  min-width:148px;
+  margin-top:0;
+  padding:5px 0;
+  transform:translateX(-50%) translateY(-4px);
+  border:1px solid rgba(150,150,150,.30);
+  border-top:0;
+  border-radius:0 0 7px 7px;
+  background:rgba(58,58,58,.97);
+  box-shadow:0 8px 18px rgba(0,0,0,.28);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .18s ease, transform .18s ease, visibility .18s ease;
+}
+.history-nav-menu.open:not([hidden]) {
+  display:block !important;
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateX(-50%) translateY(0);
+}
+.history-nav-option {
+  width:100%;
+  display:block;
+  padding:9px 13px;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:transparent;
+  color:#aaa;
+  font-family:inherit;
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.25px;
+  text-align:left;
+  white-space:nowrap;
+  cursor:pointer;
+  transition:background .15s ease, color .15s ease;
+}
+.history-nav-option:last-child {
+  border-bottom:0;
+}
+.history-nav-option:hover {
+  background:rgba(255,255,255,.06);
+  color:#eee;
+}
+.history-nav-tab {
+  position:relative;
+  z-index:201;
+}
+@media(max-width:700px) {
+  .history-nav-menu {
+    left:50%;
+    min-width:142px;
+  }
+}
