@@ -7969,3 +7969,11 @@ button.active,
     min-width:145px;
   }
 }
+
+/* v194 — hard-hide History submenu until the History tab is clicked */
+.history-nav-menu[hidden] {
+  display:none !important;
+}
+.history-nav-menu.open:not([hidden]) {
+  display:block !important;
+}

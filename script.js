@@ -1179,17 +1179,23 @@ const historyNavTab = document.querySelector(".history-nav-tab");
 const historyNavMenu = document.querySelector(".history-nav-menu");
 
 function closeHistoryNav(){
-  if(historyNavMenu) historyNavMenu.classList.remove("open");
+  if(historyNavMenu) {
+    historyNavMenu.classList.remove("open");
+    historyNavMenu.hidden = true;
+  }
   if(historyNavTab) historyNavTab.setAttribute("aria-expanded","false");
 }
 
 if(historyNavTab){
   historyNavTab.addEventListener("click",(event)=>{
     event.preventDefault();
+    const wasOpen = historyNavMenu && !historyNavMenu.hidden;
     render("history");
-    const willOpen = !historyNavMenu?.classList.contains("open");
-    if(historyNavMenu) historyNavMenu.classList.toggle("open",willOpen);
-    historyNavTab.setAttribute("aria-expanded",willOpen ? "true" : "false");
+    if(historyNavMenu){
+      historyNavMenu.hidden = wasOpen;
+      historyNavMenu.classList.toggle("open", !wasOpen);
+    }
+    historyNavTab.setAttribute("aria-expanded", !wasOpen ? "true" : "false");
   });
 }
 
