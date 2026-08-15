@@ -7809,3 +7809,90 @@ button.active,
     max-width:62%;
   }
 }
+
+/* v192 — History sections use a dropdown instead of three always-visible subtabs */
+.history-section-dropdown {
+  position:relative;
+  width:min(340px,100%);
+  margin:14px auto 18px;
+  z-index:20;
+}
+.history-dropdown-toggle {
+  width:100%;
+  min-height:42px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border:1px solid rgba(201,162,39,.34);
+  border-top:2px solid #A51C30;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(0,0,0,.2));
+  color:#ddd;
+  cursor:pointer;
+  text-align:left;
+}
+.history-dropdown-toggle span {
+  color:#777;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:7px;
+  font-weight:700;
+  letter-spacing:1.5px;
+}
+.history-dropdown-toggle strong {
+  color:#eee;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.7px;
+}
+.history-dropdown-toggle b {
+  color:#d7b84c;
+  font-size:15px;
+  font-weight:400;
+  line-height:1;
+  transition:transform .18s ease;
+}
+.history-dropdown-toggle[aria-expanded="true"] b {
+  transform:rotate(180deg);
+}
+.history-dropdown-menu {
+  position:absolute;
+  left:0;
+  right:0;
+  top:calc(100% + 4px);
+  display:none;
+  padding:4px;
+  border:1px solid rgba(201,162,39,.3);
+  background:#151515;
+  box-shadow:0 10px 25px rgba(0,0,0,.45);
+}
+.history-dropdown-menu.open {
+  display:block;
+}
+.history-dropdown-menu .history-subtab {
+  width:100%;
+  display:block;
+  padding:10px 11px;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  background:transparent;
+  color:#888;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-align:left;
+  cursor:pointer;
+}
+.history-dropdown-menu .history-subtab:last-child {
+  border-bottom:0;
+}
+.history-dropdown-menu .history-subtab:hover,
+.history-dropdown-menu .history-subtab.active {
+  color:#eee;
+  background:rgba(165,28,48,.1);
+}
+.history-dropdown-menu .history-subtab.active {
+  box-shadow:inset 2px 0 0 #A51C30;
+}

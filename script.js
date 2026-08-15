@@ -740,10 +740,15 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
 
   return `<h2>League History</h2>
     <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
-    <div class="history-subtabs" role="tablist" aria-label="History sections">
-      <button class="history-subtab active" type="button" role="tab" aria-selected="true" data-history-section="seasons">Seasons</button>
-      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="allpsi">Papa’s All-Psi</button>
-      <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="punishments">Punishments</button>
+    <div class="history-section-dropdown">
+      <button class="history-dropdown-toggle" type="button" aria-expanded="false" aria-controls="history-section-menu">
+        <span>HISTORY SECTIONS</span><strong>Seasons</strong><b>⌄</b>
+      </button>
+      <div class="history-dropdown-menu" id="history-section-menu" role="tablist" aria-label="History sections">
+        <button class="history-subtab active" type="button" role="tab" aria-selected="true" data-history-section="seasons">Seasons</button>
+        <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="allpsi">Papa’s All-Psi</button>
+        <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="punishments">Punishments</button>
+      </div>
     </div>
     <div class="history-logo-card">
       <div class="history-label">ORIGINAL LEAGUE LOGO</div>
@@ -1185,6 +1190,15 @@ tabs.forEach(t=>t.addEventListener("click",()=>render(t.dataset.page)));
 // event delegation instead of inline <script> tags (which do not execute when
 // inserted with innerHTML).
 content.addEventListener("click", (event) => {
+  const historyDropdownToggle = event.target.closest(".history-dropdown-toggle");
+  if (historyDropdownToggle && content.contains(historyDropdownToggle)) {
+    const menu = content.querySelector(".history-dropdown-menu");
+    const open = historyDropdownToggle.getAttribute("aria-expanded") === "true";
+    historyDropdownToggle.setAttribute("aria-expanded", open ? "false" : "true");
+    if (menu) menu.classList.toggle("open", !open);
+    return;
+  }
+
   const historySubtab = event.target.closest(".history-subtab");
   if (historySubtab && content.contains(historySubtab)) {
     const section = historySubtab.dataset.historySection;
@@ -1193,6 +1207,15 @@ content.addEventListener("click", (event) => {
       t.classList.toggle("active", active);
       t.setAttribute("aria-selected", active ? "true" : "false");
     });
+    const historyToggle = content.querySelector(".history-dropdown-toggle");
+    if (historyToggle) {
+      const label = historySubtab.textContent.trim();
+      const selected = historyToggle.querySelector("strong");
+      if (selected) selected.textContent = label;
+      historyToggle.setAttribute("aria-expanded", "false");
+    }
+    const historyMenu = content.querySelector(".history-dropdown-menu");
+    if (historyMenu) historyMenu.classList.remove("open");
     content.querySelectorAll("[data-history-section-panel]").forEach(panel => {
       const active = panel.dataset.historySectionPanel === section;
       panel.hidden = !active;
