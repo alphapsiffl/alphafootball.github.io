@@ -1142,11 +1142,45 @@ function punishments(){
     </div>`;
 }
 
+
+function espnBets(){
+  const bets=[
+    ["Kameron"," +350","The reigning champion has the strongest case: a title already on the résumé, a 47–35 overall record, and GM of the Year + CBPOY hardware from 2025."],
+    ["Bailey","+450","The most proven long-term contender. A 52–30 record, a championship, and years of elite playoff-level consistency make Bailey the safest challenger."],
+    ["Davis","+650","A former champion with a 50–32 record and a deep résumé of GM and individual awards. The case is experience and the ability to put together another complete season."],
+    ["Blum","+800","A 45–37 record and multiple recent accolades make Blum a legitimate threat. If the roster construction hits, this is a live contender at a longer price."],
+    ["Quinton","+900","A 39–43 record hides the upside: Quinton already has a championship and a 2024 GM of the Year award. The path is there if he can turn consistency into a full-season run."],
+    ["Victor B.","+1000","The young contender has a 27–15 record since entering the league and has already collected Rookie of the Year and Marino recognition. Limited sample, high ceiling."],
+    ["Drayton","+1200","The 28–54 record keeps the price long, but Drayton has plenty of league experience and has shown enough flashes to make a breakout season possible."],
+    ["Mac","+1400","A veteran 43–39 record gives Mac a much stronger floor than the odds suggest. The question is whether the next season produces the first real championship push."],
+    ["Braxton","+1600","A 29–26 record is quietly competitive. Braxton has fewer years of league history than the favorites, which makes the upside harder to price."],
+    ["Peachey","+1800","A 44–38 record is the selling point. The championship résumé is missing, but the long-term winning record makes Peachey a reasonable dark horse."],
+    ["Justin","+2000","Justin is still building the résumé, but the 18–24 record and GM of the Year award show there is championship-level upside in the right season."],
+    ["Grant H.","+2500","The longest shot on the board. A 5–23 record makes the case difficult, but a smaller sample also leaves room for the biggest turnaround."],
+  ];
+  return `<section class="espn-bets-page">
+    <div class="espn-bets-kicker">ESPNBETS</div>
+    <h2>Futures - 2026 APFFL Champion</h2>
+    <p class="espn-bets-intro">Opening board for the 2026 Alpha Psi Fake Football League championship. Odds are league-style projections, not live sportsbook lines.</p>
+    <div class="bets-table-wrap">
+      <table class="bets-table">
+        <thead><tr><th>GM</th><th>ODDS</th><th>THE CASE</th></tr></thead>
+        <tbody>${bets.map((b,i)=>`<tr>
+          <td><span class="bets-rank">${String(i+1).padStart(2,"0")}</span><strong>${b[0]}</strong></td>
+          <td class="bets-odds">${b[1]}</td>
+          <td>${b[2]}</td>
+        </tr>`).join("")}</tbody>
+      </table>
+    </div>
+  </section>`;
+}
+
 const pages = {
   home,
   members,
   history: historyPage,
   records: recordsPage,
+  espnbets: espnBets,
   rules: rulesPage,
   allpsi: allPsiPage,
   punishments
@@ -1196,6 +1230,12 @@ if(historyNavTab){
     historyNavTab.setAttribute("aria-expanded", !wasOpen ? "true" : "false");
   });
 }
+
+document.addEventListener("click",(event)=>{
+  if(!historyNavItem || !historyNavMenu) return;
+  if(historyNavMenu.hidden) return;
+  if(!historyNavItem.contains(event.target)) closeHistoryNav();
+});
 
 if(historyNavMenu){
   historyNavMenu.addEventListener("click",(event)=>{
