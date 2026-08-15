@@ -6999,3 +6999,187 @@ img[src="drayton-member.png"] {
   .player-profile-card .trophy-championship { min-height:63px !important; }
   .player-profile-card .trophy-championship .trophy-medallion { width:40px !important; height:40px !important; flex-basis:40px !important; }
 }
+
+/* Trophy Case v169 — desktop-only compact award scale.
+   Mobile keeps the v168 sizing unchanged. */
+@media (min-width: 701px) {
+  .player-profile-card .trophy-items {
+    gap: 7px !important;
+  }
+  .player-profile-card .trophy-item {
+    min-height: 47px !important;
+    padding: 6px 9px !important;
+    gap: 9px !important;
+    font-size: 12px !important;
+  }
+  .player-profile-card .trophy-medallion {
+    width: 31px !important;
+    height: 31px !important;
+    flex-basis: 31px !important;
+  }
+  .player-profile-card .trophy-medallion-cup {
+    font-size: 14px !important;
+  }
+  .player-profile-card .trophy-award-name {
+    font-size: 12px !important;
+    letter-spacing: .55px !important;
+  }
+  .player-profile-card .trophy-award-label {
+    font-size: 6.5px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .player-profile-card .trophy-year-plate {
+    min-width: 32px !important;
+    padding: 3px 5px !important;
+    font-size: 8px !important;
+  }
+  .player-profile-card .trophy-championship {
+    min-height: 56px !important;
+    padding: 7px 9px !important;
+  }
+  .player-profile-card .trophy-championship .trophy-medallion {
+    width: 37px !important;
+    height: 37px !important;
+    flex-basis: 37px !important;
+  }
+  .player-profile-card .trophy-championship .trophy-medallion-cup {
+    font-size: 18px !important;
+  }
+  .player-profile-card .trophy-championship .trophy-award-name {
+    font-size: 14px !important;
+  }
+  .player-profile-card .trophy-championship .trophy-year-plate {
+    min-width: 37px !important;
+    font-size: 9px !important;
+  }
+}
+
+/* Rules v170 — season years moved to the top as primary navigation */
+.rules-season-navigation {
+  margin: 0 0 12px !important;
+  padding: 10px 10px 9px !important;
+  border: 1px solid rgba(201,162,39,.34) !important;
+  border-radius: 5px !important;
+  background: linear-gradient(145deg,rgba(255,255,255,.04),rgba(0,0,0,.25)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06) !important;
+}
+.rules-season-nav-label {
+  margin-bottom: 7px !important;
+  color: #777 !important;
+  font-family: Oswald,"Arial Narrow",sans-serif !important;
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  text-align: center !important;
+}
+.rules-season-navigation .rules-season-tabs {
+  display: grid !important;
+  grid-template-columns: repeat(6,1fr) !important;
+  gap: 5px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.rules-season-navigation .rules-season-tab {
+  min-height: 35px !important;
+  margin: 0 !important;
+  padding: 5px 3px !important;
+  border: 1px solid rgba(201,162,39,.38) !important;
+  border-radius: 3px !important;
+  color: #aaa !important;
+  background: linear-gradient(180deg,rgba(255,255,255,.045),rgba(0,0,0,.25)) !important;
+  font-family: Oswald,"Arial Narrow",sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: .8px !important;
+  cursor: pointer !important;
+  transition: .18s ease !important;
+}
+.rules-season-navigation .rules-season-tab:hover {
+  color:#eee !important;
+  border-color:rgba(215,184,76,.72) !important;
+}
+.rules-season-navigation .rules-season-tab.active {
+  color:#fff !important;
+  background:linear-gradient(180deg,#b3273d,#8e1528) !important;
+  border-color:#d7b84c !important;
+  box-shadow:0 0 10px rgba(165,28,48,.25), inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+.rules-season-intro {
+  margin: 0 0 8px !important;
+  opacity:.8 !important;
+}
+@media(max-width:700px) {
+  .rules-season-navigation {
+    padding: 8px !important;
+  }
+  .rules-season-navigation .rules-season-tabs {
+    grid-template-columns: repeat(3,1fr) !important;
+    gap:5px !important;
+  }
+  .rules-season-navigation .rules-season-tab {
+    min-height:33px !important;
+  }
+}
+
+/* Records v171 — desktop hover portrait aligned to the right edge.
+   Mobile keeps the existing centered popup. */
+@media (min-width: 701px) {
+  .record-card .record-hover-person,
+  .record-holder .record-hover-person {
+    left: auto !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    transform: translate(0, 10px) !important;
+  }
+
+  .record-card:hover .record-hover-person,
+  .record-holder:hover .record-hover-person {
+    transform: translate(0, 0) !important;
+  }
+}
+
+/* Records v172 — right-edge hover portrait on mobile too */
+@media (max-width: 700px) {
+  .record-card .record-hover-person,
+  .record-holder .record-hover-person {
+    left: auto !important;
+    right: 8px !important;
+    transform: translate(0, 10px) !important;
+  }
+
+  .record-card:hover .record-hover-person,
+  .record-holder:hover .record-hover-person {
+    transform: translate(0, 0) !important;
+  }
+}
+
+/* Championship trophy art v173 — supplied gold Lombardi-style trophy */
+.player-profile-card .trophy-championship .trophy-medallion {
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.player-profile-card .trophy-championship .championship-trophy-art {
+  display:block !important;
+  width:78px !important;
+  height:78px !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  filter: drop-shadow(0 3px 4px rgba(0,0,0,.48)) drop-shadow(0 0 7px rgba(229,194,83,.28)) !important;
+}
+.player-profile-card .trophy-championship .trophy-medallion::after {
+  display:none !important;
+}
+@media (min-width:701px) {
+  .player-profile-card .trophy-championship .championship-trophy-art {
+    width:62px !important;
+    height:62px !important;
+  }
+}
+@media (max-width:650px) {
+  .player-profile-card .trophy-championship .championship-trophy-art {
+    width:70px !important;
+    height:70px !important;
+  }
+}

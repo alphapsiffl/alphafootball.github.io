@@ -870,7 +870,7 @@ function trophyCase(name){
     ? items.map(x=>{
         const championship=/championship/i.test(x);
         return `<div class="trophy-item${championship?" trophy-championship":""}">
-          <span class="trophy-medallion" aria-hidden="true"><span class="trophy-medallion-cup">🏆</span></span>
+          <span class="trophy-medallion" aria-hidden="true"><img class="championship-trophy-art" src="championship-trophy.png" alt="" aria-hidden="true"></span>
           <span class="trophy-award-copy"><span class="trophy-award-name">${championship?"CHAMPIONSHIP":x}</span>${championship?'<span class="trophy-award-label">CHAMPIONSHIP</span>':""}</span><span class="trophy-year-plate">${((x.match(/’(\d{2})/)||[])[1]||"").replace(/^/, "20")}</span>
         </div>`;
       }).join("")
@@ -1054,16 +1054,22 @@ function rulesPage(){
       <h2>RULES</h2>
       <p>OFFICIAL LEAGUE CONSTITUTION</p>
     </div>
-    <div class="rules-season-intro"><span>SELECT A SEASON TO VIEW ITS RULEBOOK</span></div><h3 class="rules-section-title">Current League Rules</h3>
+
+    <div class="rules-season-navigation">
+      <div class="rules-season-nav-label">SELECT SEASON</div>
+      <div class="rules-season-tabs" role="tablist" aria-label="Rule amendment seasons">
+        ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="rules-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
+      </div>
+    </div>
+
+    <div class="rules-season-intro"><span>SELECT A SEASON TO VIEW ITS RULEBOOK</span></div>
+
+    <h3 class="rules-section-title">Current League Rules</h3>
     <div class="current-rules">
       <div class="current-rules-title">Current Rules</div>
       <ol>${currentRules.map((x,i)=>`<li><span class="rule-number">${i+1}</span><span class="rule-copy">${x}</span></li>`).join("")}</ol>
     </div>
     <p class="intro"><span class="badge">Highlighted</span> Rules that are still in effect are shown in red.</p>
-
-    <div class="rules-season-tabs" role="tablist" aria-label="Rule amendment seasons">
-      ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="rules-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
-    </div>
 
     <div class="rules-season-panels">
       ${[2025,2024,2023,2022,2021,2020].map(renderSeason).join("")}
