@@ -166,6 +166,12 @@ function home(){
     "2020":"grayson-helmet.png","2021":"bailey-banner.png","2022":"davis-helmet.png",
     "2023":"victor-helmet.png","2024":"quinton-banner.png","2025":"kameron-banner.png"
   };
+  const recordSpotlights=[
+    ["MOST POINTS IN A SEASON","2,115.55","Bailey Coble","2023","bailey-champion.jpeg"],
+    ["MOST ICES IN A SEASON","9","Chase","2025",""],
+    ["LONGEST WIN STREAK","7","Bailey","2021","bailey-champion.jpeg"],
+    ["MOST MOVES IN A SEASON","65","Quinton","2023","quinton-member.png"]
+  ];
   return `<section class="champions-wrap">
     <div class="section-title"><span></span><h2>League Champions</h2><span></span></div>
     <div class="banner-row">${champions.map((c,i)=>`<div class="champion-banner champion-banner-link" tabindex="0" role="button" data-member="${championMember[c[0]]}" aria-label="Open ${c[1]}'s member profile" style="--speed:${5.2+i*.35}s;--delay:${i*-.55}s">
@@ -176,10 +182,21 @@ function home(){
       <div class="record">${c[3]}</div>
     </div>`).join("")}</div>
 
+    <div class="home-record-spotlight" data-spotlight-index="0">
+      <div class="home-record-copy">
+        <div class="home-record-kicker">RECORD SPOTLIGHT</div>
+        <div class="home-record-title">${recordSpotlights[0][0]}</div>
+        <div class="home-record-value">${recordSpotlights[0][1]}</div>
+        <div class="home-record-holder">${recordSpotlights[0][2]} <span>· ${recordSpotlights[0][3]}</span></div>
+        <div class="home-record-rule">THE ALPHA PSI RECORD BOOK</div>
+      </div>
+      <div class="home-record-portrait">${recordSpotlights[0][4]?`<img src="${recordSpotlights[0][4]}" alt="${recordSpotlights[0][2]}">`:""}</div>
+      <div class="home-record-count">01 / ${String(recordSpotlights.length).padStart(2,"0")}</div>
+    </div>
+
     <div class="ice-counter" aria-label="All-time Ice counter"><img class="ice-cube-art" src="ice-cube-art.png" alt="" aria-hidden="true"><img class="ice-brand-logo" src="smirnoff-ice-logo.png" alt="Smirnoff ICE">
       <div class="ice-counter-label">${iceCounter.label}</div>
       <div class="ice-counter-number">${iceCounter.total}</div>
-      
     </div>
 
     <div class="legacy-strip">
@@ -1005,67 +1022,14 @@ function recordsPage(){
     ["MOST POINTS IN A SEASON","Bailey Coble","2,115.55 points"],
     ["MOST MOVES IN A SEASON","Quinton Roof","65 moves"]
   ];
-
-  const categoryRules=[
-    ["SCORING & PERFORMANCE",/score|points|average|blowout|streak/i],
-    ["LEAGUE ACTIVITY",/moves|trades|POTWs/i],
-    ["PLAYOFFS & CHAMPIONSHIPS",/playoff|championship|byes/i],
-    ["ICE RECORDS",/ices?/i],
-    ["OTHER RECORDS",/.*/i]
-  ];
-
-  const categorized=[];
-  const used=new Set();
-  categoryRules.forEach(([title,rx])=>{
-    const items=records.map((r,i)=>[r,i]).filter(([r,i])=>!used.has(i)&&rx.test(r[0]));
-    if(items.length){
-      items.forEach(([,i])=>used.add(i));
-      categorized.push([title,items.map(([r])=>r)]);
-    }
-  });
-
-  const categoryMarkup=categorized.map(([title,items])=>`
-    <section class="record-category">
-      <div class="record-category-heading"><span></span><h3>${title}</h3><i></i></div>
-      <div class="records-grid">${items.map(r=>`
-        <article class="record-card">
-          <div class="record-card-index">${String(records.indexOf(r)+1).padStart(2,"0")}</div>
-          <div class="record-card-title">${r[0]}</div>
-          <div class="record-card-value">${r[1]}</div>
-          <div class="record-card-detail">${r[2]}</div>
-          ${recordHover(r[2])}
-        </article>`).join("")}</div>
-    </section>`).join("");
-
-  return `<div class="records-page">
-    <header class="records-header">
-      <div class="records-kicker">ALPHA PSI FFL</div>
-      <h2>LEAGUE RECORDS</h2>
-      <p>THE ALL-TIME ALPHA PSI RECORD BOOK</p>
-    </header>
-
-    <section class="record-leaders">
-      <div class="record-leaders-title">LEAGUE LEADERS</div>
-      <div class="record-leaders-grid">${leaders.map((r,i)=>`<article class="leader-card">
-        <div class="leader-rank">0${i+1}</div>
-        <div class="leader-category">${r[0]}</div>
-        <div class="leader-name">${r[1]}</div>
-        <div class="leader-value">${r[2]}</div>
-      </article>`).join("")}</div>
-    </section>
-
-    <section class="record-feature">
-      <div class="record-feature-title">200 POINT CLUB</div>
-      <div class="record-feature-sub">Three players have crossed the 200-point mark in a single fantasy matchup.</div>
-      <div class="two-hundred-grid">${twoHundredClub.map((r,i)=>`<div class="record-holder">
-        <div class="record-value">${r[0]}</div>
-        <div class="record-detail">${r[1]}</div>
-        ${recordHover(r[1])}
-      </div>`).join("")}</div>
-    </section>
-
-    <div class="record-category-list">${categoryMarkup}</div>
-  </div>`;
+  return `<h2>League Records</h2>
+  <p class="intro">The all-time Alpha Psi record book. The leader board uses records already documented in the league archive.</p>
+  <div class="record-feature">
+    <div class="record-feature-title">200 POINT CLUB</div>
+    <div class="record-feature-sub">Three players have crossed the 200-point mark in a single fantasy matchup.</div>
+    <div class="two-hundred-grid">${twoHundredClub.map((r,i)=>`<div class="record-holder"><div class="record-value">${r[0]}</div><div class="record-detail">${r[1]}</div>${recordHover(r[1])}</div>`).join("")}</div>
+  </div>
+  <div class="records-grid">${records.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-value">${r[1]}</div><div class="record-card-detail">${r[2]}</div>${recordHover(r[2])}</article>`).join("")}</div>`;
 }
 function playoffsPage(){return `<h2>Playoff Records</h2><div class="playoff-definitions"><div><strong>Championship Appearances</strong><span>Years and championship record</span></div><div><strong>First Round Byes</strong><span>Years receiving a bye</span></div><div><strong>Playoff Appearances</strong><span>Years making the playoffs</span></div><div><strong>Playoff Record</strong><span>Playoff wins and losses</span></div></div><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championship Appearances<br><span class="table-subheader">* Parenthesis denotes record in championship game</span></th><th>First Round Byes</th><th>Playoff Appearances</th><th>Playoff Record</th></tr></thead><tbody>${playoff.map(p=>{const rawChamp=p[1].replace(/^Championship Appearance(?:s)?:\s*/,"");const cm=rawChamp.match(/^(.*?);\s*Championship record:\s*(.*)$/i);const champ=cm?`${cm[1]} (${cm[2]})`:rawChamp;const bye=p[2].replace(/^First Round Bye(?:s)?:\s*/,"");const apps=p[3].replace(/^Playoff Appearances:\s*/,"");const rec=p[4].replace(/^Playoff Record:\s*/,"");return `<tr><td><strong>${p[0]}</strong></td><td>${champ}</td><td>${bye}</td><td>${apps}</td><td>${rec}</td></tr>`}).join("")}</tbody></table></div>`}
 function rulesPage(){
@@ -1204,6 +1168,7 @@ function render(page){
     content.classList.toggle("home-view", page==="home");
     content.classList.add("page-transition");
     if(typeof bindChampionLinks==="function") bindChampionLinks();
+    if(page==="home") setTimeout(initHomeRecordSpotlight, 40);
     tabs.forEach(t=>t.classList.toggle("active",t.dataset.page===page));
     const nav=document.querySelector(".main-tabs");
     if(nav && window.scrollTo) window.scrollTo({top:nav.offsetTop-60,behavior:"smooth"});
@@ -1265,6 +1230,38 @@ function bindChampionLinks(){
     card.addEventListener("click",open);
     card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}});
   });
+}
+
+
+function initHomeRecordSpotlight(){
+  const spotlight=document.querySelector(".home-record-spotlight");
+  if(!spotlight || spotlight.dataset.ready==="true") return;
+  spotlight.dataset.ready="true";
+  const records=[
+    ["MOST POINTS IN A SEASON","2,115.55","Bailey Coble","2023","bailey-champion.jpeg"],
+    ["MOST ICES IN A SEASON","9","Chase","2025",""],
+    ["LONGEST WIN STREAK","7","Bailey","2021","bailey-champion.jpeg"],
+    ["MOST MOVES IN A SEASON","65","Quinton","2023","quinton-member.png"]
+  ];
+  let index=0;
+  const paint=(next)=>{
+    const r=records[next];
+    spotlight.classList.add("spotlight-changing");
+    setTimeout(()=>{
+      spotlight.querySelector(".home-record-kicker").textContent="RECORD SPOTLIGHT";
+      spotlight.querySelector(".home-record-title").textContent=r[0];
+      spotlight.querySelector(".home-record-value").textContent=r[1];
+      spotlight.querySelector(".home-record-holder").innerHTML=`${r[2]} <span>· ${r[3]}</span>`;
+      const portrait=spotlight.querySelector(".home-record-portrait");
+      portrait.innerHTML=r[4]?`<img src="${r[4]}" alt="${r[2]}">`:"";
+      spotlight.querySelector(".home-record-count").textContent=`${String(next+1).padStart(2,"0")} / ${String(records.length).padStart(2,"0")}`;
+      spotlight.classList.remove("spotlight-changing");
+      index=next;
+    },260);
+  };
+  spotlight.addEventListener("mouseenter",()=>spotlight.dataset.paused="true");
+  spotlight.addEventListener("mouseleave",()=>delete spotlight.dataset.paused);
+  setInterval(()=>{ if(spotlight.isConnected && spotlight.dataset.paused!=="true") paint((index+1)%records.length); },5200);
 }
 
 const initial=location.hash.slice(1);render(pages[initial]?initial:"home");
