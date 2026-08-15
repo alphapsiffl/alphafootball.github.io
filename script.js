@@ -674,7 +674,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
               <tr>
                 <th>Member</th>
                 <th>Avg Rank</th>
-                <th>Best Finish</th>
+                <th>All-Time Points</th>
                 <th>Worst Finish</th>
                 <th>Avg Score</th>
                 <th>Best Score</th>
@@ -885,27 +885,14 @@ function trophyCase(name){
 }
 
 function careerSnapshot(name){
-  const snapshots={
-    "Quinton":["1","2","’24","4-1"],
-    "Bailey":["1","5","’21","2-4"],
-    "Davis":["2","3","’20, ’22","4-2"],
-    "Blum":["0","3","’22, ’25","3-3"],
-    "Peachey":["0","3","—","3-3"],
-    "Justin":["0","1","—","2-1"],
-    "Grant H.":["0","0","—","0-0"],
-    "Kameron":["1","3","’25","2-2"],
-    "Braxton":["0","2","—","1-2"],
-    "Victor B.":["1","3","’23","2-2"],
-    "Mac":["0","2","—","0-2"],
-    "Drayton":["0","1","—","0-1"]
-  };
+  const snapshots={"Quinton": ["134.1", "1", "’24", "4-1"], "Bailey": ["127.5", "1", "’21", "2-4"], "Davis": ["125.2", "2", "’20, ’22", "4-2"], "Blum": ["142.1", "0", "’22, ’25", "3-3"], "Peachey": ["127.1", "0", "—", "3-3"], "Justin": ["105.2", "0", "—", "2-1"], "Grant H.": ["112.8", "0", "—", "0-0"], "Kameron": ["139.9", "1", "’25", "2-2"], "Braxton": ["115.9", "0", "—", "1-2"], "Victor B.": ["122.3", "1", "’23", "2-2"], "Mac": ["115.5", "0", "—", "0-2"], "Drayton": ["119.0", "0", "—", "0-1"]};
   const s=snapshots[name];
   if(!s) return "";
   return `<div class="career-snapshot">
     <div class="career-snapshot-title">CAREER SNAPSHOT</div>
     <div class="career-snapshot-grid">
+      <div><strong>${s[0]}</strong><span>CAREER PPG</span></div>
       <div><strong>${s[1]}</strong><span>PLAYOFF APPS</span></div>
-      <div><strong>${s[2]}</strong><span>BEST FINISH</span></div>
       <div><strong>${s[3]}</strong><span>PLAYOFF RECORD</span></div>
     </div>
   </div>`;
