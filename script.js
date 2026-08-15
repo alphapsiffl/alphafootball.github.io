@@ -870,8 +870,8 @@ function trophyCase(name){
     ? items.map(x=>{
         const championship=/championship/i.test(x);
         return `<div class="trophy-item${championship?" trophy-championship":""}">
-          <span class="trophy-medallion" aria-hidden="true"><span class="trophy-medallion-cup">♛</span></span>
-          <span class="trophy-award-copy"><span class="trophy-award-name">${x}</span>${championship?'<span class="trophy-award-label">CHAMPION</span>':""}</span>
+          <span class="trophy-medallion" aria-hidden="true"><span class="trophy-medallion-cup">🏆</span></span>
+          <span class="trophy-award-copy"><span class="trophy-award-name">${championship?"CHAMPIONSHIP":x}</span>${championship?'<span class="trophy-award-label">CHAMPIONSHIP</span>':""}</span><span class="trophy-year-plate">${((x.match(/’(\d{2})/)||[])[1]||"").replace(/^/, "20")}</span>
         </div>`;
       }).join("")
     : `<div class="trophy-empty">No awards recorded yet</div>`;
@@ -1052,15 +1052,9 @@ function rulesPage(){
   return `<div class="rules-hero">
       <div class="rules-kicker">ALPHA PSI FFL</div>
       <h2>RULES</h2>
-      <p>League Constitution &amp; Rule Amendments</p>
+      <p>OFFICIAL LEAGUE CONSTITUTION</p>
     </div>
-    <div class="rules-quick-grid">
-      <div class="rules-quick-card"><span class="rules-quick-icon">🏈</span><strong>Draft</strong><small>League draft standards</small></div>
-      <div class="rules-quick-card"><span class="rules-quick-icon">🔄</span><strong>Trades</strong><small>Trade &amp; roster rules</small></div>
-      <div class="rules-quick-card rules-ice-card"><span class="rules-quick-icon">🧊</span><strong>Ice</strong><small>Zero-point punishment</small></div>
-      <div class="rules-quick-card"><span class="rules-quick-icon">🏆</span><strong>Playoffs</strong><small>Postseason standards</small></div>
-    </div>
-    <h3 class="rules-section-title">Current League Rules</h3>
+    <div class="rules-season-intro"><span>SELECT A SEASON TO VIEW ITS RULEBOOK</span></div><h3 class="rules-section-title">Current League Rules</h3>
     <div class="current-rules">
       <div class="current-rules-title">Current Rules</div>
       <ol>${currentRules.map((x,i)=>`<li><span class="rule-number">${i+1}</span><span class="rule-copy">${x}</span></li>`).join("")}</ol>
