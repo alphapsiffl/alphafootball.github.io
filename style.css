@@ -7671,3 +7671,253 @@ button.active,
     grid-template-columns: repeat(3, minmax(0,1fr)) !important;
   }
 }
+
+/* v185 — Trophy Case = championships only; Accolades = individual awards */
+.player-profile-card .trophy-case-wrap .trophy-case-heading {
+  letter-spacing: 2px !important;
+}
+.player-profile-card .accolades {
+  margin-top: 14px !important;
+}
+.player-profile-card .accolades-title {
+  color: #A51C30 !important;
+}
+
+/* v187 — Records: stronger record-book hierarchy, right-edge portraits,
+   and quiet category separation without different category colors. */
+.records-page {
+  max-width: 980px;
+  margin: 0 auto;
+}
+.records-header {
+  text-align:center;
+  padding: 6px 0 14px;
+  border-bottom: 1px solid rgba(201,162,39,.25);
+}
+.records-kicker {
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:2.5px;
+}
+.records-header h2 {
+  margin:2px 0 1px !important;
+  color:#A51C30 !important;
+  font-family:Oswald,"Arial Narrow",sans-serif !important;
+  font-size:28px !important;
+  letter-spacing:3px !important;
+}
+.records-header p {
+  margin:0 !important;
+  color:#777 !important;
+  font-size:8px !important;
+  letter-spacing:1.8px !important;
+}
+.record-leaders {
+  margin:18px 0 22px;
+}
+.record-leaders-title,
+.record-feature-title {
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.8px;
+}
+.record-leaders-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+  margin-top:7px;
+}
+.leader-card {
+  position:relative;
+  min-height:82px;
+  padding:12px 12px 10px 39px;
+  border:1px solid rgba(201,162,39,.22);
+  background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(0,0,0,.18));
+}
+.leader-rank {
+  position:absolute;
+  left:11px;
+  top:12px;
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:9px;
+  font-weight:700;
+}
+.leader-category {
+  color:#888;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  letter-spacing:1px;
+}
+.leader-name {
+  margin-top:3px;
+  color:#eee;
+  font-size:11px;
+  font-weight:700;
+}
+.leader-value {
+  margin-top:3px;
+  color:#c4c0b8;
+  font-size:9px;
+}
+.record-feature {
+  margin:0 0 25px;
+  padding:13px 14px;
+  border-top:1px solid rgba(201,162,39,.25);
+  border-bottom:1px solid rgba(201,162,39,.18);
+  background:rgba(0,0,0,.12);
+}
+.record-feature-sub {
+  margin:3px 0 10px;
+  color:#777;
+  font-size:9px;
+}
+.two-hundred-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+}
+.record-holder {
+  position:relative;
+  min-height:68px;
+  padding:10px 11px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.018);
+  overflow:visible;
+}
+.record-value {
+  color:#f0d675;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:22px;
+  font-weight:700;
+  line-height:1;
+}
+.record-detail {
+  margin-top:5px;
+  color:#aaa;
+  font-size:9px;
+  line-height:1.35;
+}
+.record-category {
+  margin:0 0 25px;
+}
+.record-category-heading {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:8px;
+}
+.record-category-heading span {
+  width:6px;
+  height:6px;
+  flex:0 0 6px;
+  background:#A51C30;
+}
+.record-category-heading h3 {
+  margin:0;
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.7px;
+}
+.record-category-heading i {
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,rgba(201,162,39,.25),transparent);
+}
+.records-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+.record-card {
+  position:relative !important;
+  min-height:102px;
+  padding:14px 48px 12px 38px !important;
+  border:1px solid rgba(201,162,39,.18) !important;
+  background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(0,0,0,.16)) !important;
+  overflow:visible !important;
+  transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.record-card:hover {
+  transform:translateY(-1px);
+  border-color:rgba(201,162,39,.38) !important;
+  box-shadow:0 5px 16px rgba(0,0,0,.22);
+}
+.record-card-index {
+  position:absolute;
+  left:12px;
+  top:14px;
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:700;
+}
+.record-card-title {
+  color:#8d8a83 !important;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px !important;
+  font-weight:700;
+  letter-spacing:1.15px;
+}
+.record-card-value {
+  margin-top:4px;
+  color:#f1eee6 !important;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:23px !important;
+  font-weight:800;
+  line-height:1;
+}
+.record-card-detail {
+  margin-top:5px;
+  color:#aaa !important;
+  font-size:9px !important;
+  line-height:1.35;
+}
+.record-hover-person {
+  left:auto !important;
+  right:8px !important;
+  transform:translate(0,10px) !important;
+  opacity:0;
+  transition:opacity .18s ease, transform .18s ease !important;
+}
+.record-card:hover .record-hover-person,
+.record-holder:hover .record-hover-person {
+  transform:translate(0,0) !important;
+  opacity:1;
+}
+.record-hover-person img {
+  border:1px solid rgba(201,162,39,.55) !important;
+  box-shadow:0 0 10px rgba(0,0,0,.55) !important;
+}
+@media(max-width:700px) {
+  .record-leaders-grid,
+  .two-hundred-grid {
+    grid-template-columns:1fr;
+  }
+  .records-grid {
+    grid-template-columns:1fr;
+  }
+  .record-card {
+    min-height:92px;
+  }
+}
+
+/* v188 — undo Records change #4 only: restore prior hover-photo behavior */
+.record-card .record-hover-person,
+.record-holder .record-hover-person {
+  right:auto !important;
+  transform:none !important;
+  opacity:initial !important;
+  transition:none !important;
+}
+.record-card .record-hover-person img,
+.record-holder .record-hover-person img {
+  border:initial !important;
+  box-shadow:initial !important;
+}

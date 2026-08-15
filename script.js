@@ -135,9 +135,7 @@ function accoladeBadges(text){
   const names = Object.keys(accoladeDefinitions).sort((a,b)=>b.length-a.length);
   const parts = text.split(" • ").filter(part=>{
     const normalized = part.trim().toLowerCase();
-    return !normalized.includes("championship")
-      && !normalized.includes("gm of the year")
-      && !normalized.includes("cbpoy");
+    return !normalized.includes("championship");
   });
   if(!parts.length) return `<span class="accolade-badge" tabindex="0">None<span class="accolade-tooltip">None</span></span>`;
   return parts.map(part=>{
@@ -145,8 +143,9 @@ function accoladeBadges(text){
     if(!matched) matched = names.find(n=>part.toLowerCase()===n.toLowerCase());
     const label = matched || part;
     const rest = matched ? part.slice(matched.length) : "";
+    const yearRest = rest.replace(/\s*\(([^)]*)\)/, (m, y) => ` (${y})`);
     const definition = (matched && !/^comeback of the year$/i.test(matched) && !/^CBPOY$/i.test(matched)) ? accoladeDefinitions[matched] : (label + rest);
-    return `<span class="accolade-badge" tabindex="0">${label}${rest}<span class="accolade-tooltip">${definition}</span></span>`;
+    return `<span class="accolade-badge" tabindex="0">${label}${yearRest}<span class="accolade-tooltip">${definition}</span></span>`;
   }).join(" ");
 }
 
@@ -845,14 +844,14 @@ const memberFullNames = {"Quinton": "Quinton Roof", "Bailey": "Bailey Coble", "D
 
 function trophyCase(name){
   const trophies={
-    "Quinton":["2024 Championship","GM of the Year (’24)","CBPOY (’24)"],
-    "Bailey":["2021 Championship","GM of the Year (’21)","CBPOY (’22)"],
-    "Davis":["2022 Championship","GM of the Year (’22)"],
+    "Quinton":["2024 Championship"],
+    "Bailey":["2021 Championship"],
+    "Davis":["2022 Championship"],
     "Blum":[],
     "Peachey":[],
     "Justin":[],
     "Grant H.":[],
-    "Kameron":["2025 Championship","CBPOY (’23, ’25)","GM of the Year (’25)"],
+    "Kameron":["2025 Championship"],
     "Braxton":[],
     "Victor B.":["2023 Championship"],
     "Mac":[],
@@ -1006,23 +1005,67 @@ function recordsPage(){
     ["MOST POINTS IN A SEASON","Bailey Coble","2,115.55 points"],
     ["MOST MOVES IN A SEASON","Quinton Roof","65 moves"]
   ];
-  return `<h2>League Records</h2>
-  <p class="intro">The all-time Alpha Psi record book. The leader board uses records already documented in the league archive.</p>
-  <div class="record-leaders">
-    <div class="record-leaders-title">LEAGUE LEADERS</div>
-    <div class="record-leaders-grid">${leaders.map((r,i)=>`<article class="leader-card">
-      <div class="leader-rank">0${i+1}</div>
-      <div class="leader-category">${r[0]}</div>
-      <div class="leader-name">${r[1]}</div>
-      <div class="leader-value">${r[2]}</div>
-    </article>`).join("")}</div>
-  </div>
-  <div class="record-feature">
-    <div class="record-feature-title">200 POINT CLUB</div>
-    <div class="record-feature-sub">Three players have crossed the 200-point mark in a single fantasy matchup.</div>
-    <div class="two-hundred-grid">${twoHundredClub.map((r,i)=>`<div class="record-holder"><div class="record-value">${r[0]}</div><div class="record-detail">${r[1]}</div>${recordHover(r[1])}</div>`).join("")}</div>
-  </div>
-  <div class="records-grid">${records.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-value">${r[1]}</div><div class="record-card-detail">${r[2]}</div>${recordHover(r[2])}</article>`).join("")}</div>`;
+
+  const categoryRules=[
+    ["SCORING & PERFORMANCE",/score|points|average|blowout|streak/i],
+    ["LEAGUE ACTIVITY",/moves|trades|POTWs/i],
+    ["PLAYOFFS & CHAMPIONSHIPS",/playoff|championship|byes/i],
+    ["ICE RECORDS",/ices?/i],
+    ["OTHER RECORDS",/.*/i]
+  ];
+
+  const categorized=[];
+  const used=new Set();
+  categoryRules.forEach(([title,rx])=>{
+    const items=records.map((r,i)=>[r,i]).filter(([r,i])=>!used.has(i)&&rx.test(r[0]));
+    if(items.length){
+      items.forEach(([,i])=>used.add(i));
+      categorized.push([title,items.map(([r])=>r)]);
+    }
+  });
+
+  const categoryMarkup=categorized.map(([title,items])=>`
+    <section class="record-category">
+      <div class="record-category-heading"><span></span><h3>${title}</h3><i></i></div>
+      <div class="records-grid">${items.map(r=>`
+        <article class="record-card">
+          <div class="record-card-index">${String(records.indexOf(r)+1).padStart(2,"0")}</div>
+          <div class="record-card-title">${r[0]}</div>
+          <div class="record-card-value">${r[1]}</div>
+          <div class="record-card-detail">${r[2]}</div>
+          ${recordHover(r[2])}
+        </article>`).join("")}</div>
+    </section>`).join("");
+
+  return `<div class="records-page">
+    <header class="records-header">
+      <div class="records-kicker">ALPHA PSI FFL</div>
+      <h2>LEAGUE RECORDS</h2>
+      <p>THE ALL-TIME ALPHA PSI RECORD BOOK</p>
+    </header>
+
+    <section class="record-leaders">
+      <div class="record-leaders-title">LEAGUE LEADERS</div>
+      <div class="record-leaders-grid">${leaders.map((r,i)=>`<article class="leader-card">
+        <div class="leader-rank">0${i+1}</div>
+        <div class="leader-category">${r[0]}</div>
+        <div class="leader-name">${r[1]}</div>
+        <div class="leader-value">${r[2]}</div>
+      </article>`).join("")}</div>
+    </section>
+
+    <section class="record-feature">
+      <div class="record-feature-title">200 POINT CLUB</div>
+      <div class="record-feature-sub">Three players have crossed the 200-point mark in a single fantasy matchup.</div>
+      <div class="two-hundred-grid">${twoHundredClub.map((r,i)=>`<div class="record-holder">
+        <div class="record-value">${r[0]}</div>
+        <div class="record-detail">${r[1]}</div>
+        ${recordHover(r[1])}
+      </div>`).join("")}</div>
+    </section>
+
+    <div class="record-category-list">${categoryMarkup}</div>
+  </div>`;
 }
 function playoffsPage(){return `<h2>Playoff Records</h2><div class="playoff-definitions"><div><strong>Championship Appearances</strong><span>Years and championship record</span></div><div><strong>First Round Byes</strong><span>Years receiving a bye</span></div><div><strong>Playoff Appearances</strong><span>Years making the playoffs</span></div><div><strong>Playoff Record</strong><span>Playoff wins and losses</span></div></div><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championship Appearances<br><span class="table-subheader">* Parenthesis denotes record in championship game</span></th><th>First Round Byes</th><th>Playoff Appearances</th><th>Playoff Record</th></tr></thead><tbody>${playoff.map(p=>{const rawChamp=p[1].replace(/^Championship Appearance(?:s)?:\s*/,"");const cm=rawChamp.match(/^(.*?);\s*Championship record:\s*(.*)$/i);const champ=cm?`${cm[1]} (${cm[2]})`:rawChamp;const bye=p[2].replace(/^First Round Bye(?:s)?:\s*/,"");const apps=p[3].replace(/^Playoff Appearances:\s*/,"");const rec=p[4].replace(/^Playoff Record:\s*/,"");return `<tr><td><strong>${p[0]}</strong></td><td>${champ}</td><td>${bye}</td><td>${apps}</td><td>${rec}</td></tr>`}).join("")}</tbody></table></div>`}
 function rulesPage(){
