@@ -8158,3 +8158,104 @@ button.active,
   .espn-bets-page h2 {font-size:22px !important}
   .bets-table {min-width:680px}
 }
+
+/* v201 — Professional ESPN-style futures board */
+.espn-bets-page {
+  max-width:1040px;
+}
+.espn-bets-kicker {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.espn-bets-kicker::before {
+  content:"";
+  width:18px;
+  height:2px;
+  background:#A51C30;
+}
+.espn-bets-page h2 {
+  font-size:30px !important;
+  letter-spacing:.7px !important;
+  margin-top:4px !important;
+}
+.espn-bets-intro {
+  max-width:760px;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(201,162,39,.18);
+}
+.bets-table-wrap {
+  border:1px solid rgba(201,162,39,.28);
+  border-radius:4px;
+  overflow:hidden;
+  background:rgba(15,15,15,.34);
+  box-shadow:0 10px 26px rgba(0,0,0,.20);
+}
+.bets-table {
+  border-spacing:0;
+}
+.bets-table th {
+  position:sticky;
+  top:0;
+  padding:11px 14px;
+  background:linear-gradient(180deg,rgba(165,28,48,.24),rgba(165,28,48,.10));
+  border-bottom:1px solid rgba(201,162,39,.34);
+  color:#e1c75f;
+  font-size:8px;
+  letter-spacing:1.8px;
+}
+.bets-table th:nth-child(2) {
+  text-align:center;
+}
+.bets-table td {
+  padding:12px 14px;
+  border-bottom:1px solid rgba(255,255,255,.055);
+  transition:background .15s ease;
+}
+.bets-table tbody tr:nth-child(even) {
+  background:rgba(255,255,255,.018);
+}
+.bets-table tbody tr:hover {
+  background:rgba(165,28,48,.07);
+}
+.bets-table td:first-child {
+  border-left:2px solid transparent;
+  transition:border-color .15s ease;
+}
+.bets-table tbody tr:hover td:first-child {
+  border-left-color:#A51C30;
+}
+.bets-rank {
+  color:#666;
+  font-size:7px;
+}
+.bets-table td:first-child strong {
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:11px;
+  letter-spacing:.2px;
+}
+.bets-odds {
+  font-size:17px !important;
+  text-shadow:0 0 8px rgba(215,184,76,.10);
+}
+.bets-table td:nth-child(3) {
+  color:#999;
+  max-width:620px;
+}
+.bets-table td:nth-child(3)::first-line {
+  color:#bbb;
+}
+@media(max-width:700px) {
+  .bets-table-wrap {
+    border-radius:3px;
+  }
+  .bets-table th,
+  .bets-table td {
+    padding:10px 11px;
+  }
+}
+
+/* v203 — keep ESPNBets at the far right of the main navigation */
+.main-tabs .espnbets-nav-tab {
+  margin-left:auto;
+}
