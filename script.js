@@ -559,6 +559,10 @@ const render2021=()=>`<section class="history-season-panel history-2021-panel" d
 const render2020=()=>`<section class="history-season-panel history-2020-panel" data-season="2020">
     <div class="history-season-heading"><span>SEASON</span><strong>1</strong></div>
     <div class="history-season-rule"></div>
+    <div class="history-2020-original-logo">
+      <div class="history-2020-logo-label">ORIGINAL LEAGUE LOGO</div>
+      <img src="original-alpha-psi-logo.jpeg" alt="Original Alpha Psi Fantasy Football League logo">
+    </div>
     <section class="season-foundation">
       <div class="season-foundation-kicker">THE INAUGURAL SEASON</div>
       <h3>Where It All Began</h3>
@@ -740,12 +744,6 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
 
   return `<h2>League History</h2>
     <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
-    <div class="history-logo-card">
-      <div class="history-label">ORIGINAL LEAGUE LOGO</div>
-      <img src="original-alpha-psi-logo.jpeg" alt="Original Alpha Psi Fantasy Football League logo" class="history-logo">
-      <h3>The Original Alpha Psi Fantasy Football League</h3>
-      <p class="intro">The original logo used when the league began.</p>
-    </div>
     <div class="history-subsection history-subsection-seasons active" data-history-section-panel="seasons">
     <div class="history-season-tabs" role="tablist" aria-label="League History seasons">
       ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="history-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}

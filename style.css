@@ -8042,3 +8042,33 @@ button.active,
     min-width:142px;
   }
 }
+
+/* v198 — Original league logo lives only in the 2020 History season */
+.history-2020-original-logo {
+  width:min(180px,42%);
+  margin:10px auto 16px;
+  text-align:center;
+}
+.history-2020-logo-label {
+  margin-bottom:5px;
+  color:#777;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:7px;
+  font-weight:700;
+  letter-spacing:1.4px;
+}
+.history-2020-original-logo img {
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:120px;
+  object-fit:contain;
+  margin:0 auto;
+  border:1px solid rgba(201,162,39,.18);
+  box-shadow:0 4px 12px rgba(0,0,0,.18);
+}
+@media(max-width:700px) {
+  .history-2020-original-logo {
+    width:150px;
+  }
+}
