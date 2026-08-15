@@ -740,16 +740,6 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
 
   return `<h2>League History</h2>
     <p class="intro">The Alpha Psi Fake Football League has evolved over the years. This is where we preserve the league’s history and original identity.</p>
-    <div class="history-section-dropdown">
-      <button class="history-dropdown-toggle" type="button" aria-expanded="false" aria-controls="history-section-menu">
-        <span>HISTORY SECTIONS</span><strong>Seasons</strong><b>⌄</b>
-      </button>
-      <div class="history-dropdown-menu" id="history-section-menu" role="tablist" aria-label="History sections">
-        <button class="history-subtab active" type="button" role="tab" aria-selected="true" data-history-section="seasons">Seasons</button>
-        <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="allpsi">Papa’s All-Psi</button>
-        <button class="history-subtab" type="button" role="tab" aria-selected="false" data-history-section="punishments">Punishments</button>
-      </div>
-    </div>
     <div class="history-logo-card">
       <div class="history-label">ORIGINAL LEAGUE LOGO</div>
       <img src="original-alpha-psi-logo.jpeg" alt="Original Alpha Psi Fantasy Football League logo" class="history-logo">
@@ -1184,45 +1174,59 @@ function render(page){
   }
 }
 
-tabs.forEach(t=>t.addEventListener("click",()=>render(t.dataset.page)));
+const historyNav = document.querySelector(".history-nav-item");
+const historyNavTab = document.querySelector(".history-nav-tab");
+const historyNavMenu = document.querySelector(".history-nav-menu");
+
+function closeHistoryNav(){
+  if(historyNavMenu) historyNavMenu.classList.remove("open");
+  if(historyNavTab) historyNavTab.setAttribute("aria-expanded","false");
+}
+
+if(historyNavTab){
+  historyNavTab.addEventListener("click",(event)=>{
+    event.preventDefault();
+    render("history");
+    const willOpen = !historyNavMenu?.classList.contains("open");
+    if(historyNavMenu) historyNavMenu.classList.toggle("open",willOpen);
+    historyNavTab.setAttribute("aria-expanded",willOpen ? "true" : "false");
+  });
+}
+
+if(historyNavMenu){
+  historyNavMenu.addEventListener("click",(event)=>{
+    const option=event.target.closest(".history-nav-option");
+    if(!option) return;
+    const section=option.dataset.historyNavSection;
+    render("history");
+    setTimeout(()=>{
+      const panel=document.querySelector(`[data-history-section-panel="${section}"]`);
+      const seasons=document.querySelector(".history-subsection-seasons");
+      if(seasons) {
+        seasons.hidden=true;
+        seasons.classList.remove("active");
+      }
+      document.querySelectorAll("[data-history-section-panel]").forEach(p=>{
+        const active=p.dataset.historySectionPanel===section;
+        p.hidden=!active;
+        p.classList.toggle("active",active);
+      });
+      closeHistoryNav();
+    },20);
+  });
+}
+
+tabs.forEach(t=>{
+  if(t!==historyNavTab) t.addEventListener("click",()=>{
+    closeHistoryNav();
+    render(t.dataset.page);
+  });
+});
 
 // Season tabs are rendered dynamically inside #content, so bind them through
 // event delegation instead of inline <script> tags (which do not execute when
 // inserted with innerHTML).
 content.addEventListener("click", (event) => {
-  const historyDropdownToggle = event.target.closest(".history-dropdown-toggle");
-  if (historyDropdownToggle && content.contains(historyDropdownToggle)) {
-    const menu = content.querySelector(".history-dropdown-menu");
-    const open = historyDropdownToggle.getAttribute("aria-expanded") === "true";
-    historyDropdownToggle.setAttribute("aria-expanded", open ? "false" : "true");
-    if (menu) menu.classList.toggle("open", !open);
-    return;
-  }
-
-  const historySubtab = event.target.closest(".history-subtab");
-  if (historySubtab && content.contains(historySubtab)) {
-    const section = historySubtab.dataset.historySection;
-    content.querySelectorAll(".history-subtab").forEach(t => {
-      const active = t === historySubtab;
-      t.classList.toggle("active", active);
-      t.setAttribute("aria-selected", active ? "true" : "false");
-    });
-    const historyToggle = content.querySelector(".history-dropdown-toggle");
-    if (historyToggle) {
-      const label = historySubtab.textContent.trim();
-      const selected = historyToggle.querySelector("strong");
-      if (selected) selected.textContent = label;
-      historyToggle.setAttribute("aria-expanded", "false");
-    }
-    const historyMenu = content.querySelector(".history-dropdown-menu");
-    if (historyMenu) historyMenu.classList.remove("open");
-    content.querySelectorAll("[data-history-section-panel]").forEach(panel => {
-      const active = panel.dataset.historySectionPanel === section;
-      panel.hidden = !active;
-      panel.classList.toggle("active", active);
-    });
-    return;
-  }
 
   const tab = event.target.closest(".history-season-tab, .allpsi-season-tab, .rules-season-tab");
   if (!tab || !content.contains(tab)) return;

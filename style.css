@@ -7896,3 +7896,76 @@ button.active,
 .history-dropdown-menu .history-subtab.active {
   box-shadow:inset 2px 0 0 #A51C30;
 }
+
+/* v193 — History dropdown is attached directly to the top History tab */
+.history-section-dropdown {
+  display:none !important;
+}
+.history-nav-item {
+  position:relative;
+  display:flex;
+  align-items:stretch;
+}
+.history-nav-tab {
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+}
+.history-nav-caret {
+  font-size:11px;
+  line-height:1;
+  color:#d7b84c;
+  transition:transform .18s ease;
+}
+.history-nav-tab[aria-expanded="true"] .history-nav-caret {
+  transform:rotate(180deg);
+}
+.history-nav-menu {
+  position:absolute;
+  z-index:100;
+  top:calc(100% + 5px);
+  left:50%;
+  min-width:150px;
+  transform:translateX(-50%);
+  display:none;
+  padding:4px;
+  border:1px solid rgba(201,162,39,.32);
+  border-top:2px solid #A51C30;
+  background:#151515;
+  box-shadow:0 10px 25px rgba(0,0,0,.45);
+}
+.history-nav-menu.open {
+  display:block;
+}
+.history-nav-option {
+  width:100%;
+  display:block;
+  padding:9px 12px;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  background:transparent;
+  color:#999;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.8px;
+  text-align:left;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.history-nav-option:last-child {
+  border-bottom:0;
+}
+.history-nav-option:hover {
+  color:#eee;
+  background:rgba(165,28,48,.1);
+}
+@media(max-width:700px) {
+  .history-nav-menu {
+    left:0;
+    right:auto;
+    transform:none;
+    min-width:145px;
+  }
+}

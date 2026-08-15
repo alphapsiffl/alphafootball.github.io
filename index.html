@@ -32,7 +32,13 @@
   <nav class="main-tabs" aria-label="League sections">
   <button class="tab active" data-page="home">Home</button>
   <button class="tab" data-page="members">Members</button>
-  <button class="tab" data-page="history">History</button>
+  <div class="history-nav-item">
+    <button class="tab history-nav-tab" data-page="history" aria-expanded="false" aria-controls="history-nav-menu">History <span class="history-nav-caret">⌄</span></button>
+    <div class="history-nav-menu" id="history-nav-menu" role="menu" aria-label="History sections">
+      <button type="button" class="history-nav-option" data-history-nav-section="allpsi" role="menuitem">Papa’s All-Psi</button>
+      <button type="button" class="history-nav-option" data-history-nav-section="punishments" role="menuitem">Punishments</button>
+    </div>
+  </div>
   <button class="tab" data-page="records">Records</button>
   <button class="tab" data-page="rules">Rules</button>
 </nav>
@@ -42,7 +48,7 @@
 
 <footer>Alpha Psi Fake Football League • Est. 2020</footer>
 
-<script src="script.js?v=192"></script>
+<script src="script.js?v=193"></script>
 <!-- NFL decorative side imagery: team-logo and player collages sourced from web image references. -->
 <div id="site-build-version" hidden>149</div></body>
 </html>
