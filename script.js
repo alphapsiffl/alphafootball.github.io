@@ -889,19 +889,20 @@ function trophyCase(name){
           <span class="trophy-award-copy">${year?`<span class="trophy-year-plate">${year}</span>`:""}<span class="trophy-award-name">${championship?"CHAMPIONSHIP":cleanAward}</span></span>
         </div>`;
       }).join("")
-    : `<div class="trophy-empty">Empty... for now</div>`;
+    : `<div class="trophy-empty">No awards recorded yet</div>`;
   return `<div class="trophy-case-wrap"><div class="trophy-case-heading">TROPHY CASE</div><div class="trophy-case"><div class="trophy-top-lights" aria-hidden="true"></div><div class="trophy-items">${awardMarkup}</div></div></div>`;
 }
 
 function careerSnapshot(name){
-  const snapshots={"Quinton": ["1", "4-1"], "Bailey": ["1", "2-4"], "Davis": ["2", "4-2"], "Blum": ["0", "3-3"], "Peachey": ["0", "3-3"], "Justin": ["0", "2-1"], "Grant H.": ["0", "0-0"], "Kameron": ["1", "2-2"], "Braxton": ["0", "1-2"], "Victor B.": ["1", "2-2"], "Mac": ["0", "0-2"], "Drayton": ["0", "0-1"]};
+  const snapshots={"Quinton": ["134.1", "1", "’24", "4-1"], "Bailey": ["127.5", "1", "’21", "2-4"], "Davis": ["125.2", "2", "’20, ’22", "4-2"], "Blum": ["142.1", "0", "’22, ’25", "3-3"], "Peachey": ["127.1", "0", "—", "3-3"], "Justin": ["105.2", "0", "—", "2-1"], "Grant H.": ["112.8", "0", "—", "0-0"], "Kameron": ["139.9", "1", "’25", "2-2"], "Braxton": ["115.9", "0", "—", "1-2"], "Victor B.": ["122.3", "1", "’23", "2-2"], "Mac": ["115.5", "0", "—", "0-2"], "Drayton": ["119.0", "0", "—", "0-1"]};
   const s=snapshots[name];
   if(!s) return "";
   return `<div class="career-snapshot">
     <div class="career-snapshot-title">CAREER SNAPSHOT</div>
     <div class="career-snapshot-grid">
-      <div><strong>${s[0]}</strong><span>PLAYOFF APPS</span></div>
-      <div><strong>${s[1]}</strong><span>PLAYOFF RECORD</span></div>
+      <div><strong>${s[0]}</strong><span>CAREER PPG</span></div>
+      <div><strong>${s[1]}</strong><span>PLAYOFF APPS</span></div>
+      <div><strong>${s[3]}</strong><span>PLAYOFF RECORD</span></div>
     </div>
   </div>`;
 }

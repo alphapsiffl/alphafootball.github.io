@@ -8254,8 +8254,3 @@ button.active,
     padding:10px 11px;
   }
 }
-
-/* v203 — keep ESPNBets at the far right of the main navigation */
-.main-tabs .espnbets-nav-tab {
-  margin-left:auto;
-}
