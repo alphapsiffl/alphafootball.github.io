@@ -7183,3 +7183,312 @@ img[src="drayton-member.png"] {
     height:70px !important;
   }
 }
+
+/* v174 fix: supplied Lombardi artwork belongs ONLY to Championship awards. */
+.player-profile-card .trophy-item:not(.trophy-championship) .championship-trophy-art {
+  display:none !important;
+}
+.player-profile-card .trophy-item:not(.trophy-championship) .trophy-medallion-cup {
+  display:block !important;
+  filter:grayscale(1) brightness(3) !important;
+}
+.player-profile-card .trophy-item:not(.trophy-championship) .trophy-medallion {
+  background:
+    radial-gradient(circle at 32% 25%,#fffbe0 0 8%,#e7ca64 27%,#b18124 55%,#6d4610 80%,#3d2509 100%) !important;
+  border:2px solid #f0d87c !important;
+  box-shadow:
+    inset 2px 2px 4px rgba(255,255,255,.72),
+    inset -2px -2px 4px rgba(54,30,4,.45),
+    0 2px 5px rgba(0,0,0,.52),
+    0 0 8px rgba(225,191,78,.28) !important;
+}
+
+/* v175 — desktop-only Championship wording scaled to fit the trophy plaque */
+@media (min-width: 701px) {
+  .player-profile-card .trophy-championship .trophy-award-name {
+    font-size: 11px !important;
+    letter-spacing: .7px !important;
+    white-space: nowrap !important;
+  }
+  .player-profile-card .trophy-championship .trophy-award-label {
+    font-size: 6px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .player-profile-card .trophy-championship .trophy-award-copy {
+    min-width: 0 !important;
+  }
+}
+
+/* =========================================================
+   RULEBOOK v176 — rebuilt Rules presentation
+   Presentation-only: existing rule data and tab delegation remain intact.
+   ========================================================= */
+.rules-page-new {
+  max-width: 920px;
+  margin: 0 auto;
+  color:#ddd;
+}
+.rules-book-header {
+  text-align:center;
+  padding:10px 0 15px;
+  border-bottom:1px solid rgba(201,162,39,.32);
+}
+.rules-book-kicker {
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:3px;
+}
+.rules-book-header h2 {
+  margin:3px 0 1px !important;
+  color:#A51C30 !important;
+  font-family:Oswald,"Arial Narrow",sans-serif !important;
+  font-size:31px !important;
+  font-weight:800 !important;
+  letter-spacing:4px !important;
+}
+.rules-book-header p {
+  margin:0 !important;
+  color:#777 !important;
+  font-size:8px !important;
+  letter-spacing:2px !important;
+}
+.rulebook-years {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:15px 0 24px;
+  padding:8px 10px;
+  border-top:2px solid #A51C30;
+  border-bottom:1px solid rgba(201,162,39,.25);
+  background:rgba(0,0,0,.18);
+}
+.years-label {
+  flex:0 0 auto;
+  color:#777;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+.rulebook-year-tabs {
+  flex:1;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:3px;
+}
+.rulebook-year-tabs .rules-season-tab {
+  height:30px;
+  border:0 !important;
+  border-bottom:2px solid transparent !important;
+  border-radius:0 !important;
+  color:#888 !important;
+  background:transparent !important;
+  font-family:Oswald,"Arial Narrow",sans-serif !important;
+  font-size:11px !important;
+  font-weight:700 !important;
+  letter-spacing:.8px !important;
+  cursor:pointer;
+}
+.rulebook-year-tabs .rules-season-tab:hover {
+  color:#ddd !important;
+  background:rgba(165,28,48,.06) !important;
+}
+.rulebook-year-tabs .rules-season-tab.active {
+  color:#fff !important;
+  background:rgba(165,28,48,.12) !important;
+  border-bottom-color:#A51C30 !important;
+  box-shadow:none !important;
+}
+.rulebook-section-heading {
+  margin-bottom:14px;
+  padding-left:11px;
+  border-left:3px solid #A51C30;
+}
+.rulebook-section-heading .section-kicker {
+  display:block;
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+.rulebook-section-heading h3 {
+  margin:2px 0 2px;
+  color:#eee;
+  font-family:"Roboto Slab",Georgia,serif;
+  font-size:19px;
+  font-weight:800;
+}
+.rulebook-section-heading p {
+  margin:0;
+  color:#777;
+  font-size:10px;
+}
+.rulebook-categories {
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.rulebook-category {
+  padding:14px 0 6px;
+}
+.rulebook-category-heading {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:7px;
+}
+.rulebook-category-heading span {
+  width:6px;
+  height:6px;
+  flex:0 0 6px;
+  background:#d7b84c;
+  box-shadow:0 0 5px rgba(215,184,76,.25);
+}
+.rulebook-category-heading h3 {
+  margin:0;
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+}
+.rulebook-category-rules {
+  border-left:1px solid rgba(201,162,39,.18);
+  margin-left:3px;
+}
+.rulebook-rule {
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:9px 12px;
+  border-bottom:1px solid rgba(255,255,255,.055);
+}
+.rulebook-rule:hover {
+  background:rgba(165,28,48,.035);
+}
+.rulebook-number {
+  flex:0 0 25px;
+  width:25px;
+  height:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#d7b84c;
+  border-right:1px solid rgba(201,162,39,.38);
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.7px;
+}
+.rulebook-rule p,
+.season-amendment p {
+  margin:0;
+  color:#c7c5be;
+  font-size:11px;
+  line-height:1.55;
+}
+.season-amendment-book {
+  margin-top:28px;
+  padding-top:22px;
+  border-top:1px solid rgba(201,162,39,.22);
+}
+.rules-season-panel { display:none; }
+.rules-season-panel.active { display:block; }
+.season-amendment-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px;
+}
+.season-amendment-head div {
+  display:flex;
+  align-items:baseline;
+  gap:9px;
+}
+.season-amendment-head span {
+  color:#777;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  letter-spacing:1.7px;
+}
+.season-amendment-head strong {
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:21px;
+  letter-spacing:1px;
+}
+.season-amendment-head em {
+  color:#666;
+  font-size:9px;
+  font-style:normal;
+}
+.season-amendment-line {
+  height:1px;
+  margin:7px 0 5px;
+  background:linear-gradient(90deg,#A51C30,rgba(165,28,48,.15),transparent);
+}
+.season-amendment {
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:10px 9px;
+  border-bottom:1px solid rgba(255,255,255,.055);
+}
+.season-amendment.still-active {
+  border-left:2px solid #A51C30;
+  padding-left:7px;
+  background:rgba(165,28,48,.045);
+}
+.season-amendment .rulebook-number {
+  border-right:0;
+  border:1px solid rgba(201,162,39,.3);
+  height:23px;
+  border-radius:2px;
+}
+.active-label {
+  display:inline-block;
+  margin-top:5px;
+  color:#c83a4f;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:7px;
+  font-weight:700;
+  letter-spacing:1.4px;
+}
+.rule-origin {
+  margin:0;
+  padding:13px;
+  color:#888;
+  border-left:2px solid #d7b84c;
+  background:rgba(0,0,0,.13);
+  font-size:10px;
+}
+@media(max-width:700px) {
+  .rules-page-new { width:100%; }
+  .rules-book-header h2 { font-size:26px !important; }
+  .rulebook-years {
+    display:block;
+    margin:12px 0 20px;
+  }
+  .years-label {
+    display:block;
+    text-align:center;
+    margin-bottom:6px;
+  }
+  .rulebook-year-tabs {
+    grid-template-columns:repeat(3,1fr);
+  }
+  .rulebook-year-tabs .rules-season-tab {
+    height:32px;
+  }
+  .rulebook-section-heading h3 { font-size:17px; }
+  .rulebook-rule,
+  .season-amendment {
+    gap:8px;
+    padding:9px 6px;
+  }
+  .rulebook-rule p,
+  .season-amendment p { font-size:10.5px; }
+  .season-amendment-head em { display:none; }
+}

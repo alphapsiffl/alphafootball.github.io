@@ -1034,46 +1034,93 @@ function recordsPage(){
 function playoffsPage(){return `<h2>Playoff Records</h2><div class="playoff-definitions"><div><strong>Championship Appearances</strong><span>Years and championship record</span></div><div><strong>First Round Byes</strong><span>Years receiving a bye</span></div><div><strong>Playoff Appearances</strong><span>Years making the playoffs</span></div><div><strong>Playoff Record</strong><span>Playoff wins and losses</span></div></div><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championship Appearances<br><span class="table-subheader">* Parenthesis denotes record in championship game</span></th><th>First Round Byes</th><th>Playoff Appearances</th><th>Playoff Record</th></tr></thead><tbody>${playoff.map(p=>{const rawChamp=p[1].replace(/^Championship Appearance(?:s)?:\s*/,"");const cm=rawChamp.match(/^(.*?);\s*Championship record:\s*(.*)$/i);const champ=cm?`${cm[1]} (${cm[2]})`:rawChamp;const bye=p[2].replace(/^First Round Bye(?:s)?:\s*/,"");const apps=p[3].replace(/^Playoff Appearances:\s*/,"");const rec=p[4].replace(/^Playoff Record:\s*/,"");return `<tr><td><strong>${p[0]}</strong></td><td>${champ}</td><td>${bye}</td><td>${apps}</td><td>${rec}</td></tr>`}).join("")}</tbody></table></div>`}
 function rulesPage(){
   const activeMap={2025:[0,1,2,3],2024:[1,5],2023:[1],2022:[0,1,3,5,6,7,8,9],2021:[0,2,3]};
+
+  const categories=[
+    ["League & Schedule",/playoff|schedule|division|game|tie|win|loss|week 15|week 16|week 17/i],
+    ["Draft & Waivers",/draft|waiver|FAAB|auto draf|March Madness|kicker/i],
+    ["Trades & Transactions",/trade|FA\b|first-round pick/i],
+    ["Scoring & Roster",/flex|bench|QB|points|yards|TD|defense|roster/i],
+    ["Punishments & Ice",/punishment|ice|wheel|waiver wire privileges/i],
+    ["Payouts & Brackets",/payout|cash|\$|consolation|loser.*bracket/i]
+  ];
+
+  const categorize=()=>{
+    const groups=categories.map(([title])=>[title,[]]);
+    const other=["Other League Standards",[]];
+    currentRules.forEach((rule,i)=>{
+      let placed=false;
+      for(let n=0;n<categories.length;n++){
+        if(categories[n][1].test(rule)){ groups[n][1].push([i,rule]); placed=true; break; }
+      }
+      if(!placed) other[1].push([i,rule]);
+    });
+    if(other[1].length) groups.push(other);
+    return groups.filter(g=>g[1].length);
+  };
+
+  const currentMarkup=categorize().map(([title,items])=>`
+    <section class="rulebook-category">
+      <div class="rulebook-category-heading"><span></span><h3>${title}</h3></div>
+      <div class="rulebook-category-rules">
+        ${items.map(([i,x])=>`<article class="rulebook-rule">
+          <span class="rulebook-number">${String(i+1).padStart(2,"0")}</span>
+          <p>${x}</p>
+        </article>`).join("")}
+      </div>
+    </section>`).join("");
+
   const renderSeason=(y)=>{
     const items=rules[y]||[];
     return `<section class="rules-season-panel" data-season="${y}">
-      <div class="rules-season-heading">
-        <span>SEASON</span>
-        <strong>${y}</strong>
+      <div class="season-amendment-head">
+        <div><span>RULE AMENDMENTS</span><strong>${y}</strong></div>
+        <em>${items.length} ${items.length===1?"amendment":"amendments"}</em>
       </div>
-      <div class="rules-season-rule"></div>
+      <div class="season-amendment-line"></div>
       ${y===2020
-        ? `<p class="rule-origin">League founded. No rule amendments recorded for the founding season.</p>`
-        : `<ol class="rules-season-list">${items.map((x,i)=>`<li class="${(activeMap[y]||[]).includes(i)?"rule-active":""}"><span class="rule-number">${i+1}</span><span class="rule-copy">${x}</span></li>`).join("")}</ol>`
+        ? `<p class="rule-origin">Founding season. No recorded rule amendments.</p>`
+        : `<div class="season-amendments">${items.map((x,i)=>`<article class="season-amendment ${((activeMap[y]||[]).includes(i))?"still-active":""}">
+            <span class="rulebook-number">${String(i+1).padStart(2,"0")}</span>
+            <div><p>${x}</p>${((activeMap[y]||[]).includes(i))?'<span class="active-label">CURRENT STANDARD</span>':""}</div>
+          </article>`).join("")}</div>`
       }
     </section>`;
   };
 
-  return `<div class="rules-hero">
-      <div class="rules-kicker">ALPHA PSI FFL</div>
+  return `<div class="rules-page-new">
+    <header class="rules-book-header">
+      <div class="rules-book-kicker">ALPHA PSI FFL</div>
       <h2>RULES</h2>
       <p>OFFICIAL LEAGUE CONSTITUTION</p>
-    </div>
+    </header>
 
-    <div class="rules-season-navigation">
-      <div class="rules-season-nav-label">SELECT SEASON</div>
-      <div class="rules-season-tabs" role="tablist" aria-label="Rule amendment seasons">
+    <nav class="rulebook-years" aria-label="Rule amendment seasons">
+      <span class="years-label">SEASONS</span>
+      <div class="rulebook-year-tabs" role="tablist">
         ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="rules-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
       </div>
-    </div>
+    </nav>
 
-    <div class="rules-season-intro"><span>SELECT A SEASON TO VIEW ITS RULEBOOK</span></div>
+    <section class="current-rulebook">
+      <div class="rulebook-section-heading">
+        <span class="section-kicker">THE RULEBOOK</span>
+        <h3>Current League Standards</h3>
+        <p>The rules currently governing the Alpha Psi FFL.</p>
+      </div>
+      <div class="rulebook-categories">${currentMarkup}</div>
+    </section>
 
-    <h3 class="rules-section-title">Current League Rules</h3>
-    <div class="current-rules">
-      <div class="current-rules-title">Current Rules</div>
-      <ol>${currentRules.map((x,i)=>`<li><span class="rule-number">${i+1}</span><span class="rule-copy">${x}</span></li>`).join("")}</ol>
-    </div>
-    <p class="intro"><span class="badge">Highlighted</span> Rules that are still in effect are shown in red.</p>
-
-    <div class="rules-season-panels">
-      ${[2025,2024,2023,2022,2021,2020].map(renderSeason).join("")}
-    </div>`;
+    <section class="season-amendment-book">
+      <div class="rulebook-section-heading">
+        <span class="section-kicker">HISTORY OF THE RULEBOOK</span>
+        <h3>Season Amendments</h3>
+        <p>Select a year above to see what changed that season.</p>
+      </div>
+      <div class="rules-season-panels">
+        ${[2025,2024,2023,2022,2021,2020].map(renderSeason).join("")}
+      </div>
+    </section>
+  </div>`;
 }
 
 function punishments(){
