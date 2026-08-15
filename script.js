@@ -869,9 +869,15 @@ function trophyCase(name){
   const awardMarkup=items.length
     ? items.map(x=>{
         const championship=/championship/i.test(x);
+        const yearMatch=x.match(/(?:19|20)\d{2}|[’'](\d{2})/);
+        const year=yearMatch ? (yearMatch[0].length===2 ? "20"+yearMatch[0].replace(/[’']/,"") : yearMatch[0]) : "";
+        const cleanAward=x
+          .replace(/\s*\((?:[’'][0-9]{2}(?:\s*,\s*[’'][0-9]{2})*)\)\s*/g," ")
+          .replace(/^(?:19|20)\d{2}\s+/,"")
+          .trim();
         return `<div class="trophy-item${championship?" trophy-championship":""}">
-          <span class="trophy-medallion" aria-hidden="true"><img class="championship-trophy-art" src="championship-trophy.png" alt="" aria-hidden="true"></span>
-          <span class="trophy-award-copy"><span class="trophy-award-name">${championship?"CHAMPIONSHIP":x}</span>${championship?'<span class="trophy-award-label">CHAMPIONSHIP</span>':""}</span><span class="trophy-year-plate">${((x.match(/’(\d{2})/)||[])[1]||"").replace(/^/, "20")}</span>
+          <span class="trophy-medallion" aria-hidden="true">${championship?'<img class="championship-trophy-art" src="championship-trophy.png" alt="" aria-hidden="true">':'<span class="trophy-medallion-cup">🏆</span>'}</span>
+          <span class="trophy-award-copy">${year?`<span class="trophy-year-plate">${year}</span>`:""}<span class="trophy-award-name">${championship?"CHAMPIONSHIP":cleanAward}</span></span>
         </div>`;
       }).join("")
     : `<div class="trophy-empty">No awards recorded yet</div>`;
@@ -1094,12 +1100,7 @@ function rulesPage(){
       <p>OFFICIAL LEAGUE CONSTITUTION</p>
     </header>
 
-    <nav class="rulebook-years" aria-label="Rule amendment seasons">
-      <span class="years-label">SEASONS</span>
-      <div class="rulebook-year-tabs" role="tablist">
-        ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="rules-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
-      </div>
-    </nav>
+
 
     <section class="current-rulebook">
       <div class="rulebook-section-heading">
@@ -1109,6 +1110,14 @@ function rulesPage(){
       </div>
       <div class="rulebook-categories">${currentMarkup}</div>
     </section>
+
+    
+    <nav class="rulebook-years" aria-label="Rule amendment seasons">
+      <span class="years-label">SEASONS</span>
+      <div class="rulebook-year-tabs" role="tablist">
+        ${[2025,2024,2023,2022,2021,2020].map((y,i)=>`<button class="rules-season-tab${i===0?" active":""}" type="button" role="tab" aria-selected="${i===0}" data-season="${y}">${y}</button>`).join("")}
+      </div>
+    </nav>
 
     <section class="season-amendment-book">
       <div class="rulebook-section-heading">

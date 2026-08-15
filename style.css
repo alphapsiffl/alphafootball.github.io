@@ -7492,3 +7492,140 @@ img[src="drayton-member.png"] {
   .season-amendment p { font-size:10.5px; }
   .season-amendment-head em { display:none; }
 }
+
+/* v178 — Trophy award years cleaned from titles; year plaques sit above award text */
+.player-profile-card .trophy-award-copy {
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+  gap:2px !important;
+}
+.player-profile-card .trophy-year-plate {
+  order:-1 !important;
+  align-self:flex-start !important;
+  min-width:auto !important;
+  padding:1px 5px !important;
+  margin:0 0 1px !important;
+  border:1px solid rgba(218,183,75,.48) !important;
+  border-radius:2px !important;
+  color:#f0d675 !important;
+  background:linear-gradient(180deg,rgba(214,177,65,.14),rgba(0,0,0,.22)) !important;
+  font-family:Oswald,"Arial Narrow",sans-serif !important;
+  font-size:7px !important;
+  line-height:1.15 !important;
+  letter-spacing:1px !important;
+  box-shadow:none !important;
+}
+.player-profile-card .trophy-award-name {
+  white-space:nowrap !important;
+}
+.player-profile-card .trophy-championship .trophy-award-copy {
+  justify-content:center !important;
+}
+.player-profile-card .trophy-championship .trophy-year-plate {
+  font-size:8px !important;
+  padding:1px 6px !important;
+  margin-bottom:2px !important;
+}
+.player-profile-card .trophy-championship .trophy-award-label {
+  display:none !important;
+}
+@media (min-width:701px) {
+  .player-profile-card .trophy-year-plate {
+    font-size:6.5px !important;
+    padding:1px 4px !important;
+  }
+  .player-profile-card .trophy-championship .trophy-year-plate {
+    font-size:7px !important;
+    padding:1px 5px !important;
+  }
+}
+
+/* v179 — one Cardinal red across the entire website.
+   Matches the Trophy Case heading Cardinal: #A51C30. */
+:root {
+  --alpha-cardinal: #A51C30;
+}
+
+/* Typography, borders, accents, active states, and decorative red elements. */
+body,
+body * {
+  --cardinal-red: #A51C30;
+}
+
+.cardinal,
+.red,
+.text-red,
+[class*="red"],
+[class*="cardinal"] {
+  color: #A51C30 !important;
+  border-color: #A51C30 !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.page-title,
+.tab.active,
+.nav-tab.active,
+.rules-season-tab.active,
+.active-label,
+.badge,
+.record-title,
+.accolades-title,
+.trophy-case-heading {
+  --alpha-red: #A51C30;
+}
+
+/* Common red surfaces/accents without overriding gold, ice, or image content. */
+.section-title,
+.page-title,
+.record-title,
+.accolades-title,
+.trophy-case-heading {
+  color: #A51C30 !important;
+}
+
+.nav-tab.active,
+.tab.active,
+button.active,
+.active-tab {
+  border-color: #A51C30 !important;
+}
+
+.rules-season-tab.active {
+  background: linear-gradient(180deg, #A51C30, #A51C30) !important;
+  border-bottom-color: #A51C30 !important;
+}
+
+.rules-book-header h2,
+.rules-section-title,
+.rulebook-section-heading,
+.rulebook-category-heading {
+  color: #A51C30 !important;
+}
+
+.rulebook-category-heading span,
+.rules-section-title::after {
+  background: #A51C30 !important;
+}
+
+.rulebook-rule,
+.season-amendment.still-active {
+  border-left-color: #A51C30 !important;
+}
+
+.current-rules li,
+.rules-season-list li.rule-active {
+  border-left-color: #A51C30 !important;
+}
+
+.trophy-case-heading {
+  color: #A51C30 !important;
+}
+
+/* Preserve the existing gold/metallic styling of Trophy Case awards. */
+.player-profile-card .trophy-item,
+.player-profile-card .trophy-championship {
+  border-color: rgba(216,181,78,.62) !important;
+}
