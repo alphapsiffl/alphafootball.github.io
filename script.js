@@ -177,7 +177,7 @@ function home(){
       <div class="record">${c[3]}</div>
     </div>`).join("")}</div>
 
-    <div class="ice-counter" aria-label="All-time Ice counter"><img class="ice-cube-art" src="ice-cube-art.png" alt="" aria-hidden="true"><img class="ice-brand-logo" src="smirnoff-ice-logo.png" alt="Smirnoff ICE"><div class="ice-cube" aria-hidden="true"></div>
+    <div class="ice-counter" aria-label="All-time Ice counter"><img class="ice-cube-art" src="ice-cube-art.png" alt="" aria-hidden="true"><img class="ice-brand-logo" src="smirnoff-ice-logo.png" alt="Smirnoff ICE">
       <div class="ice-counter-label">${iceCounter.label}</div>
       <div class="ice-counter-number">${iceCounter.total}</div>
       
@@ -866,7 +866,16 @@ function trophyCase(name){
     "Cal":[]
   };
   const items=trophies[name]||[];
-  return `<div class="trophy-case-wrap"><div class="trophy-case-heading">TROPHY CASE</div><div class="trophy-case"><div class="trophy-top-lights" aria-hidden="true"></div><div class="trophy-items">${items.length?items.map(x=>`<div class="trophy-item${/championship/i.test(x)?" trophy-championship":""}">${x}${/championship/i.test(x)?' <span class="trophy-icon" aria-hidden="true">🏆</span>':""}</div>`).join(""):`<div class="trophy-empty">empty-for now</div>`}</div></div></div>`;
+  const awardMarkup=items.length
+    ? items.map(x=>{
+        const championship=/championship/i.test(x);
+        return `<div class="trophy-item${championship?" trophy-championship":""}">
+          <span class="trophy-medallion" aria-hidden="true"><span class="trophy-medallion-cup">♛</span></span>
+          <span class="trophy-award-copy"><span class="trophy-award-name">${x}</span>${championship?'<span class="trophy-award-label">CHAMPION</span>':""}</span>
+        </div>`;
+      }).join("")
+    : `<div class="trophy-empty">No awards recorded yet</div>`;
+  return `<div class="trophy-case-wrap"><div class="trophy-case-heading">TROPHY CASE</div><div class="trophy-case"><div class="trophy-top-lights" aria-hidden="true"></div><div class="trophy-items">${awardMarkup}</div></div></div>`;
 }
 
 function careerSnapshot(name){
@@ -1035,15 +1044,26 @@ function rulesPage(){
       <div class="rules-season-rule"></div>
       ${y===2020
         ? `<p class="rule-origin">League founded. No rule amendments recorded for the founding season.</p>`
-        : `<ol class="rules-season-list">${items.map((x,i)=>`<li class="${(activeMap[y]||[]).includes(i)?"rule-active":""}">${x}</li>`).join("")}</ol>`
+        : `<ol class="rules-season-list">${items.map((x,i)=>`<li class="${(activeMap[y]||[]).includes(i)?"rule-active":""}"><span class="rule-number">${i+1}</span><span class="rule-copy">${x}</span></li>`).join("")}</ol>`
       }
     </section>`;
   };
 
-  return `<h2>Rule Amendments Following Season (All-Time)</h2>
+  return `<div class="rules-hero">
+      <div class="rules-kicker">ALPHA PSI FFL</div>
+      <h2>RULES</h2>
+      <p>League Constitution &amp; Rule Amendments</p>
+    </div>
+    <div class="rules-quick-grid">
+      <div class="rules-quick-card"><span class="rules-quick-icon">🏈</span><strong>Draft</strong><small>League draft standards</small></div>
+      <div class="rules-quick-card"><span class="rules-quick-icon">🔄</span><strong>Trades</strong><small>Trade &amp; roster rules</small></div>
+      <div class="rules-quick-card rules-ice-card"><span class="rules-quick-icon">🧊</span><strong>Ice</strong><small>Zero-point punishment</small></div>
+      <div class="rules-quick-card"><span class="rules-quick-icon">🏆</span><strong>Playoffs</strong><small>Postseason standards</small></div>
+    </div>
+    <h3 class="rules-section-title">Current League Rules</h3>
     <div class="current-rules">
       <div class="current-rules-title">Current Rules</div>
-      <ol>${currentRules.map(x=>`<li>${x}</li>`).join("")}</ol>
+      <ol>${currentRules.map((x,i)=>`<li><span class="rule-number">${i+1}</span><span class="rule-copy">${x}</span></li>`).join("")}</ol>
     </div>
     <p class="intro"><span class="badge">Highlighted</span> Rules that are still in effect are shown in red.</p>
 
