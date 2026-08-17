@@ -8254,3 +8254,45 @@ button.active,
     padding:10px 11px;
   }
 }
+
+/* v206 — Records category filters; 200 Point Club stays permanently featured */
+.record-filter-bar {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:4px;
+  margin:0 0 14px;
+  padding:4px;
+  border-bottom:1px solid rgba(201,162,39,.18);
+}
+.record-filter {
+  padding:7px 11px;
+  border:0;
+  border-bottom:2px solid transparent;
+  background:transparent;
+  color:#777;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition:color .15s ease,background .15s ease,border-color .15s ease;
+}
+.record-filter:hover {
+  color:#bbb;
+  background:rgba(255,255,255,.025);
+}
+.record-filter.active {
+  color:#d7b84c;
+  border-bottom-color:#A51C30;
+  background:rgba(165,28,48,.06);
+}
+@media(max-width:700px) {
+  .record-filter-bar {
+    overflow-x:auto;
+    flex-wrap:nowrap;
+  }
+  .record-filter {
+    white-space:nowrap;
+  }
+}

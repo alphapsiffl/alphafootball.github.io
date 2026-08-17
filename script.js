@@ -1007,14 +1007,17 @@ function stats(){return `<h2>Stats</h2><p class="intro">This section is ready fo
 function teams(){return `<h2>Teams</h2><p class="intro">Team pages are ready to be added as we bring over the league's ESPN history.</p><div class="grid">${champions.map(c=>`<div class="card"><strong>${c[2]}</strong><p>${c[0]} champion — ${c[1]} — ${c[3]}</p></div>`).join("")}</div>`}
 function schedule(){return `<h2>Schedule</h2><p class="intro">Schedule and matchup history will be added from your ESPN data.</p>`}
 function recordsPage(){
-  const leaders=[
-    ["MOST CHAMPIONSHIPS","League Record","6 different champions — tied"],
-    ["MOST PLAYOFF APPEARANCES","Bailey Coble","5 appearances"],
-    ["MOST FIRST-ROUND BYES","Bailey Coble","3 byes"],
-    ["LONGEST WIN STREAK","Bailey Coble","7 straight wins"],
-    ["MOST POINTS IN A SEASON","Bailey Coble","2,115.55 points"],
-    ["MOST MOVES IN A SEASON","Quinton Roof","65 moves"]
-  ];
+  const categories={
+    all: records,
+    "single-game": records.filter(r=>/score|blowout|loss|game/i.test(r[0])),
+    "single-season": records.filter(r=>/season|average|PA|moves|POTWs|ices/i.test(r[0])),
+    playoffs: records.filter(r=>/playoff|championship|bye/i.test(r[0])),
+    streaks: records.filter(r=>/streak/i.test(r[0]))
+  };
+  const renderRecords=(key)=>{
+    const list=categories[key]||categories.all;
+    return list.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-value">${r[1]}</div><div class="record-card-detail">${r[2]}</div>${recordHover(r[2])}</article>`).join("");
+  };
   return `<h2>League Records</h2>
   <p class="intro">The all-time Alpha Psi record book. The leader board uses records already documented in the league archive.</p>
   <div class="record-feature">
@@ -1022,7 +1025,14 @@ function recordsPage(){
     <div class="record-feature-sub">Three players have crossed the 200-point mark in a single fantasy matchup.</div>
     <div class="two-hundred-grid">${twoHundredClub.map((r,i)=>`<div class="record-holder"><div class="record-value">${r[0]}</div><div class="record-detail">${r[1]}</div>${recordHover(r[1])}</div>`).join("")}</div>
   </div>
-  <div class="records-grid">${records.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-value">${r[1]}</div><div class="record-card-detail">${r[2]}</div>${recordHover(r[2])}</article>`).join("")}</div>`;
+  <div class="record-filter-bar" role="tablist" aria-label="Record categories">
+    <button class="record-filter active" type="button" data-record-filter="all">ALL</button>
+    <button class="record-filter" type="button" data-record-filter="single-game">SINGLE GAME</button>
+    <button class="record-filter" type="button" data-record-filter="single-season">SINGLE SEASON</button>
+    <button class="record-filter" type="button" data-record-filter="playoffs">PLAYOFFS</button>
+    <button class="record-filter" type="button" data-record-filter="streaks">STREAKS</button>
+  </div>
+  <div class="records-grid" data-record-grid>${renderRecords("all")}</div>`;
 }
 function playoffsPage(){return `<h2>Playoff Records</h2><div class="playoff-definitions"><div><strong>Championship Appearances</strong><span>Years and championship record</span></div><div><strong>First Round Byes</strong><span>Years receiving a bye</span></div><div><strong>Playoff Appearances</strong><span>Years making the playoffs</span></div><div><strong>Playoff Record</strong><span>Playoff wins and losses</span></div></div><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championship Appearances<br><span class="table-subheader">* Parenthesis denotes record in championship game</span></th><th>First Round Byes</th><th>Playoff Appearances</th><th>Playoff Record</th></tr></thead><tbody>${playoff.map(p=>{const rawChamp=p[1].replace(/^Championship Appearance(?:s)?:\s*/,"");const cm=rawChamp.match(/^(.*?);\s*Championship record:\s*(.*)$/i);const champ=cm?`${cm[1]} (${cm[2]})`:rawChamp;const bye=p[2].replace(/^First Round Bye(?:s)?:\s*/,"");const apps=p[3].replace(/^Playoff Appearances:\s*/,"");const rec=p[4].replace(/^Playoff Record:\s*/,"");return `<tr><td><strong>${p[0]}</strong></td><td>${champ}</td><td>${bye}</td><td>${apps}</td><td>${rec}</td></tr>`}).join("")}</tbody></table></div>`}
 function rulesPage(){
@@ -1271,6 +1281,27 @@ tabs.forEach(t=>{
 // event delegation instead of inline <script> tags (which do not execute when
 // inserted with innerHTML).
 content.addEventListener("click", (event) => {
+  const recordFilter=event.target.closest(".record-filter");
+  if(recordFilter && content.contains(recordFilter)){
+    const key=recordFilter.dataset.recordFilter;
+    const recordsData={
+      all: records,
+      "single-game": records.filter(r=>/score|blowout|loss|game/i.test(r[0])),
+      "single-season": records.filter(r=>/season|average|PA|moves|POTWs|ices/i.test(r[0])),
+      playoffs: records.filter(r=>/playoff|championship|bye/i.test(r[0])),
+      streaks: records.filter(r=>/streak/i.test(r[0]))
+    };
+    content.querySelectorAll(".record-filter").forEach(b=>{
+      b.classList.toggle("active",b===recordFilter);
+    });
+    const grid=content.querySelector("[data-record-grid]");
+    if(grid){
+      grid.innerHTML=(recordsData[key]||records).map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-value">${r[1]}</div><div class="record-card-detail">${r[2]}</div>${recordHover(r[2])}</article>`).join("");
+    }
+    return;
+  }
+
+
 
   const tab = event.target.closest(".history-season-tab, .allpsi-season-tab, .rules-season-tab");
   if (!tab || !content.contains(tab)) return;
