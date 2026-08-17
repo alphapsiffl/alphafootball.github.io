@@ -8296,3 +8296,99 @@ button.active,
     white-space:nowrap;
   }
 }
+
+/* v208 — 200 Point Club special treatment */
+.record-feature {
+  position:relative;
+  overflow:hidden;
+  margin:20px 0 24px;
+  padding:24px 24px 22px;
+  border:1px solid rgba(201,162,39,.30);
+  border-top:2px solid #A51C30;
+  border-radius:5px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(201,162,39,.09),transparent 42%),
+    linear-gradient(135deg,rgba(255,255,255,.035),rgba(0,0,0,.20));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 9px 24px rgba(0,0,0,.18);
+}
+.record-feature::after {
+  content:"200+";
+  position:absolute;
+  right:-12px;
+  top:-30px;
+  color:rgba(201,162,39,.035);
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:118px;
+  font-weight:800;
+  line-height:1;
+  pointer-events:none;
+}
+.record-feature-title {
+  position:relative;
+  z-index:1;
+  color:#d7b84c !important;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:17px !important;
+  font-weight:800;
+  letter-spacing:2px;
+}
+.record-feature-title::before {
+  content:"";
+  display:inline-block;
+  width:22px;
+  height:2px;
+  margin:0 8px 4px 0;
+  background:#A51C30;
+}
+.record-feature-sub {
+  position:relative;
+  z-index:1;
+  margin:4px 0 17px;
+  color:#777;
+  font-size:9px;
+}
+.two-hundred-grid {
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.two-hundred-grid .record-holder {
+  position:relative;
+  min-height:96px;
+  padding:13px 14px 12px;
+  border:1px solid rgba(201,162,39,.16);
+  background:rgba(0,0,0,.16);
+  transition:transform .16s ease,border-color .16s ease,background .16s ease;
+}
+.two-hundred-grid .record-holder:hover {
+  transform:translateY(-2px);
+  border-color:rgba(201,162,39,.36);
+  background:rgba(165,28,48,.06);
+}
+.two-hundred-grid .record-value {
+  color:#f1df82;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:31px;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:.3px;
+}
+.two-hundred-grid .record-detail {
+  margin-top:9px;
+  color:#999;
+  font-size:8px;
+  line-height:1.45;
+}
+@media(max-width:700px) {
+  .record-feature {
+    padding:20px 16px 18px;
+  }
+  .two-hundred-grid {
+    grid-template-columns:1fr;
+  }
+  .two-hundred-grid .record-holder {
+    min-height:auto;
+  }
+}

@@ -894,7 +894,7 @@ function trophyCase(name){
 }
 
 function careerSnapshot(name){
-  const snapshots={"Quinton": ["134.1", "1", "’24", "4-1"], "Bailey": ["127.5", "1", "’21", "2-4"], "Davis": ["125.2", "2", "’20, ’22", "4-2"], "Blum": ["142.1", "0", "’22, ’25", "3-3"], "Peachey": ["127.1", "0", "—", "3-3"], "Justin": ["105.2", "0", "—", "2-1"], "Grant H.": ["112.8", "0", "—", "0-0"], "Kameron": ["139.9", "1", "’25", "2-2"], "Braxton": ["115.9", "0", "—", "1-2"], "Victor B.": ["122.3", "1", "’23", "2-2"], "Mac": ["115.5", "0", "—", "0-2"], "Drayton": ["119.0", "0", "—", "0-1"]};
+  const snapshots={"Quinton": ["134.1", "2", "’24", "4-1"], "Bailey": ["127.5", "1", "’21", "2-4"], "Davis": ["125.2", "2", "’20, ’22", "4-2"], "Blum": ["142.1", "0", "’22, ’25", "3-3"], "Peachey": ["127.1", "0", "—", "3-3"], "Justin": ["105.2", "0", "—", "2-1"], "Grant H.": ["112.8", "0", "—", "0-0"], "Kameron": ["139.9", "1", "’25", "2-2"], "Braxton": ["115.9", "0", "—", "1-2"], "Victor B.": ["122.3", "1", "’23", "2-2"], "Mac": ["115.5", "0", "—", "0-2"], "Drayton": ["119.0", "0", "—", "0-1"]};
   const s=snapshots[name];
   if(!s) return "";
   return `<div class="career-snapshot">
@@ -1011,7 +1011,6 @@ function recordsPage(){
     all: records,
     "single-game": records.filter(r=>/score|blowout|loss|game/i.test(r[0])),
     "single-season": records.filter(r=>/season|average|PA|moves|POTWs|ices/i.test(r[0])),
-    playoffs: records.filter(r=>/playoff|championship|bye/i.test(r[0])),
     streaks: records.filter(r=>/streak/i.test(r[0]))
   };
   const renderRecords=(key)=>{
@@ -1029,7 +1028,6 @@ function recordsPage(){
     <button class="record-filter active" type="button" data-record-filter="all">ALL</button>
     <button class="record-filter" type="button" data-record-filter="single-game">SINGLE GAME</button>
     <button class="record-filter" type="button" data-record-filter="single-season">SINGLE SEASON</button>
-    <button class="record-filter" type="button" data-record-filter="playoffs">PLAYOFFS</button>
     <button class="record-filter" type="button" data-record-filter="streaks">STREAKS</button>
   </div>
   <div class="records-grid" data-record-grid>${renderRecords("all")}</div>`;
@@ -1288,7 +1286,6 @@ content.addEventListener("click", (event) => {
       all: records,
       "single-game": records.filter(r=>/score|blowout|loss|game/i.test(r[0])),
       "single-season": records.filter(r=>/season|average|PA|moves|POTWs|ices/i.test(r[0])),
-      playoffs: records.filter(r=>/playoff|championship|bye/i.test(r[0])),
       streaks: records.filter(r=>/streak/i.test(r[0]))
     };
     content.querySelectorAll(".record-filter").forEach(b=>{
