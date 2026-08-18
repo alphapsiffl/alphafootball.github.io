@@ -198,16 +198,6 @@ function home(){
       <div class="ice-counter-label">${iceCounter.label}</div>
       <div class="ice-counter-number">${iceCounter.total}</div>
     </div>
-
-    <div class="legacy-strip">
-      <div class="legacy-heading"><span>ALPHA PSI LEGACY</span><strong>EST. 2020</strong></div>
-      <div class="legacy-stats">
-        <div><strong>6</strong><span>CHAMPIONSHIPS</span></div>
-        <div><strong>12</strong><span>CURRENT MEMBERS</span></div>
-        <div><strong>6</strong><span>SEASONS</span></div>
-        <div><strong>2025</strong><span>LATEST CHAMPION</span></div>
-      </div>
-    </div>
     <section class="shit-box">
       <div class="shit-box-header">
         <div>
