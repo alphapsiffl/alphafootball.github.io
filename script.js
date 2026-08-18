@@ -205,7 +205,7 @@ function home(){
           <h3>SHAMEFULLY HORRIBLE INDIVIDUAL TROPHY</h3>
           <p>Reserved for the manager who finished the season at the bottom of the barrel.</p>
         </div>
-        <div class="shit-box-mark">S.H.I.T.</div>
+        <div class="shit-box-mark"><img src="shit-toilet-trophy.png" alt="Shamefully Horrible Individual Trophy toilet trophy"></div>
       </div>
       <div class="shit-box-records">
         ${[
