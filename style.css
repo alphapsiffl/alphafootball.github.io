@@ -8392,3 +8392,100 @@ button.active,
     min-height:auto;
   }
 }
+
+/* v209 — darker wood around the Trophy Case */
+.trophy-case {
+  border-color:#24120c !important;
+  box-shadow:
+    inset 0 0 0 2px #321b12,
+    inset 0 0 0 4px #120805,
+    inset 0 0 24px rgba(0,0,0,.48),
+    0 9px 24px rgba(0,0,0,.32) !important;
+}
+
+/* v211 — ESPN-style futures market */
+.espn-bets-page h2 {
+  font-size:30px !important;
+  letter-spacing:1px !important;
+}
+.espn-market-meta {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:0;
+  margin:9px 0 11px;
+  padding:8px 10px;
+  border-top:1px solid rgba(201,162,39,.24);
+  border-bottom:1px solid rgba(201,162,39,.18);
+  background:rgba(165,28,48,.045);
+  color:#777;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  letter-spacing:1px;
+}
+.espn-market-meta span {
+  padding:0 12px;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.espn-market-meta span:first-child {padding-left:2px;color:#d7b84c}
+.espn-market-meta span:last-child {border-right:0}
+.bets-table th:nth-child(1){width:25%}
+.bets-table th:nth-child(2){width:14%;text-align:center}
+.bets-table th:nth-child(3){width:13%;text-align:center}
+.bets-table th:nth-child(4){width:48%}
+.bets-table td:nth-child(3) {text-align:center}
+.bets-implied {
+  color:#aaa !important;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:11px !important;
+  font-weight:700;
+}
+.bets-table tbody tr.market-top {
+  background:rgba(165,28,48,.045);
+}
+.bets-table tbody tr.market-top td:first-child {
+  border-left-color:#A51C30;
+}
+.market-label {
+  display:inline-block;
+  margin-left:8px;
+  padding:2px 5px;
+  border:1px solid rgba(201,162,39,.25);
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:6px;
+  font-weight:700;
+  letter-spacing:1px;
+  vertical-align:2px;
+}
+.bets-table tbody tr.market-top:first-child .bets-odds {
+  font-size:20px !important;
+  text-shadow:0 0 11px rgba(215,184,76,.16);
+}
+.bets-table tbody tr.market-top:nth-child(2) .bets-odds,
+.bets-table tbody tr.market-top:nth-child(3) .bets-odds {
+  font-size:18px !important;
+}
+.espn-board-footer {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:14px;
+  padding:11px 13px;
+  border-left:2px solid #A51C30;
+  background:rgba(0,0,0,.13);
+  color:#777;
+  font-size:8px;
+}
+.espn-board-footer strong {
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  letter-spacing:1.5px;
+}
+@media(max-width:700px) {
+  .espn-market-meta {overflow-x:auto;flex-wrap:nowrap;white-space:nowrap}
+  .bets-table {min-width:760px}
+  .espn-board-footer {flex-direction:column;align-items:flex-start}
+}
