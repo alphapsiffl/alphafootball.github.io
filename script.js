@@ -208,6 +208,31 @@ function home(){
         <div><strong>2025</strong><span>LATEST CHAMPION</span></div>
       </div>
     </div>
+    <section class="shit-box">
+      <div class="shit-box-header">
+        <div>
+          <div class="shit-box-kicker">THE S.H.I.T. BOX</div>
+          <h3>SHAMEFULLY HORRIBLE INDIVIDUAL TROPHY</h3>
+          <p>Reserved for the manager who finished the season at the bottom of the barrel.</p>
+        </div>
+        <div class="shit-box-mark">S.H.I.T.</div>
+      </div>
+      <div class="shit-box-records">
+        ${[
+          ["2020","Corey Steele","3–10"],
+          ["2021","Tyler Marmo","2–12"],
+          ["2022","Drayton Paxton","3–10"],
+          ["2023","Chase Arrington","6–8"],
+          ["2024","Drayton Paxton","1–13"],
+          ["2025","Grant Harris","3–11"]
+        ].map((r,i)=>`<article class="shit-box-row">
+          <span class="shit-box-year">${r[0]}</span>
+          <strong>${r[1]}</strong>
+          <b>${r[2]}</b>
+        </article>`).join("")}
+      </div>
+      <div class="shit-box-footer">THE LEAGUE'S LOWEST HONOR · EST. 2020</div>
+    </section>
   </section>`;
 }
 function historyPage(){

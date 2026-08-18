@@ -8617,3 +8617,157 @@ button.active,
     font-size:13px;
   }
 }
+
+/* v218 — ACTUAL walnut border colors for the Trophy Case.
+   The frame is a transparent border whose wood comes from the second
+   background layer, so changing border-color alone does not darken it. */
+.player-profile-card .trophy-case {
+  border:16px solid transparent !important;
+  background:
+    linear-gradient(135deg,
+      #241208 0%,
+      #160a05 32%,
+      #2d1609 56%,
+      #120704 100%
+    ) padding-box,
+    repeating-linear-gradient(
+      3deg,
+      #170a05 0px,
+      #170a05 4px,
+      #2a1409 5px,
+      #3a1d0d 8px,
+      #211006 12px,
+      #32180a 17px,
+      #180b05 22px
+    ) border-box !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(88,45,19,.55),
+    inset 0 0 0 5px rgba(7,3,1,.92),
+    inset 0 0 20px rgba(0,0,0,.62),
+    0 14px 30px rgba(0,0,0,.48) !important;
+}
+
+/* v219 — S.H.I.T. Box: annual last-place trophy case */
+.shit-box {
+  position:relative;
+  margin:28px auto 0;
+  max-width:920px;
+  overflow:hidden;
+  border:1px solid rgba(132,93,55,.58);
+  border-top:3px solid #24120c;
+  background:
+    linear-gradient(145deg,rgba(55,29,16,.92),rgba(18,9,5,.96) 52%,rgba(43,22,11,.94)),
+    repeating-linear-gradient(2deg,rgba(255,255,255,.015) 0 2px,transparent 2px 7px);
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.55),
+    inset 0 0 28px rgba(0,0,0,.55),
+    0 10px 25px rgba(0,0,0,.25);
+}
+.shit-box::before {
+  content:"";
+  position:absolute;
+  top:0;bottom:0;left:0;
+  width:4px;
+  background:#A51C30;
+  opacity:.9;
+}
+.shit-box-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:24px;
+  padding:20px 22px 17px;
+  border-bottom:1px solid rgba(201,162,39,.18);
+}
+.shit-box-kicker {
+  color:#a51c30;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:2.4px;
+}
+.shit-box h3 {
+  margin:4px 0 5px;
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:18px;
+  letter-spacing:1.2px;
+}
+.shit-box-header p {
+  margin:0;
+  color:#777;
+  font-size:9px;
+}
+.shit-box-mark {
+  flex:0 0 auto;
+  color:rgba(215,184,76,.14);
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+.shit-box-records {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.shit-box-row {
+  display:grid;
+  grid-template-columns:52px 1fr auto;
+  align-items:center;
+  gap:12px;
+  min-height:48px;
+  padding:8px 18px;
+  border-bottom:1px solid rgba(255,255,255,.045);
+}
+.shit-box-row:nth-child(odd) {
+  border-right:1px solid rgba(255,255,255,.045);
+}
+.shit-box-year {
+  color:#8d6c42;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:11px;
+  font-weight:700;
+}
+.shit-box-row strong {
+  color:#ddd;
+  font-size:11px;
+  font-weight:700;
+}
+.shit-box-row b {
+  color:#c4a85d;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:15px;
+  letter-spacing:.4px;
+}
+.shit-box-footer {
+  padding:8px 18px;
+  color:#5e554d;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:7px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-align:right;
+}
+@media(max-width:700px) {
+  .shit-box-header {
+    padding:17px 16px 14px;
+  }
+  .shit-box-header p {
+    line-height:1.4;
+  }
+  .shit-box-mark {
+    font-size:25px;
+  }
+  .shit-box h3 {
+    font-size:15px;
+  }
+  .shit-box-records {
+    grid-template-columns:1fr;
+  }
+  .shit-box-row:nth-child(odd) {
+    border-right:0;
+  }
+  .shit-box-row {
+    padding:9px 15px;
+  }
+}
