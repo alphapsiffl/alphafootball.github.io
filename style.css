@@ -8489,3 +8489,67 @@ button.active,
   .bets-table {min-width:760px}
   .espn-board-footer {flex-direction:column;align-items:flex-start}
 }
+
+/* v212 — darker wood edge on Members Trophy Case */
+.trophy-case {
+  border-color:#1a0b07 !important;
+  box-shadow:
+    inset 0 0 0 2px #29150d,
+    inset 0 0 0 4px #0b0503,
+    inset 0 0 20px rgba(0,0,0,.55),
+    0 9px 24px rgba(0,0,0,.34) !important;
+}
+
+/* v213 — larger ESPNBets typography on desktop */
+@media(min-width:701px) {
+  .espn-bets-page .espn-bets-kicker {
+    font-size:11px;
+    letter-spacing:2.6px;
+  }
+  .espn-bets-page h2 {
+    font-size:36px !important;
+    letter-spacing:1.1px !important;
+  }
+  .espn-bets-page .espn-market-meta {
+    font-size:10px;
+    padding:10px 12px;
+  }
+  .espn-bets-page .espn-bets-intro {
+    font-size:11px !important;
+    line-height:1.5;
+  }
+  .espn-bets-page .bets-table th {
+    padding:13px 15px;
+    font-size:10px;
+    letter-spacing:2px;
+  }
+  .espn-bets-page .bets-table td {
+    padding:14px 15px;
+    font-size:11px;
+    line-height:1.55;
+  }
+  .espn-bets-page .bets-table td:first-child strong {
+    font-size:13px;
+  }
+  .espn-bets-page .bets-rank {
+    width:30px;
+    font-size:9px;
+  }
+  .espn-bets-page .bets-odds {
+    font-size:20px !important;
+  }
+  .espn-bets-page .bets-implied {
+    font-size:13px !important;
+  }
+  .espn-bets-page .market-label {
+    font-size:7px;
+    padding:3px 6px;
+  }
+  .espn-bets-page .espn-board-footer {
+    font-size:10px;
+    padding:13px 15px;
+  }
+  .espn-bets-page .espn-board-footer strong {
+    font-size:12px;
+  }
+}
