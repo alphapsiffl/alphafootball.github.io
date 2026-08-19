@@ -1219,12 +1219,40 @@ function espnBets(){
   </section>`;
 }
 
+
+function chatPage(){
+  return `<section class="chat-page">
+    <div class="chat-header">
+      <div>
+        <div class="chat-kicker">ALPHA PSI</div>
+        <h2>LEAGUE CHAT</h2>
+        <p>Talk trash. Defend your draft. Settle the score.</p>
+      </div>
+      <div class="chat-status"><span></span> LIVE</div>
+    </div>
+    <div class="chat-panel">
+      <div class="chat-messages" id="chat-messages">
+        <div class="chat-empty" id="chat-empty">
+          <strong>THE CHAT IS OPEN.</strong>
+          <span>Be the first one to say something.</span>
+        </div>
+      </div>
+      <form class="chat-composer" id="chat-form">
+        <input id="chat-name" type="text" maxlength="24" placeholder="Your name" autocomplete="nickname">
+        <input id="chat-message" type="text" maxlength="240" placeholder="Talk some trash..." autocomplete="off" required>
+        <button type="submit">SEND</button>
+      </form>
+    </div>
+  </section>`;
+}
+
 const pages = {
   home,
   members,
   history: historyPage,
   records: recordsPage,
   espnbets: espnBets,
+  chat: chatPage,
   rules: rulesPage,
   allpsi: allPsiPage,
   punishments
@@ -1240,6 +1268,7 @@ function render(page){
     content.classList.add("page-transition");
     if(typeof bindChampionLinks==="function") bindChampionLinks();
     if(page==="home") setTimeout(initHomeRecordSpotlight, 40);
+    if(page==="chat") setTimeout(initChat, 20);
     tabs.forEach(t=>t.classList.toggle("active",t.dataset.page===page));
     const nav=document.querySelector(".main-tabs");
     if(nav && window.scrollTo) window.scrollTo({top:nav.offsetTop-60,behavior:"smooth"});
@@ -1248,6 +1277,63 @@ function render(page){
     console.error("Alpha Psi page error:",page,err);
     content.innerHTML=`<div class="card"><h2>Page temporarily unavailable</h2><p>Please refresh the page. If the problem continues, the page code needs repair.</p></div>`;
   }
+}
+
+
+function initChat(){
+  const messagesEl=document.getElementById("chat-messages");
+  const form=document.getElementById("chat-form");
+  const nameEl=document.getElementById("chat-name");
+  const messageEl=document.getElementById("chat-message");
+  if(!messagesEl || !form) return;
+
+  const archivedMessages=[
+    {name:"Victor Barkenass",text:"Nah I’m fraudulent",time:"ARCHIVE"},
+    {name:"Bailey Coble",text:"Tom Brady just said the N word.",time:"ARCHIVE"},
+    {name:"Kameron Walker",text:"#oneofus",time:"ARCHIVE"},
+    {name:"Victor Barkenass",text:"Ggs Justin",time:"ARCHIVE"},
+    {name:"Justin Cooper",text:"Gonna start giving out ices for everytime you say “GGs” on Thursdays",time:"ARCHIVE"},
+    {name:"Justin Cooper",text:"No... I’m spiraling boys. The walls are talking to me",time:"ARCHIVE"},
+    {name:"Kameron Walker",text:"It’s Tuesday bro. Just enjoy the week ahead 🙏",time:"ARCHIVE"},
+    {name:"Kameron Walker",text:"If Q is playing I will not be",time:"ARCHIVE"},
+    {name:"Victor Barkenass",text:"Congrats bro. Really proud of you, but law school is NOT why your team was buns brother 😭",time:"ARCHIVE"},
+    {name:"Justin Cooper",text:"Braxton and Grant need to more worried about Xs and Os down in that losers bracket",time:"ARCHIVE"},
+    {name:"Bailey Coble",text:"Hey peachey it’s not a consolation bracket.",time:"ARCHIVE"}
+  ];
+
+  let saved=[];
+  try { saved=JSON.parse(localStorage.getItem("apffl-chat-v224")||"[]"); } catch(e) {}
+  if(!Array.isArray(saved) || !saved.length){
+    saved=archivedMessages.slice();
+    try { localStorage.setItem("apffl-chat-v224",JSON.stringify(saved)); } catch(e) {}
+  }
+
+  const paint=()=>{
+    if(!saved.length){
+      messagesEl.innerHTML=`<div class="chat-empty"><strong>THE CHAT IS OPEN.</strong><span>Be the first one to say something.</span></div>`;
+      return;
+    }
+    messagesEl.innerHTML=saved.map(m=>`<div class="chat-message"><div class="chat-message-top"><strong>${escapeChat(m.name)}</strong><time>${escapeChat(m.time)}</time></div><div>${escapeChat(m.text)}</div></div>`).join("");
+    messagesEl.scrollTop=messagesEl.scrollHeight;
+  };
+  paint();
+
+  form.addEventListener("submit",(event)=>{
+    event.preventDefault();
+    const name=(nameEl.value||"Anonymous").trim().slice(0,24)||"Anonymous";
+    const text=(messageEl.value||"").trim().slice(0,240);
+    if(!text) return;
+    saved.push({name,text,time:new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})});
+    saved=saved.slice(-100);
+    try { localStorage.setItem("apffl-chat-v224",JSON.stringify(saved)); } catch(e) {}
+    nameEl.value=name;
+    messageEl.value="";
+    paint();
+    messageEl.focus();
+  });
+}
+function escapeChat(value){
+  return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
 
 const historyNav = document.querySelector(".history-nav-item");
