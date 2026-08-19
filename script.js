@@ -1245,28 +1245,23 @@ function chatPage(){
           <div class="chat-message"><div class="chat-message-top"><strong>Grant Harris</strong><time>ARCHIVE</time></div><div>Well boys, I passed the MPRE and all my classes this semester. This was a rough rough semester for me, I took 3 classes that aren’t supposed to be taken together and should be spread out across 3L year, but my dumbass took them all together unknowingly. I only have one required class left to get my JD. My team sucked in fantasy, probably gonna be last, but just know that around Oct. and Nov. I had to start putting it on the back burner and not caring as much. My team has sucked both years, but this year it’s really really bad and I’m sorry that I haven’t been as engaged as I would like to be 😂</div></div>
           <div class="chat-message"><div class="chat-message-top"><strong>Victor Barkenass</strong><time>ARCHIVE</time></div><div>Congrats bro. Really proud of you, but law school is NOT why your team was buns brother 😭</div></div>
         </div>
-
         <div class="chat-thread">
           <div class="chat-message"><div class="chat-message-top"><strong>Bailey Coble</strong><time>ARCHIVE</time></div><div>Tom Brady just said the N word.</div></div>
           <div class="chat-message"><div class="chat-message-top"><strong>Kameron Walker</strong><time>ARCHIVE</time></div><div>#oneofus</div></div>
         </div>
-
         <div class="chat-thread">
           <div class="chat-message"><div class="chat-message-top"><strong>Justin Cooper</strong><time>ARCHIVE</time></div><div>Ggs Justin</div></div>
           <div class="chat-message"><div class="chat-message-top"><strong>Justin Cooper</strong><time>ARCHIVE</time></div><div>Gonna start giving out ices for everytime you say “GGs” on Thursdays</div></div>
           <div class="chat-message"><div class="chat-message-top"><strong>Justin Cooper</strong><time>ARCHIVE</time></div><div>No... I’m spiraling boys. The walls are talking to me</div></div>
         </div>
-
         <div class="chat-thread">
           <div class="chat-message"><div class="chat-message-top"><strong>Kameron Walker</strong><time>ARCHIVE</time></div><div>It’s Tuesday bro. Just enjoy the week ahead 🙏</div></div>
           <div class="chat-message"><div class="chat-message-top"><strong>Kameron Walker</strong><time>ARCHIVE</time></div><div>If Q is playing I will not be</div></div>
         </div>
-
         <div class="chat-thread">
           <div class="chat-message"><div class="chat-message-top"><strong>Justin Cooper</strong><time>ARCHIVE</time></div><div>Braxton and Grant need to more worried about Xs and Os down in that losers bracket</div></div>
           <div class="chat-message"><div class="chat-message-top"><strong>Bailey Coble</strong><time>ARCHIVE</time></div><div>Hey peachey it’s not a consolation bracket.</div></div>
         </div>
-
         <div class="chat-thread">
           <div class="chat-message"><div class="chat-message-top"><strong>Victor Barkenass</strong><time>ARCHIVE</time></div><div>Nah I’m fraudulent</div></div>
         </div>
@@ -1277,7 +1272,7 @@ function chatPage(){
       <div class="chat-live-title">LIVE GROUP CHAT</div>
       <div class="chat-panel">
         <div class="chat-messages" id="chat-messages">
-          <div class="chat-empty"><strong>THE CHAT IS OPEN.</strong><span>Be the first one to say something.</span></div>
+          <div class="chat-empty" id="chat-empty"><strong>THE CHAT IS OPEN.</strong><span>Be the first one to say something.</span></div>
         </div>
         <form class="chat-composer" id="chat-form">
           <input id="chat-name" type="text" maxlength="24" placeholder="Your name" autocomplete="nickname">
@@ -1289,6 +1284,39 @@ function chatPage(){
   </section>`;
 }
 
+const pages = {
+  home,
+  members,
+  history: historyPage,
+  records: recordsPage,
+  espnbets: espnBets,
+  chat: chatPage,
+  rules: rulesPage,
+  allpsi: allPsiPage,
+  punishments
+};
+
+function render(page){
+  try{
+    if(!pages[page]) page="home";
+    content.classList.remove("page-transition");
+    void content.offsetWidth;
+    content.innerHTML = pages[page]();
+    content.classList.toggle("home-view", page==="home");
+    content.classList.add("page-transition");
+    if(typeof bindChampionLinks==="function") bindChampionLinks();
+    if(page==="home") setTimeout(initHomeRecordSpotlight, 40);
+    if(page==="chat") setTimeout(initChat, 20);
+    tabs.forEach(t=>t.classList.toggle("active",t.dataset.page===page));
+    const nav=document.querySelector(".main-tabs");
+    if(nav && window.scrollTo) window.scrollTo({top:nav.offsetTop-60,behavior:"smooth"});
+    location.hash=page;
+  }catch(err){
+    console.error("Alpha Psi page error:",page,err);
+    content.innerHTML=`<div class="card"><h2>Page temporarily unavailable</h2><p>Please refresh the page. If the problem continues, the page code needs repair.</p></div>`;
+  }
+}
+
 
 function initChat(){
   const messagesEl=document.getElementById("chat-messages");
@@ -1297,9 +1325,26 @@ function initChat(){
   const messageEl=document.getElementById("chat-message");
   if(!messagesEl || !form) return;
 
+  const archivedMessages=[
+    {name:"Victor Barkenass",text:"Nah I’m fraudulent",time:"ARCHIVE"},
+    {name:"Bailey Coble",text:"Tom Brady just said the N word.",time:"ARCHIVE"},
+    {name:"Kameron Walker",text:"#oneofus",time:"ARCHIVE"},
+    {name:"Victor Barkenass",text:"Ggs Justin",time:"ARCHIVE"},
+    {name:"Justin Cooper",text:"Gonna start giving out ices for everytime you say “GGs” on Thursdays",time:"ARCHIVE"},
+    {name:"Justin Cooper",text:"No... I’m spiraling boys. The walls are talking to me",time:"ARCHIVE"},
+    {name:"Kameron Walker",text:"It’s Tuesday bro. Just enjoy the week ahead 🙏",time:"ARCHIVE"},
+    {name:"Kameron Walker",text:"If Q is playing I will not be",time:"ARCHIVE"},
+    {name:"Victor Barkenass",text:"Congrats bro. Really proud of you, but law school is NOT why your team was buns brother 😭",time:"ARCHIVE"},
+    {name:"Justin Cooper",text:"Braxton and Grant need to more worried about Xs and Os down in that losers bracket",time:"ARCHIVE"},
+    {name:"Bailey Coble",text:"Hey peachey it’s not a consolation bracket.",time:"ARCHIVE"}
+  ];
+
   let saved=[];
-  try { saved=JSON.parse(localStorage.getItem("apffl-live-chat")||"[]"); } catch(e) {}
-  if(!Array.isArray(saved)) saved=[];
+  try { saved=JSON.parse(localStorage.getItem("apffl-chat-v224")||"[]"); } catch(e) {}
+  if(!Array.isArray(saved) || !saved.length){
+    saved=archivedMessages.slice();
+    try { localStorage.setItem("apffl-chat-v224",JSON.stringify(saved)); } catch(e) {}
+  }
 
   const paint=()=>{
     if(!saved.length){
@@ -1318,7 +1363,7 @@ function initChat(){
     if(!text) return;
     saved.push({name,text,time:new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})});
     saved=saved.slice(-100);
-    try { localStorage.setItem("apffl-live-chat",JSON.stringify(saved)); } catch(e) {}
+    try { localStorage.setItem("apffl-chat-v224",JSON.stringify(saved)); } catch(e) {}
     nameEl.value=name;
     messageEl.value="";
     paint();

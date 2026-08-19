@@ -8979,7 +8979,7 @@ button.active,
   .chat-composer button {min-height:38px}
 }
 
-/* v225 — Group Chat Hall of Fame */
+/* v227 — Group Chat Hall of Fame */
 .chat-hof {
   position:relative;
   margin:18px auto 22px;
@@ -9059,13 +9059,8 @@ button.active,
   border-bottom:1px solid rgba(215,184,76,.08);
   background:rgba(0,0,0,.2);
 }
-.chat-thread .chat-message:last-child {
-  border-bottom:0;
-}
-.chat-live-box {
-  max-width:980px;
-  margin:0 auto;
-}
+.chat-thread .chat-message:last-child {border-bottom:0}
+.chat-live-box {max-width:980px;margin:0 auto}
 .chat-live-title {
   margin:0 0 7px;
   color:#d7b84c;
