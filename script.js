@@ -1047,10 +1047,22 @@ function recordsPage(){
   };
   return `<h2>League Records</h2>
   <p class="intro">The all-time Alpha Psi record book. The leader board uses records already documented in the league archive.</p>
-  <div class="record-feature">
-    <div class="record-feature-title">200 POINT CLUB</div>
-    <div class="record-feature-sub">Three players have crossed the 200-point mark in a single fantasy matchup.</div>
-    <div class="two-hundred-grid">${twoHundredClub.map((r,i)=>`<div class="record-holder"><div class="record-value">${r[0]}</div><div class="record-detail">${r[1]}</div>${recordHover(r[1])}</div>`).join("")}</div>
+  <div class="record-feature record-feature-200">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">THE ELITE SCORING SOCIETY</div>
+        <div class="record-feature-title">200 POINT CLUB</div>
+        <div class="record-feature-sub">The league's rarest single-game scoring milestone. Only three performances have broken 200.</div>
+      </div>
+      <div class="record-feature-badge"><span>200+</span><small>CLUB</small></div>
+    </div>
+    <div class="two-hundred-grid">${twoHundredClub.map((r,i)=>`<div class="record-holder record-holder-${i+1}">
+      <div class="record-rank">${i===0?"RECORD HOLDER":i===1?"2ND HIGHEST":"200+ CLUB"}</div>
+      <div class="record-value">${r[0]}</div>
+      <div class="record-detail">${r[1]}</div>
+      <div class="record-holder-rule"></div>
+      ${recordHover(r[1])}
+    </div>`).join("")}</div>
   </div>
   <div class="record-filter-bar" role="tablist" aria-label="Record categories">
     <button class="record-filter active" type="button" data-record-filter="all">ALL</button>
@@ -1269,14 +1281,14 @@ function chatPage(){
     </section>
 
     <div class="chat-live-box">
-      <div class="chat-live-title">LIVE GROUP CHAT</div>
+      
       <div class="chat-panel">
         <div class="chat-messages" id="chat-messages">
-          <div class="chat-empty" id="chat-empty"><strong>THE CHAT IS OPEN.</strong><span>Be the first one to say something.</span></div>
+          
         </div>
         <form class="chat-composer" id="chat-form">
-          <input id="chat-name" type="text" maxlength="24" placeholder="Your name" autocomplete="nickname">
-          <input id="chat-message" type="text" maxlength="240" placeholder="Talk some trash..." autocomplete="off" required>
+          <input id="chat-name" type="text" maxlength="24" autocomplete="nickname">
+          <input id="chat-message" type="text" maxlength="240" autocomplete="off" required>
           <button type="submit">SEND</button>
         </form>
       </div>
@@ -1348,7 +1360,7 @@ function initChat(){
 
   const paint=()=>{
     if(!saved.length){
-      messagesEl.innerHTML=`<div class="chat-empty"><strong>THE CHAT IS OPEN.</strong><span>Be the first one to say something.</span></div>`;
+      messagesEl.innerHTML="";
       return;
     }
     messagesEl.innerHTML=saved.map(m=>`<div class="chat-message"><div class="chat-message-top"><strong>${escapeChat(m.name)}</strong><time>${escapeChat(m.time)}</time></div><div>${escapeChat(m.text)}</div></div>`).join("");
