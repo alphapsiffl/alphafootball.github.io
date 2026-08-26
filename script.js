@@ -1264,12 +1264,6 @@ function chatPage(){
         </article>
 
         <article class="chat-conversation">
-          <div class="chat-conversation-meta">BAILEY COBLE · KAMERON WALKER</div>
-          <div class="chat-message"><div class="chat-message-top"><strong>Bailey Coble</strong></div><div>Tom Brady just said the N word.</div></div>
-          <div class="chat-message chat-reply"><div class="chat-message-top"><strong>Kameron Walker</strong></div><div>#oneofus</div></div>
-        </article>
-
-        <article class="chat-conversation">
           <div class="chat-conversation-meta">VICTOR BARKENASS · JUSTIN COOPER</div>
           <div class="chat-message"><div class="chat-message-top"><strong>Victor Barkenass</strong></div><div>Ggs Justin</div></div>
           <div class="chat-message chat-reply"><div class="chat-message-top"><strong>Justin Cooper</strong></div><div>Gonna start giving out ices for everytime you say “GGs” on Thursdays</div></div>
@@ -1338,8 +1332,7 @@ function render(page){
     content.classList.toggle("home-view", page==="home");
     content.classList.add("page-transition");
     if(typeof bindChampionLinks==="function") bindChampionLinks();
-    if(page==="home") setTimeout(initHomeRecordSpotlight, 40);
-    if(page==="chat") setTimeout(initChat, 20);
+if(page==="chat") setTimeout(initChat, 20);
     tabs.forEach(t=>t.classList.toggle("active",t.dataset.page===page));
     const nav=document.querySelector(".main-tabs");
     if(nav && window.scrollTo) window.scrollTo({top:nav.offsetTop-60,behavior:"smooth"});
