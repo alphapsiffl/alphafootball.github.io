@@ -1257,41 +1257,49 @@ function chatPage(){
       </div>
 
       <div class="chat-hof-archive">
-        <div class="chat-thread">
-          <div class="chat-message"><div class="chat-message-top"><strong>Grant Harris</strong><time>ARCHIVE</time></div><div>Well boys, I passed the MPRE and all my classes this semester. This was a rough rough semester for me, I took 3 classes that aren’t supposed to be taken together and should be spread out across 3L year, but my dumbass took them all together unknowingly. I only have one required class left to get my JD. My team sucked in fantasy, probably gonna be last, but just know that around Oct. and Nov. I had to start putting it on the back burner and not caring as much. My team has sucked both years, but this year it’s really really bad and I’m sorry that I haven’t been as engaged as I would like to be 😂</div></div>
-          <div class="chat-message chat-reply"><div class="chat-message-top"><strong>Victor Barkenass</strong><time>ARCHIVE</time></div><div>Congrats bro. Really proud of you, but law school is NOT why your team was buns brother 😭</div></div>
-        </div>
+        <article class="chat-conversation">
+          <div class="chat-conversation-meta">GRANT HARRIS · VICTOR BARKENASS</div>
+          <div class="chat-message"><div class="chat-message-top"><strong>Grant Harris</strong></div><div>Well boys, I passed the MPRE and all my classes this semester. This was a rough rough semester for me, I took 3 classes that aren’t supposed to be taken together and should be spread out across 3L year, but my dumbass took them all together unknowingly. I only have one required class left to get my JD. My team sucked in fantasy, probably gonna be last, but just know that around Oct. and Nov. I had to start putting it on the back burner and not caring as much. My team has sucked both years, but this year it’s really really bad and I’m sorry that I haven’t been as engaged as I would like to be 😂</div></div>
+          <div class="chat-message chat-reply"><div class="chat-message-top"><strong>Victor Barkenass</strong></div><div>Congrats bro. Really proud of you, but law school is NOT why your team was buns brother 😭</div></div>
+        </article>
 
-        <div class="chat-thread chat-thread-tight">
-          <div class="chat-message"><div class="chat-message-top"><strong>Bailey Coble</strong><time>ARCHIVE</time></div><div>Tom Brady just said the N word.</div></div>
-          <div class="chat-message chat-reply"><div class="chat-message-top"><strong>Kameron Walker</strong><time>ARCHIVE</time></div><div>#oneofus</div></div>
-        </div>
+        <article class="chat-conversation">
+          <div class="chat-conversation-meta">BAILEY COBLE · KAMERON WALKER</div>
+          <div class="chat-message"><div class="chat-message-top"><strong>Bailey Coble</strong></div><div>Tom Brady just said the N word.</div></div>
+          <div class="chat-message chat-reply"><div class="chat-message-top"><strong>Kameron Walker</strong></div><div>#oneofus</div></div>
+        </article>
 
-        <div class="chat-thread chat-thread-tight">
-          <div class="chat-message"><div class="chat-message-top"><strong>Justin Cooper</strong><time>ARCHIVE</time></div><div>Ggs Justin</div></div>
-          <div class="chat-message chat-reply"><div class="chat-message-top"><strong>Justin Cooper</strong><time>ARCHIVE</time></div><div>Gonna start giving out ices for everytime you say “GGs” on Thursdays</div></div>
-        </div>
+        <article class="chat-conversation">
+          <div class="chat-conversation-meta">VICTOR BARKENASS · JUSTIN COOPER</div>
+          <div class="chat-message"><div class="chat-message-top"><strong>Victor Barkenass</strong></div><div>Ggs Justin</div></div>
+          <div class="chat-message chat-reply"><div class="chat-message-top"><strong>Justin Cooper</strong></div><div>Gonna start giving out ices for everytime you say “GGs” on Thursdays</div></div>
+        </article>
 
-        <div class="chat-thread chat-thread-single">
-          <div class="chat-message"><div class="chat-message-top"><strong>Justin Cooper</strong><time>ARCHIVE</time></div><div>No... I’m spiraling boys. The walls are talking to me</div></div>
-        </div>
+        <article class="chat-conversation chat-single">
+          <div class="chat-conversation-meta">JUSTIN COOPER</div>
+          <div class="chat-message"><div class="chat-message-top"><strong>Justin Cooper</strong></div><div>No... I’m spiraling boys. The walls are talking to me</div></div>
+        </article>
 
-        <div class="chat-thread chat-thread-tight">
-          <div class="chat-message"><div class="chat-message-top"><strong>Kameron Walker</strong><time>ARCHIVE</time></div><div>It’s Tuesday bro. Just enjoy the week ahead 🙏</div></div>
-        </div>
+        <article class="chat-conversation chat-single">
+          <div class="chat-conversation-meta">KAMERON WALKER</div>
+          <div class="chat-message"><div class="chat-message-top"><strong>Kameron Walker</strong></div><div>It’s Tuesday bro. Just enjoy the week ahead 🙏</div></div>
+        </article>
 
-        <div class="chat-thread chat-thread-tight">
-          <div class="chat-message"><div class="chat-message-top"><strong>Kameron Walker</strong><time>ARCHIVE</time></div><div>If Q is playing I will not be</div></div>
-        </div>
+        <article class="chat-conversation chat-single">
+          <div class="chat-conversation-meta">KAMERON WALKER</div>
+          <div class="chat-message"><div class="chat-message-top"><strong>Kameron Walker</strong></div><div>If Q is playing I will not be</div></div>
+        </article>
 
-        <div class="chat-thread chat-thread-tight">
-          <div class="chat-message"><div class="chat-message-top"><strong>Justin Cooper</strong><time>ARCHIVE</time></div><div>Braxton and Grant need to more worried about Xs and Os down in that losers bracket</div></div>
-          <div class="chat-message chat-reply"><div class="chat-message-top"><strong>Bailey Coble</strong><time>ARCHIVE</time></div><div>Hey peachey it’s not a consolation bracket.</div></div>
-        </div>
+        <article class="chat-conversation">
+          <div class="chat-conversation-meta">JUSTIN COOPER · BAILEY COBLE</div>
+          <div class="chat-message"><div class="chat-message-top"><strong>Justin Cooper</strong></div><div>Braxton and Grant need to more worried about Xs and Os down in that losers bracket</div></div>
+          <div class="chat-message chat-reply"><div class="chat-message-top"><strong>Bailey Coble</strong></div><div>Hey peachey it’s not a consolation bracket.</div></div>
+        </article>
 
-        <div class="chat-thread chat-thread-single">
-          <div class="chat-message"><div class="chat-message-top"><strong>Victor Barkenass</strong><time>ARCHIVE</time></div><div>Nah I’m fraudulent</div></div>
-        </div>
+        <article class="chat-conversation chat-single">
+          <div class="chat-conversation-meta">VICTOR BARKENASS</div>
+          <div class="chat-message"><div class="chat-message-top"><strong>Victor Barkenass</strong></div><div>Nah I’m fraudulent</div></div>
+        </article>
       </div>
     </section>
 
@@ -1501,31 +1509,42 @@ function initHomeRecordSpotlight(){
   const spotlight=document.querySelector(".home-record-spotlight");
   if(!spotlight || spotlight.dataset.ready==="true") return;
   spotlight.dataset.ready="true";
-  const records=[
-    ["MOST POINTS IN A SEASON","2,115.55","Bailey Coble","2023","bailey-champion.jpeg"],
-    ["MOST ICES IN A SEASON","9","Chase","2025",""],
-    ["LONGEST WIN STREAK","7","Bailey","2021","bailey-champion.jpeg"],
-    ["MOST MOVES IN A SEASON","65","Quinton","2023","quinton-member.png"]
+
+  const messages=[
+    ["Grant Harris","Well boys, I passed the MPRE and all my classes this semester. This was a rough rough semester for me, I took 3 classes that aren’t supposed to be taken together and should be spread out across 3L year, but my dumbass took them all together unknowingly. I only have one required class left to get my JD. My team sucked in fantasy, probably gonna be last, but just know that around Oct. and Nov. I had to start putting it on the back burner and not caring as much. My team has sucked both years, but this year it’s really really bad and I’m sorry that I haven’t been as engaged as I would like to be 😂"],
+    ["Victor Barkenass","Congrats bro. Really proud of you, but law school is NOT why your team was buns brother 😭"],
+    ["Bailey Coble","Tom Brady just said the N word."],
+    ["Kameron Walker","#oneofus"],
+    ["Justin Cooper","Ggs Justin"],
+    ["Justin Cooper","Gonna start giving out ices for everytime you say “GGs” on Thursdays"],
+    ["Justin Cooper","No... I’m spiraling boys. The walls are talking to me"],
+    ["Kameron Walker","It’s Tuesday bro. Just enjoy the week ahead 🙏"],
+    ["Kameron Walker","If Q is playing I will not be"],
+    ["Justin Cooper","Braxton and Grant need to more worried about Xs and Os down in that losers bracket"],
+    ["Bailey Coble","Hey peachey it’s not a consolation bracket."],
+    ["Victor Barkenass","Nah I’m fraudulent"]
   ];
+
   let index=0;
   const paint=(next)=>{
-    const r=records[next];
+    const m=messages[next];
     spotlight.classList.add("spotlight-changing");
     setTimeout(()=>{
-      spotlight.querySelector(".home-record-kicker").textContent="RECORD SPOTLIGHT";
-      spotlight.querySelector(".home-record-title").textContent=r[0];
-      spotlight.querySelector(".home-record-value").textContent=r[1];
-      spotlight.querySelector(".home-record-holder").innerHTML=`${r[2]} <span>· ${r[3]}</span>`;
+      spotlight.querySelector(".home-record-kicker").textContent="GROUP CHAT HALL OF FAME";
+      spotlight.querySelector(".home-record-title").textContent="ARCHIVED MESSAGE";
+      spotlight.querySelector(".home-record-value").textContent=m[1];
+      spotlight.querySelector(".home-record-holder").innerHTML=`${m[0]} <span>· HALL OF FAME</span>`;
       const portrait=spotlight.querySelector(".home-record-portrait");
-      portrait.innerHTML=r[4]?`<img src="${r[4]}" alt="${r[2]}">`:"";
-      spotlight.querySelector(".home-record-count").textContent=`${String(next+1).padStart(2,"0")} / ${String(records.length).padStart(2,"0")}`;
+      portrait.innerHTML="";
+      spotlight.querySelector(".home-record-count").textContent=`${String(next+1).padStart(2,"0")} / ${String(messages.length).padStart(2,"0")}`;
       spotlight.classList.remove("spotlight-changing");
       index=next;
     },260);
   };
+
   spotlight.addEventListener("mouseenter",()=>spotlight.dataset.paused="true");
   spotlight.addEventListener("mouseleave",()=>delete spotlight.dataset.paused);
-  setInterval(()=>{ if(spotlight.isConnected && spotlight.dataset.paused!=="true") paint((index+1)%records.length); },5200);
+  setInterval(()=>{ if(spotlight.isConnected && spotlight.dataset.paused!=="true") paint((index+1)%messages.length); },5200);
 }
 
 const initial=location.hash.slice(1);render(pages[initial]?initial:"home");
