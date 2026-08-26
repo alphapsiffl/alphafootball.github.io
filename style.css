@@ -9216,3 +9216,69 @@ button.active,
   .record-feature-200 .record-holder-1 .record-value,
   .record-feature-200 .record-value {font-size:32px}
 }
+
+/* v230 — connected Hall of Fame conversation styling */
+.chat-thread {
+  position:relative;
+  margin:10px 0 18px;
+  padding:8px 8px 9px;
+  border:1px solid rgba(31,13,5,.55);
+  border-radius:5px;
+  background:rgba(8,6,4,.78);
+  box-shadow:inset 0 0 15px rgba(0,0,0,.5);
+}
+.chat-thread-tight {
+  margin-top:7px;
+  margin-bottom:7px;
+}
+.chat-thread-single {
+  margin-top:12px;
+  margin-bottom:16px;
+}
+.chat-thread .chat-message {
+  position:relative;
+  margin:0;
+  max-width:none;
+  border-left:3px solid #A51C30;
+  border-bottom:1px solid rgba(215,184,76,.10);
+  border-radius:0;
+  background:rgba(0,0,0,.18);
+  padding:10px 12px;
+}
+.chat-thread .chat-message:last-child {border-bottom:0}
+.chat-thread .chat-message + .chat-message {
+  margin-top:2px;
+}
+.chat-thread .chat-reply {
+  margin-left:24px;
+  border-left-color:#b79a3c;
+  background:rgba(215,184,76,.035);
+}
+.chat-thread .chat-reply::before {
+  content:"";
+  position:absolute;
+  left:-27px;
+  top:-2px;
+  width:24px;
+  height:calc(100% + 4px);
+  border-left:1px solid rgba(215,184,76,.28);
+  border-bottom:1px solid rgba(215,184,76,.28);
+  border-bottom-left-radius:7px;
+}
+.chat-thread-single .chat-message {
+  border-left-color:#7f1b2b;
+}
+
+/* v231 — Total Ices superlative cards */
+.superlative-ices {
+  position:relative;
+  border:1px solid rgba(215,184,76,.24) !important;
+  background:linear-gradient(145deg,rgba(165,28,48,.10),rgba(0,0,0,.32)) !important;
+  box-shadow:inset 0 0 18px rgba(0,0,0,.22);
+}
+.superlative-ices h4 {
+  color:#d7b84c !important;
+}
+.superlative-ices > b {
+  color:#d7b84c !important;
+}
