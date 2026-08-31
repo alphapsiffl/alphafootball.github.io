@@ -1492,3 +1492,63 @@ document.addEventListener("click",(e)=>{
 
 const initial=location.hash.slice(1);render(pages[initial]?initial:"home");
 
+
+/* v249 — Rules season tabs */
+document.addEventListener("click",(event)=>{
+  const tab=event.target.closest(".rules-season-tab");
+  if(!tab) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const season=tab.dataset.season;
+  const page=document.querySelector(".rules-page-new") || document.querySelector(".rules-page");
+  if(!page) return;
+  page.querySelectorAll(".rules-season-tab").forEach(x=>{
+    x.classList.toggle("active",x===tab);
+    x.setAttribute("aria-selected",x===tab?"true":"false");
+  });
+  page.querySelectorAll(".rules-season-panel").forEach(panel=>{
+    panel.style.display=panel.dataset.season===season?"block":"none";
+  });
+});
+
+/* v249 — direct ESPNBets voting */
+document.addEventListener("click",(event)=>{
+  const btn=event.target.closest(".espn-vote-btn");
+  if(!btn || btn.disabled) return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  const pick=btn.dataset.vote;
+  if(!pick) return;
+  try{
+    if(localStorage.getItem("apffl-2026-champion-vote")) return;
+    let votes={};
+    try{votes=JSON.parse(localStorage.getItem("apffl-2026-votes")||"{}")||{};}catch(e){}
+    votes[pick]=(Number(votes[pick])||0)+1;
+    localStorage.setItem("apffl-2026-votes",JSON.stringify(votes));
+    localStorage.setItem("apffl-2026-champion-vote",pick);
+  }catch(e){}
+  const row=btn.closest("tr");
+  if(row) row.querySelectorAll(".espn-vote-btn").forEach(b=>{
+    b.disabled=true;
+    b.classList.toggle("selected",b===btn);
+    b.textContent=b===btn?"YOUR PICK":"VOTED";
+  });
+  const page=document.querySelector(".espn-bets-page");
+  if(page){
+    const stored=JSON.parse(localStorage.getItem("apffl-2026-votes")||"{}");
+    const total=Object.values(stored).reduce((a,b)=>a+(Number(b)||0),0);
+    page.querySelectorAll(".espn-pick-row").forEach(r=>{
+      const name=r.querySelector(".espn-pick-name strong")?.textContent;
+      const count=Number(stored[name])||0;
+      const pct=total?Math.round(count/total*100):0;
+      const pctEl=r.querySelector(".espn-pick-name span");
+      const bar=r.querySelector(".espn-pick-bar i");
+      if(pctEl) pctEl.textContent=pct+"%";
+      if(bar) bar.style.width=pct+"%";
+    });
+    const countEl=page.querySelector(".espn-poll-head > b");
+    if(countEl) countEl.textContent=total+" VOTE"+(total===1?"":"S");
+    const note=page.querySelector(".espn-poll-note");
+    if(note) note.innerHTML='YOUR PICK: <strong>'+pick+'</strong> · ONE VOTE PER PERSON';
+  }
+});

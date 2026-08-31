@@ -10266,3 +10266,8 @@ button.active,
   background:rgba(165,28,48,.22);
   color:#d7b84c;
 }
+
+/* v249 — Rules year panels */
+.rules-season-panel {display:none}
+.rules-season-panel[data-season="2025"] {display:block}
+.rules-season-tab {cursor:pointer !important}
