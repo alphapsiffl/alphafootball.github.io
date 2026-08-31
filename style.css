@@ -10182,3 +10182,87 @@ button.active,
   .rulebook-section-heading h3 {font-size:22px !important}
   .rulebook-rule p {font-size:13px !important;line-height:1.65 !important}
 }
+
+/* v245 — make ESPNBets voting controls unmistakable and clickable */
+.espn-vote-btn {
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  position:relative !important;
+  z-index:10 !important;
+  pointer-events:auto !important;
+  min-width:88px !important;
+  min-height:38px !important;
+  padding:9px 16px !important;
+  border:1px solid #d7b84c !important;
+  border-radius:4px !important;
+  background:#17130b !important;
+  color:#d7b84c !important;
+  font-family:Oswald,"Arial Narrow",sans-serif !important;
+  font-size:12px !important;
+  font-weight:800 !important;
+  letter-spacing:1.5px !important;
+  cursor:pointer !important;
+}
+.espn-vote-btn:hover {
+  background:#A51C30 !important;
+  border-color:#d7b84c !important;
+  color:#fff !important;
+}
+.espn-vote-btn.selected {
+  background:#A51C30 !important;
+  color:#fff !important;
+  border-color:#A51C30 !important;
+}
+.bets-table th:last-child,
+.bets-table td:last-child {
+  display:table-cell !important;
+  min-width:105px;
+  text-align:center !important;
+}
+
+/* v246 — Records dropdown matching History dropdown */
+.records-nav-item {position:relative;display:flex;align-items:center}
+.records-nav-tab {display:flex;align-items:center;gap:5px}
+.records-nav-caret {
+  font-size:14px;
+  line-height:1;
+  opacity:.75;
+  transform:translateY(-1px);
+}
+.records-nav-menu {
+  position:absolute;
+  z-index:1000;
+  top:calc(100% + 7px);
+  left:50%;
+  min-width:175px;
+  transform:translateX(-50%);
+  padding:6px;
+  border:1px solid rgba(215,184,76,.25);
+  border-radius:5px;
+  background:rgba(11,11,10,.98);
+  box-shadow:0 12px 28px rgba(0,0,0,.45);
+}
+.records-nav-menu[hidden] {display:none}
+.records-nav-menu.open {display:block}
+.records-nav-option {
+  display:block;
+  width:100%;
+  padding:10px 12px;
+  border:0;
+  border-radius:3px;
+  background:transparent;
+  color:#c7c7c7;
+  text-align:left;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.9px;
+  cursor:pointer;
+}
+.records-nav-option:hover {
+  background:rgba(165,28,48,.22);
+  color:#d7b84c;
+}

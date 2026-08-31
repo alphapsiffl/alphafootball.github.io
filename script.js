@@ -1075,6 +1075,27 @@ function recordsPage(){
   </div>
   <div class="records-grid" data-record-grid>${renderRecords("all")}</div>`;
 }
+
+function rivalriesPage(){
+  return `<h2>Rivalries</h2>
+    <p class="intro">The league's biggest head-to-head rivalries, matchups, and historical grudges.</p>
+    <div class="grid">
+      <div class="card"><strong>Rivalries</strong><p>Head-to-head rivalry records and notable matchups can be added here as the league archive is documented.</p></div>
+      <div class="card"><strong>Signature Matchups</strong><p>Track the matchups that have defined the league's history.</p></div>
+    </div>`;
+}
+function careerRecordsPage(){
+  const career=[
+    ["Career Points","Career scoring totals by GM."],
+    ["Career Point Average","Career PPG leaders across documented seasons."],
+    ["Career Wins","All-time wins by GM."],
+    ["Career Playoff Appearances","Total playoff appearances across league history."],
+    ["Career Championships","Championship wins across league history."]
+  ];
+  return `<h2>Career Records</h2>
+    <p class="intro">The all-time individual record book, built around career-long achievements.</p>
+    <div class="records-grid">${career.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-detail">${r[1]}</div></article>`).join("")}</div>`;
+}
 function playoffsPage(){return `<h2>Playoff Records</h2><div class="playoff-definitions"><div><strong>Championship Appearances</strong><span>Years and championship record</span></div><div><strong>First Round Byes</strong><span>Years receiving a bye</span></div><div><strong>Playoff Appearances</strong><span>Years making the playoffs</span></div><div><strong>Playoff Record</strong><span>Playoff wins and losses</span></div></div><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championship Appearances<br><span class="table-subheader">* Parenthesis denotes record in championship game</span></th><th>First Round Byes</th><th>Playoff Appearances</th><th>Playoff Record</th></tr></thead><tbody>${playoff.map(p=>{const rawChamp=p[1].replace(/^Championship Appearance(?:s)?:\s*/,"");const cm=rawChamp.match(/^(.*?);\s*Championship record:\s*(.*)$/i);const champ=cm?`${cm[1]} (${cm[2]})`:rawChamp;const bye=p[2].replace(/^First Round Bye(?:s)?:\s*/,"");const apps=p[3].replace(/^Playoff Appearances:\s*/,"");const rec=p[4].replace(/^Playoff Record:\s*/,"");return `<tr><td><strong>${p[0]}</strong></td><td>${champ}</td><td>${bye}</td><td>${apps}</td><td>${rec}</td></tr>`}).join("")}</tbody></table></div>`}
 function rulesPage(){
   const activeMap={2025:[0,1,2,3],2024:[1,5],2023:[1],2022:[0,1,3,5,6,7,8,9],2021:[0,2,3]};
@@ -1340,6 +1361,8 @@ const pages = {
   members,
   history: historyPage,
   records: recordsPage,
+  rivalries: rivalriesPage,
+  career: careerRecordsPage,
   espnbets: espnBets,
   chat: chatPage,
   rules: rulesPage,
@@ -1404,6 +1427,40 @@ function escapeChat(value){
   return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
 
+
+const recordsNav = document.querySelector(".records-nav-item");
+const recordsNavTab = document.querySelector(".records-nav-tab");
+const recordsNavMenu = document.querySelector(".records-nav-menu");
+
+function closeRecordsNav(){
+  if(recordsNavMenu) {
+    recordsNavMenu.classList.remove("open");
+    recordsNavMenu.hidden = true;
+  }
+  if(recordsNavTab) recordsNavTab.setAttribute("aria-expanded","false");
+}
+
+if(recordsNavTab){
+  recordsNavTab.addEventListener("click",(event)=>{
+    event.preventDefault();
+    const wasOpen = recordsNavMenu && !recordsNavMenu.hidden;
+    render("records");
+    if(recordsNavMenu){
+      recordsNavMenu.hidden = wasOpen;
+      recordsNavMenu.classList.toggle("open", !wasOpen);
+    }
+    recordsNavTab.setAttribute("aria-expanded", !wasOpen ? "true" : "false");
+  });
+}
+
+document.addEventListener("click",(event)=>{
+  const option=event.target.closest(".records-nav-option");
+  if(!option) return;
+  const section=option.dataset.recordNavSection||"records";
+  closeRecordsNav();
+  render(section);
+});
+
 const historyNav = document.querySelector(".history-nav-item");
 const historyNavTab = document.querySelector(".history-nav-tab");
 const historyNavMenu = document.querySelector(".history-nav-menu");
@@ -1430,156 +1487,37 @@ if(historyNavTab){
 }
 
 document.addEventListener("click",(event)=>{
-  if(!historyNavItem || !historyNavMenu) return;
-  if(historyNavMenu.hidden) return;
-  if(!historyNavItem.contains(event.target)) closeHistoryNav();
-}, true);
-
-if(historyNavMenu){
-  historyNavMenu.addEventListener("click",(event)=>{
-    const option=event.target.closest(".history-nav-option");
-    if(!option) return;
-    const section=option.dataset.historyNavSection;
-    render("history");
-    setTimeout(()=>{
-      const panel=document.querySelector(`[data-history-section-panel="${section}"]`);
-      const seasons=document.querySelector(".history-subsection-seasons");
-      if(seasons) {
-        seasons.hidden=true;
-        seasons.classList.remove("active");
-      }
-      document.querySelectorAll("[data-history-section-panel]").forEach(p=>{
-        const active=p.dataset.historySectionPanel===section;
-        p.hidden=!active;
-        p.classList.toggle("active",active);
-      });
-      closeHistoryNav();
-    },20);
-  });
-}
-
-tabs.forEach(t=>{
-  if(t!==historyNavTab) t.addEventListener("click",()=>{
-    closeHistoryNav();
-    render(t.dataset.page);
-  });
-});
-
-// Season tabs are rendered dynamically inside #content, so bind them through
-// event delegation instead of inline <script> tags (which do not execute when
-// inserted with innerHTML).
-content.addEventListener("click", (event) => {
-  const recordFilter=event.target.closest(".record-filter");
-  if(recordFilter && content.contains(recordFilter)){
-    const key=recordFilter.dataset.recordFilter;
-    const recordsData={
-      all: records,
-      "single-game": records.filter(r=>/score|blowout|loss|game/i.test(r[0])),
-      "single-season": records.filter(r=>/season|average|PA|moves|POTWs|ices/i.test(r[0])),
-      streaks: records.filter(r=>/streak/i.test(r[0]))
-    };
-    content.querySelectorAll(".record-filter").forEach(b=>{
-      b.classList.toggle("active",b===recordFilter);
-    });
-    const grid=content.querySelector("[data-record-grid]");
-    if(grid){
-      grid.innerHTML=(recordsData[key]||records).map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-value">${r[1]}</div><div class="record-card-detail">${r[2]}</div>${recordHover(r[2])}</article>`).join("");
-    }
-    return;
+  if(!event.target.closest(".records-nav-item") && !event.target.closest(".history-nav-item")){
+    closeRecordsNav();
+    if(typeof closeHistoryNav==="function") closeHistoryNav();
   }
-
-
-
-  const tab = event.target.closest(".history-season-tab, .allpsi-season-tab, .rules-season-tab");
-  if (!tab || !content.contains(tab)) return;
-
-  const isHistory = tab.classList.contains("history-season-tab");
-  const isRules = tab.classList.contains("rules-season-tab");
-  const tabSelector = isHistory ? ".history-season-tab" : (isRules ? ".rules-season-tab" : ".allpsi-season-tab");
-  const panelSelector = isHistory ? ".history-season-panel" : (isRules ? ".rules-season-panel" : ".allpsi-season-panel");
-  const season = tab.dataset.season;
-
-  content.querySelectorAll(tabSelector).forEach(t => {
-    const active = t === tab;
-    t.classList.toggle("active", active);
-    t.setAttribute("aria-selected", active ? "true" : "false");
-  });
-  content.querySelectorAll(panelSelector).forEach(panel => {
-    panel.classList.toggle("active", panel.dataset.season === season);
-  });
 });
-
-function bindChampionLinks(){
-  document.querySelectorAll(".champion-banner-link").forEach(card=>{
-    const open=()=>{ render("members"); setTimeout(()=>{
-      const name=card.dataset.member;
-      const target=[...document.querySelectorAll(".player-profile-card")].find(el=>el.querySelector(".member-profile-info strong")?.textContent=== (memberFullNames[name]||name));
-      if(target){ target.scrollIntoView({behavior:"smooth",block:"center"}); target.classList.add("champion-profile-highlight"); setTimeout(()=>target.classList.remove("champion-profile-highlight"),1100); }
-    },80); };
-    card.addEventListener("click",open);
-    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}});
-  });
-}
-
-
-function initHomeRecordSpotlight(){
-  const spotlight=document.querySelector(".home-record-spotlight");
-  if(!spotlight || spotlight.dataset.ready==="true") return;
-  spotlight.dataset.ready="true";
-
-  const messages=[
-    ["Grant Harris","Well boys, I passed the MPRE and all my classes this semester. This was a rough rough semester for me, I took 3 classes that aren’t supposed to be taken together and should be spread out across 3L year, but my dumbass took them all together unknowingly. I only have one required class left to get my JD. My team sucked in fantasy, probably gonna be last, but just know that around Oct. and Nov. I had to start putting it on the back burner and not caring as much. My team has sucked both years, but this year it’s really really bad and I’m sorry that I haven’t been as engaged as I would like to be 😂"],
-    ["Victor Barkenass","Congrats bro. Really proud of you, but law school is NOT why your team was buns brother 😭"],
-    ["Bailey Coble","Tom Brady just said the N word."],
-    ["Kameron Walker","#oneofus"],
-    ["Justin Cooper","Ggs Justin"],
-    ["Justin Cooper","Gonna start giving out ices for everytime you say “GGs” on Thursdays"],
-    ["Justin Cooper","No... I’m spiraling boys. The walls are talking to me"],
-    ["Kameron Walker","It’s Tuesday bro. Just enjoy the week ahead 🙏"],
-    ["Kameron Walker","If Q is playing I will not be"],
-    ["Justin Cooper","Braxton and Grant need to more worried about Xs and Os down in that losers bracket"],
-    ["Bailey Coble","Hey peachey it’s not a consolation bracket."],
-    ["Victor Barkenass","Nah I’m fraudulent"]
-  ];
-
-  let index=0;
-  const paint=(next)=>{
-    const m=messages[next];
-    spotlight.classList.add("spotlight-changing");
-    setTimeout(()=>{
-      spotlight.querySelector(".home-record-kicker").textContent="GROUP CHAT HALL OF FAME";
-      spotlight.querySelector(".home-record-title").textContent="ARCHIVED MESSAGE";
-      spotlight.querySelector(".home-record-value").textContent=m[1];
-      spotlight.querySelector(".home-record-holder").innerHTML=`${m[0]} <span>· HALL OF FAME</span>`;
-      const portrait=spotlight.querySelector(".home-record-portrait");
-      portrait.innerHTML="";
-      spotlight.querySelector(".home-record-count").textContent=`${String(next+1).padStart(2,"0")} / ${String(messages.length).padStart(2,"0")}`;
-      spotlight.classList.remove("spotlight-changing");
-      index=next;
-    },260);
-  };
-
-  spotlight.addEventListener("mouseenter",()=>spotlight.dataset.paused="true");
-  spotlight.addEventListener("mouseleave",()=>delete spotlight.dataset.paused);
-  setInterval(()=>{ if(spotlight.isConnected && spotlight.dataset.paused!=="true") paint((index+1)%messages.length); },5200);
-}
 
 document.addEventListener("click",(event)=>{
   const button=event.target.closest(".espn-vote-btn");
   if(!button || button.disabled) return;
-  const pick=button.dataset.vote;
+  event.preventDefault();
+  event.stopPropagation();
+  const pick=button.getAttribute("data-vote");
   if(!pick) return;
   const key="apffl-2026-champion-vote";
   try {
     if(localStorage.getItem(key)) return;
-    const votes=JSON.parse(localStorage.getItem("apffl-2026-votes")||"{}");
-    if(!votes || typeof votes!=="object") return;
+    let votes={};
+    try { votes=JSON.parse(localStorage.getItem("apffl-2026-votes")||"{}")||{}; } catch(e) { votes={}; }
     votes[pick]=(Number.isFinite(votes[pick])?votes[pick]:0)+1;
     localStorage.setItem("apffl-2026-votes",JSON.stringify(votes));
     localStorage.setItem(key,pick);
   } catch(e) {}
-  if(typeof navigate==="function") navigate("espnbets");
+  // Re-render ESPN Bets without relying on a particular navigation function.
+  const app=document.querySelector("#app, main, .app");
+  if(typeof renderPage==="function") {
+    try { renderPage("espnbets"); return; } catch(e) {}
+  }
+  if(typeof showPage==="function") {
+    try { showPage("espnbets"); return; } catch(e) {}
+  }
+  location.reload();
 });
-
 const initial=location.hash.slice(1);render(pages[initial]?initial:"home");
 
