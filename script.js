@@ -1264,9 +1264,9 @@ function espnBets(){
       <table class="bets-table">
         <thead><tr><th>GM</th><th>ODDS</th><th>IMPLIED</th><th>THE CASE</th><th>PICK</th></tr></thead>
         <tbody>${bets.map((b,i)=>`<tr class="${b[3]?'market-top':''}">
-          <td><span class="bets-rank">${String(i+1).padStart(2,"0")}</span><strong>${b[0]}</strong>${b[3]?`<span class="market-label">${b[3]}</span>`:""}</td>
+          <td class="bets-gm-cell"><span class="bets-rank">${String(i+1).padStart(2,"0")}</span><strong>${b[0]}</strong>${b[3]?`<span class="market-label">${b[3]}</span>`:""}</td>
           <td class="bets-odds">${b[1]}</td><td class="bets-implied">${b[2]}</td><td>${b[4]}</td>
-          <td><button class="espn-vote-btn ${selected===b[0]?'selected':''}" data-vote="${b[0]}" ${selected?'disabled':''}>${selected===b[0]?'YOUR PICK':'VOTE'}</button></td>
+          <td class="bets-pick-cell"><button type="button" class="espn-vote-btn ${selected===b[0]?'selected':''}" data-vote="${b[0]}">${selected===b[0]?'YOUR PICK':'PICK'}</button></td>
         </tr>`).join("")}</tbody>
       </table>
     </div>
@@ -1511,44 +1511,46 @@ document.addEventListener("click",(event)=>{
   });
 });
 
-/* v249 — direct ESPNBets voting */
+/* v250 — ESPNBets manager picker */
 document.addEventListener("click",(event)=>{
   const btn=event.target.closest(".espn-vote-btn");
-  if(!btn || btn.disabled) return;
+  if(!btn) return;
   event.preventDefault();
-  event.stopImmediatePropagation();
+  event.stopPropagation();
   const pick=btn.dataset.vote;
   if(!pick) return;
-  try{
-    if(localStorage.getItem("apffl-2026-champion-vote")) return;
+  try {
     let votes={};
-    try{votes=JSON.parse(localStorage.getItem("apffl-2026-votes")||"{}")||{};}catch(e){}
-    votes[pick]=(Number(votes[pick])||0)+1;
+    try { votes=JSON.parse(localStorage.getItem("apffl-2026-votes")||"{}")||{}; } catch(e) {}
+    const old=localStorage.getItem("apffl-2026-champion-vote");
+    if(old && old!==pick && Number(votes[old])>0) votes[old]-=1;
+    if(old!==pick) votes[pick]=(Number(votes[pick])||0)+1;
     localStorage.setItem("apffl-2026-votes",JSON.stringify(votes));
     localStorage.setItem("apffl-2026-champion-vote",pick);
-  }catch(e){}
-  const row=btn.closest("tr");
-  if(row) row.querySelectorAll(".espn-vote-btn").forEach(b=>{
-    b.disabled=true;
-    b.classList.toggle("selected",b===btn);
-    b.textContent=b===btn?"YOUR PICK":"VOTED";
-  });
+  } catch(e) {}
+
   const page=document.querySelector(".espn-bets-page");
-  if(page){
-    const stored=JSON.parse(localStorage.getItem("apffl-2026-votes")||"{}");
-    const total=Object.values(stored).reduce((a,b)=>a+(Number(b)||0),0);
-    page.querySelectorAll(".espn-pick-row").forEach(r=>{
-      const name=r.querySelector(".espn-pick-name strong")?.textContent;
-      const count=Number(stored[name])||0;
-      const pct=total?Math.round(count/total*100):0;
-      const pctEl=r.querySelector(".espn-pick-name span");
-      const bar=r.querySelector(".espn-pick-bar i");
-      if(pctEl) pctEl.textContent=pct+"%";
-      if(bar) bar.style.width=pct+"%";
-    });
-    const countEl=page.querySelector(".espn-poll-head > b");
-    if(countEl) countEl.textContent=total+" VOTE"+(total===1?"":"S");
-    const note=page.querySelector(".espn-poll-note");
-    if(note) note.innerHTML='YOUR PICK: <strong>'+pick+'</strong> · ONE VOTE PER PERSON';
-  }
+  if(!page) return;
+  page.querySelectorAll(".espn-vote-btn").forEach(b=>{
+    const isPick=b.dataset.vote===pick;
+    b.classList.toggle("selected",isPick);
+    b.textContent=isPick?"YOUR PICK":"PICK";
+    b.disabled=false;
+  });
+
+  let stored={};
+  try { stored=JSON.parse(localStorage.getItem("apffl-2026-votes")||"{}")||{}; } catch(e) {}
+  const total=Object.values(stored).reduce((sum,n)=>sum+(Number(n)||0),0);
+  page.querySelectorAll(".espn-pick-row").forEach(row=>{
+    const name=row.querySelector(".espn-pick-name strong")?.textContent;
+    const pct=total?Math.round((Number(stored[name])||0)/total*100):0;
+    const pctEl=row.querySelector(".espn-pick-name span");
+    const bar=row.querySelector(".espn-pick-bar i");
+    if(pctEl) pctEl.textContent=pct+"%";
+    if(bar) bar.style.width=pct+"%";
+  });
+  const count=page.querySelector(".espn-poll-head > b");
+  if(count) count.textContent=total+" VOTE"+(total===1?"":"S");
+  const note=page.querySelector(".espn-poll-note");
+  if(note) note.innerHTML='YOUR PICK: <strong>'+pick+'</strong> · CLICK ANOTHER PICK TO CHANGE IT';
 });
