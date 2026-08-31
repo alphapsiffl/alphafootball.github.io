@@ -1428,39 +1428,6 @@ function escapeChat(value){
 }
 
 
-const recordsNav = document.querySelector(".records-nav-item");
-const recordsNavTab = document.querySelector(".records-nav-tab");
-const recordsNavMenu = document.querySelector(".records-nav-menu");
-
-function closeRecordsNav(){
-  if(recordsNavMenu) {
-    recordsNavMenu.classList.remove("open");
-    recordsNavMenu.hidden = true;
-  }
-  if(recordsNavTab) recordsNavTab.setAttribute("aria-expanded","false");
-}
-
-if(recordsNavTab){
-  recordsNavTab.addEventListener("click",(event)=>{
-    event.preventDefault();
-    const wasOpen = recordsNavMenu && !recordsNavMenu.hidden;
-    render("records");
-    if(recordsNavMenu){
-      recordsNavMenu.hidden = wasOpen;
-      recordsNavMenu.classList.toggle("open", !wasOpen);
-    }
-    recordsNavTab.setAttribute("aria-expanded", !wasOpen ? "true" : "false");
-  });
-}
-
-document.addEventListener("click",(event)=>{
-  const option=event.target.closest(".records-nav-option");
-  if(!option) return;
-  const section=option.dataset.recordNavSection||"records";
-  closeRecordsNav();
-  render(section);
-});
-
 const historyNav = document.querySelector(".history-nav-item");
 const historyNavTab = document.querySelector(".history-nav-tab");
 const historyNavMenu = document.querySelector(".history-nav-menu");
