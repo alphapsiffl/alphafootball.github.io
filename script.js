@@ -1266,7 +1266,7 @@ function espnBets(){
         <tbody>${bets.map((b,i)=>`<tr class="${b[3]?'market-top':''}">
           <td class="bets-gm-cell"><span class="bets-rank">${String(i+1).padStart(2,"0")}</span><strong>${b[0]}</strong>${b[3]?`<span class="market-label">${b[3]}</span>`:""}</td>
           <td class="bets-odds">${b[1]}</td><td class="bets-implied">${b[2]}</td><td>${b[4]}</td>
-          <td class="bets-pick-cell"><button type="button" class="espn-vote-btn ${selected===b[0]?'selected':''}" data-vote="${b[0]}">${selected===b[0]?'YOUR PICK':'PICK'}</button></td>
+          <td class="bets-pick-cell"><button type="button" class="espn-vote-btn" data-vote="${b[0]}">PICK</button></td>
         </tr>`).join("")}</tbody>
       </table>
     </div>

@@ -10315,3 +10315,42 @@ button.active,
   .bets-pick-cell {width:92px !important}
   .espn-vote-btn {width:76px !important;min-width:76px !important;height:36px !important;font-size:10px !important}
 }
+
+/* v251 — visible ESPNBets PICK buttons */
+.bets-pick-cell {
+  display:table-cell !important;
+  width:125px !important;
+  min-width:125px !important;
+  padding:12px !important;
+  text-align:center !important;
+  visibility:visible !important;
+}
+.espn-vote-btn {
+  display:inline-flex !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  pointer-events:auto !important;
+  position:relative !important;
+  z-index:50 !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:92px !important;
+  height:40px !important;
+  border:2px solid #d7b84c !important;
+  border-radius:4px !important;
+  background:#17130b !important;
+  color:#d7b84c !important;
+  font-family:Oswald,"Arial Narrow",sans-serif !important;
+  font-size:12px !important;
+  font-weight:900 !important;
+  letter-spacing:1.5px !important;
+  cursor:pointer !important;
+}
+.espn-vote-btn:hover {
+  background:#A51C30 !important;
+  color:#fff !important;
+}
+.espn-vote-btn.selected {
+  background:#A51C30 !important;
+  color:#fff !important;
+}
