@@ -1464,60 +1464,64 @@ document.addEventListener("click",(event)=>{
 const historyNav = document.querySelector(".history-nav-item");
 const historyNavTab = document.querySelector(".history-nav-tab");
 const historyNavMenu = document.querySelector(".history-nav-menu");
+const recordsNav = document.querySelector(".records-nav-item");
+const recordsNavTab = document.querySelector(".records-nav-tab");
+const recordsNavMenu = document.querySelector(".records-nav-menu");
 
 function closeHistoryNav(){
-  if(historyNavMenu) {
-    historyNavMenu.classList.remove("open");
-    historyNavMenu.hidden = true;
-  }
+  if(historyNavMenu){ historyNavMenu.hidden=true; historyNavMenu.classList.remove("open"); }
   if(historyNavTab) historyNavTab.setAttribute("aria-expanded","false");
 }
-
-if(historyNavTab){
-  historyNavTab.addEventListener("click",(event)=>{
-    event.preventDefault();
-    const wasOpen = historyNavMenu && !historyNavMenu.hidden;
-    render("history");
-    if(historyNavMenu){
-      historyNavMenu.hidden = wasOpen;
-      historyNavMenu.classList.toggle("open", !wasOpen);
-    }
-    historyNavTab.setAttribute("aria-expanded", !wasOpen ? "true" : "false");
-  });
+function closeRecordsNav(){
+  if(recordsNavMenu){ recordsNavMenu.hidden=true; recordsNavMenu.classList.remove("open"); }
+  if(recordsNavTab) recordsNavTab.setAttribute("aria-expanded","false");
 }
 
-document.addEventListener("click",(event)=>{
-  if(!event.target.closest(".records-nav-item") && !event.target.closest(".history-nav-item")){
+if(historyNavTab) historyNavTab.addEventListener("click",(e)=>{
+  e.preventDefault(); e.stopPropagation();
+  const open=historyNavMenu && !historyNavMenu.hidden;
+  closeRecordsNav(); render("history");
+  if(historyNavMenu){ historyNavMenu.hidden=open; historyNavMenu.classList.toggle("open",!open); }
+  historyNavTab.setAttribute("aria-expanded",!open?"true":"false");
+});
+
+if(recordsNavTab) recordsNavTab.addEventListener("click",(e)=>{
+  e.preventDefault(); e.stopPropagation();
+  const open=recordsNavMenu && !recordsNavMenu.hidden;
+  closeHistoryNav(); render("records");
+  if(recordsNavMenu){ recordsNavMenu.hidden=open; recordsNavMenu.classList.toggle("open",!open); }
+  recordsNavTab.setAttribute("aria-expanded",!open?"true":"false");
+});
+
+document.addEventListener("click",(e)=>{
+  const h=e.target.closest(".history-nav-option");
+  if(h){
+    e.preventDefault(); e.stopPropagation();
+    const page=h.dataset.historyNavSection;
+    closeHistoryNav();
+    if(page && pages[page]) render(page);
+    return;
+  }
+  const r=e.target.closest(".records-nav-option");
+  if(r){
+    e.preventDefault(); e.stopPropagation();
+    const page=r.dataset.recordNavSection || "records";
     closeRecordsNav();
-    if(typeof closeHistoryNav==="function") closeHistoryNav();
+    if(page && pages[page]) render(page);
+    return;
+  }
+  if(!e.target.closest(".history-nav-item")) closeHistoryNav();
+  if(!e.target.closest(".records-nav-item")) closeRecordsNav();
+});
+
+document.addEventListener("click",(e)=>{
+  const tab=e.target.closest(".main-tabs .tab:not(.history-nav-tab):not(.records-nav-tab)");
+  if(!tab) return;
+  const page=tab.dataset.page;
+  if(page && pages[page]){
+    e.preventDefault(); closeHistoryNav(); closeRecordsNav(); render(page);
   }
 });
 
-document.addEventListener("click",(event)=>{
-  const button=event.target.closest(".espn-vote-btn");
-  if(!button || button.disabled) return;
-  event.preventDefault();
-  event.stopPropagation();
-  const pick=button.getAttribute("data-vote");
-  if(!pick) return;
-  const key="apffl-2026-champion-vote";
-  try {
-    if(localStorage.getItem(key)) return;
-    let votes={};
-    try { votes=JSON.parse(localStorage.getItem("apffl-2026-votes")||"{}")||{}; } catch(e) { votes={}; }
-    votes[pick]=(Number.isFinite(votes[pick])?votes[pick]:0)+1;
-    localStorage.setItem("apffl-2026-votes",JSON.stringify(votes));
-    localStorage.setItem(key,pick);
-  } catch(e) {}
-  // Re-render ESPN Bets without relying on a particular navigation function.
-  const app=document.querySelector("#app, main, .app");
-  if(typeof renderPage==="function") {
-    try { renderPage("espnbets"); return; } catch(e) {}
-  }
-  if(typeof showPage==="function") {
-    try { showPage("espnbets"); return; } catch(e) {}
-  }
-  location.reload();
-});
 const initial=location.hash.slice(1);render(pages[initial]?initial:"home");
 
