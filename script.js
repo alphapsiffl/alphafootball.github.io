@@ -1142,7 +1142,7 @@ function rulesPage(){
 
     <section class="current-rulebook">
       <div class="rulebook-section-heading">
-        <span class="section-kicker">THE RULEBOOK</span>
+        <span class="section-kicker">ARTICLE I</span>
         <h3>Current League Standards</h3>
         <p>The rules currently governing the Alpha Psi FFL.</p>
       </div>
@@ -1159,8 +1159,8 @@ function rulesPage(){
 
     <section class="season-amendment-book">
       <div class="rulebook-section-heading">
-        <span class="section-kicker">HISTORY OF THE RULEBOOK</span>
-        <h3>Season Amendments</h3>
+        <span class="section-kicker">ARTICLE II · AMENDMENTS</span>
+        <h3>History of the Constitution</h3>
         <p>Select a year above to see what changed that season.</p>
       </div>
       <div class="rules-season-panels">
@@ -1209,28 +1209,52 @@ function espnBets(){
     ["Justin","+2000","4.8%","","Justin is still building the résumé, but the 18–24 record and GM of the Year award show there is championship-level upside in the right season."],
     ["Grant H.","+2500","3.8%","","The longest shot on the board. A 5–23 record makes the case difficult, but a smaller sample also leaves room for the biggest turnaround."]
   ];
+
+  const key="apffl-2026-champion-vote";
+  let selected=null;
+  try { selected=localStorage.getItem(key); } catch(e) {}
+
+  const votes={};
+  bets.forEach(b=>votes[b[0]]=0);
+  try {
+    const stored=JSON.parse(localStorage.getItem("apffl-2026-votes")||"{}");
+    if(stored && typeof stored==="object"){
+      bets.forEach(b=>{ if(Number.isFinite(stored[b[0]])) votes[b[0]]=Math.max(0,stored[b[0]]); });
+    }
+  } catch(e) {}
+
+  const totalVotes=Object.values(votes).reduce((a,b)=>a+b,0);
+  const renderPoll=()=>bets.map(b=>{
+    const pct=totalVotes ? Math.round((votes[b[0]]/totalVotes)*100) : 0;
+    return `<div class="espn-pick-row">
+      <div class="espn-pick-name"><strong>${b[0]}</strong><span>${pct}%</span></div>
+      <div class="espn-pick-bar"><i style="width:${pct}%"></i></div>
+    </div>`;
+  }).join("");
+
   return `<section class="espn-bets-page">
     <div class="espn-bets-kicker">ESPNBETS</div>
     <h2>2026 APFFL CHAMPIONSHIP FUTURES</h2>
     <div class="espn-market-meta">
-      <span><b>2026 APFFL CHAMPION</b></span>
-      <span>12 GMs</span>
-      <span>FUTURES MARKET</span>
-      <span>PRESEASON BOARD</span>
+      <span><b>2026 APFFL CHAMPION</b></span><span>12 GMs</span><span>FUTURES MARKET</span><span>PRESEASON BOARD</span>
     </div>
     <p class="espn-bets-intro">Opening championship market for the 2026 Alpha Psi Fake Football League. Odds are league-style projections, not live sportsbook lines.</p>
     <div class="bets-table-wrap">
       <table class="bets-table">
-        <thead><tr><th>GM</th><th>ODDS</th><th>IMPLIED</th><th>THE CASE</th></tr></thead>
+        <thead><tr><th>GM</th><th>ODDS</th><th>IMPLIED</th><th>THE CASE</th><th>PICK</th></tr></thead>
         <tbody>${bets.map((b,i)=>`<tr class="${b[3]?'market-top':''}">
           <td><span class="bets-rank">${String(i+1).padStart(2,"0")}</span><strong>${b[0]}</strong>${b[3]?`<span class="market-label">${b[3]}</span>`:""}</td>
-          <td class="bets-odds">${b[1]}</td>
-          <td class="bets-implied">${b[2]}</td>
-          <td>${b[4]}</td>
+          <td class="bets-odds">${b[1]}</td><td class="bets-implied">${b[2]}</td><td>${b[4]}</td>
+          <td><button class="espn-vote-btn ${selected===b[0]?'selected':''}" data-vote="${b[0]}" ${selected?'disabled':''}>${selected===b[0]?'YOUR PICK':'VOTE'}</button></td>
         </tr>`).join("")}</tbody>
       </table>
     </div>
-    <div class="espn-board-footer"><strong>THE BOARD IS OPEN.</strong><span>Who are you putting your money on?</span></div>
+    <section class="espn-poll">
+      <div class="espn-poll-head"><div><span>FAN PREDICTION</span><h3>WHO DOES THE LEAGUE THINK WILL WIN?</h3></div><b>${totalVotes} VOTE${totalVotes===1?'':'S'}</b></div>
+      <div class="espn-poll-list">${renderPoll()}</div>
+      <div class="espn-poll-note">${selected?`YOUR PICK: <strong>${selected}</strong> · ONE VOTE PER PERSON`:"Pick one GM above to cast your vote."}</div>
+    </section>
+    <div class="espn-board-footer"><strong>THE BOARD IS OPEN.</strong><span>Who are you putting your pick on?</span></div>
   </section>`;
 }
 
@@ -1539,6 +1563,23 @@ function initHomeRecordSpotlight(){
   spotlight.addEventListener("mouseleave",()=>delete spotlight.dataset.paused);
   setInterval(()=>{ if(spotlight.isConnected && spotlight.dataset.paused!=="true") paint((index+1)%messages.length); },5200);
 }
+
+document.addEventListener("click",(event)=>{
+  const button=event.target.closest(".espn-vote-btn");
+  if(!button || button.disabled) return;
+  const pick=button.dataset.vote;
+  if(!pick) return;
+  const key="apffl-2026-champion-vote";
+  try {
+    if(localStorage.getItem(key)) return;
+    const votes=JSON.parse(localStorage.getItem("apffl-2026-votes")||"{}");
+    if(!votes || typeof votes!=="object") return;
+    votes[pick]=(Number.isFinite(votes[pick])?votes[pick]:0)+1;
+    localStorage.setItem("apffl-2026-votes",JSON.stringify(votes));
+    localStorage.setItem(key,pick);
+  } catch(e) {}
+  if(typeof navigate==="function") navigate("espnbets");
+});
 
 const initial=location.hash.slice(1);render(pages[initial]?initial:"home");
 

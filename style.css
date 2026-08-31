@@ -9703,3 +9703,482 @@ button.active,
   .shit-box-records {padding:10px 8px !important}
   .shit-box-row {grid-template-columns:58px 1fr 62px !important;gap:8px !important;padding:8px 7px !important}
 }
+
+/* v241 — ESPN Bets fan voting */
+.bets-table th:last-child,
+.bets-table td:last-child {text-align:center}
+.espn-vote-btn {
+  min-width:74px;
+  padding:8px 12px;
+  border:1px solid rgba(215,184,76,.45);
+  border-radius:3px;
+  background:#16130d;
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.espn-vote-btn:hover {
+  background:#2a2110;
+  border-color:#d7b84c;
+  transform:translateY(-1px);
+}
+.espn-vote-btn.selected {
+  background:#A51C30;
+  border-color:#A51C30;
+  color:#fff;
+  cursor:default;
+}
+.espn-vote-btn:disabled:not(.selected) {opacity:.4;cursor:not-allowed}
+.espn-poll {
+  margin-top:24px;
+  padding:20px 22px;
+  border:1px solid rgba(215,184,76,.2);
+  background:linear-gradient(145deg,rgba(25,20,13,.72),rgba(5,5,5,.92));
+}
+.espn-poll-head {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  padding-bottom:13px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.espn-poll-head span {
+  color:#A51C30;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+.espn-poll-head h3 {
+  margin:3px 0 0;
+  color:#eee;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:20px;
+}
+.espn-poll-head > b {
+  color:#d7b84c;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  white-space:nowrap;
+}
+.espn-poll-list {padding-top:14px}
+.espn-pick-row {margin:0 0 12px}
+.espn-pick-name {
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:5px;
+  color:#bbb;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:11px;
+}
+.espn-pick-name strong {color:#ddd}
+.espn-pick-name span {color:#d7b84c}
+.espn-pick-bar {
+  height:8px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.07);
+  background:#050505;
+}
+.espn-pick-bar i {
+  display:block;
+  height:100%;
+  background:#A51C30;
+  transition:width .35s ease;
+}
+.espn-poll-note {
+  margin-top:14px;
+  color:#777;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:9px;
+  letter-spacing:.7px;
+}
+.espn-poll-note strong {color:#d7b84c}
+@media(max-width:850px) {
+  .bets-table th:last-child,.bets-table td:last-child {display:table-cell}
+  .espn-vote-btn {min-width:62px;padding:7px 8px}
+}
+@media(max-width:650px) {
+  .espn-poll {padding:16px 14px}
+  .espn-poll-head {align-items:flex-start}
+  .espn-poll-head h3 {font-size:16px}
+  .espn-poll-head > b {font-size:9px}
+}
+
+/* v243 — Old-school legal document Rules page */
+.rules-page-new {
+  position:relative;
+  max-width:1100px;
+  margin:25px auto 40px;
+  padding:18px 26px 34px;
+  color:#29251f;
+  background:
+    radial-gradient(circle at 18% 12%,rgba(255,255,255,.45),transparent 28%),
+    radial-gradient(circle at 82% 88%,rgba(90,65,35,.08),transparent 35%),
+    linear-gradient(90deg,rgba(91,64,30,.07),transparent 12%,transparent 88%,rgba(91,64,30,.07)),
+    #e4d6b9 !important;
+  border:1px solid #9c895f !important;
+  box-shadow:0 8px 28px rgba(0,0,0,.35),inset 0 0 35px rgba(89,61,28,.13) !important;
+}
+.rules-page-new::before {
+  content:"";
+  position:absolute;
+  inset:9px;
+  border:1px solid rgba(89,65,31,.3);
+  pointer-events:none;
+}
+.rules-book-header {
+  position:relative;
+  padding:25px 20px 20px !important;
+  text-align:center;
+  border-bottom:3px double #665334 !important;
+}
+.rules-book-kicker {
+  color:#705d39 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:9px !important;
+  font-weight:bold !important;
+  letter-spacing:2.4px !important;
+}
+.rules-book-header h2 {
+  margin:7px 0 4px !important;
+  color:#29251f !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:clamp(28px,4vw,45px) !important;
+  font-weight:900 !important;
+  letter-spacing:2px !important;
+}
+.rules-book-header p {
+  color:#665334 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:10px !important;
+  font-style:italic !important;
+  letter-spacing:1px !important;
+}
+.current-rulebook,
+.season-amendment-book {
+  position:relative;
+  padding:25px 12px 10px !important;
+}
+.rulebook-section-heading {
+  text-align:center;
+  padding-bottom:18px !important;
+  border-bottom:1px solid rgba(82,61,31,.4) !important;
+}
+.rulebook-section-heading .section-kicker {
+  color:#8a6d37 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:9px !important;
+  font-weight:bold !important;
+  letter-spacing:2px !important;
+}
+.rulebook-section-heading h3 {
+  color:#29251f !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:24px !important;
+  margin:5px 0 !important;
+}
+.rulebook-section-heading p {
+  color:#665d4f !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:11px !important;
+  font-style:italic !important;
+}
+.rulebook-categories {
+  counter-reset:legal-section;
+}
+.rulebook-category {
+  margin:0 !important;
+  padding:20px 8px 19px !important;
+  border-bottom:1px solid rgba(82,61,31,.28) !important;
+  background:transparent !important;
+}
+.rulebook-category-heading {
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+  margin-bottom:10px !important;
+}
+.rulebook-category-heading span {
+  display:block;
+  width:5px;
+  height:24px;
+  background:#7e1d27;
+}
+.rulebook-category-heading h3 {
+  margin:0 !important;
+  color:#332b20 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:18px !important;
+  text-transform:uppercase;
+  letter-spacing:.7px !important;
+}
+.rulebook-rule {
+  display:grid !important;
+  grid-template-columns:48px 1fr !important;
+  gap:10px !important;
+  padding:9px 8px !important;
+  border:0 !important;
+  background:transparent !important;
+}
+.rulebook-number {
+  color:#8b743f !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:12px !important;
+  font-weight:bold !important;
+}
+.rulebook-rule p {
+  margin:0 !important;
+  color:#383126 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:13px !important;
+  line-height:1.65 !important;
+}
+.rulebook-years {
+  margin:16px 12px !important;
+  padding:13px 10px !important;
+  border-top:3px double #665334 !important;
+  border-bottom:3px double #665334 !important;
+  background:rgba(111,85,43,.055) !important;
+}
+.years-label {
+  color:#705d39 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:9px !important;
+  font-weight:bold !important;
+  letter-spacing:2px !important;
+}
+.rulebook-year-tabs {gap:4px !important}
+.rules-season-tab {
+  border:0 !important;
+  border-bottom:1px solid transparent !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  color:#665d4f !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-weight:bold !important;
+}
+.rules-season-tab:hover,
+.rules-season-tab.active {
+  background:transparent !important;
+  color:#7e1d27 !important;
+  border-bottom-color:#7e1d27 !important;
+}
+.season-amendment-head {
+  color:#665334 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+}
+.season-amendment-head strong {color:#29251f !important}
+.season-amendment {
+  background:rgba(255,255,255,.13) !important;
+  border:0 !important;
+  border-bottom:1px solid rgba(82,61,31,.25) !important;
+  border-radius:0 !important;
+}
+.season-amendment p {
+  color:#383126 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  line-height:1.6 !important;
+}
+.active-label {
+  color:#7e1d27 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+}
+.rule-origin {
+  color:#665d4f !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-style:italic !important;
+}
+@media(max-width:650px) {
+  .rules-page-new {padding:10px 12px 25px}
+  .rules-book-header h2 {font-size:27px !important}
+  .current-rulebook,.season-amendment-book {padding-left:4px !important;padding-right:4px !important}
+  .rulebook-rule {grid-template-columns:34px 1fr !important;padding-left:2px !important;padding-right:2px !important}
+}
+
+/* v244 — FORCE visible old-school constitutional document treatment */
+.rules-page-new {
+  max-width: 1080px !important;
+  margin: 30px auto 50px !important;
+  padding: 30px 38px 45px !important;
+  color: #2b2419 !important;
+  background-color: #e8d9b9 !important;
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.55), transparent 30%),
+    radial-gradient(ellipse at 80% 90%, rgba(75,50,20,.10), transparent 35%) !important;
+  border: 2px solid #80683f !important;
+  border-radius: 0 !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,.45), inset 0 0 45px rgba(76,53,23,.15) !important;
+}
+.rules-page-new * { box-sizing:border-box; }
+.rules-page-new::before {
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:1px solid rgba(80,58,29,.35);
+  pointer-events:none;
+}
+.rules-book-header {
+  background:transparent !important;
+  padding:28px 15px 22px !important;
+  border-bottom:4px double #685432 !important;
+  text-align:center !important;
+}
+.rules-book-header .rules-book-kicker {
+  color:#705a34 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-size:11px !important;
+  font-weight:bold !important;
+  letter-spacing:3px !important;
+}
+.rules-book-header h2 {
+  color:#2b2419 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-size:46px !important;
+  font-weight:900 !important;
+  letter-spacing:2px !important;
+  text-shadow:none !important;
+}
+.rules-book-header p {
+  color:#6b5838 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-size:11px !important;
+  font-style:italic !important;
+}
+.current-rulebook, .season-amendment-book {
+  background:transparent !important;
+  padding:30px 15px 15px !important;
+}
+.rulebook-section-heading {
+  background:transparent !important;
+  text-align:center !important;
+  border-bottom:1px solid #89734d !important;
+  padding:0 0 18px !important;
+}
+.rulebook-section-heading .section-kicker {
+  color:#8b6a32 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-size:10px !important;
+  font-weight:bold !important;
+  letter-spacing:3px !important;
+}
+.rulebook-section-heading h3 {
+  color:#2b2419 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-size:27px !important;
+  font-weight:900 !important;
+}
+.rulebook-section-heading p {
+  color:#6b604e !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-style:italic !important;
+}
+.rulebook-category {
+  background:transparent !important;
+  padding:23px 12px !important;
+  border-bottom:1px solid rgba(86,63,29,.30) !important;
+}
+.rulebook-category-heading {
+  background:transparent !important;
+  border:0 !important;
+}
+.rulebook-category-heading span {
+  width:4px !important;
+  height:27px !important;
+  background:#8b202c !important;
+}
+.rulebook-category-heading h3 {
+  color:#302719 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-size:19px !important;
+  font-weight:900 !important;
+  text-transform:uppercase !important;
+}
+.rulebook-rule {
+  background:transparent !important;
+  border:0 !important;
+  padding:10px 5px !important;
+}
+.rulebook-rule .rulebook-number {
+  color:#8a6a32 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-weight:bold !important;
+}
+.rulebook-rule p {
+  color:#3b3225 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-size:14px !important;
+  line-height:1.75 !important;
+}
+.rulebook-years {
+  background:rgba(95,72,35,.07) !important;
+  border-top:4px double #685432 !important;
+  border-bottom:4px double #685432 !important;
+  padding:15px !important;
+}
+.rulebook-years .years-label {
+  color:#705a34 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-weight:bold !important;
+}
+.rulebook-year-tabs { background:transparent !important; }
+.rules-season-tab {
+  background:transparent !important;
+  color:#574a37 !important;
+  border:0 !important;
+  border-bottom:2px solid transparent !important;
+  border-radius:0 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-weight:bold !important;
+}
+.rules-season-tab.active, .rules-season-tab:hover {
+  color:#8b202c !important;
+  background:rgba(139,32,44,.06) !important;
+  border-bottom-color:#8b202c !important;
+}
+.season-amendment-book {
+  padding-top:30px !important;
+}
+.season-amendment-head {
+  color:#665333 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+}
+.season-amendment-head strong {
+  color:#2b2419 !important;
+}
+.season-amendment {
+  background:rgba(255,255,255,.20) !important;
+  border:0 !important;
+  border-bottom:1px solid rgba(86,63,29,.28) !important;
+  border-radius:0 !important;
+  padding:14px !important;
+}
+.season-amendment p {
+  color:#3b3225 !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-size:13px !important;
+  line-height:1.7 !important;
+}
+.active-label {
+  color:#8b202c !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-weight:bold !important;
+}
+.rule-origin {
+  color:#665b4a !important;
+  font-family:Georgia, "Times New Roman", serif !important;
+  font-style:italic !important;
+}
+@media(max-width:650px) {
+  .rules-page-new {
+    margin:15px 8px 30px !important;
+    padding:18px 14px 28px !important;
+  }
+  .rules-book-header h2 {font-size:31px !important}
+  .rulebook-section-heading h3 {font-size:22px !important}
+  .rulebook-rule p {font-size:13px !important;line-height:1.65 !important}
+}
