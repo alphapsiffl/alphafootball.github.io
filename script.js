@@ -215,6 +215,38 @@ function home(){
         <div class="ledger-footer">ALPHA PSI FAKE FOOTBALL LEAGUE · EST. 2020</div>
       </section>
     </div>
+    <section class="home-manager-ledger">
+      <div class="home-manager-ledger-head">
+        <div>
+          <div class="home-manager-ledger-kicker">ALPHA PSI CAREER FILES</div>
+          <h3>ALL-TIME MANAGER RECORDS</h3>
+        </div>
+        <span>THROUGH 2025</span>
+      </div>
+      <div class="home-manager-ledger-wrap">
+        <table class="home-manager-ledger-table">
+          <thead><tr>
+            <th>MANAGER</th><th>CAREER RECORD</th><th>WIN PCT</th><th>VS MEDIAN</th>
+            <th>W/ MEDIAN GAME</th><th>POINTS FOR</th><th>PF / SEASON</th>
+            <th>POINTS AGAINST</th><th>TOTAL MOVES</th><th>TRADES MADE</th>
+          </tr></thead>
+          <tbody>
+            <tr><td>Bailey Coble <em>CHAMP</em></td><td>52-30</td><td>.634</td><td>58-24</td><td>110-54</td><td>11,075.2</td><td>1,845.9</td><td>10,442.5</td><td>230</td><td>29</td></tr>
+            <tr><td>Jonathan Davis <em>CHAMP</em></td><td>50-32</td><td>.610</td><td>52-30</td><td>102-62</td><td>11,217.9</td><td>1,869.6</td><td>10,155.3</td><td>161</td><td>23</td></tr>
+            <tr><td>Kameron Walker <em>CHAMP</em></td><td>47-35</td><td>.573</td><td>44-38</td><td>91-73</td><td>10,536.7</td><td>1,756.1</td><td>10,444.9</td><td>93</td><td>19</td></tr>
+            <tr><td>Andrew Blum</td><td>45-37</td><td>.549</td><td>45-37</td><td>90-74</td><td>10,642.0</td><td>1,773.7</td><td>10,024.7</td><td>235</td><td>14</td></tr>
+            <tr><td>Alexander Peachey</td><td>44-38</td><td>.537</td><td>42-40</td><td>86-78</td><td>9,986.9</td><td>1,664.5</td><td>10,111.4</td><td>180</td><td>26</td></tr>
+            <tr><td>McKinzie Arrington</td><td>43-39</td><td>.524</td><td>42-40</td><td>85-79</td><td>10,051.8</td><td>1,675.3</td><td>10,407.9</td><td>160</td><td>17</td></tr>
+            <tr><td>Quinton Roof <em>CHAMP</em></td><td>39-43</td><td>.476</td><td>40-42</td><td>79-85</td><td>10,424.0</td><td>1,737.3</td><td>10,237.1</td><td>387</td><td>73</td></tr>
+            <tr><td>Braxton Ivey</td><td>29-26</td><td>.527</td><td>25-30</td><td>54-56</td><td>6,802.0</td><td>1,700.5</td><td>6,676.8</td><td>108</td><td>13</td></tr>
+            <tr><td>Drayton Paxton</td><td>28-54</td><td>.341</td><td>31-51</td><td>59-105</td><td>9,473.5</td><td>1,578.9</td><td>10,341.5</td><td>40</td><td>21</td></tr>
+            <tr><td>Victor Barcenas <em>CHAMP</em></td><td>27-15</td><td>.643</td><td>24-18</td><td>51-33</td><td>5,313.5</td><td>1,771.2</td><td>5,051.4</td><td>115</td><td>13</td></tr>
+            <tr><td>Justin Cooper</td><td>18-24</td><td>.429</td><td>13-29</td><td>31-53</td><td>4,809.0</td><td>1,603.0</td><td>4,972.5</td><td>85</td><td>14</td></tr>
+            <tr><td>Grant Harris</td><td>5-23</td><td>.179</td><td>6-22</td><td>11-45</td><td>3,067.5</td><td>1,533.8</td><td>3,625.6</td><td>76</td><td>16</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
     <section class="shit-box">
       <div class="shit-box-header">
         <div>
@@ -1245,10 +1277,20 @@ function espnBets(){
   } catch(e) {}
 
   const totalVotes=Object.values(votes).reduce((a,b)=>a+b,0);
-  const renderPoll=()=>bets.map(b=>{
-    const pct=totalVotes ? Math.round((votes[b[0]]/totalVotes)*100) : 0;
+  const makeFanPercentages=()=>{
+    const weights=bets.map((_,i)=>Math.max(.7,1.75-i*.07)*(0.65+Math.random()*.75));
+    const sum=weights.reduce((a,b)=>a+b,0);
+    const raw=weights.map(w=>w/sum*100);
+    const whole=raw.map(v=>Math.floor(v));
+    let remainder=100-whole.reduce((a,b)=>a+b,0);
+    raw.map((v,i)=>({i,f:v-whole[i]})).sort((a,b)=>b.f-a.f).slice(0,remainder).forEach(x=>whole[x.i]++);
+    return whole;
+  };
+  const fanPercentages=makeFanPercentages();
+  const renderPoll=()=>bets.map((b,i)=>{
+    const pct=fanPercentages[i];
     return `<div class="espn-pick-row">
-      <div class="espn-pick-name"><strong>${b[0]}</strong><span>${pct}%</span></div>
+      <div class="espn-pick-name"><strong>${b[0]}</strong><span class="fan-pct">${pct}%</span></div>
       <div class="espn-pick-bar"><i style="width:${pct}%"></i></div>
     </div>`;
   }).join("");
@@ -1572,3 +1614,33 @@ document.addEventListener("click",function(event){
     panel.classList.toggle("active",panel.dataset.season===season);
   });
 });
+
+/* v258 — Fan Prediction percentages shift periodically */
+(function(){
+  function refreshFanPrediction(){
+    const page=document.querySelector(".espn-bets-page");
+    if(!page) return;
+    const rows=page.querySelectorAll(".espn-pick-row");
+    if(!rows.length) return;
+    const weights=Array.from(rows).map((_,i)=>Math.max(.7,1.75-i*.07)*(0.65+Math.random()*.75));
+    const sum=weights.reduce((a,b)=>a+b,0);
+    const raw=weights.map(w=>w/sum*100);
+    const whole=raw.map(v=>Math.floor(v));
+    let remainder=100-whole.reduce((a,b)=>a+b,0);
+    raw.map((v,i)=>({i,f:v-whole[i]})).sort((a,b)=>b.f-a.f).slice(0,remainder).forEach(x=>whole[x.i]++);
+    rows.forEach((row,i)=>{
+      const pct=whole[i];
+      const label=row.querySelector(".fan-pct") || row.querySelector(".espn-pick-name span");
+      const bar=row.querySelector(".espn-pick-bar i");
+      if(label) label.textContent=pct+"%";
+      if(bar) bar.style.width=pct+"%";
+    });
+  }
+  function schedule(){
+    setTimeout(function(){
+      refreshFanPrediction();
+      schedule();
+    },35000+Math.floor(Math.random()*25000));
+  }
+  schedule();
+})();
