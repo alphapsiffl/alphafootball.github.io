@@ -194,9 +194,26 @@ function home(){
       <div class="home-record-count">01 / ${String(recordSpotlights.length).padStart(2,"0")}</div>
     </div>
 
-    <div class="ice-counter" aria-label="All-time Ice counter"><img class="ice-cube-art" src="ice-cube-art.png" alt="" aria-hidden="true"><img class="ice-brand-logo" src="smirnoff-ice-logo.png" alt="Smirnoff ICE">
-      <div class="ice-counter-label">${iceCounter.label}</div>
-      <div class="ice-counter-number">${iceCounter.total}</div>
+    <div class="home-stats-row">
+      <div class="ice-counter" aria-label="All-time Ice counter"><img class="ice-cube-art" src="ice-cube-art.png" alt="" aria-hidden="true"><img class="ice-brand-logo" src="smirnoff-ice-logo.png" alt="Smirnoff ICE">
+        <div class="ice-counter-label">${iceCounter.label}</div>
+        <div class="ice-counter-number">${iceCounter.total}</div>
+      </div>
+      <section class="league-ledger-box" aria-label="All-time league ledger">
+        <div class="ledger-header">
+          <div class="ledger-kicker">LEAGUE FILE</div>
+          <h3>ALL-TIME LEDGER</h3>
+          <div class="ledger-rule"></div>
+        </div>
+        <div class="ledger-grid">
+          <div class="ledger-stat"><strong>159</strong><span>TRADES</span></div>
+          <div class="ledger-stat"><strong>681</strong><span>WAIVER CLAIMS</span></div>
+          <div class="ledger-stat"><strong>1,980</strong><span>TOTAL MOVES</span></div>
+          <div class="ledger-stat"><strong>584</strong><span>MATCHUPS</span></div>
+          <div class="ledger-stat ledger-stat-wide"><strong>19</strong><span>MANAGERS</span></div>
+        </div>
+        <div class="ledger-footer">ALPHA PSI FAKE FOOTBALL LEAGUE · EST. 2020</div>
+      </section>
     </div>
     <section class="shit-box">
       <div class="shit-box-header">
@@ -780,24 +797,7 @@ const render2020=()=>`<section class="history-season-panel history-2020-panel" d
     </div>
     <div class="history-subsection" data-history-section-panel="punishments" hidden>
       ${punishments().replace("<h2>Punishments</h2>","<h3>League Punishments</h3>")}
-    </div>
-    <script>
-      (function(){
-        const tabs=document.querySelectorAll('.history-season-tab');
-        const panels=document.querySelectorAll('.history-season-panel');
-        tabs.forEach(tab=>{
-          tab.addEventListener('click',()=>{
-            const season=tab.dataset.season;
-            tabs.forEach(t=>{
-              const active=t===tab;
-              t.classList.toggle('active',active);
-              t.setAttribute('aria-selected',active?'true':'false');
-            });
-            panels.forEach(panel=>panel.classList.toggle('active',panel.dataset.season===season));
-          });
-        });
-      })();
-    </script>`;
+    </div>`;
 }
 
 function allPsiPage(){
@@ -1553,4 +1553,22 @@ document.addEventListener("click",(event)=>{
   if(count) count.textContent=total+" VOTE"+(total===1?"":"S");
   const note=page.querySelector(".espn-poll-note");
   if(note) note.innerHTML='YOUR PICK: <strong>'+pick+'</strong> · CLICK ANOTHER PICK TO CHANGE IT';
+});
+
+/* v254 — History season tabs (delegated so they work after innerHTML render) */
+document.addEventListener("click",function(event){
+  const tab=event.target.closest(".history-season-tab");
+  if(!tab) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const season=tab.dataset.season;
+  const history=tab.closest(".history-subsection-seasons") || tab.closest(".history-subsection") || document;
+  history.querySelectorAll(".history-season-tab").forEach(t=>{
+    const active=t===tab;
+    t.classList.toggle("active",active);
+    t.setAttribute("aria-selected",active?"true":"false");
+  });
+  history.querySelectorAll(".history-season-panel").forEach(panel=>{
+    panel.classList.toggle("active",panel.dataset.season===season);
+  });
 });
