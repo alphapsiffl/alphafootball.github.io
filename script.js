@@ -8,7 +8,7 @@ const records = [
 ["Highest point average","151.1","Bailey Coble, 2023"],
 ["Most PA ever","1968.45","Drayton, 2020 and 2024"],
 ["Lowest point average","102.7","Peachey, 2020"],
-["Biggest blowout","254–117.15","Davis vs Kam, Week 12, 2020"],
+["Biggest blowout","+136.8","Jonathan Davis, Week 12, 2020 · 254.0–117.2"],
 ["Most moves in a season","65","Quinton, 2023"],
 ["Most POTWs in a season","8","Bailey Coble, 2023"],
 ["Longest win streak","7","Bailey, 2021"],
@@ -219,7 +219,7 @@ function home(){
       <div class="home-manager-ledger-head">
         <div>
           <div class="home-manager-ledger-kicker">ALPHA PSI CAREER FILES</div>
-          <h3>ALL-TIME MANAGER RECORDS</h3>
+          <h3>ALL-TIME MANAGER STATS</h3>
         </div>
         <span>THROUGH 2025</span>
       </div>
@@ -1099,6 +1099,180 @@ function recordsPage(){
       ${recordHover(r[1])}
     </div>`).join("")}</div>
   </div>
+  <section class="record-feature record-feature-away" aria-labelledby="ones-away-title">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">DROPS AND SWAPS THAT KEPT PRODUCING FOR SOMEONE ELSE</div>
+        <div class="record-feature-title" id="ones-away-title">ONES THAT GOT AWAY</div>
+        <div class="record-feature-sub">The biggest documented regret moves in league history — players or defenses released or swapped away who went on to produce elsewhere.</div>
+      </div>
+      <div class="record-away-mark"><span>−149</span><small>RICO DOWDLE</small></div>
+    </div>
+    <div class="away-table-wrap">
+      <table class="away-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>
+          ${[
+            ["RICO DOWDLE","−149","Justin Cooper · kept C.J. Stroud","2025 · Wk 4"],
+            ["DEREK CARR","−131","Grayson Maxfield · kept Jimmy Garoppolo","2020 · Wk 8"],
+            ["GENO SMITH","−113","Andrew Blum · kept Rachaad White","2022 · Wk 5"],
+            ["BROWNS D/ST","−113","Justin Cooper · kept Cardinals D/ST","2023 · Wk 2"],
+            ["BROWNS D/ST","−110","Justin Cooper · kept Panthers D/ST","2023 · Wk 1"],
+            ["COWBOYS D/ST","−107","Braxton Ivey · kept Titans D/ST","2022 · Wk 1"],
+            ["TYRONE TRACY JR.","−105","McKinzie Arrington · kept Romeo Doubs","2024 · Wk 2"],
+            ["TREY MCBRIDE","−103","Quinton Roof · kept Sam Darnold","2023 · Wk 8"],
+            ["TEXANS D/ST","−90.0","Jonathan Davis · kept Eagles D/ST","2025 · Wk 5"],
+            ["DARREL WILLIAMS","−89.0","Andrew Blum · kept Zach Pascal","2021 · Wk 1"]
+          ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="away-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="record-feature record-feature-blowout" aria-labelledby="blowout-title">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">LARGEST SINGLE-GAME MARGINS</div>
+        <div class="record-feature-title" id="blowout-title">BIGGEST BLOWOUT</div>
+        <div class="record-feature-sub">The largest winning margins in a single Alpha Psi matchup, ranked by point differential.</div>
+      </div>
+      <div class="record-blowout-mark"><span>+136.8</span><small>JONATHAN DAVIS</small></div>
+    </div>
+    <div class="blowout-table-wrap">
+      <table class="blowout-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>
+          ${[
+            ["JONATHAN DAVIS","+136.8","Jonathan Davis 254.0 − 117.2 (+136.8).","2020 · Wk 12"],
+            ["ANDREW BLUM","+110.8","Andrew Blum 196.4 − 85.6 (+110.8).","2025 · Wk 14"],
+            ["ALEXANDER PEACHEY","+107.3","Alexander Peachey 166.7 − 59.4 (+107.3).","2022 · Wk 9"],
+            ["QUINTON ROOF","+106.3","Quinton Roof 198.5 − 92.2 (+106.3).","2022 · Wk 13"],
+            ["JONATHAN DAVIS","+102.8","Jonathan Davis 167.3 − 64.5 (+102.8).","2024 · Wk 3"],
+            ["GRAYSON MAXFIELD","+101.0","Grayson Maxfield 154.3 − 53.3 (+101.0).","2020 · Wk 5"],
+            ["JONATHAN DAVIS","+92.2","Jonathan Davis 186.9 − 94.8 (+92.2).","2022 · Wk 8"],
+            ["DRAYTON PAXTON","+88.6","Drayton Paxton 225.5 − 136.9 (+88.6).","2020 · Wk 2"],
+            ["QUINTON ROOF","+87.3","Quinton Roof 170.9 − 83.7 (+87.3).","2024 · Wk 2"],
+            ["BAILEY COBLE","+86.4","Bailey Coble 177.8 − 91.3 (+86.4).","2023 · Wk 6"]
+          ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="blowout-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="record-feature record-feature-combined" aria-labelledby="combined-score-title">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">THE BIGGEST TWO-TEAM SCORE TOTALS IN LEAGUE HISTORY</div>
+        <div class="record-feature-title" id="combined-score-title">HIGHEST COMBINED SCORE</div>
+        <div class="record-feature-sub">The highest combined scores from a single matchup, ranked by the total points scored by both managers.</div>
+      </div>
+      <div class="record-combined-mark"><span>371.1</span><small>KAMERON WALKER</small></div>
+    </div>
+    <div class="combined-table-wrap">
+      <table class="combined-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>
+          ${[
+            ["KAMERON WALKER","371.1","Kameron Walker 117.2 — 254.0 Jonathan Davis (371.1 combined).","2020 · Wk 12"],
+            ["KAMERON WALKER","367.0","Kameron Walker 183.8 — 183.3 Andrew Blum (367.0 combined).","2021 · Wk 1"],
+            ["DRAYTON PAXTON","362.4","Drayton Paxton 225.5 — 136.9 Grayson Maxfield (362.4 combined).","2020 · Wk 2"],
+            ["BAILEY COBLE","350.4","Bailey Coble 172.4 — 177.9 Kameron Walker (350.4 combined).","2021 · Wk 3"],
+            ["JONATHAN DAVIS","341.5","Jonathan Davis 140.3 — 201.3 Bailey Coble (341.5 combined).","2024 · Wk 11"],
+            ["BAILEY COBLE","340.8","Bailey Coble 172.4 — 168.4 Drayton Paxton (340.8 combined).","2020 · Wk 4"],
+            ["MCKINZIE ARRINGTON","334.4","McKinzie Arrington 174.5 — 159.9 Corey Steele (334.4 combined).","2021 · Wk 5"],
+            ["TYLER MARMO","331.6","Tyler Marmo 194.1 — 137.4 Alexander Peachey (331.5 combined).","2021 · Wk 2"],
+            ["KAMERON WALKER","329.8","Kameron Walker 135.8 — 194.0 Jonathan Davis (329.8 combined).","2023 · Wk 3"],
+            ["JUSTIN COOPER","323.4","Justin Cooper 190.2 — 133.3 Jonathan Davis (323.4 combined).","2023 · Wk 8"]
+          ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="combined-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="record-feature record-feature-trade" aria-labelledby="trade-title">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">THE MANAGERS WHO KEEP DEALING WITH EACH OTHER</div>
+        <div class="record-feature-title" id="trade-title">FREQUENT TRADE PARTNERS</div>
+        <div class="record-feature-sub">The most frequent manager-to-manager trading partnerships in Alpha Psi history, ranked by documented trades together.</div>
+      </div>
+      <div class="record-trade-mark"><span>10</span><small>BAILEY ↔ QUINTON</small></div>
+    </div>
+    <div class="trade-table-wrap">
+      <table class="trade-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>
+          ${[
+            ["BAILEY COBLE ↔ QUINTON ROOF","10","—","2021, 2023, 2025"],
+            ["DRAYTON PAXTON ↔ QUINTON ROOF","10","—","2021–2025"],
+            ["BLAKE JACKSON ↔ QUINTON ROOF","9","—","2022–2023"],
+            ["ALEXANDER PEACHEY ↔ QUINTON ROOF","8","—","2020–2025"],
+            ["MCKINZIE ARRINGTON ↔ QUINTON ROOF","6","—","2021–2022, 2024–2025"],
+            ["GRANT HARRIS ↔ QUINTON ROOF","6","—","2024–2025"],
+            ["KAMERON WALKER ↔ QUINTON ROOF","5","—","2020–2023"],
+            ["DRAYTON PAXTON ↔ ALEXANDER PEACHEY","4","—","2021–2023, 2025"],
+            ["MCKINZIE ARRINGTON ↔ KAMERON WALKER","4","—","2022–2024"],
+            ["JONATHAN DAVIS ↔ ALEXANDER PEACHEY","4","—","2022–2023, 2025"]
+          ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="trade-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="record-feature record-feature-highscore" aria-labelledby="highscore-title">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">ALL-TIME · WEEKS AS THE LEAGUE HIGH</div>
+        <div class="record-feature-title" id="highscore-title">HIGH-SCORE WEEKS</div>
+        <div class="record-feature-sub">The number of weeks each manager finished as the league's highest scorer, ranked by total high-score weeks.</div>
+      </div>
+      <div class="record-highscore-mark"><span>13</span><small>ANDREW BLUM</small></div>
+    </div>
+    <div class="highscore-table-wrap">
+      <table class="highscore-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>
+          ${[
+            ["ANDREW BLUM","13","45 top-half weeks","6 seasons"],
+            ["KAMERON WALKER","12","44 top-half weeks","6 seasons"],
+            ["BAILEY COBLE","10","58 top-half weeks","6 seasons"],
+            ["JONATHAN DAVIS","8","52 top-half weeks","6 seasons"],
+            ["QUINTON ROOF","8","40 top-half weeks","6 seasons"],
+            ["ALEXANDER PEACHEY","7","42 top-half weeks","6 seasons"],
+            ["MCKINZIE ARRINGTON","5","42 top-half weeks","6 seasons"],
+            ["DRAYTON PAXTON","4","31 top-half weeks","6 seasons"],
+            ["VICTOR BARCENAS","3","24 top-half weeks","3 seasons"],
+            ["BRAXTON IVEY","2","25 top-half weeks","4 seasons"]
+          ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="highscore-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="record-feature record-feature-waiver" aria-labelledby="waiver-title">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">REALIZED POINTS GAINED ON THE WIRE · CAREER</div>
+        <div class="record-feature-title" id="waiver-title">CAREER WAIVER VALUE</div>
+        <div class="record-feature-sub">The managers who have generated the most realized value from waiver-wire pickups over their Alpha Psi careers.</div>
+      </div>
+      <div class="record-waiver-mark"><span>+1,490</span><small>BAILEY COBLE</small></div>
+    </div>
+    <div class="waiver-table-wrap">
+      <table class="waiver-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>
+          ${[
+            ["BAILEY COBLE","+1,490","201 moves · 67% hit rate","6 seasons"],
+            ["MCKINZIE ARRINGTON","+1,329","143 moves · 71% hit rate","6 seasons"],
+            ["ALEXANDER PEACHEY","+1,015","154 moves · 70% hit rate","6 seasons"],
+            ["KAMERON WALKER","+820","74 moves · 79% hit rate","6 seasons"],
+            ["ANDREW BLUM","+796","221 moves · 65% hit rate","6 seasons"],
+            ["JONATHAN DAVIS","+668","138 moves · 72% hit rate","6 seasons"],
+            ["BRAXTON IVEY","+555","95 moves · 70% hit rate","4 seasons"],
+            ["QUINTON ROOF","+460","314 moves · 56% hit rate","6 seasons"],
+            ["VICTOR BARCENAS","+431","102 moves · 69% hit rate","3 seasons"],
+            ["BLAKE JACKSON","+410","60 moves · 66% hit rate","2 seasons"]
+          ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="waiver-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+  </section>
   <div class="record-filter-bar" role="tablist" aria-label="Record categories">
     <button class="record-filter active" type="button" data-record-filter="all">ALL</button>
     <button class="record-filter" type="button" data-record-filter="single-game">SINGLE GAME</button>

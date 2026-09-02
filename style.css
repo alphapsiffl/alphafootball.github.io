@@ -10577,3 +10577,650 @@ button.active,
   .home-manager-ledger-table th{font-size:7px;padding:8px 7px}
   .home-manager-ledger-table td{font-size:10px;padding:9px 7px}
 }
+
+/* v259 — Larger All-Time Ices typography */
+.ice-counter{overflow:hidden!important}
+.ice-counter .ice-counter-label{
+  font-size:clamp(20px,2.6vw,34px)!important;
+  line-height:1.05!important;
+  letter-spacing:2px!important;
+  white-space:nowrap!important;
+}
+.ice-counter .ice-counter-number{
+  font-size:clamp(72px,9vw,118px)!important;
+  line-height:.9!important;
+  letter-spacing:2px!important;
+  font-weight:900!important;
+  margin-top:8px!important;
+  white-space:nowrap!important;
+}
+@media(max-width:760px){
+  .ice-counter .ice-counter-label{font-size:25px!important;letter-spacing:1.5px!important}
+  .ice-counter .ice-counter-number{font-size:82px!important;margin-top:7px!important}
+}
+
+/* v263 — Ones That Got Away record feature */
+.record-feature-away {
+  padding:0 !important;
+  border:1px solid rgba(215,184,76,.28) !important;
+  border-top:4px solid #A51C30 !important;
+  background:
+    linear-gradient(145deg,rgba(165,28,48,.08),rgba(10,10,9,.97) 42%,rgba(22,17,10,.96)) !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),inset 0 0 32px rgba(0,0,0,.5),0 12px 30px rgba(0,0,0,.28) !important;
+}
+.record-feature-away .record-feature-top { padding:20px 24px 17px; }
+.record-feature-away .record-feature-title {
+  color:#f0d77a;
+  font-size:31px;
+  letter-spacing:2.2px;
+  text-shadow:0 2px 10px rgba(215,184,76,.1);
+}
+.record-feature-away .record-feature-title::before { background:#A51C30; }
+.record-feature-away .record-feature-sub { max-width:720px; color:#888; }
+.record-away-mark {
+  flex:0 0 132px;
+  text-align:right;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+}
+.record-away-mark span {
+  color:#f1d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:37px;
+  font-weight:800;
+  line-height:1;
+}
+.record-away-mark small {
+  margin-top:5px;
+  color:#a88b38;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+.away-table-wrap { overflow-x:auto; }
+.away-record-table {
+  width:100%;
+  min-width:720px;
+  border-collapse:collapse;
+  table-layout:fixed;
+  background:rgba(0,0,0,.16);
+}
+.away-record-table th,
+.away-record-table td {
+  padding:9px 12px;
+  border-top:1px solid rgba(215,184,76,.10);
+  text-align:left;
+  vertical-align:middle;
+}
+.away-record-table th {
+  background:rgba(215,184,76,.045);
+  color:#7d765f;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:1.8px;
+}
+.away-record-table td {
+  color:#858585;
+  font-size:9px;
+  line-height:1.3;
+}
+.away-record-table tbody tr:nth-child(odd) { background:rgba(255,255,255,.012); }
+.away-record-table tbody tr:hover { background:rgba(165,28,48,.055); }
+.away-record-table th:first-child,
+.away-record-table td:first-child { width:34px; color:#666; }
+.away-record-table th:nth-child(2),
+.away-record-table td:nth-child(2) { width:180px; }
+.away-record-table th:nth-child(3),
+.away-record-table td:nth-child(3) { width:86px; }
+.away-record-table th:nth-child(4),
+.away-record-table td:nth-child(4) { width:auto; }
+.away-record-table th:last-child,
+.away-record-table td:last-child { width:105px; }
+.away-record-table td:nth-child(2) strong {
+  color:#e0dfd8;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  letter-spacing:.3px;
+}
+.away-record-table .away-value {
+  color:#f0d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:12px;
+  font-weight:800;
+}
+@media(max-width:650px) {
+  .record-feature-away .record-feature-top {
+    padding:17px 15px 14px;
+    gap:12px;
+  }
+  .record-feature-away .record-feature-title { font-size:24px; }
+  .record-feature-away .record-feature-sub { font-size:9px; }
+  .record-away-mark { flex-basis:78px; }
+  .record-away-mark span { font-size:27px; }
+  .record-away-mark small { font-size:6px; letter-spacing:1px; }
+  .away-record-table { min-width:650px; }
+  .away-record-table th,
+  .away-record-table td { padding:8px 9px; }
+}
+
+/* v264 — Highest Combined Score record feature */
+.record-feature-combined {
+  padding:0 !important;
+  border:1px solid rgba(215,184,76,.28) !important;
+  border-top:4px solid #A51C30 !important;
+  background:linear-gradient(145deg,rgba(165,28,48,.08),rgba(10,10,9,.97) 42%,rgba(22,17,10,.96)) !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),inset 0 0 32px rgba(0,0,0,.5),0 12px 30px rgba(0,0,0,.28) !important;
+  margin-top:18px;
+}
+.record-feature-combined .record-feature-top { padding:20px 24px 17px; }
+.record-feature-combined .record-feature-title {
+  color:#f0d77a;
+  font-size:31px;
+  letter-spacing:2.2px;
+  text-shadow:0 2px 10px rgba(215,184,76,.1);
+}
+.record-feature-combined .record-feature-title::before { background:#A51C30; }
+.record-feature-combined .record-feature-sub { max-width:720px; color:#888; }
+.record-combined-mark {
+  flex:0 0 132px;
+  text-align:right;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+}
+.record-combined-mark span {
+  color:#f1d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:37px;
+  font-weight:800;
+  line-height:1;
+}
+.record-combined-mark small {
+  margin-top:5px;
+  color:#a88b38;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+.combined-table-wrap { overflow-x:auto; }
+.combined-record-table {
+  width:100%;
+  min-width:720px;
+  border-collapse:collapse;
+  table-layout:fixed;
+  background:rgba(0,0,0,.16);
+}
+.combined-record-table th,
+.combined-record-table td {
+  padding:9px 12px;
+  border-top:1px solid rgba(215,184,76,.10);
+  text-align:left;
+  vertical-align:middle;
+}
+.combined-record-table th {
+  background:rgba(215,184,76,.045);
+  color:#7d765f;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:1.8px;
+}
+.combined-record-table td {
+  color:#858585;
+  font-size:9px;
+  line-height:1.3;
+}
+.combined-record-table tbody tr:nth-child(odd) { background:rgba(255,255,255,.012); }
+.combined-record-table tbody tr:hover { background:rgba(165,28,48,.055); }
+.combined-record-table th:first-child,
+.combined-record-table td:first-child { width:34px; color:#666; }
+.combined-record-table th:nth-child(2),
+.combined-record-table td:nth-child(2) { width:180px; }
+.combined-record-table th:nth-child(3),
+.combined-record-table td:nth-child(3) { width:86px; }
+.combined-record-table th:nth-child(4),
+.combined-record-table td:nth-child(4) { width:auto; }
+.combined-record-table th:last-child,
+.combined-record-table td:last-child { width:105px; }
+.combined-record-table td:nth-child(2) strong {
+  color:#e0dfd8;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  letter-spacing:.3px;
+}
+.combined-record-table .combined-value {
+  color:#f0d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:12px;
+  font-weight:800;
+}
+@media(max-width:650px) {
+  .record-feature-combined .record-feature-top { padding:15px 14px 13px; }
+  .record-feature-combined .record-feature-title { font-size:23px; }
+  .record-combined-mark { flex-basis:92px; }
+  .record-combined-mark span { font-size:28px; }
+  .combined-record-table { min-width:680px; }
+}
+
+/* Biggest Blowout record feature */
+.record-feature-blowout {
+  padding:0 !important;
+  border:1px solid rgba(215,184,76,.28) !important;
+  border-top:4px solid #A51C30 !important;
+  background:linear-gradient(145deg,rgba(165,28,48,.08),rgba(10,10,9,.97) 42%,rgba(22,17,10,.96)) !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),inset 0 0 32px rgba(0,0,0,.5),0 12px 30px rgba(0,0,0,.28) !important;
+  margin-top:18px;
+}
+.record-feature-blowout .record-feature-top { padding:20px 24px 17px; }
+.record-feature-blowout .record-feature-title {
+  color:#f0d77a;
+  font-size:31px;
+  letter-spacing:2.2px;
+  text-shadow:0 2px 10px rgba(215,184,76,.1);
+}
+.record-feature-blowout .record-feature-title::before { background:#A51C30; }
+.record-feature-blowout .record-feature-sub { max-width:720px; color:#888; }
+.record-blowout-mark {
+  flex:0 0 132px;
+  text-align:right;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+}
+.record-blowout-mark span {
+  color:#f1d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:37px;
+  font-weight:800;
+  line-height:1;
+}
+.record-blowout-mark small {
+  margin-top:5px;
+  color:#a88b38;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+.blowout-table-wrap { overflow-x:auto; }
+.blowout-record-table {
+  width:100%;
+  min-width:720px;
+  border-collapse:collapse;
+  table-layout:fixed;
+  background:rgba(0,0,0,.16);
+}
+.blowout-record-table th,
+.blowout-record-table td {
+  padding:9px 12px;
+  border-top:1px solid rgba(215,184,76,.10);
+  text-align:left;
+  vertical-align:middle;
+}
+.blowout-record-table th {
+  background:rgba(215,184,76,.045);
+  color:#7d765f;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:1.8px;
+}
+.blowout-record-table td {
+  color:#858585;
+  font-size:9px;
+  line-height:1.3;
+}
+.blowout-record-table tbody tr:nth-child(odd) { background:rgba(255,255,255,.012); }
+.blowout-record-table tbody tr:hover { background:rgba(165,28,48,.055); }
+.blowout-record-table th:first-child,
+.blowout-record-table td:first-child { width:34px; color:#666; }
+.blowout-record-table th:nth-child(2),
+.blowout-record-table td:nth-child(2) { width:180px; }
+.blowout-record-table th:nth-child(3),
+.blowout-record-table td:nth-child(3) { width:86px; }
+.blowout-record-table th:nth-child(4),
+.blowout-record-table td:nth-child(4) { width:auto; }
+.blowout-record-table th:last-child,
+.blowout-record-table td:last-child { width:105px; }
+.blowout-record-table td:nth-child(2) strong {
+  color:#e0dfd8;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  letter-spacing:.3px;
+}
+.blowout-record-table .blowout-value {
+  color:#f0d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:12px;
+  font-weight:800;
+}
+@media(max-width:650px) {
+  .record-feature-blowout .record-feature-top { padding:15px 14px 13px; }
+  .record-feature-blowout .record-feature-title { font-size:23px; }
+  .record-blowout-mark { flex-basis:92px; }
+  .record-blowout-mark span { font-size:28px; }
+  .blowout-record-table { min-width:680px; }
+}
+
+/* v266 — Frequent Trade Partners record feature */
+.record-feature-trade {
+  padding:0 !important;
+  border:1px solid rgba(215,184,76,.28) !important;
+  border-top:4px solid #A51C30 !important;
+  background:linear-gradient(145deg,rgba(165,28,48,.08),rgba(10,10,9,.97) 42%,rgba(22,17,10,.96)) !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),inset 0 0 32px rgba(0,0,0,.5),0 12px 30px rgba(0,0,0,.28) !important;
+  margin-top:18px;
+}
+.record-feature-trade .record-feature-top { padding:20px 24px 17px; }
+.record-feature-trade .record-feature-title {
+  color:#f0d77a;
+  font-size:31px;
+  letter-spacing:2.2px;
+  text-shadow:0 2px 10px rgba(215,184,76,.1);
+}
+.record-feature-trade .record-feature-title::before { background:#A51C30; }
+.record-feature-trade .record-feature-sub { max-width:720px; color:#888; }
+.record-trade-mark {
+  flex:0 0 150px;
+  text-align:right;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+}
+.record-trade-mark span {
+  color:#f1d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:37px;
+  font-weight:800;
+  line-height:1;
+}
+.record-trade-mark small {
+  margin-top:5px;
+  color:#a88b38;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1.3px;
+}
+.trade-table-wrap { overflow-x:auto; }
+.trade-record-table {
+  width:100%;
+  min-width:720px;
+  border-collapse:collapse;
+  table-layout:fixed;
+  background:rgba(0,0,0,.16);
+}
+.trade-record-table th,
+.trade-record-table td {
+  padding:9px 12px;
+  border-top:1px solid rgba(215,184,76,.10);
+  text-align:left;
+  vertical-align:middle;
+}
+.trade-record-table th {
+  background:rgba(215,184,76,.045);
+  color:#7d765f;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:1.8px;
+}
+.trade-record-table td {
+  color:#858585;
+  font-size:9px;
+  line-height:1.3;
+}
+.trade-record-table tbody tr:nth-child(odd) { background:rgba(255,255,255,.012); }
+.trade-record-table tbody tr:hover { background:rgba(165,28,48,.055); }
+.trade-record-table th:first-child,
+.trade-record-table td:first-child { width:34px; color:#666; }
+.trade-record-table th:nth-child(2),
+.trade-record-table td:nth-child(2) { width:285px; }
+.trade-record-table th:nth-child(3),
+.trade-record-table td:nth-child(3) { width:70px; }
+.trade-record-table th:nth-child(4),
+.trade-record-table td:nth-child(4) { width:auto; }
+.trade-record-table th:last-child,
+.trade-record-table td:last-child { width:145px; }
+.trade-record-table td:nth-child(2) strong {
+  color:#e0dfd8;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  letter-spacing:.3px;
+}
+.trade-record-table .trade-value {
+  color:#f0d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:12px;
+  font-weight:800;
+}
+@media(max-width:650px) {
+  .record-feature-trade .record-feature-top { padding:15px 14px 13px; }
+  .record-feature-trade .record-feature-title { font-size:23px; }
+  .record-feature-trade .record-feature-sub { font-size:9px; }
+  .record-trade-mark { flex-basis:105px; }
+  .record-trade-mark span { font-size:29px; }
+  .record-trade-mark small { font-size:6px; letter-spacing:1px; }
+  .trade-record-table { min-width:690px; }
+  .trade-record-table th,
+  .trade-record-table td { padding:8px 9px; }
+}
+
+/* v267 — High-Score Weeks record feature */
+.record-feature-highscore {
+  padding:0 !important;
+  border:1px solid rgba(215,184,76,.28) !important;
+  border-top:4px solid #A51C30 !important;
+  background:linear-gradient(145deg,rgba(165,28,48,.08),rgba(10,10,9,.97) 42%,rgba(22,17,10,.96)) !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),inset 0 0 32px rgba(0,0,0,.5),0 12px 30px rgba(0,0,0,.28) !important;
+  margin-top:18px;
+}
+.record-feature-highscore .record-feature-top { padding:20px 24px 17px; }
+.record-feature-highscore .record-feature-title {
+  color:#f0d77a;
+  font-size:31px;
+  letter-spacing:2.2px;
+  text-shadow:0 2px 10px rgba(215,184,76,.1);
+}
+.record-feature-highscore .record-feature-title::before { background:#A51C30; }
+.record-feature-highscore .record-feature-sub { max-width:720px; color:#888; }
+.record-highscore-mark {
+  flex:0 0 150px;
+  text-align:right;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+}
+.record-highscore-mark span {
+  color:#f1d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:37px;
+  font-weight:800;
+  line-height:1;
+}
+.record-highscore-mark small {
+  margin-top:5px;
+  color:#a88b38;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1.3px;
+}
+.highscore-table-wrap { overflow-x:auto; }
+.highscore-record-table {
+  width:100%;
+  min-width:720px;
+  border-collapse:collapse;
+  table-layout:fixed;
+  background:rgba(0,0,0,.16);
+}
+.highscore-record-table th,
+.highscore-record-table td {
+  padding:9px 12px;
+  border-top:1px solid rgba(215,184,76,.10);
+  text-align:left;
+  vertical-align:middle;
+}
+.highscore-record-table th {
+  background:rgba(215,184,76,.045);
+  color:#7d765f;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:1.8px;
+}
+.highscore-record-table td {
+  color:#858585;
+  font-size:9px;
+  line-height:1.3;
+}
+.highscore-record-table tbody tr:nth-child(odd) { background:rgba(255,255,255,.012); }
+.highscore-record-table tbody tr:hover { background:rgba(165,28,48,.055); }
+.highscore-record-table th:first-child,
+.highscore-record-table td:first-child { width:34px; color:#666; }
+.highscore-record-table th:nth-child(2),
+.highscore-record-table td:nth-child(2) { width:285px; }
+.highscore-record-table th:nth-child(3),
+.highscore-record-table td:nth-child(3) { width:70px; }
+.highscore-record-table th:nth-child(4),
+.highscore-record-table td:nth-child(4) { width:auto; }
+.highscore-record-table th:last-child,
+.highscore-record-table td:last-child { width:105px; }
+.highscore-record-table td:nth-child(2) strong {
+  color:#e0dfd8;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  letter-spacing:.3px;
+}
+.highscore-record-table .highscore-value {
+  color:#f0d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:12px;
+  font-weight:800;
+}
+@media(max-width:650px) {
+  .record-feature-highscore .record-feature-top { padding:15px 14px 13px; }
+  .record-feature-highscore .record-feature-title { font-size:23px; }
+  .record-feature-highscore .record-feature-sub { font-size:9px; }
+  .record-highscore-mark { flex-basis:105px; }
+  .record-highscore-mark span { font-size:29px; }
+  .record-highscore-mark small { font-size:6px; letter-spacing:1px; }
+  .highscore-record-table { min-width:690px; }
+  .highscore-record-table th,
+  .highscore-record-table td { padding:8px 9px; }
+}
+
+
+/* v268 — Career Waiver Value record feature */
+.record-feature-waiver {
+  padding:0 !important;
+  border:1px solid rgba(215,184,76,.28) !important;
+  border-top:4px solid #A51C30 !important;
+  background:linear-gradient(145deg,rgba(165,28,48,.08),rgba(10,10,9,.97) 42%,rgba(22,17,10,.96)) !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),inset 0 0 32px rgba(0,0,0,.5),0 12px 30px rgba(0,0,0,.28) !important;
+  margin-top:18px;
+}
+.record-feature-waiver .record-feature-top { padding:20px 24px 17px; }
+.record-feature-waiver .record-feature-title {
+  color:#f0d77a;
+  font-size:31px;
+  letter-spacing:2.2px;
+  text-shadow:0 2px 10px rgba(215,184,76,.1);
+}
+.record-feature-waiver .record-feature-title::before { background:#A51C30; }
+.record-feature-waiver .record-feature-sub { max-width:720px; color:#888; }
+.record-waiver-mark {
+  flex:0 0 165px;
+  text-align:right;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+}
+.record-waiver-mark span {
+  color:#f1d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:37px;
+  font-weight:800;
+  line-height:1;
+}
+.record-waiver-mark small {
+  margin-top:5px;
+  color:#a88b38;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1.3px;
+}
+.waiver-table-wrap { overflow-x:auto; }
+.waiver-record-table {
+  width:100%;
+  min-width:720px;
+  border-collapse:collapse;
+  table-layout:fixed;
+  background:rgba(0,0,0,.16);
+}
+.waiver-record-table th,
+.waiver-record-table td {
+  padding:9px 12px;
+  border-top:1px solid rgba(215,184,76,.10);
+  text-align:left;
+  vertical-align:middle;
+}
+.waiver-record-table th {
+  background:rgba(215,184,76,.045);
+  color:#7d765f;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:1.8px;
+}
+.waiver-record-table td {
+  color:#858585;
+  font-size:9px;
+  line-height:1.3;
+}
+.waiver-record-table tbody tr:nth-child(odd) { background:rgba(255,255,255,.012); }
+.waiver-record-table tbody tr:hover { background:rgba(165,28,48,.055); }
+.waiver-record-table th:first-child,
+.waiver-record-table td:first-child { width:34px; color:#666; }
+.waiver-record-table th:nth-child(2),
+.waiver-record-table td:nth-child(2) { width:285px; }
+.waiver-record-table th:nth-child(3),
+.waiver-record-table td:nth-child(3) { width:86px; }
+.waiver-record-table th:nth-child(4),
+.waiver-record-table td:nth-child(4) { width:auto; }
+.waiver-record-table th:last-child,
+.waiver-record-table td:last-child { width:105px; }
+.waiver-record-table td:nth-child(2) strong {
+  color:#e0dfd8;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:10px;
+  letter-spacing:.3px;
+}
+.waiver-record-table .waiver-value {
+  color:#f0d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:12px;
+  font-weight:800;
+}
+@media(max-width:650px) {
+  .record-feature-waiver .record-feature-top { padding:15px 14px 13px; }
+  .record-feature-waiver .record-feature-title { font-size:23px; }
+  .record-feature-waiver .record-feature-sub { font-size:9px; }
+  .record-waiver-mark { flex-basis:112px; }
+  .record-waiver-mark span { font-size:29px; }
+  .record-waiver-mark small { font-size:6px; letter-spacing:1px; }
+  .waiver-record-table { min-width:690px; }
+  .waiver-record-table th,
+  .waiver-record-table td { padding:8px 9px; }
+}
