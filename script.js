@@ -1117,17 +1117,9 @@ function rivalriesPage(){
     </div>`;
 }
 function careerRecordsPage(){
-  const career=[
-    ["Career Points","Career scoring totals by GM."],
-    ["Career Point Average","Career PPG leaders across documented seasons."],
-    ["Career Wins","All-time wins by GM."],
-    ["Career Playoff Appearances","Total playoff appearances across league history."],
-    ["Career Championships","Championship wins across league history."]
-  ];
-  return `<h2>Career Records</h2>
+  const career=[];
+  return `<h2>Top 10s</h2>
     <p class="intro">The all-time individual record book, built around career-long achievements.</p>
-    <div class="records-grid">${career.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-detail">${r[1]}</div></article>`).join("")}</div>
-    
   <section class="record-feature record-feature-away" aria-labelledby="ones-away-title">
     <div class="record-feature-top">
       <div>
@@ -1709,6 +1701,33 @@ document.addEventListener("click",(e)=>{
 
 const initial=location.hash.slice(1);render(pages[initial]?initial:"home");
 
+
+/* v272 — League Records category tabs */
+document.addEventListener("click",(event)=>{
+  const tab=event.target.closest(".record-filter");
+  if(!tab) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const key=tab.dataset.recordFilter || "all";
+  const grid=document.querySelector("[data-record-grid]");
+  const page=tab.closest(".content-area") || document;
+  if(!grid) return;
+
+  const recordLists={
+    all: records,
+    "single-game": records.filter(r=>/score|blowout|loss|game/i.test(r[0])),
+    "single-season": records.filter(r=>/season|average|PA|moves|POTWs|ices/i.test(r[0])),
+    streaks: records.filter(r=>/streak/i.test(r[0]))
+  };
+  const list=recordLists[key] || recordLists.all;
+  grid.innerHTML=list.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-value">${r[1]}</div><div class="record-card-detail">${r[2]}</div>${recordHover(r[2])}</article>`).join("");
+
+  page.querySelectorAll(".record-filter").forEach(x=>{
+    const active=x===tab;
+    x.classList.toggle("active",active);
+    x.setAttribute("aria-selected",active?"true":"false");
+  });
+});
 
 /* v249 — Rules season tabs */
 document.addEventListener("click",(event)=>{
