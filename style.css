@@ -11224,3 +11224,14 @@ button.active,
   .waiver-record-table th,
   .waiver-record-table td { padding:8px 9px; }
 }
+
+/* v270 — remove the 200+ watermark from Career Records feature sections */
+.record-feature-away::after,
+.record-feature-blowout::after,
+.record-feature-combined::after,
+.record-feature-trade::after,
+.record-feature-highscore::after,
+.record-feature-waiver::after {
+  content:none !important;
+  display:none !important;
+}

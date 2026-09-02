@@ -1099,6 +1099,35 @@ function recordsPage(){
       ${recordHover(r[1])}
     </div>`).join("")}</div>
   </div>
+  <div class="record-filter-bar" role="tablist" aria-label="Record categories">
+    <button class="record-filter active" type="button" data-record-filter="all">ALL</button>
+    <button class="record-filter" type="button" data-record-filter="single-game">SINGLE GAME</button>
+    <button class="record-filter" type="button" data-record-filter="single-season">SINGLE SEASON</button>
+    <button class="record-filter" type="button" data-record-filter="streaks">STREAKS</button>
+  </div>
+  <div class="records-grid" data-record-grid>${renderRecords("all")}</div>`;
+}
+
+function rivalriesPage(){
+  return `<h2>Rivalries</h2>
+    <p class="intro">The league's biggest head-to-head rivalries, matchups, and historical grudges.</p>
+    <div class="grid">
+      <div class="card"><strong>Rivalries</strong><p>Head-to-head rivalry records and notable matchups can be added here as the league archive is documented.</p></div>
+      <div class="card"><strong>Signature Matchups</strong><p>Track the matchups that have defined the league's history.</p></div>
+    </div>`;
+}
+function careerRecordsPage(){
+  const career=[
+    ["Career Points","Career scoring totals by GM."],
+    ["Career Point Average","Career PPG leaders across documented seasons."],
+    ["Career Wins","All-time wins by GM."],
+    ["Career Playoff Appearances","Total playoff appearances across league history."],
+    ["Career Championships","Championship wins across league history."]
+  ];
+  return `<h2>Career Records</h2>
+    <p class="intro">The all-time individual record book, built around career-long achievements.</p>
+    <div class="records-grid">${career.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-detail">${r[1]}</div></article>`).join("")}</div>
+    
   <section class="record-feature record-feature-away" aria-labelledby="ones-away-title">
     <div class="record-feature-top">
       <div>
@@ -1272,35 +1301,7 @@ function recordsPage(){
         </tbody>
       </table>
     </div>
-  </section>
-  <div class="record-filter-bar" role="tablist" aria-label="Record categories">
-    <button class="record-filter active" type="button" data-record-filter="all">ALL</button>
-    <button class="record-filter" type="button" data-record-filter="single-game">SINGLE GAME</button>
-    <button class="record-filter" type="button" data-record-filter="single-season">SINGLE SEASON</button>
-    <button class="record-filter" type="button" data-record-filter="streaks">STREAKS</button>
-  </div>
-  <div class="records-grid" data-record-grid>${renderRecords("all")}</div>`;
-}
-
-function rivalriesPage(){
-  return `<h2>Rivalries</h2>
-    <p class="intro">The league's biggest head-to-head rivalries, matchups, and historical grudges.</p>
-    <div class="grid">
-      <div class="card"><strong>Rivalries</strong><p>Head-to-head rivalry records and notable matchups can be added here as the league archive is documented.</p></div>
-      <div class="card"><strong>Signature Matchups</strong><p>Track the matchups that have defined the league's history.</p></div>
-    </div>`;
-}
-function careerRecordsPage(){
-  const career=[
-    ["Career Points","Career scoring totals by GM."],
-    ["Career Point Average","Career PPG leaders across documented seasons."],
-    ["Career Wins","All-time wins by GM."],
-    ["Career Playoff Appearances","Total playoff appearances across league history."],
-    ["Career Championships","Championship wins across league history."]
-  ];
-  return `<h2>Career Records</h2>
-    <p class="intro">The all-time individual record book, built around career-long achievements.</p>
-    <div class="records-grid">${career.map(r=>`<article class="record-card"><div class="record-card-title">${r[0]}</div><div class="record-card-detail">${r[1]}</div></article>`).join("")}</div>`;
+  </section>`;
 }
 function playoffsPage(){return `<h2>Playoff Records</h2><div class="playoff-definitions"><div><strong>Championship Appearances</strong><span>Years and championship record</span></div><div><strong>First Round Byes</strong><span>Years receiving a bye</span></div><div><strong>Playoff Appearances</strong><span>Years making the playoffs</span></div><div><strong>Playoff Record</strong><span>Playoff wins and losses</span></div></div><p class="intro"><strong>Record does not include wins after 1st loss in playoffs.</strong><br>Six-team playoffs started in 2022; no first-round byes before then.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>Member</th><th>Championship Appearances<br><span class="table-subheader">* Parenthesis denotes record in championship game</span></th><th>First Round Byes</th><th>Playoff Appearances</th><th>Playoff Record</th></tr></thead><tbody>${playoff.map(p=>{const rawChamp=p[1].replace(/^Championship Appearance(?:s)?:\s*/,"");const cm=rawChamp.match(/^(.*?);\s*Championship record:\s*(.*)$/i);const champ=cm?`${cm[1]} (${cm[2]})`:rawChamp;const bye=p[2].replace(/^First Round Bye(?:s)?:\s*/,"");const apps=p[3].replace(/^Playoff Appearances:\s*/,"");const rec=p[4].replace(/^Playoff Record:\s*/,"");return `<tr><td><strong>${p[0]}</strong></td><td>${champ}</td><td>${bye}</td><td>${apps}</td><td>${rec}</td></tr>`}).join("")}</tbody></table></div>`}
 function rulesPage(){
