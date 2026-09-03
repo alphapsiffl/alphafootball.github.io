@@ -273,31 +273,7 @@ function home(){
       <div class="shit-box-footer">THE LEAGUE'S LOWEST HONOR · EST. 2020</div>
     </section>
   </section>
-  <section class="record-feature record-feature-highscore" aria-labelledby="draft-value-torched-title">
-    <div class="record-feature-top">
-      <div>
-        <div class="record-feature-eyebrow">CAREER AVG PICK VALUE · WORST FIRST</div>
-        <div class="record-feature-title" id="draft-value-torched-title">DRAFT VALUE TORCHED</div>
-        <div class="record-feature-sub">The managers whose drafted players produced the worst career average pick value.</div>
-      </div>
-      <div class="record-highscore-mark"><span>−29.5</span><small>GRANT HARRIS</small></div>
-    </div>
-    <div class="highscore-table-wrap">
-      <table class="highscore-record-table">
-        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
-        <tbody>${[
-          ["GRANT HARRIS","−29.5","30 picks · −886 total","—"],
-          ["BLAKE JACKSON","−22.4","33 picks · −740 total","—"],
-          ["QUINTON ROOF","−21.7","96 picks · −2,082 total","—"],
-          ["JUSTIN COOPER","−19.6","46 picks · −899 total","—"],
-          ["TYLER MARMO","−15.4","34 picks · −524 total","—"],
-          ["VICTOR BARCENAS","−6.6","46 picks · −304 total","—"],
-          ["BRAXTON IVEY","−4.2","63 picks · −265 total","—"],
-          ["BAILEY COBLE","−1.1","96 picks · −104 total","—"]
-        ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="highscore-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</tbody>
-      </table>
-    </div>
-  </section>`;
+`;
 }
 function historyPage(){
   const seasons={
@@ -1404,7 +1380,8 @@ function careerRecordsPage(){
         ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="highscore-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</tbody>
       </table>
     </div>
-    <section class="record-feature record-feature-trade-value" aria-labelledby="career-trade-value-title">
+  </section>
+  <section class="record-feature record-feature-trade-value" aria-labelledby="career-trade-value-title">
     <div class="record-feature-top">
       <div>
         <div class="record-feature-eyebrow">NET REALIZED POINTS ACROSS EVERY TRADE</div>
@@ -1454,6 +1431,31 @@ function careerRecordsPage(){
           ["QUINTON ROOF",".488","40-42 vs the median","6 seasons"],
           ["BRAXTON IVEY",".455","25-30 vs the median","4 seasons"],
           ["DRAYTON PAXTON",".378","31-51 vs the median","6 seasons"]
+        ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="highscore-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</tbody>
+      </table>
+    </div>
+  </section>
+  <section class="record-feature record-feature-highscore" aria-labelledby="draft-value-torched-title">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">CAREER AVG PICK VALUE · WORST FIRST</div>
+        <div class="record-feature-title" id="draft-value-torched-title">DRAFT VALUE TORCHED</div>
+        <div class="record-feature-sub">The managers whose drafted players produced the worst career average pick value.</div>
+      </div>
+      <div class="record-highscore-mark"><span>−29.5</span><small>GRANT HARRIS</small></div>
+    </div>
+    <div class="highscore-table-wrap">
+      <table class="highscore-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>${[
+          ["GRANT HARRIS","−29.5","30 picks · −886 total","—"],
+          ["BLAKE JACKSON","−22.4","33 picks · −740 total","—"],
+          ["QUINTON ROOF","−21.7","96 picks · −2,082 total","—"],
+          ["JUSTIN COOPER","−19.6","46 picks · −899 total","—"],
+          ["TYLER MARMO","−15.4","34 picks · −524 total","—"],
+          ["VICTOR BARCENAS","−6.6","46 picks · −304 total","—"],
+          ["BRAXTON IVEY","−4.2","63 picks · −265 total","—"],
+          ["BAILEY COBLE","−1.1","96 picks · −104 total","—"]
         ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="highscore-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</tbody>
       </table>
     </div>

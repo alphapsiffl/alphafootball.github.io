@@ -11306,3 +11306,245 @@ button.active,
   .top10-filter-status{justify-content:flex-start;min-height:auto;padding-top:2px}
   .top10-search,.top10-manager{min-height:40px;font-size:15px}
 }
+
+/* v281 — unified Top 10s record boxes */
+.content-area .record-feature {
+  box-sizing:border-box;
+  width:100%;
+  margin:18px 0 22px !important;
+  padding:0 !important;
+  border:1px solid rgba(215,184,76,.28) !important;
+  border-top:4px solid #A51C30 !important;
+  border-radius:0 !important;
+  background:linear-gradient(145deg,rgba(165,28,48,.08),rgba(10,10,9,.97) 42%,rgba(22,17,10,.96)) !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02),inset 0 0 32px rgba(0,0,0,.5),0 12px 30px rgba(0,0,0,.28) !important;
+  overflow:hidden;
+}
+.content-area .record-feature .record-feature-top {
+  min-height:112px;
+  box-sizing:border-box;
+  padding:20px 24px 17px !important;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.content-area .record-feature .record-feature-title {
+  color:#f0d77a !important;
+  font-size:31px !important;
+  line-height:1.05;
+  letter-spacing:2.2px !important;
+}
+.content-area .record-feature .record-feature-sub {
+  max-width:720px;
+  margin:5px 0 0;
+  color:#888 !important;
+  font-size:12px;
+  line-height:1.45;
+}
+.content-area .record-feature .record-feature-eyebrow {
+  margin-bottom:6px;
+  color:#a88b38;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1.7px;
+  line-height:1.2;
+}
+.content-area .record-feature .record-feature-title::before { background:#A51C30 !important; }
+.content-area .record-feature-away .record-feature-top,
+.content-area .record-feature-combined .record-feature-top,
+.content-area .record-feature-blowout .record-feature-top,
+.content-area .record-feature-trade .record-feature-top,
+.content-area .record-feature-highscore .record-feature-top,
+.content-area .record-feature-waiver .record-feature-top,
+.content-area .record-feature-skids .record-feature-top,
+.content-area .record-feature-trade-value .record-feature-top {
+  min-height:112px;
+  padding:20px 24px 17px !important;
+}
+.content-area .record-away-mark,
+.content-area .record-combined-mark,
+.content-area .record-blowout-mark,
+.content-area .record-trade-mark,
+.content-area .record-highscore-mark,
+.content-area .record-waiver-mark,
+.content-area .record-skids-mark,
+.content-area .record-trade-value-mark {
+  flex:0 0 150px !important;
+  min-width:150px;
+  min-height:70px;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+  text-align:right;
+}
+.content-area .record-away-mark span,
+.content-area .record-combined-mark span,
+.content-area .record-blowout-mark span,
+.content-area .record-trade-mark span,
+.content-area .record-highscore-mark span,
+.content-area .record-waiver-mark span,
+.content-area .record-skids-mark span,
+.content-area .record-trade-value-mark span {
+  color:#f1d77a;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:37px;
+  font-weight:800;
+  line-height:1;
+}
+.content-area .record-away-mark small,
+.content-area .record-combined-mark small,
+.content-area .record-blowout-mark small,
+.content-area .record-trade-mark small,
+.content-area .record-highscore-mark small,
+.content-area .record-waiver-mark small,
+.content-area .record-skids-mark small,
+.content-area .record-trade-value-mark small {
+  margin-top:5px;
+  color:#a88b38;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1.2px;
+  line-height:1.2;
+}
+.content-area .record-feature .away-table-wrap,
+.content-area .record-feature .combined-table-wrap,
+.content-area .record-feature .blowout-table-wrap,
+.content-area .record-feature .trade-table-wrap,
+.content-area .record-feature .highscore-table-wrap,
+.content-area .record-feature .waiver-table-wrap,
+.content-area .record-feature .skids-table-wrap,
+.content-area .record-feature .trade-value-table-wrap { margin:0; }
+.content-area .record-feature .away-record-table,
+.content-area .record-feature .combined-record-table,
+.content-area .record-feature .blowout-record-table,
+.content-area .record-feature .trade-record-table,
+.content-area .record-feature .highscore-record-table,
+.content-area .record-feature .waiver-record-table,
+.content-area .record-feature .skids-record-table,
+.content-area .record-feature .trade-value-record-table {
+  width:100%;
+  box-sizing:border-box;
+  border-collapse:collapse;
+  table-layout:fixed;
+  background:rgba(0,0,0,.16);
+}
+.content-area .record-feature .away-record-table th,
+.content-area .record-feature .away-record-table td,
+.content-area .record-feature .combined-record-table th,
+.content-area .record-feature .combined-record-table td,
+.content-area .record-feature .blowout-record-table th,
+.content-area .record-feature .blowout-record-table td,
+.content-area .record-feature .trade-record-table th,
+.content-area .record-feature .trade-record-table td,
+.content-area .record-feature .highscore-record-table th,
+.content-area .record-feature .highscore-record-table td,
+.content-area .record-feature .waiver-record-table th,
+.content-area .record-feature .waiver-record-table td,
+.content-area .record-feature .skids-record-table th,
+.content-area .record-feature .skids-record-table td,
+.content-area .record-feature .trade-value-record-table th,
+.content-area .record-feature .trade-value-record-table td {
+  padding:9px 12px;
+  border-top:1px solid rgba(215,184,76,.10);
+  text-align:left;
+  vertical-align:middle;
+}
+.content-area .record-feature .away-record-table th,
+.content-area .record-feature .combined-record-table th,
+.content-area .record-feature .blowout-record-table th,
+.content-area .record-feature .trade-record-table th,
+.content-area .record-feature .highscore-record-table th,
+.content-area .record-feature .waiver-record-table th,
+.content-area .record-feature .skids-record-table th,
+.content-area .record-feature .trade-value-record-table th {
+  background:rgba(215,184,76,.045);
+  color:#7d765f;
+  font-family:Oswald,"Arial Narrow",sans-serif;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:1.8px;
+}
+.content-area .record-feature .away-record-table td,
+.content-area .record-feature .combined-record-table td,
+.content-area .record-feature .blowout-record-table td,
+.content-area .record-feature .trade-record-table td,
+.content-area .record-feature .highscore-record-table td,
+.content-area .record-feature .waiver-record-table td,
+.content-area .record-feature .skids-record-table td,
+.content-area .record-feature .trade-value-record-table td {
+  color:#858585;
+  font-size:9px;
+  line-height:1.3;
+}
+.content-area .record-feature .away-record-table tbody tr:nth-child(odd),
+.content-area .record-feature .combined-record-table tbody tr:nth-child(odd),
+.content-area .record-feature .blowout-record-table tbody tr:nth-child(odd),
+.content-area .record-feature .trade-record-table tbody tr:nth-child(odd),
+.content-area .record-feature .highscore-record-table tbody tr:nth-child(odd),
+.content-area .record-feature .waiver-record-table tbody tr:nth-child(odd),
+.content-area .record-feature .skids-record-table tbody tr:nth-child(odd),
+.content-area .record-feature .trade-value-record-table tbody tr:nth-child(odd) { background:rgba(255,255,255,.012); }
+.content-area .record-feature .away-record-table tbody tr:hover,
+.content-area .record-feature .combined-record-table tbody tr:hover,
+.content-area .record-feature .blowout-record-table tbody tr:hover,
+.content-area .record-feature .trade-record-table tbody tr:hover,
+.content-area .record-feature .highscore-record-table tbody tr:hover,
+.content-area .record-feature .waiver-record-table tbody tr:hover,
+.content-area .record-feature .skids-record-table tbody tr:hover,
+.content-area .record-feature .trade-value-record-table tbody tr:hover { background:rgba(165,28,48,.055); }
+
+/* Keep every Top 10 category on the same visual grid. */
+.top10-filters + .record-feature { margin-top:0 !important; }
+
+@media(max-width:650px) {
+  .content-area .record-feature { margin:14px 0 18px !important; }
+  .content-area .record-feature .record-feature-top,
+  .content-area .record-feature-away .record-feature-top,
+  .content-area .record-feature-combined .record-feature-top,
+  .content-area .record-feature-blowout .record-feature-top,
+  .content-area .record-feature-trade .record-feature-top,
+  .content-area .record-feature-highscore .record-feature-top,
+  .content-area .record-feature-waiver .record-feature-top,
+  .content-area .record-feature-skids .record-feature-top,
+  .content-area .record-feature-trade-value .record-feature-top {
+    min-height:96px;
+    padding:15px 14px 13px !important;
+    gap:12px;
+  }
+  .content-area .record-feature .record-feature-title { font-size:23px !important; }
+  .content-area .record-feature .record-feature-sub { font-size:9px; }
+  .content-area .record-feature .record-feature-eyebrow { font-size:7px; letter-spacing:1.2px; }
+  .content-area .record-away-mark,
+  .content-area .record-combined-mark,
+  .content-area .record-blowout-mark,
+  .content-area .record-trade-mark,
+  .content-area .record-highscore-mark,
+  .content-area .record-waiver-mark,
+  .content-area .record-skids-mark,
+  .content-area .record-trade-value-mark {
+    flex-basis:100px !important;
+    min-width:100px;
+    min-height:58px;
+  }
+  .content-area .record-away-mark span,
+  .content-area .record-combined-mark span,
+  .content-area .record-blowout-mark span,
+  .content-area .record-trade-mark span,
+  .content-area .record-highscore-mark span,
+  .content-area .record-waiver-mark span,
+  .content-area .record-skids-mark span,
+  .content-area .record-trade-value-mark span { font-size:29px; }
+  .content-area .record-away-mark small,
+  .content-area .record-combined-mark small,
+  .content-area .record-blowout-mark small,
+  .content-area .record-trade-mark small,
+  .content-area .record-highscore-mark small,
+  .content-area .record-waiver-mark small,
+  .content-area .record-skids-mark small,
+  .content-area .record-trade-value-mark small { font-size:6px; letter-spacing:1px; }
+}
