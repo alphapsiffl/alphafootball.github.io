@@ -11235,3 +11235,74 @@ button.active,
   content:none !important;
   display:none !important;
 }
+
+/* Longest Losing Skids */
+.record-feature-skids .record-skids-mark{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;min-width:150px;}
+.record-skids-mark span{font-family:Oswald,sans-serif;font-size:42px;line-height:1;color:#f0d477;font-weight:800;}
+.record-skids-mark small{font-size:11px;letter-spacing:1.2px;font-weight:800;color:#fff;text-align:right;margin-top:5px;}
+.skids-table-wrap{overflow-x:auto;}
+.skids-record-table{width:100%;border-collapse:collapse;min-width:700px;}
+.skids-record-table th,.skids-record-table td{padding:13px 12px;border-bottom:1px solid rgba(255,255,255,.12);text-align:left;}
+.skids-record-table th{font-size:10px;letter-spacing:1.2px;color:#d7b84c;background:rgba(0,0,0,.2);}
+.skids-record-table td{font-size:14px;color:#eee;}
+.skids-record-table td:first-child{width:38px;color:#aaa;}
+.skids-record-table .skids-value{font-family:Oswald,sans-serif;font-size:20px;font-weight:800;color:#f0d477;}
+@media (max-width:700px){.record-feature-skids .record-skids-mark{min-width:85px}.record-skids-mark span{font-size:30px}.record-skids-mark small{font-size:8px}.skids-record-table{min-width:620px}.skids-record-table th,.skids-record-table td{padding:10px 8px}.skids-record-table td{font-size:12px}}
+
+/* Top 10s search + manager filters */
+.top10-filters{
+  display:grid;
+  grid-template-columns:minmax(260px,1fr) minmax(190px,260px) auto;
+  gap:12px;
+  align-items:end;
+  margin:0 0 20px;
+  padding:14px 16px;
+  background:linear-gradient(180deg,#242426,#1b1b1d);
+  border:1px solid rgba(184,154,72,.55);
+  border-left:4px solid #a51c30;
+  box-shadow:0 8px 22px rgba(0,0,0,.18);
+}
+.top10-filter-group{display:flex;flex-direction:column;gap:6px;min-width:0}
+.top10-filter-group label{
+  font-family:Oswald,Arial Narrow,Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.14em;
+  font-weight:700;
+  color:#d8b96a;
+}
+.top10-search,.top10-manager{
+  width:100%;
+  min-height:42px;
+  box-sizing:border-box;
+  border:1px solid #555;
+  background:#111113;
+  color:#f2f2f2;
+  padding:9px 12px;
+  font:16px Georgia,serif;
+  outline:none;
+}
+.top10-search:focus,.top10-manager:focus{
+  border-color:#a51c30;
+  box-shadow:0 0 0 2px rgba(165,28,48,.18);
+}
+.top10-manager{font-family:Oswald,Arial Narrow,Arial,sans-serif;font-size:14px;letter-spacing:.03em}
+.top10-filter-status{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  white-space:nowrap;
+  font-family:Oswald,Arial Narrow,Arial,sans-serif;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#aaa;
+}
+.top10-filters.is-filtered .top10-filter-status{color:#d8b96a}
+.record-feature[data-top10-hidden="true"]{display:none!important}
+.record-feature [data-top10-row-hidden="true"]{display:none!important}
+@media(max-width:700px){
+  .top10-filters{grid-template-columns:1fr;margin-bottom:14px;padding:12px}
+  .top10-filter-status{justify-content:flex-start;min-height:auto;padding-top:2px}
+  .top10-search,.top10-manager{min-height:40px;font-size:15px}
+}

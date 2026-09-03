@@ -272,6 +272,31 @@ function home(){
       </div>
       <div class="shit-box-footer">THE LEAGUE'S LOWEST HONOR · EST. 2020</div>
     </section>
+  </section>
+  <section class="record-feature record-feature-highscore" aria-labelledby="draft-value-torched-title">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">CAREER AVG PICK VALUE · WORST FIRST</div>
+        <div class="record-feature-title" id="draft-value-torched-title">DRAFT VALUE TORCHED</div>
+        <div class="record-feature-sub">The managers whose drafted players produced the worst career average pick value.</div>
+      </div>
+      <div class="record-highscore-mark"><span>−29.5</span><small>GRANT HARRIS</small></div>
+    </div>
+    <div class="highscore-table-wrap">
+      <table class="highscore-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>${[
+          ["GRANT HARRIS","−29.5","30 picks · −886 total","—"],
+          ["BLAKE JACKSON","−22.4","33 picks · −740 total","—"],
+          ["QUINTON ROOF","−21.7","96 picks · −2,082 total","—"],
+          ["JUSTIN COOPER","−19.6","46 picks · −899 total","—"],
+          ["TYLER MARMO","−15.4","34 picks · −524 total","—"],
+          ["VICTOR BARCENAS","−6.6","46 picks · −304 total","—"],
+          ["BRAXTON IVEY","−4.2","63 picks · −265 total","—"],
+          ["BAILEY COBLE","−1.1","96 picks · −104 total","—"]
+        ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="highscore-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</tbody>
+      </table>
+    </div>
   </section>`;
 }
 function historyPage(){
@@ -1120,6 +1145,36 @@ function careerRecordsPage(){
   const career=[];
   return `<h2>Top 10s</h2>
     <p class="intro">The all-time individual record book, built around career-long achievements.</p>
+    <div class="top10-filters" data-top10-filters>
+      <div class="top10-filter-group top10-search-group">
+        <label for="top10-search">SEARCH RECORDS</label>
+        <input id="top10-search" class="top10-search" type="search" placeholder="Search a player, manager, season, or record..." autocomplete="off">
+      </div>
+      <div class="top10-filter-group">
+        <label for="top10-manager">MANAGER</label>
+        <select id="top10-manager" class="top10-manager">
+          <option value="all">ALL MANAGERS</option>
+          <option>Alexander Peachey</option>
+          <option>Andrew Blum</option>
+          <option>Bailey Coble</option>
+          <option>Braxton Ivey</option>
+          <option>Cal M.</option>
+          <option>Corey Steele</option>
+          <option>Drayton Paxton</option>
+          <option>Grayson Maxfield</option>
+          <option>Grant Harris</option>
+          <option>Jonathan Davis</option>
+          <option>Justin Cooper</option>
+          <option>Kameron Walker</option>
+          <option>McKinzie Arrington</option>
+          <option>Quinton Roof</option>
+          <option>Ty Katz</option>
+          <option>Tyler Marmo</option>
+          <option>Victor Barcenas</option>
+        </select>
+      </div>
+      <div class="top10-filter-status" data-top10-status>Showing all records</div>
+    </div>
   <section class="record-feature record-feature-away" aria-labelledby="ones-away-title">
     <div class="record-feature-top">
       <div>
@@ -1291,6 +1346,115 @@ function careerRecordsPage(){
             ["BLAKE JACKSON","+410","60 moves · 66% hit rate","2 seasons"]
           ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="waiver-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}
         </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="record-feature record-feature-skids" aria-labelledby="losing-skids-title">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">CONSECUTIVE LOSSES · ALL-TIME</div>
+        <div class="record-feature-title" id="losing-skids-title">LONGEST LOSING SKIDS</div>
+        <div class="record-feature-sub">The longest stretches of consecutive losses in Alpha Psi history.</div>
+      </div>
+      <div class="record-skids-mark"><span>13</span><small>DRAYTON PAXTON</small></div>
+    </div>
+    <div class="skids-table-wrap">
+      <table class="skids-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>
+          ${[
+            ["DRAYTON PAXTON","13","—","2024 Wk 7 → 2025 Wk 5"],
+            ["TYLER MARMO","10","—","2021 Wk 3 → 2021 Wk 12"],
+            ["GRANT HARRIS","9","—","2024 Wk 3 → 2024 Wk 11"],
+            ["JUSTIN COOPER","8","—","2025 Wk 1 → 2025 Wk 8"],
+            ["COREY STEELE","7","—","2021 Wk 4 → 2021 Wk 10"],
+            ["JONATHAN DAVIS","6","—","2023 Wk 8 → 2023 Wk 13"],
+            ["KAMERON WALKER","6","—","2024 Wk 5 → 2024 Wk 10"],
+            ["CAL M.","5","—","2021 Wk 2 → 2021 Wk 6"],
+            ["MCKINZIE ARRINGTON","5","—","2022 Wk 11 → 2023 Wk 1"],
+            ["ALEXANDER PEACHEY","5","—","2020 Wk 1 → 2020 Wk 5"]
+          ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="skids-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="record-feature record-feature-highscore" aria-labelledby="narrow-wins-title">
+    <div class="record-feature-top"><div><div class="record-feature-eyebrow">ALL-TIME · WINS DECIDED BY THE SMALLEST MARGINS</div><div class="record-feature-title" id="narrow-wins-title">NARROW WINS</div><div class="record-feature-sub">Managers with the most narrow victories in Alpha Psi history.</div></div><div class="record-highscore-mark"><span>8</span><small>KAMERON WALKER</small></div></div>
+    <div class="highscore-table-wrap"><table class="highscore-record-table"><thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th></tr></thead><tbody>${[["KAMERON WALKER","8"],["JONATHAN DAVIS","7"],["VICTOR BARCENAS","7"],["ALEXANDER PEACHEY","6"],["BAILEY COBLE","5"],["MCKINZIE ARRINGTON","5"],["QUINTON ROOF","3"],["DRAYTON PAXTON","3"],["BRAXTON IVEY","2"],["JUSTIN COOPER","2"]].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="highscore-value">${r[1]}</td><td>Narrow wins</td></tr>`).join("")}</tbody></table></div>
+  </section>
+  <section class="record-feature record-feature-highscore" aria-labelledby="win-streaks-title">
+    <div class="record-feature-top">
+      <div><div class="record-feature-eyebrow">CONSECUTIVE WINS · ALL-TIME</div><div class="record-feature-title" id="win-streaks-title">LONGEST WIN STREAKS</div><div class="record-feature-sub">The longest stretches of consecutive wins in Alpha Psi history.</div></div>
+      <div class="record-highscore-mark"><span>8</span><small>BAILEY COBLE</small></div>
+    </div>
+    <div class="highscore-table-wrap">
+      <table class="highscore-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>${[
+          ["BAILEY COBLE","8","—","2021 Wk 7 → 2021 Wk 14"],
+          ["TY KATZ","6","—","2021 Wk 1 → 2021 Wk 6"],
+          ["JONATHAN DAVIS","6","—","2022 Wk 8 → 2022 Wk 13"],
+          ["QUINTON ROOF","6","—","2024 Wk 13 → 2025 Wk 4"],
+          ["VICTOR BARCENAS","6","—","2023 Wk 7 → 2023 Wk 12"],
+          ["ANDREW BLUM","5","—","2021 Wk 11 → 2022 Wk 1"],
+          ["ALEXANDER PEACHEY","5","—","2022 Wk 3 → 2022 Wk 7"],
+          ["KAMERON WALKER","5","—","2020 Wk 1 → 2020 Wk 5"],
+          ["BRAXTON IVEY","5","—","2023 Wk 3 → 2023 Wk 7"],
+          ["CAL M.","4","—","2021 Wk 11 → 2021 Wk 14"]
+        ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="highscore-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</tbody>
+      </table>
+    </div>
+    <section class="record-feature record-feature-trade-value" aria-labelledby="career-trade-value-title">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">NET REALIZED POINTS ACROSS EVERY TRADE</div>
+        <div class="record-feature-title" id="career-trade-value-title">CAREER TRADE VALUE</div>
+        <div class="record-feature-sub">The managers with the highest net realized point value generated across their careers through trades.</div>
+      </div>
+      <div class="record-trade-value-mark"><span>+1,226</span><small>JONATHAN DAVIS</small></div>
+    </div>
+    <div class="trade-value-table-wrap">
+      <table class="trade-value-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>${[
+          ["JONATHAN DAVIS","+1,226","23 trades","6 seasons"],
+          ["BAILEY COBLE","+664","29 trades","6 seasons"],
+          ["MCKINZIE ARRINGTON","+475","17 trades","6 seasons"],
+          ["BRAXTON IVEY","+391","13 trades","4 seasons"],
+          ["ANDREW BLUM","+308","14 trades","6 seasons"],
+          ["TY KATZ","+199","3 trades","2 seasons"],
+          ["CAL M.","+144","2 trades","1 season"],
+          ["JUSTIN COOPER","+116","14 trades","3 seasons"],
+          ["DRAYTON PAXTON","+85.2","21 trades","6 seasons"],
+          ["GRAYSON MAXFIELD","−16.6","4 trades","1 season"]
+        ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="trade-value-net">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</tbody>
+      </table>
+    </div>
+  </section>
+  <section class="record-feature record-feature-highscore" aria-labelledby="median-record-title">
+    <div class="record-feature-top">
+      <div>
+        <div class="record-feature-eyebrow">EVERY WEEK VS THE LEAGUE MEDIAN · MINIMUM 28 WEEKS</div>
+        <div class="record-feature-title" id="median-record-title">BEST RECORD VS THE MEDIAN</div>
+        <div class="record-feature-sub">The best career record against the league median, among managers with at least 28 weeks played.</div>
+      </div>
+      <div class="record-highscore-mark"><span>.707</span><small>BAILEY COBLE</small></div>
+    </div>
+    <div class="highscore-table-wrap">
+      <table class="highscore-record-table">
+        <thead><tr><th>#</th><th>MANAGER</th><th>VALUE</th><th>DETAIL</th><th>WHEN</th></tr></thead>
+        <tbody>${[
+          ["BAILEY COBLE",".707","58-24 vs the median","6 seasons"],
+          ["JONATHAN DAVIS",".634","52-30 vs the median","6 seasons"],
+          ["VICTOR BARCENAS",".571","24-18 vs the median","3 seasons"],
+          ["ANDREW BLUM",".549","45-37 vs the median","6 seasons"],
+          ["KAMERON WALKER",".537","44-38 vs the median","6 seasons"],
+          ["ALEXANDER PEACHEY",".512","42-40 vs the median","6 seasons"],
+          ["MCKINZIE ARRINGTON",".512","42-40 vs the median","6 seasons"],
+          ["QUINTON ROOF",".488","40-42 vs the median","6 seasons"],
+          ["BRAXTON IVEY",".455","25-30 vs the median","4 seasons"],
+          ["DRAYTON PAXTON",".378","31-51 vs the median","6 seasons"]
+        ].map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r[0]}</strong></td><td class="highscore-value">${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</tbody>
       </table>
     </div>
   </section>`;
@@ -1703,6 +1867,43 @@ const initial=location.hash.slice(1);render(pages[initial]?initial:"home");
 
 
 /* v272 — League Records category tabs */
+function applyTop10Filters(){
+  const wrap=document.querySelector("[data-top10-filters]");
+  if(!wrap) return;
+  const search=(wrap.querySelector(".top10-search")?.value || "").trim().toLowerCase();
+  const manager=(wrap.querySelector(".top10-manager")?.value || "all").trim().toLowerCase();
+  const sections=[...document.querySelectorAll(".record-feature")].filter(section=>section.querySelector("table tbody"));
+  let shown=0,total=0;
+  sections.forEach(section=>{
+    let sectionShown=0;
+    const sectionText=section.textContent.toLowerCase();
+    const searchMatchesSection=!!search && sectionText.includes(search);
+    section.querySelectorAll("table tbody tr").forEach(row=>{
+      total++;
+      const text=row.textContent.toLowerCase();
+      const matchesSearch=!search || searchMatchesSection || text.includes(search);
+      const matchesManager=manager==="all" || text.includes(manager);
+      const show=matchesSearch && matchesManager;
+      row.dataset.top10RowHidden=show?"false":"true";
+      row.style.display=show?"":"none";
+      if(show){shown++;sectionShown++;}
+    });
+    section.dataset.top10Hidden=sectionShown?"false":"true";
+    section.style.display=sectionShown?"":"none";
+  });
+  const filtered=!!search || manager!=="all";
+  wrap.classList.toggle("is-filtered",filtered);
+  const status=wrap.querySelector("[data-top10-status]");
+  if(status) status.textContent=filtered?`Showing ${shown} of ${total} records`:`Showing all ${total} records`;
+}
+
+document.addEventListener("input",(event)=>{
+  if(event.target.matches("[data-top10-filters] .top10-search")) applyTop10Filters();
+});
+document.addEventListener("change",(event)=>{
+  if(event.target.matches("[data-top10-filters] .top10-manager")) applyTop10Filters();
+});
+
 document.addEventListener("click",(event)=>{
   const tab=event.target.closest(".record-filter");
   if(!tab) return;
