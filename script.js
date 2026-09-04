@@ -881,26 +881,9 @@ function allPsiPage(){
       ${renderSeason(2023)}
     </div>
 
-    <script>
-      (function(){
-        const tabs=document.querySelectorAll('.allpsi-season-tab');
-        const panels=document.querySelectorAll('.allpsi-season-panel');
-        tabs.forEach(tab=>{
-          tab.addEventListener('click',()=>{
-            const season=tab.dataset.season;
-            tabs.forEach(t=>{
-              const active=t===tab;
-              t.classList.toggle('active',active);
-              t.setAttribute('aria-selected',active?'true':'false');
-            });
-            panels.forEach(panel=>{
-              panel.classList.toggle('active',panel.dataset.season===season);
-            });
-          });
-        });
-      })();
-    </script>`;
+  `;
 }
+
 const memberFullNames = {"Quinton": "Quinton Roof", "Bailey": "Bailey Coble", "Davis": "Jonathan Davis", "Blum": "Andrew Blum", "Peachey": "Alexander Peachey", "Justin": "Justin Cooper", "Grant H.": "Grant Harris", "Kameron": "Kameron Walker", "Braxton": "Braxton Ivey", "Victor B.": "Victor Barcenas", "Mac": "Chase Arrington", "Drayton": "Drayton Paxton", "Blake": "Blake Jackson", "Grayson": "Grayson Maxfield", "Corey": "Corey Steele", "Marmo": "Tyler Marmo", "Ty": "Ty Katz", "Grant A.": "Grant Alexander", "Cal": "Cal McMeekin"};
 
 function trophyCase(name){
@@ -1111,11 +1094,7 @@ function recordsPage(){
 
 function rivalriesPage(){
   return `<h2>Rivalries</h2>
-    <p class="intro">The league's biggest head-to-head rivalries, matchups, and historical grudges.</p>
-    <div class="grid">
-      <div class="card"><strong>Rivalries</strong><p>Head-to-head rivalry records and notable matchups can be added here as the league archive is documented.</p></div>
-      <div class="card"><strong>Signature Matchups</strong><p>Track the matchups that have defined the league's history.</p></div>
-    </div>`;
+    <p class="intro">The league's biggest head-to-head rivalries, matchups, and historical grudges.</p>`;
 }
 function careerRecordsPage(){
   const career=[];
@@ -1904,6 +1883,23 @@ document.addEventListener("input",(event)=>{
 });
 document.addEventListener("change",(event)=>{
   if(event.target.matches("[data-top10-filters] .top10-manager")) applyTop10Filters();
+});
+
+document.addEventListener("click",(event)=>{
+  const tab=event.target.closest(".allpsi-season-tab");
+  if(!tab) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const season=tab.dataset.season;
+  const root=tab.closest("[data-history-section-panel=\"allpsi\"]") || tab.closest(".content-area") || document;
+  root.querySelectorAll(".allpsi-season-tab").forEach(t=>{
+    const active=t===tab;
+    t.classList.toggle("active",active);
+    t.setAttribute("aria-selected",active?"true":"false");
+  });
+  root.querySelectorAll(".allpsi-season-panel").forEach(panel=>{
+    panel.classList.toggle("active",panel.dataset.season===season);
+  });
 });
 
 document.addEventListener("click",(event)=>{

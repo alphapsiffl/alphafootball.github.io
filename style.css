@@ -11548,3 +11548,16 @@ button.active,
   .content-area .record-skids-mark small,
   .content-area .record-trade-value-mark small { font-size:6px; letter-spacing:1px; }
 }
+
+/* v282 — remove the 200+ watermark from every Top 10s record box */
+.record-feature-away::after,
+.record-feature-blowout::after,
+.record-feature-combined::after,
+.record-feature-trade::after,
+.record-feature-highscore::after,
+.record-feature-waiver::after,
+.record-feature-skids::after,
+.record-feature-trade-value::after {
+  content:none !important;
+  display:none !important;
+}
